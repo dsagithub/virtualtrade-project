@@ -77,5 +77,4 @@ public class Anuncio {
 		this.atributo3 = atributo3;
 	}
 	
-	
 }

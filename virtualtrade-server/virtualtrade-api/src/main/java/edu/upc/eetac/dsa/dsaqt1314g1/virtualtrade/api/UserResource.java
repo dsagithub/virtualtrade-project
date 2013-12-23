@@ -6,11 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -84,6 +80,51 @@ public class UserResource {
 			}
 		}
 		return users;
+	}
+	
+	@GET
+	@Path("/{email}")
+	@Produces(MediaType.VIRTUAL_API_USER)
+	public User getUser(@PathParam("email") String email) {
+		User user = new User();
+
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+			stmt = conn.createStatement();
+			sql = "SELECT * FROM users WHERE email= '" + email + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				user.setEmail(rs.getString("email"));
+				user.setName(rs.getString("name"));
+				user.setPhone(rs.getInt("phone"));
+				user.setFoto(rs.getString("foto"));
+				user.setCiudad(rs.getString("ciudad"));
+				user.setCalle(rs.getString("calle"));
+				user.setNumero(rs.getInt("numero"));
+				user.setPiso(rs.getInt("piso"));
+				user.setPuerta(rs.getInt("puerta"));
+				user.setBanned(rs.getBoolean("banned"));
+			}
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return user;
 	}
 	
 }

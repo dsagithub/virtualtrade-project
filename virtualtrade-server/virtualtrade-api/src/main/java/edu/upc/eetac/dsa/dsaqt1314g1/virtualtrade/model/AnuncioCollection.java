@@ -21,7 +21,6 @@ public class AnuncioCollection {
 	public void setAnuncios(List<Anuncio> anuncios) {
 		this.anuncios = anuncios;
 	}
-	
 
 	public void add(Link link) {
 		links.add(link);
@@ -34,5 +33,5 @@ public class AnuncioCollection {
 	public void setLinks(List<Link> links) {
 		this.links = links;
 	}
-	
+
 }

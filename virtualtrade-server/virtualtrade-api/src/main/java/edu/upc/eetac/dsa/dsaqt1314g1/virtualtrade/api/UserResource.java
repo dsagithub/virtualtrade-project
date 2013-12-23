@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -63,7 +64,7 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
-			
+
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -81,7 +82,7 @@ public class UserResource {
 		}
 		return users;
 	}
-	
+
 	@GET
 	@Path("/{email}")
 	@Produces(MediaType.VIRTUAL_API_USER)
@@ -114,8 +115,7 @@ public class UserResource {
 			}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
-		}
-		finally {
+		} finally {
 			try {
 				stmt.close();
 				conn.close();
@@ -126,5 +126,35 @@ public class UserResource {
 		}
 		return user;
 	}
-	
+
+	@DELETE
+	@Path("/{email}")
+	public void deleteUser(@PathParam("email") String email) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+			stmt = conn.createStatement();
+			String sql = "DELETE FROM users WHERE email='" + email + "'";
+			stmt.executeUpdate(sql);
+
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

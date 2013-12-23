@@ -4,16 +4,14 @@ public class User {
 	
 	private String email;
 	private String name;
-	private String photo;
-	private String provincia;
+	private int phone;
+	private String foto;
 	private String ciudad;
 	private String calle;
 	private int numero;
 	private int piso;
 	private int puerta;
 	private boolean banned;
-	private String userpass;
-	private java.util.Date lastModified;
 	
 	public String getEmail() {
 		return email;
@@ -27,17 +25,18 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPhoto() {
-		return photo;
+	
+	public int getPhone() {
+		return phone;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
-	public String getProvincia() {
-		return provincia;
+	public String getFoto() {
+		return foto;
 	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	public String getCiudad() {
 		return ciudad;
@@ -75,18 +74,5 @@ public class User {
 	public void setBanned(boolean banned) {
 		this.banned = banned;
 	}
-	public String getUserpass() {
-		return userpass;
-	}
-	public void setUserpass(String userpass) {
-		this.userpass = userpass;
-	}
-	public java.util.Date getLastModified() {
-		return lastModified;
-	}
-	public void setLastModified(java.util.Date lastModified) {
-		this.lastModified = lastModified;
-	}
-	
 	
 }

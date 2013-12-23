@@ -1,0 +1,5 @@
+source anunciosdb-schema.sql;
+insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('roxanamail','roxana','667123678','Castelldefels','Arcadi Balaguer','50','1','2',false,'http://spd.fotolog.com/photo/29/45/52/justpatricio/1244701851404_f.jpg');
+insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('arnaumail','arnau','686379165','La Pobla de Lillet','Tercero de coromines','8','3','9',false,'http://i2.esmas.com/galerias/fotos/2009/7/_Bob-Esponja-10anos_3-64016b36-c444-102c-80b6-0019b9d5c8df.jpg');
+insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('joanmail','joan','617646696','Ciutadella de Menorca','General Quadrado','5','2','7',false,'https://lh3.googleusercontent.com/-r2zQhwdYFRA/AAAAAAAAAAI/AAAAAAAAAEs/_ItBNFRE4T4/photo.jpg');
+insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('josemail','jose','686370896','Barcelona','Passeig de Gracia','5','1','6',false,'http://www.latostadora.com/generados/tiendas/4075/dibujos/41908.jpg');

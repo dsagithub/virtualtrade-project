@@ -59,16 +59,14 @@ public class UserResource {
 				User user = new User();
 				user.setEmail(rs.getString("email"));
 				user.setName(rs.getString("name"));
-				user.setPhoto(rs.getString("photo"));
-				user.setProvincia(rs.getString("provincia"));
+				user.setPhone(rs.getInt("phone"));
+				user.setFoto(rs.getString("foto"));
 				user.setCiudad(rs.getString("ciudad"));
 				user.setCalle(rs.getString("calle"));
 				user.setNumero(rs.getInt("numero"));
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
-				user.setUserpass(rs.getString("userpass"));
-				user.setLastModified(rs.getDate("lastModified"));
 			
 				users.add(user);
 			}

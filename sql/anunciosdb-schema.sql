@@ -1,5 +1,5 @@
-drop database if exists beeterdb;
-create database beeterdb;
+drop database if exists anunciosdb;
+create database anunciosdb;
 
 use anunciosdb;
 

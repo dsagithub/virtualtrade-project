@@ -74,20 +74,6 @@ public class AnuncioResource {
 				anuncio.setMarca(rs.getString("marca"));
 				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
 						anuncioid, rel));
-
-				sql = "SELECT * FROM imagen WHERE anuncioid='" + anuncioid
-						+ "'";
-				rs = stmt.executeQuery(sql);
-
-				while (rs.next()) {
-					Imagen imagen = new Imagen();
-					imagen.setUrlimagen(rs.getString("urlimagen"));
-					imagen.setImagenid(rs.getInt("imagenid"));
-					imagen.setAnuncioid(rs.getInt("anuncioid"));
-					imagen.add(VirtualAPILinkBuilder.buildURIResena(uriInfo, rs.getString("imagenid"), anuncioid, rel));
-					anuncio.add(imagen);
-				}
-
 			}
 		} catch (SQLException e) {
 			throw new AnuncioNotFoundException();
@@ -320,5 +306,8 @@ public class AnuncioResource {
 		}
 		return anuncio;
 	}
+	
+	
+	
 
 }

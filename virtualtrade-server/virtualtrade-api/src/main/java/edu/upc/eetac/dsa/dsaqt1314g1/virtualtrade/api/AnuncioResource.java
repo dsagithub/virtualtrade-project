@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -74,7 +76,7 @@ public class AnuncioResource {
 				
 			}
 		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
+			throw new AnuncioNotFoundException();
 		} finally {
 			try {
 				stmt.close();
@@ -88,6 +90,66 @@ public class AnuncioResource {
 //		return imagen;
 	}
 
+	
+	@DELETE
+	@Path("/{anuncioid}")
+	public void deleteAnuncio(@PathParam("anuncioid") String anuncioid) {
+		
+//		if (security.isUserInRole("registered")) {
+//
+//			throw new ForbiddenException("You are not allowed");
+//
+//		}
+
+//		else {
+
+			Connection conn = null;
+			Statement stmt = null;
+			try {
+				conn = ds.getConnection();
+			} catch (SQLException e) {
+				throw new ServiceUnavailableException(e.getMessage());
+			}
+
+			try {
+				
+				stmt = conn.createStatement();
+				String sql ="SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				if (rs.next() == false) {
+					throw new AnuncioNotFoundException();
+				}
+				else{
+				
+
+				sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+				sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+				sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+				
+				}
+				
+
+			} catch (SQLException e) {
+				throw new InternalServerException(e.getMessage());
+			}
+
+			finally {
+				try {
+					stmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+//		}
+		
+
+	}
 	
 	
 	

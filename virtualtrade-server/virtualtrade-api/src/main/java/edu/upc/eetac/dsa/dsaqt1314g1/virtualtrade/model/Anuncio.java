@@ -7,13 +7,14 @@ public class Anuncio {
 	private int anuncioid;
 	private String email;
 	private String subject;
-	private int content;
+	private String content;
 	private boolean estado;
 	private int precio;
 	private Timestamp creation_timestamp;
 	private String atributo1;
 	private String atributo2;
 	private String atributo3;
+	private String marca;
 
 	public int getAnuncioid() {
 		return anuncioid;
@@ -39,11 +40,12 @@ public class Anuncio {
 		this.subject = subject;
 	}
 
-	public int getContent() {
+
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(int content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
@@ -93,6 +95,14 @@ public class Anuncio {
 
 	public void setAtributo3(String atributo3) {
 		this.atributo3 = atributo3;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 
 }

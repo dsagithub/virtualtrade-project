@@ -40,3 +40,11 @@ insert into imagen (anuncioid,urlimagen) values (10,'https://encrypted-tbn1.gsta
 insert into imagen (anuncioid,urlimagen) values (11,'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTj7vthgYD_giudDxZQfJ2wyN5KivD5yX4wUyHGOCEFJ4dxX40Y');
 insert into imagen (anuncioid,urlimagen) values  (12,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
 
+
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('arnaumail','roxanamail','8','Interes en la batamanta','La batamanta me interesa para estas navidades me gustaria comprarla por 15 euros si estas de acuerdo responde');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('roxanamail','arnaumail','8','Re:Interes en la batamanta','Me parece bien');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('arnaumail','joanmail','1','Anuncio s3','Tengo interes en adquirir el s3 ponte en contacto conmigo por mail');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('roxanamail','arnaumail','6','Quiero el CD del Fary','Soy una gran fan del Fary y estoy muy interesada en ese cd, es original no?');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('arnaumail','roxanamail','6','Re:Quiero el CD del Fary','Sisi es totalmente original, ponte en contacto por mail y acabamos de concretar la venta');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('joanmail','arnaumail','7','Me interesa esa mesa','La mesa parece en muy buen estado me interesaria comprarla');
+insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('arnaumail','joanmail','7','Re: Me interesa esa mesa','Como puedes apreciar en las imagenes si esta en perfecto estado');

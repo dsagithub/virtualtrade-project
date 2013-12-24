@@ -25,9 +25,10 @@ create table anuncio (
 	estado					boolean not null,
 	precio					int(10) not null,
 	creation_timestamp		timestamp,
-	atributo1				varchar(20),
-	atributo2				varchar(20),
-	atributo3 				varchar(20),
+	atributo1				varchar(30),
+	atributo2				varchar(30),
+	atributo3 				varchar(30),
+	marca					varchar(30),
 	foreign key(email) references users(email) 
 );
 

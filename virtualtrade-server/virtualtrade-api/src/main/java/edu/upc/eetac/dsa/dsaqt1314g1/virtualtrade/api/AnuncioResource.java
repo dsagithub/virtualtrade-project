@@ -41,7 +41,7 @@ public class AnuncioResource {
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
-		String sql2;
+//		String sql2;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -66,6 +66,7 @@ public class AnuncioResource {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+				
 //				imagen.setImagenid(rs.getInt("imagenid"));
 //				imagen.setAnuncioid(rs.getInt("anuncioid"));
 //				imagen.setUrlimagen(rs.getString("urlimagen"));

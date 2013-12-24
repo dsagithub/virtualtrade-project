@@ -1,6 +1,11 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
+
 
 public class Anuncio {
 
@@ -15,6 +20,7 @@ public class Anuncio {
 	private String atributo2;
 	private String atributo3;
 	private String marca;
+
 
 	public int getAnuncioid() {
 		return anuncioid;
@@ -105,4 +111,9 @@ public class Anuncio {
 		this.marca = marca;
 	}
 
-}
+
+
+		
+	}
+
+

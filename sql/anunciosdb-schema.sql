@@ -25,17 +25,17 @@ create table anuncio (
 	estado					boolean not null,
 	precio					int(10) not null,
 	creation_timestamp		timestamp,
-	atributo1				varchar(30),
-	atributo2				varchar(30),
-	atributo3 				varchar(30),
-	marca					varchar(30),
+	atributo1				varchar(30) default 'Otros',
+	atributo2				varchar(30)default 'Otros',
+	atributo3 				varchar(30) default 'Otros',
+	marca					varchar(30) default 'Otros',
 	foreign key(email) references users(email) 
 );
 
 
 create table imagen (
 
-	imagenid	int not null primary key,
+	imagenid	int not null primary key auto_increment,
 	anuncioid 	int not null,
 	urlimagen	varchar(200) not null,
 	foreign key(anuncioid) references anuncio(anuncioid) 

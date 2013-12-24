@@ -9,6 +9,7 @@ public class AnuncioCollection {
 
 	private List<Anuncio> anuncios = new ArrayList<Anuncio>();
 	private List<Link> links = new ArrayList<Link>();
+	
 
 
 	public void add(Anuncio anuncio) {

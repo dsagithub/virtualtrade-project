@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriInfo;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
 
 @Path("/anuncios")
@@ -53,15 +54,13 @@ public class AnuncioResource {
 		}
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * FROM anuncio WHERE anuncioid= '" + anuncioid + "'";
-			// sql2 = "SELECT * FROM imagen WHERE anuncioid= '" + anuncioid +
-			// "'";
+			sql = "SELECT * FROM anuncio WHERE anuncioid='"+anuncioid+"'";
+
 			ResultSet rs = stmt.executeQuery(sql);
-			// ResultSet rs2 = stmt.executeQuery(sql2);
 			if (rs.next()) {
 
 				anuncio.setAnuncioid(rs.getInt("anuncioid"));
-				anuncio.setEmail(rs.getString("Email"));
+				anuncio.setEmail(rs.getString("email"));
 				anuncio.setSubject(rs.getString("subject"));
 				anuncio.setContent(rs.getString("content"));
 				anuncio.setEstado(rs.getBoolean("estado"));
@@ -72,10 +71,17 @@ public class AnuncioResource {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+				
+				sql= "SELECT * FROM imagen WHERE anuncioid='"+anuncioid+"'";
+				rs=stmt.executeQuery(sql);
 
-				// imagen.setImagenid(rs.getInt("imagenid"));
-				// imagen.setAnuncioid(rs.getInt("anuncioid"));
-				// imagen.setUrlimagen(rs.getString("urlimagen"));
+				while (rs.next()) {
+					Imagen imagen = new Imagen();
+					imagen.setUrlimagen(rs.getString("urlimagen"));
+					imagen.setImagenid(rs.getInt("imagenid"));
+					imagen.setAnuncioid(rs.getInt("anuncioid"));
+					anuncio.add(imagen);
+				}
 
 			}
 		} catch (SQLException e) {
@@ -261,9 +267,7 @@ public class AnuncioResource {
 
 			stmt = conn.createStatement();
 			String update = null; // TODO: create update query
-			
-			
-			
+
 			update = "UPDATE anuncio SET anuncio.email='" + anuncio.getEmail()
 					+ "', anuncio.subject='" + anuncio.getSubject()
 					+ "', anuncio.content='" + anuncio.getContent()
@@ -279,8 +283,8 @@ public class AnuncioResource {
 					Statement.RETURN_GENERATED_KEYS);
 			if (rows != 0) {
 
-				String sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid
-						+ "'";
+				String sql = "SELECT * FROM anuncio WHERE anuncioid='"
+						+ anuncioid + "'";
 				ResultSet rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));

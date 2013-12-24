@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
-
 
 public class Anuncio {
 
@@ -20,7 +20,33 @@ public class Anuncio {
 	private String atributo2;
 	private String atributo3;
 	private String marca;
+	private List<Link> links = new ArrayList<Link>();
+	private List<Imagen> imagenes = new ArrayList<Imagen>();
 
+	public void add(Link link) {
+		links.add(link);
+
+	}
+
+	public List<Link> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
+	}
+
+	public void add(Imagen imagen) {
+		imagenes.add(imagen);
+	}
+
+	public List<Imagen> getImagenes() {
+		return imagenes;
+	}
+
+	public void setImagenes(List<Imagen> imagenes) {
+		this.imagenes = imagenes;
+	}
 
 	public int getAnuncioid() {
 		return anuncioid;
@@ -45,7 +71,6 @@ public class Anuncio {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
 
 	public String getContent() {
 		return content;
@@ -111,9 +136,4 @@ public class Anuncio {
 		this.marca = marca;
 	}
 
-
-
-		
-	}
-
-
+}

@@ -19,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
@@ -54,7 +55,7 @@ public class AnuncioResource {
 		}
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * FROM anuncio WHERE anuncioid='"+anuncioid+"'";
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
 
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
@@ -71,15 +72,19 @@ public class AnuncioResource {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
-				
-				sql= "SELECT * FROM imagen WHERE anuncioid='"+anuncioid+"'";
-				rs=stmt.executeQuery(sql);
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						anuncioid, rel));
+
+				sql = "SELECT * FROM imagen WHERE anuncioid='" + anuncioid
+						+ "'";
+				rs = stmt.executeQuery(sql);
 
 				while (rs.next()) {
 					Imagen imagen = new Imagen();
 					imagen.setUrlimagen(rs.getString("urlimagen"));
 					imagen.setImagenid(rs.getInt("imagenid"));
 					imagen.setAnuncioid(rs.getInt("anuncioid"));
+					imagen.add(VirtualAPILinkBuilder.buildURIResena(uriInfo, rs.getString("imagenid"), anuncioid, rel));
 					anuncio.add(imagen);
 				}
 

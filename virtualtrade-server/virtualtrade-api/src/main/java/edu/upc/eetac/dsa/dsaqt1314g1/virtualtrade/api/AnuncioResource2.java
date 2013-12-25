@@ -17,11 +17,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.AnuncioCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
@@ -58,7 +59,7 @@ public class AnuncioResource2 {
 		}
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * FROM anuncio WHERE anuncioid='"+anuncioid+"'";
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
 
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
@@ -75,18 +76,8 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
-				
-				sql= "SELECT * FROM imagen WHERE anuncioid='"+anuncioid+"'";
-				rs=stmt.executeQuery(sql);
-
-				while (rs.next()) {
-					Imagen imagen = new Imagen();
-					imagen.setUrlimagen(rs.getString("urlimagen"));
-					imagen.setImagenid(rs.getInt("imagenid"));
-					imagen.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.add(imagen);
-				}
-
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						anuncioid, rel));
 			}
 		} catch (SQLException e) {
 			throw new AnuncioNotFoundException();
@@ -202,10 +193,9 @@ public class AnuncioResource2 {
 				stmt = conn.createStatement();
 				String sql = "SELECT * FROM anuncio WHERE subject= '"
 						+ anuncio.getSubject() + "'";
-				// sql2 = "SELECT * FROM imagen WHERE anuncioid= '" + anuncioid
-				// + "'";
+				
 				rs = stmt.executeQuery(sql);
-				// ResultSet rs2 = stmt.executeQuery(sql2);
+
 				if (rs.next()) {
 
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
@@ -219,11 +209,10 @@ public class AnuncioResource2 {
 					anuncio.setAtributo1(rs.getString("atributo1"));
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
-
-					// imagen.setImagenid(rs.getInt("imagenid"));
-					// imagen.setAnuncioid(rs.getInt("anuncioid"));
-					// imagen.setUrlimagen(rs.getString("urlimagen"));
+					anuncio.setMarca(rs.getString("marca"));					
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+							rs.getString("anuncioid"), rel));
+					
 
 				}
 
@@ -303,6 +292,8 @@ public class AnuncioResource2 {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+							rs.getString("anuncioid"), rel));
 				}
 			} else
 				throw new AnuncioNotFoundException();
@@ -321,33 +312,9 @@ public class AnuncioResource2 {
 	}
 	
 	
-	
-	
 	@GET
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
-	public AnuncioCollection getAnuncios(@QueryParam("offset") String offset,
-			@QueryParam("length") String length) {
-
-		if ((offset == null) || (length == null))
-			throw new BadRequestException(
-					"offset and length are mandatory parameters");
-		int ioffset, ilength;
-		try {
-			ioffset = Integer.parseInt(offset);
-			if (ioffset < 0)
-				throw new NumberFormatException();
-		} catch (NumberFormatException e) {
-			throw new BadRequestException(
-					"offset must be an integer greater or equal than 0.");
-		}
-		try {
-			ilength = Integer.parseInt(length);
-			if (ilength < 1)
-				throw new NumberFormatException();
-		} catch (NumberFormatException e) {
-			throw new BadRequestException(
-					"length must be an integer greater or equal than 1.");
-		}
+	public AnuncioCollection getAnuncios() {
 
 		AnuncioCollection anuncios = new AnuncioCollection();
 
@@ -355,7 +322,7 @@ public class AnuncioResource2 {
 		// Sting for each one and store them in the StingCollection.
 		Connection conn = null;
 		Statement stmt = null;
-		String sql,sql2;
+		String sql;
 
 		try {
 			conn = ds.getConnection();
@@ -366,18 +333,14 @@ public class AnuncioResource2 {
 		try {
 			stmt = conn.createStatement();
 
-
-				sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
-						+ offset + "," + length + "";
-
+			sql = "SELECT * FROM anuncio";
 
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				Anuncio anuncio = new Anuncio();
 
-				
 				anuncio.setAnuncioid(rs.getInt("anuncioid"));
-				anuncio.setEmail(rs.getString("email"));
+				anuncio.setEmail(rs.getString("Email"));
 				anuncio.setSubject(rs.getString("subject"));
 				anuncio.setContent(rs.getString("content"));
 				anuncio.setEstado(rs.getBoolean("estado"));
@@ -388,20 +351,14 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
 				
-//				sql2= "SELECT * FROM imagen WHERE anuncioid='"+anuncio.getAnuncioid()+"'";
-//				ResultSet rs2=stmt.executeQuery(sql);
-//
-//				while (rs2.next()) {
-//					Imagen imagen = new Imagen();
-//					imagen.setUrlimagen(rs2.getString("urlimagen"));
-//					imagen.setImagenid(rs2.getInt("imagenid"));
-//					imagen.setAnuncioid(rs2.getInt("anuncioid"));
-//					anuncio.add(imagen);
-//				
-//				}
+				
+				List<Link> links = new ArrayList<Link>();
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
 
-
+				anuncios.setLinks(links);
 				anuncios.add(anuncio);
 			}
 		} catch (SQLException e) {
@@ -421,9 +378,6 @@ public class AnuncioResource2 {
 
 		return anuncios;
 	}
-	
-	
-	
 	
 	
 

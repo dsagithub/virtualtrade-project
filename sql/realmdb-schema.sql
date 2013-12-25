@@ -6,15 +6,8 @@ use realmdb;
 create table users (
 	email	varchar(40) not null primary key,
 	name	varchar(20) not null,
-	userpass char(32) not null,
-	phone	int,
-	ciudad	varchar(60) not null,
-	calle	varchar(70) not null,
-	numero	int not null,
-	piso	int,
-	puerta int,
-	banned varchar(3) not null,
-	foto 	varchar(200)
+	userpass char(32) not null
+
 );
  
 create table user_roles (

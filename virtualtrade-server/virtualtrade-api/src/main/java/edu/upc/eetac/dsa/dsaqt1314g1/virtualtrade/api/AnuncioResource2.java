@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,7 +27,6 @@ import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.AnuncioCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
 
 @Path("/anuncios2")
@@ -53,8 +50,8 @@ public class AnuncioResource2 {
 
 		Connection conn = null;
 		Statement stmt = null;
+		Statement stmt1 = null;
 		String sql;
-		// String sql2;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -81,6 +78,28 @@ public class AnuncioResource2 {
 				anuncio.setMarca(rs.getString("marca"));
 				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
 						anuncioid, rel));
+
+				try {
+					stmt1 = conn.createStatement();
+					sql = "SELECT * FROM imagen WHERE anuncioid='" + anuncioid
+							+ "'";
+
+					ResultSet rs1 = stmt1.executeQuery(sql);
+
+					while (rs1.next()) {
+						Imagen imagen = new Imagen();
+						imagen.setImagenid(rs1.getInt("imagenid"));
+						imagen.setUrlimagen(rs1.getString("urlimagen"));
+						imagen.setAnuncioid(rs1.getInt("anuncioid"));
+						imagen.add(VirtualAPILinkBuilder.buildURIImagen(
+								uriInfo, rs1.getString("imagenid"), anuncioid,
+								rel));
+						anuncio.add(imagen);
+					}
+				} catch (SQLException e) {
+					throw new AnuncioNotFoundException();
+				}
+
 			}
 		} catch (SQLException e) {
 			throw new AnuncioNotFoundException();
@@ -95,222 +114,6 @@ public class AnuncioResource2 {
 		}
 		return anuncio;
 		// return imagen;
-	}
-
-	@DELETE
-	@Path("/{anuncioid}")
-	public void deleteAnuncio(@PathParam("anuncioid") String anuncioid) {
-
-		// if (security.isUserInRole("registered")) {
-		//
-		// throw new ForbiddenException("You are not allowed");
-		//
-		// }
-
-		// else {
-
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			conn = ds.getConnection();
-		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
-		}
-
-		try {
-
-			stmt = conn.createStatement();
-			String sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid
-					+ "'";
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next() == false) {
-				throw new AnuncioNotFoundException();
-			} else {
-
-				sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-
-			}
-
-		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
-		}
-
-		finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		// }
-
-	}
-
-	@POST
-	@Consumes(MediaType.VIRTUAL_API_ANUNCIO)
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
-	public Anuncio createAnuncio(Anuncio anuncio) {
-
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			conn = ds.getConnection();
-		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
-		}
-		try {
-
-			stmt = conn.createStatement();
-			String update = null;
-			update = "INSERT INTO anuncio (email, subject, content, estado, precio, atributo1, atributo2, atributo3, marca) VALUES ('"
-					+ anuncio.getEmail()
-					+ "','"
-					+ anuncio.getSubject()
-					+ "','"
-					+ anuncio.getContent()
-					+ "', "
-					+ anuncio.isEstado()
-					+ ", '"
-					+ anuncio.getPrecio()
-					+ "','"
-					+ anuncio.getAtributo1()
-					+ "','"
-					+ anuncio.getAtributo2()
-					+ "','"
-					+ anuncio.getAtributo3()
-					+ "', '"
-					+ anuncio.getMarca()
-					+ "')";
-			stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
-			ResultSet rs = stmt.getGeneratedKeys();
-
-			try {
-				stmt = conn.createStatement();
-				String sql = "SELECT * FROM anuncio WHERE subject= '"
-						+ anuncio.getSubject() + "'";
-
-				rs = stmt.executeQuery(sql);
-
-				if (rs.next()) {
-
-					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("Email"));
-					anuncio.setSubject(rs.getString("subject"));
-					anuncio.setContent(rs.getString("content"));
-					anuncio.setEstado(rs.getBoolean("estado"));
-					anuncio.setPrecio(rs.getInt("precio"));
-					anuncio.setCreation_timestamp(rs
-							.getTimestamp("creation_timestamp"));
-					anuncio.setAtributo1(rs.getString("atributo1"));
-					anuncio.setAtributo2(rs.getString("atributo2"));
-					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
-					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
-							uriInfo, rs.getString("anuncioid"), rel));
-
-				}
-
-				else
-					throw new AnuncioNotFoundException();
-
-			} catch (SQLException e) {
-				throw new InternalServerException(e.getMessage());
-			}
-
-		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
-		}
-
-		finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
-		return anuncio;
-
-	}
-
-	@PUT
-	@Path("/{anuncioid}")
-	@Consumes(MediaType.VIRTUAL_API_ANUNCIO)
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
-	public Anuncio updateAnuncio(@PathParam("anuncioid") int anuncioid,
-			Anuncio anuncio) {
-
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			conn = ds.getConnection();
-		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
-		}
-		try {
-
-			stmt = conn.createStatement();
-			String update = null; // TODO: create update query
-
-			update = "UPDATE anuncio SET anuncio.email='" + anuncio.getEmail()
-					+ "', anuncio.subject='" + anuncio.getSubject()
-					+ "', anuncio.content='" + anuncio.getContent()
-					+ "', anuncio.estado=" + anuncio.isEstado()
-					+ ", anuncio.precio='" + anuncio.getPrecio()
-					+ "', anuncio.atributo1='" + anuncio.getAtributo1()
-					+ "', anuncio.atributo2='" + anuncio.getAtributo2()
-					+ "', anuncio.atributo3='" + anuncio.getAtributo3()
-					+ "', anuncio.marca='" + anuncio.getMarca()
-					+ "' WHERE anuncioid='" + anuncioid + "'";
-
-			int rows = stmt.executeUpdate(update,
-					Statement.RETURN_GENERATED_KEYS);
-			if (rows != 0) {
-
-				String sql = "SELECT * FROM anuncio WHERE anuncioid='"
-						+ anuncioid + "'";
-				ResultSet rs = stmt.executeQuery(sql);
-				if (rs.next()) {
-					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("Email"));
-					anuncio.setSubject(rs.getString("subject"));
-					anuncio.setContent(rs.getString("content"));
-					anuncio.setEstado(rs.getBoolean("estado"));
-					anuncio.setPrecio(rs.getInt("precio"));
-					anuncio.setCreation_timestamp(rs
-							.getTimestamp("creation_timestamp"));
-					anuncio.setAtributo1(rs.getString("atributo1"));
-					anuncio.setAtributo2(rs.getString("atributo2"));
-					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
-					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
-							uriInfo, rs.getString("anuncioid"), rel));
-				}
-			} else
-				throw new AnuncioNotFoundException();
-		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return anuncio;
 	}
 
 	@GET
@@ -440,19 +243,229 @@ public class AnuncioResource2 {
 		return anuncios;
 	}
 
+	@DELETE
+	@Path("/{anuncioid}")
+	public void deleteAnuncio(@PathParam("anuncioid") String anuncioid) {
+
+		// if (security.isUserInRole("registered")) {
+		//
+		// throw new ForbiddenException("You are not allowed");
+		//
+		// }
+
+		// else {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+
+		try {
+
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid
+					+ "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next() == false) {
+				throw new AnuncioNotFoundException();
+			} else {
+
+				sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+				sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+				sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+				stmt.executeUpdate(sql);
+
+			}
+
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		// }
+
+	}
+
+	@POST
+	@Consumes(MediaType.VIRTUAL_API_ANUNCIO)
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
+	public Anuncio createAnuncio(Anuncio anuncio) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		Statement stmt1 = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+
+			stmt = conn.createStatement();
+			String update = null;
+			update = "INSERT INTO anuncio (email, subject, content, estado, precio, atributo1, atributo2, atributo3, marca) VALUES ('"
+					+ anuncio.getEmail()
+					+ "','"
+					+ anuncio.getSubject()
+					+ "','"
+					+ anuncio.getContent()
+					+ "', "
+					+ anuncio.isEstado()
+					+ ", '"
+					+ anuncio.getPrecio()
+					+ "','"
+					+ anuncio.getAtributo1()
+					+ "','"
+					+ anuncio.getAtributo2()
+					+ "','"
+					+ anuncio.getAtributo3()
+					+ "', '"
+					+ anuncio.getMarca()
+					+ "')";
+			stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stmt.getGeneratedKeys();
+
+			try {
+				int anuncioid = rs.getInt(1);
+				rs.close();
+				String sql = "SELECT * FROM anuncio WHERE anuncioid= '"
+						+ anuncioid + "'";
+
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+
+					anuncio.setAnuncioid(rs.getInt("anuncioid"));
+					anuncio.setEmail(rs.getString("Email"));
+					anuncio.setSubject(rs.getString("subject"));
+					anuncio.setContent(rs.getString("content"));
+					anuncio.setEstado(rs.getBoolean("estado"));
+					anuncio.setPrecio(rs.getInt("precio"));
+					anuncio.setCreation_timestamp(rs
+							.getTimestamp("creation_timestamp"));
+					anuncio.setAtributo1(rs.getString("atributo1"));
+					anuncio.setAtributo2(rs.getString("atributo2"));
+					anuncio.setAtributo3(rs.getString("atributo3"));
+					anuncio.setMarca(rs.getString("marca"));
+
+				}
+
+				else
+					throw new AnuncioNotFoundException();
+
+			} catch (SQLException e) {
+				throw new InternalServerException(e.getMessage());
+			}
+
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				stmt1.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return anuncio;
+
+	}
+
+	@PUT
+	@Path("/{anuncioid}")
+	@Consumes(MediaType.VIRTUAL_API_ANUNCIO)
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
+	public Anuncio updateAnuncio(@PathParam("anuncioid") int anuncioid,
+			Anuncio anuncio) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+
+			stmt = conn.createStatement();
+			String update = null; // TODO: create update query
+
+			update = "UPDATE anuncio SET anuncio.email='" + anuncio.getEmail()
+					+ "', anuncio.subject='" + anuncio.getSubject()
+					+ "', anuncio.content='" + anuncio.getContent()
+					+ "', anuncio.estado=" + anuncio.isEstado()
+					+ ", anuncio.precio='" + anuncio.getPrecio()
+					+ "', anuncio.atributo1='" + anuncio.getAtributo1()
+					+ "', anuncio.atributo2='" + anuncio.getAtributo2()
+					+ "', anuncio.atributo3='" + anuncio.getAtributo3()
+					+ "', anuncio.marca='" + anuncio.getMarca()
+					+ "' WHERE anuncioid='" + anuncioid + "'";
+
+			int rows = stmt.executeUpdate(update,
+					Statement.RETURN_GENERATED_KEYS);
+			if (rows != 0) {
+
+				String sql = "SELECT * FROM anuncio WHERE anuncioid='"
+						+ anuncioid + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					anuncio.setAnuncioid(rs.getInt("anuncioid"));
+					anuncio.setEmail(rs.getString("Email"));
+					anuncio.setSubject(rs.getString("subject"));
+					anuncio.setContent(rs.getString("content"));
+					anuncio.setEstado(rs.getBoolean("estado"));
+					anuncio.setPrecio(rs.getInt("precio"));
+					anuncio.setCreation_timestamp(rs
+							.getTimestamp("creation_timestamp"));
+					anuncio.setAtributo1(rs.getString("atributo1"));
+					anuncio.setAtributo2(rs.getString("atributo2"));
+					anuncio.setAtributo3(rs.getString("atributo3"));
+					anuncio.setMarca(rs.getString("marca"));
+				}
+			} else
+				throw new AnuncioNotFoundException();
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return anuncio;
+	}
+
 	@GET
 	@Path("/search")
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
 	public AnuncioCollection getAnunciosBusqueda(
 			@QueryParam("offset") String offset,
 			@QueryParam("length") String length,
 			@QueryParam("subject") String subject,
-			@QueryParam("content") String content, @Context Request req) {
+			@QueryParam("content") String content) {
 
-		if ((offset == null) && (length == null))
-			throw new BadRequestException(
-					"offset and length are mandatory parameters");
-		
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(
 					"offset and length are mandatory parameters");
@@ -481,7 +494,7 @@ public class AnuncioResource2 {
 		Connection conn = null;
 		Statement stmt = null;
 		Statement stmt1 = null;
-		String sql;
+		String sql = null;
 
 		try {
 			conn = ds.getConnection();
@@ -500,18 +513,20 @@ public class AnuncioResource2 {
 						+ offset + "," + length + "";
 			}
 
-			else if (subject != null) {
+			else if (subject != null && content == null) {
 
 				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
 						+ "%' LIMIT " + offset + "," + length + "";
-			} else if (content != null) {
+			} else if (content != null && subject == null) {
 
 				sql = "SELECT * FROM anuncio WHERE content LIKE'%" + content
 						+ "%'";
 			}
 
-			else {
-				throw new BadRequestException("Campos vacios");
+			else if (content == null && subject == null) {
+				sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
+						+ offset + "," + length + "";
+
 			}
 
 			ResultSet rs = stmt.executeQuery(sql);
@@ -530,6 +545,8 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
 
 				try {
 					stmt1 = conn.createStatement();
@@ -617,7 +634,7 @@ public class AnuncioResource2 {
 		Connection conn = null;
 		Statement stmt = null;
 		Statement stmt1 = null;
-		String sql;
+		String sql = null;
 
 		try {
 			conn = ds.getConnection();
@@ -646,7 +663,8 @@ public class AnuncioResource2 {
 						+ "' AND atributo3= '" + atributo3 + "' LIMIT "
 						+ offset + "," + length + "";
 
-			} else if (atributo1 != null && atributo2 != null) {
+			} else if (atributo1 != null && atributo2 != null
+					&& atributo3 == null && marca == null) {
 
 				sql = "SELECT * FROM anuncio WHERE atributo1 ='" + atributo1
 						+ "' AND atributo2= '" + atributo2 + "' LIMIT "
@@ -654,15 +672,18 @@ public class AnuncioResource2 {
 
 			}
 
-			else if (atributo1 != null) {
+			else if (atributo1 != null && atributo2 == null
+					&& atributo3 == null && marca == null) {
 
 				sql = "SELECT * FROM anuncio WHERE atributo1 ='" + atributo1
 						+ "' LIMIT " + offset + "," + length + "";
 
 			}
 
-			else {
+			else if (atributo1 == null && atributo2 == null
+					&& atributo3 == null && marca == null) {
 				throw new BadRequestException("Campos vacios");
+
 			}
 
 			ResultSet rs = stmt.executeQuery(sql);
@@ -681,6 +702,9 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
 
 				try {
 					stmt1 = conn.createStatement();
@@ -731,11 +755,12 @@ public class AnuncioResource2 {
 
 	@GET
 	@Path("/orderby")
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO) //precio sera ASC o DESC no es ningún valor numérico es como ordenar
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
+	// precio sera ASC o DESC no es ningún valor numérico es como ordenar
 	public AnuncioCollection getAnunciosPrecio(
 			@QueryParam("offset") String offset,
 			@QueryParam("length") String length,
-			@QueryParam("precio") String precio,@Context Request req) {
+			@QueryParam("precio") String precio, @Context Request req) {
 
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(
@@ -777,9 +802,8 @@ public class AnuncioResource2 {
 
 			stmt = conn.createStatement();
 
-				sql = "SELECT * FROM anuncio ORDER BY precio "+precio+" LIMIT "
-						+ offset + "," + length + "";
-
+			sql = "SELECT * FROM anuncio ORDER BY precio " + precio + " LIMIT "
+					+ offset + "," + length + "";
 
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -797,6 +821,9 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
 
 				try {
 					stmt1 = conn.createStatement();

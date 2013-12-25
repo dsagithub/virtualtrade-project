@@ -22,6 +22,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
@@ -247,16 +248,12 @@ public class AnuncioResource2 {
 	@Path("/{anuncioid}")
 	public void deleteAnuncio(@PathParam("anuncioid") String anuncioid) {
 
-		// if (security.isUserInRole("registered")) {
-		//
-		// throw new ForbiddenException("You are not allowed");
-		//
-		// }
-
-		// else {
-
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -264,39 +261,53 @@ public class AnuncioResource2 {
 		}
 
 		try {
-
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid
-					+ "'";
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next() == false) {
-				throw new AnuncioNotFoundException();
-			} else {
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			email = rs.getString("email");
+			Anuncio anuncio = new Anuncio();
 
-				sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
+			if ((security.getUserPrincipal().getName().equals(email)) || (security.isUserInRole("admin"))){
 
+				try {
+
+					stmt = conn.createStatement();
+						sql = "DELETE FROM imagen WHERE anuncioid='"
+								+ anuncioid + "'";
+						stmt.executeUpdate(sql);
+						sql = "DELETE FROM mensaje WHERE anuncioid='"
+								+ anuncioid + "'";
+						stmt.executeUpdate(sql);
+						sql = "DELETE FROM anuncio WHERE anuncioid='"
+								+ anuncioid + "'";
+						stmt.executeUpdate(sql);
+
+					
+
+				} catch (SQLException e) {
+					throw new InternalServerException(e.getMessage());
+				}
+
+				finally {
+					try {
+						stmt.close();
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+
+			else {
+				throw new NotAllowedException();
 			}
 
 		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
+			throw new AnuncioNotFoundException();
 		}
-
-		finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		// }
 
 	}
 
@@ -349,7 +360,7 @@ public class AnuncioResource2 {
 				if (rs.next()) {
 
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("Email"));
+					anuncio.setEmail(rs.getString("email"));
 					anuncio.setSubject(rs.getString("subject"));
 					anuncio.setContent(rs.getString("content"));
 					anuncio.setEstado(rs.getBoolean("estado"));
@@ -385,6 +396,7 @@ public class AnuncioResource2 {
 			}
 
 		}
+		
 
 		return anuncio;
 
@@ -396,14 +408,29 @@ public class AnuncioResource2 {
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
 	public Anuncio updateAnuncio(@PathParam("anuncioid") int anuncioid,
 			Anuncio anuncio) {
-
+		
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
 			throw new ServiceUnavailableException(e.getMessage());
 		}
+
+		try {
+			stmt = conn.createStatement();
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			email = rs.getString("email");
+//			Anuncio anuncio = new Anuncio();
+
+			if ((security.getUserPrincipal().getName().equals(email)) || (security.isUserInRole("admin"))){		
+		
 		try {
 
 			stmt = conn.createStatement();
@@ -424,9 +451,9 @@ public class AnuncioResource2 {
 					Statement.RETURN_GENERATED_KEYS);
 			if (rows != 0) {
 
-				String sql = "SELECT * FROM anuncio WHERE anuncioid='"
+				sql = "SELECT * FROM anuncio WHERE anuncioid='"
 						+ anuncioid + "'";
-				ResultSet rs = stmt.executeQuery(sql);
+				rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
 					anuncio.setEmail(rs.getString("Email"));
@@ -454,6 +481,17 @@ public class AnuncioResource2 {
 				e.printStackTrace();
 			}
 		}
+		
+			}
+
+			else {
+				throw new NotAllowedException();
+
+			}
+		} catch (SQLException e) {
+			throw new AnuncioNotFoundException();
+		}
+
 		return anuncio;
 	}
 

@@ -38,5 +38,19 @@
 			<role-name>registered</role-name>
 		</auth-constraint>
 	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>virtual</web-resource-name>
+			<url-pattern>/anuncios2/*</url-pattern>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+			<role-name>registered</role-name>
+		</auth-constraint>
+	</security-constraint>
     
 </web-app>

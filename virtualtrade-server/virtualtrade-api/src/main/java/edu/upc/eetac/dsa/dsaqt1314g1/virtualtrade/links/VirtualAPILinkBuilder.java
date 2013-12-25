@@ -37,7 +37,7 @@ public class VirtualAPILinkBuilder {
 		return link;
 	}
 
-	public final static Link buildURIResena(UriInfo uriInfo, String imagenid,
+	public final static Link buildURIImagen(UriInfo uriInfo, String imagenid,
 			String anuncioid, String rel) {
 		URI resenaURI = uriInfo.getBaseUriBuilder().path(AnuncioResource.class)
 				.path("/" + anuncioid).path("/imagenes").path("/" + imagenid)

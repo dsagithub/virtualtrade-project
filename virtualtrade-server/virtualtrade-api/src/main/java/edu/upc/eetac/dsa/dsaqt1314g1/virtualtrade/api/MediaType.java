@@ -8,8 +8,8 @@ public interface MediaType {
 	public final static String VIRTUAL_API_ANUNCIO="application/vnd.virtual.api.anuncio+json";
 	public final static String VIRTUAL_API_ANUNCIO_COLLECTION = "application/vnd.virtual.api.anuncio.collection+json";
 	
-	public final static String VIRTUAL_API_IMAGEN="application/vnd.virtual.api.imagen+json";
-	public final static String VIRTUAL_API_IMAGEN_COLLECTION = "application/vnd.virtual.api.imagen.collection+json";
+	public final static String VIRTUAL_API_IMAGEN="application/vnd.virtual.api.picture+json";
+	public final static String VIRTUAL_API_IMAGEN_COLLECTION = "application/vnd.virtual.api.picture.collection+json";
 	
 	public final static String VIRTUAL_API_ERROR = "application/vnd.dsa.virtual.error+json";
 	

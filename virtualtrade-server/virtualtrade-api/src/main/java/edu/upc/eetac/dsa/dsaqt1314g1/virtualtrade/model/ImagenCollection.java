@@ -9,6 +9,8 @@ public class ImagenCollection {
 
 	private List<Imagen> imagenes = new ArrayList<Imagen>();
 	private List<Link> links = new ArrayList<Link>();
+	
+	
 
 	public void add(Imagen imagen) {
 		imagenes.add(imagen);
@@ -21,7 +23,8 @@ public class ImagenCollection {
 	public void setImagenes(List<Imagen> imagenes) {
 		this.imagenes = imagenes;
 	}
-
+	
+	
 	public void add(Link link) {
 		links.add(link);
 	}

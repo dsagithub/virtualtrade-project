@@ -17,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
@@ -314,7 +315,29 @@ public class AnuncioResource2 {
 	
 	@GET
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
-	public AnuncioCollection getAnuncios() {
+	public AnuncioCollection getAnuncios(@QueryParam("offset") String offset,
+			@QueryParam("length") String length) {
+
+		if ((offset == null) || (length == null))
+			throw new BadRequestException(
+					"offset and length are mandatory parameters");
+		int ioffset, ilength;
+		try {
+			ioffset = Integer.parseInt(offset);
+			if (ioffset < 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			throw new BadRequestException(
+					"offset must be an integer greater or equal than 0.");
+		}
+		try {
+			ilength = Integer.parseInt(length);
+			if (ilength < 1)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			throw new BadRequestException(
+					"length must be an integer greater or equal than 1.");
+		}
 
 		AnuncioCollection anuncios = new AnuncioCollection();
 
@@ -322,6 +345,7 @@ public class AnuncioResource2 {
 		// Sting for each one and store them in the StingCollection.
 		Connection conn = null;
 		Statement stmt = null;
+		Statement stmt1 = null;
 		String sql;
 
 		try {
@@ -333,14 +357,15 @@ public class AnuncioResource2 {
 		try {
 			stmt = conn.createStatement();
 
-			sql = "SELECT * FROM anuncio";
+			sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
+					+ offset + "," + length + "";
 
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				Anuncio anuncio = new Anuncio();
 
 				anuncio.setAnuncioid(rs.getInt("anuncioid"));
-				anuncio.setEmail(rs.getString("Email"));
+				anuncio.setEmail(rs.getString("email"));
 				anuncio.setSubject(rs.getString("subject"));
 				anuncio.setContent(rs.getString("content"));
 				anuncio.setEstado(rs.getBoolean("estado"));
@@ -351,9 +376,28 @@ public class AnuncioResource2 {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
-				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
-						rs.getString("anuncioid"), rel));
 				
+
+				try {
+					stmt1 = conn.createStatement();
+					sql = "SELECT * FROM imagen WHERE anuncioid='"
+							+ rs.getString("anuncioid") + "'";
+
+					ResultSet rs1 = stmt1.executeQuery(sql);
+
+					while (rs1.next()) {
+						Imagen imagen = new Imagen();
+						imagen.setImagenid(rs1.getInt("imagenid"));
+						imagen.setUrlimagen(rs1.getString("urlimagen"));
+						imagen.setAnuncioid(rs1.getInt("anuncioid"));
+						imagen.add(VirtualAPILinkBuilder.buildURIImagen(
+								uriInfo, rs1.getString("imagenid"),
+								rs.getString("anuncioid"), rel));
+						anuncio.add(imagen);
+					}
+				} catch (SQLException e) {
+					throw new AnuncioNotFoundException();
+				}
 				
 				List<Link> links = new ArrayList<Link>();
 				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
@@ -368,6 +412,7 @@ public class AnuncioResource2 {
 		finally {
 			try {
 				stmt.close();
+				stmt1.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -378,6 +423,7 @@ public class AnuncioResource2 {
 
 		return anuncios;
 	}
+	
 	
 	
 

@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -157,4 +159,57 @@ public class UserResource {
 		}
 	}
 
+
+	@POST
+	@Consumes(MediaType.VIRTUAL_API_USER)
+	@Produces(MediaType.VIRTUAL_API_USER)
+	public User createUser(User user) {
+		// TODO: get connection from database
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+			stmt = conn.createStatement();
+			String update = null; // TODO: create update query
+			update = "INSERT INTO users (email,name,phone,ciudad,calle,numero,piso,puerta,banned,foto) VALUES ('"
+					+ user.getEmail() + "','" + user.getName() + "','"
+					 + user.getPhone() + "','"
+					 + user.getCiudad() + "','"
+					 + user.getCalle() + "','"
+					 + user.getNumero() + "','"
+					 + user.getPiso() + "','"
+					 + user.getPuerta() + "','"
+					 + false + "','"
+					+ user.getFoto() + "')";
+			int rows = stmt.executeUpdate(update,
+					Statement.RETURN_GENERATED_KEYS);
+			if (rows != 0) {
+				String sql = "SELECT * FROM users WHERE name='"
+						+ user.getName() + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.next();
+				
+				// TODO: Retrieve the created sting from the database to get all
+				// the remaining fields
+			} else
+				throw new UserNotFoundException();
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
+	
+	
 }

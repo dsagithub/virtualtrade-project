@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -92,7 +93,7 @@ public class ImagenResource {
 
 	@GET
 	@Path("/{imagenid}")
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
+	@Produces(MediaType.VIRTUAL_API_IMAGEN)
 	public Imagen getImagen(@PathParam("anuncioid") String anuncioid,
 			@PathParam("imagenid") String imagenid) {
 
@@ -160,12 +161,13 @@ public class ImagenResource {
 
 	@DELETE
 	@Path("/{imagenid}")
-	public void deleteImagen(@PathParam("imagenid") String imagenid) {
+	public String deleteImagen(@PathParam("imagenid") String imagenid) {
 
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
 		ResultSet rs;
+		String estado = null;
 
 		try {
 			conn = ds.getConnection();
@@ -188,6 +190,8 @@ public class ImagenResource {
 					sql = "DELETE FROM imagen WHERE imagenid='" + imagenid
 							+ "'";
 					stmt.executeUpdate(sql);
+
+					estado = "Imagen borrada correctamente";
 				} catch (SQLException e) {
 					throw new InternalServerException(e.getMessage());
 				} finally {
@@ -204,6 +208,7 @@ public class ImagenResource {
 			throw new InternalServerException(e.getMessage());
 
 		}
+		return estado;
 	}
 
 	@POST
@@ -237,7 +242,7 @@ public class ImagenResource {
 					stmt = conn.createStatement();
 					String update = null;
 					update = "INSERT INTO imagen (anuncioid,urlimagen) VALUES ('"
-							+ anuncioid + "','" + imagen.getUrlimagen() + "'')";
+							+ anuncioid + "','" + imagen.getUrlimagen() + "')";
 					stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
 					rs = stmt.getGeneratedKeys();
 
@@ -279,6 +284,75 @@ public class ImagenResource {
 		}
 
 		return imagen;
+	}
+
+	@PUT
+	@Path("/{imagenid}")
+	@Consumes(MediaType.VIRTUAL_API_IMAGEN)
+	@Produces(MediaType.VIRTUAL_API_IMAGEN)
+	public Imagen updateImagen(@PathParam("imagenid") String imagenid,
+			Imagen imagen) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+
+		try {
+			stmt = conn.createStatement();
+			sql = "SELECT * FROM imagen WHERE imagenid='" + imagenid + "'";
+			rs = stmt.executeQuery(sql);
+			rs.next();
+
+			try {
+				stmt = conn.createStatement();
+				String update = null;
+				update = "UPDATE imagen SET imagen.urlimagen ='"
+						+ imagen.getUrlimagen() + "'";
+				int rows = stmt.executeUpdate(update,
+						Statement.RETURN_GENERATED_KEYS);
+				if (rows != 0) {
+
+					sql = "SELECT * FROM imagen WHERE imagenid='" + imagenid
+							+ "' ";
+					rs = stmt.executeQuery(sql);
+					if (rs.next()) {
+
+						imagen.setImagenid(rs.getInt("imagenid"));
+						imagen.setUrlimagen(rs.getString("urlimagen"));
+						imagen.setAnuncioid(rs.getInt("anuncioid"));
+						imagen.add(VirtualAPILinkBuilder.buildURIImagen(
+								uriInfo, rs.getString("imagenid"),
+								rs.getString("anuncioid"), rel));
+
+					}
+				}
+
+				else
+					throw new ImagenNotFoundException();
+			} catch (SQLException e) {
+				throw new InternalServerException(e.getMessage());
+			} finally {
+				try {
+					stmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		} catch (SQLException e) {
+			throw new ImagenNotFoundException();
+		}
+
+		return imagen;
+
 	}
 
 }

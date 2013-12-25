@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
@@ -20,11 +22,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.AnuncioCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
 
 @Path("/anuncios")
@@ -177,6 +179,27 @@ public class AnuncioResource {
 				anuncio.setAtributo2(rs.getString("atributo2"));
 				anuncio.setAtributo3(rs.getString("atributo3"));
 				anuncio.setMarca(rs.getString("marca"));
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
+
+				List<Link> links = new ArrayList<Link>();
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
+						offset, length, rel));
+
+				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									- Integer.parseInt(length))), length, rel));
+				}
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+						uriInfo,
+						(Integer.toString(Integer.parseInt(offset)
+								+ Integer.parseInt(length))), length, rel));
+
+				anuncios.setLinks(links);
 
 				try {
 					stmt1 = conn.createStatement();
@@ -284,6 +307,7 @@ public class AnuncioResource {
 
 		Connection conn = null;
 		Statement stmt = null;
+		Statement stmt1 = null;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -316,13 +340,12 @@ public class AnuncioResource {
 			ResultSet rs = stmt.getGeneratedKeys();
 
 			try {
-				stmt = conn.createStatement();
-				String sql = "SELECT * FROM anuncio WHERE subject= '"
-						+ anuncio.getSubject() + "'";
-				// sql2 = "SELECT * FROM imagen WHERE anuncioid= '" + anuncioid
-				// + "'";
+				int anuncioid = rs.getInt(1);
+				rs.close();
+				String sql = "SELECT * FROM anuncio WHERE anuncioid= '"
+						+ anuncioid + "'";
+
 				rs = stmt.executeQuery(sql);
-				// ResultSet rs2 = stmt.executeQuery(sql2);
 				if (rs.next()) {
 
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
@@ -337,10 +360,6 @@ public class AnuncioResource {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
-
-					// imagen.setImagenid(rs.getInt("imagenid"));
-					// imagen.setAnuncioid(rs.getInt("anuncioid"));
-					// imagen.setUrlimagen(rs.getString("urlimagen"));
 
 				}
 
@@ -358,6 +377,7 @@ public class AnuncioResource {
 		finally {
 			try {
 				stmt.close();
+				stmt1.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -21,6 +21,8 @@ public class VirtualRootAPIResource {
 		VirtualRootAPI root = new VirtualRootAPI();
 
 		root.add(VirtualAPILinkBuilder.buildURIRootAPI(uriInfo));
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnuncios(uriInfo,
+				"stings"));
 
 		return root;
 	}

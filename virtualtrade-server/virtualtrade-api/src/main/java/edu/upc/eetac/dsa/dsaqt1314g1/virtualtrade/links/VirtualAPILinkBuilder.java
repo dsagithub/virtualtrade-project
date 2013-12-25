@@ -51,7 +51,7 @@ public class VirtualAPILinkBuilder {
 		return link;
 	}
 
-	public static final Link buildURIAnuncios(UriInfo uriInfo, String rel) { 
+	public static final Link buildURIAnuncios(UriInfo uriInfo, String rel) {
 		URI uriAnuncios;
 		uriAnuncios = uriInfo.getBaseUriBuilder().path(AnuncioResource.class)
 				.build();
@@ -62,6 +62,48 @@ public class VirtualAPILinkBuilder {
 		self.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
 
 		return self;
+	}
+
+	public static final Link buildURIAnuncios(UriInfo uriInfo, String offset,
+			String length, String rel) {
+
+		URI uriAnuncios;
+		if (offset == null && length == null)
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class).build();
+		else {
+
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class).queryParam("offset", offset)
+					.queryParam("length", length).build();
+		}
+
+		Link self = new Link();
+		self.setUri(uriAnuncios.toString());
+		self.setRel("Anuncios");
+		self.setTitle("Anuncios collection");
+		self.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
+
+		return self;
+	}
+
+	public static final Link buildTemplatedURIAnuncios(UriInfo uriInfo,
+			String rel)
+	// no toman un valor en concreto sino que es una plantilla
+	{
+		URI uriAnuncios;
+		uriAnuncios = uriInfo.getBaseUriBuilder().path(AnuncioResource.class)
+				.queryParam("offset", "{offset}")
+				.queryParam("length", "{length}").build();
+
+		Link link = new Link();
+		link.setUri(URITemplateBuilder.buildTemplatedURI(uriAnuncios));
+		link.setRel(rel);
+
+		link.setTitle("Anuncios collection resource");
+		link.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
+
+		return link;
 	}
 
 }

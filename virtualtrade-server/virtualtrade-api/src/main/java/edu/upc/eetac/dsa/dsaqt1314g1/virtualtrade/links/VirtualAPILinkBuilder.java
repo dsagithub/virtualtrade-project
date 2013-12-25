@@ -51,4 +51,17 @@ public class VirtualAPILinkBuilder {
 		return link;
 	}
 
+	public static final Link buildURIAnuncios(UriInfo uriInfo, String rel) { 
+		URI uriAnuncios;
+		uriAnuncios = uriInfo.getBaseUriBuilder().path(AnuncioResource.class)
+				.build();
+		Link self = new Link();
+		self.setUri(uriAnuncios.toString());
+		self.setRel("self");
+		self.setTitle("Anuncios collection");
+		self.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
+
+		return self;
+	}
+
 }

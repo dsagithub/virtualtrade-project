@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
@@ -19,8 +21,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.AnuncioCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
@@ -189,10 +193,9 @@ public class AnuncioResource2 {
 				stmt = conn.createStatement();
 				String sql = "SELECT * FROM anuncio WHERE subject= '"
 						+ anuncio.getSubject() + "'";
-				// sql2 = "SELECT * FROM imagen WHERE anuncioid= '" + anuncioid
-				// + "'";
+				
 				rs = stmt.executeQuery(sql);
-				// ResultSet rs2 = stmt.executeQuery(sql2);
+
 				if (rs.next()) {
 
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
@@ -206,11 +209,10 @@ public class AnuncioResource2 {
 					anuncio.setAtributo1(rs.getString("atributo1"));
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
-
-					// imagen.setImagenid(rs.getInt("imagenid"));
-					// imagen.setAnuncioid(rs.getInt("anuncioid"));
-					// imagen.setUrlimagen(rs.getString("urlimagen"));
+					anuncio.setMarca(rs.getString("marca"));					
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+							rs.getString("anuncioid"), rel));
+					
 
 				}
 
@@ -290,6 +292,8 @@ public class AnuncioResource2 {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+							rs.getString("anuncioid"), rel));
 				}
 			} else
 				throw new AnuncioNotFoundException();
@@ -307,6 +311,73 @@ public class AnuncioResource2 {
 		return anuncio;
 	}
 	
+	
+	@GET
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
+	public AnuncioCollection getAnuncios() {
+
+		AnuncioCollection anuncios = new AnuncioCollection();
+
+		// TODO: Retrieve all stings stored in the database, instantiate one
+		// Sting for each one and store them in the StingCollection.
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+
+		try {
+			stmt = conn.createStatement();
+
+			sql = "SELECT * FROM anuncio";
+
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				Anuncio anuncio = new Anuncio();
+
+				anuncio.setAnuncioid(rs.getInt("anuncioid"));
+				anuncio.setEmail(rs.getString("Email"));
+				anuncio.setSubject(rs.getString("subject"));
+				anuncio.setContent(rs.getString("content"));
+				anuncio.setEstado(rs.getBoolean("estado"));
+				anuncio.setPrecio(rs.getInt("precio"));
+				anuncio.setCreation_timestamp(rs
+						.getTimestamp("creation_timestamp"));
+				anuncio.setAtributo1(rs.getString("atributo1"));
+				anuncio.setAtributo2(rs.getString("atributo2"));
+				anuncio.setAtributo3(rs.getString("atributo3"));
+				anuncio.setMarca(rs.getString("marca"));
+				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+						rs.getString("anuncioid"), rel));
+				
+				
+				List<Link> links = new ArrayList<Link>();
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
+
+				anuncios.setLinks(links);
+				anuncios.add(anuncio);
+			}
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return anuncios;
+	}
 	
 	
 

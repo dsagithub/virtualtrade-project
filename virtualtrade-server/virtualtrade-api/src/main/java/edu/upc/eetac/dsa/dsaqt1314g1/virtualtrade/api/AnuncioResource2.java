@@ -318,35 +318,25 @@ public class AnuncioResource2 {
 	public AnuncioCollection getAnuncios(@QueryParam("offset") String offset,
 			@QueryParam("length") String length) {
 
-		if ((offset != null) && (length == null))
+		if ((offset == null) || (length == null))
 			throw new BadRequestException(
-					"length is a mandatory parameter if you send offset");
-		if ((offset == null) && (length != null))
-			throw new BadRequestException(
-					"offset is a mandatory parameter if you send length");
-		
+					"offset and length are mandatory parameters");
 		int ioffset, ilength;
-		if(offset!=null){
 		try {
 			ioffset = Integer.parseInt(offset);
 			if (ioffset < 0)
 				throw new NumberFormatException();
-		
 		} catch (NumberFormatException e) {
 			throw new BadRequestException(
 					"offset must be an integer greater or equal than 0.");
 		}
-		}
-		if(length!=null){
 		try {
-			
 			ilength = Integer.parseInt(length);
 			if (ilength < 1)
 				throw new NumberFormatException();
 		} catch (NumberFormatException e) {
 			throw new BadRequestException(
 					"length must be an integer greater or equal than 1.");
-		}
 		}
 
 		AnuncioCollection anuncios = new AnuncioCollection();
@@ -356,7 +346,7 @@ public class AnuncioResource2 {
 		Connection conn = null;
 		Statement stmt = null;
 		Statement stmt1 = null;
-		String sql = null;
+		String sql;
 
 		try {
 			conn = ds.getConnection();
@@ -365,72 +355,11 @@ public class AnuncioResource2 {
 		}
 
 		try {
-			
 			stmt = conn.createStatement();
 
-
-			if((offset== null) && (length == null)){
-				sql = "SELECT * FROM anuncio ORDER BY creation_timestamp";
-				
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					Anuncio anuncio = new Anuncio();
-
-					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("email"));
-					anuncio.setSubject(rs.getString("subject"));
-					anuncio.setContent(rs.getString("content"));
-					anuncio.setEstado(rs.getBoolean("estado"));
-					anuncio.setPrecio(rs.getInt("precio"));
-					anuncio.setCreation_timestamp(rs
-							.getTimestamp("creation_timestamp"));
-					anuncio.setAtributo1(rs.getString("atributo1"));
-					anuncio.setAtributo2(rs.getString("atributo2"));
-					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
-					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
-							rs.getString("anuncioid"), rel));
-
-					List<Link> links = new ArrayList<Link>();
-					links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
-					links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
-							offset, length, rel));
-
-					anuncios.setLinks(links);
-
-					try {
-						stmt1 = conn.createStatement();
-						sql = "SELECT * FROM imagen WHERE anuncioid='"
-								+ rs.getString("anuncioid") + "'";
-
-						ResultSet rs1 = stmt1.executeQuery(sql);
-
-						while (rs1.next()) {
-							Imagen imagen = new Imagen();
-							imagen.setImagenid(rs1.getInt("imagenid"));
-							imagen.setUrlimagen(rs1.getString("urlimagen"));
-							imagen.setAnuncioid(rs1.getInt("anuncioid"));
-							imagen.add(VirtualAPILinkBuilder.buildURIImagen(
-									uriInfo, rs1.getString("imagenid"),
-									rs.getString("anuncioid"), rel));
-							anuncio.add(imagen);
-						}
-					} catch (SQLException e) {
-						throw new AnuncioNotFoundException();
-					}
-
-					anuncios.add(anuncio);
-				}
-				
-				
-			}
-
-			
-			else{
 			sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
 					+ offset + "," + length + "";
-			
-			
+
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				Anuncio anuncio = new Anuncio();
@@ -492,7 +421,6 @@ public class AnuncioResource2 {
 
 				anuncios.add(anuncio);
 			}
-		}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
 		}
@@ -512,7 +440,6 @@ public class AnuncioResource2 {
 		return anuncios;
 	}
 
-
 	@GET
 	@Path("/search")
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
@@ -522,6 +449,10 @@ public class AnuncioResource2 {
 			@QueryParam("subject") String subject,
 			@QueryParam("content") String content, @Context Request req) {
 
+		if ((offset == null) && (length == null))
+			throw new BadRequestException(
+					"offset and length are mandatory parameters");
+		
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(
 					"offset and length are mandatory parameters");

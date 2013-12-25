@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -27,6 +28,7 @@ import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.AnuncioCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
 
 @Path("/anuncios")
@@ -570,7 +572,24 @@ public class AnuncioResource {
 				}
 
 				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
+						offset, length, rel));
+
+				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									- Integer.parseInt(length))), length, rel));
+				}
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+						uriInfo,
+						(Integer.toString(Integer.parseInt(offset)
+								+ Integer.parseInt(length))), length, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(
+						uriInfo, offset, length, subject, content, rel));
 
 				anuncios.setLinks(links);
 				anuncios.add(anuncio);
@@ -597,7 +616,7 @@ public class AnuncioResource {
 
 	@GET
 	@Path("/atributos")
-	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
+	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
 	public AnuncioCollection getAnunciosAtributos(
 			@QueryParam("offset") String offset,
 			@QueryParam("length") String length,
@@ -728,7 +747,25 @@ public class AnuncioResource {
 				}
 
 				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
+						offset, length, rel));
+
+				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									- Integer.parseInt(length))), length, rel));
+				}
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+						uriInfo,
+						(Integer.toString(Integer.parseInt(offset)
+								+ Integer.parseInt(length))), length, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
+						uriInfo, offset, length, atributo1, atributo2,
+						atributo3, marca, rel));
 
 				anuncios.setLinks(links);
 				anuncios.add(anuncio);
@@ -847,7 +884,24 @@ public class AnuncioResource {
 				}
 
 				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
+						offset, length, rel));
+
+				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									- Integer.parseInt(length))), length, rel));
+				}
+
+				links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+						uriInfo,
+						(Integer.toString(Integer.parseInt(offset)
+								+ Integer.parseInt(length))), length, rel));
+
+				links.add(VirtualAPILinkBuilder.buildURIAnunciosPrecio(uriInfo,
+						offset, length, precio, rel));
 
 				anuncios.setLinks(links);
 				anuncios.add(anuncio);

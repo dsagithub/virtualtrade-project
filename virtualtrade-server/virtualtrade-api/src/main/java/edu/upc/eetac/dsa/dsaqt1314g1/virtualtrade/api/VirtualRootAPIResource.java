@@ -22,8 +22,31 @@ public class VirtualRootAPIResource {
 
 		root.add(VirtualAPILinkBuilder.buildURIRootAPI(uriInfo));
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnuncios(uriInfo,
-				"stings"));
+				"anuncios"));
 
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
+				uriInfo, false, true, "search"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
+				uriInfo, true, false, "search"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
+				uriInfo, true, true, "search"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
+				uriInfo, true, true, true, true, "orderby"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
+				uriInfo, true, true, true, false, "orderby"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
+				uriInfo, true, true, false, false, "orderby"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
+				uriInfo, true, false, false, false, "orderby"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosPrecio(uriInfo,
+				"precio ascendente o descendente"));
 		return root;
 	}
 

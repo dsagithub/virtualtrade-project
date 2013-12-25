@@ -1,4 +1,4 @@
-source mdbrealm-schema.sql;
+source realmdb-schema.sql;
 
 insert into users values('adminmail', 'Administrador', MD5('admin'));
 insert into user_roles values ('adminmail', 'admin');

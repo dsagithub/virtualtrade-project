@@ -249,16 +249,12 @@ public class AnuncioResource {
 	@Path("/{anuncioid}")
 	public void deleteAnuncio(@PathParam("anuncioid") String anuncioid) {
 
-		// if (security.isUserInRole("registered")) {
-		//
-		// throw new ForbiddenException("You are not allowed");
-		//
-		// }
-
-		// else {
-
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -266,39 +262,51 @@ public class AnuncioResource {
 		}
 
 		try {
-
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid
-					+ "'";
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next() == false) {
-				throw new AnuncioNotFoundException();
-			} else {
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			email = rs.getString("email");
 
-				sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
-				sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid + "'";
-				stmt.executeUpdate(sql);
+			if ((security.getUserPrincipal().getName().equals(email))
+					|| (security.isUserInRole("admin"))) {
 
+				try {
+
+					stmt = conn.createStatement();
+					sql = "DELETE FROM imagen WHERE anuncioid='" + anuncioid
+							+ "'";
+					stmt.executeUpdate(sql);
+					sql = "DELETE FROM mensaje WHERE anuncioid='" + anuncioid
+							+ "'";
+					stmt.executeUpdate(sql);
+					sql = "DELETE FROM anuncio WHERE anuncioid='" + anuncioid
+							+ "'";
+					stmt.executeUpdate(sql);
+
+				} catch (SQLException e) {
+					throw new InternalServerException(e.getMessage());
+				}
+
+				finally {
+					try {
+						stmt.close();
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+
+			else {
+				throw new NotAllowedException();
 			}
 
 		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
+			throw new AnuncioNotFoundException();
 		}
-
-		finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		// }
 
 	}
 
@@ -351,7 +359,7 @@ public class AnuncioResource {
 				if (rs.next()) {
 
 					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("Email"));
+					anuncio.setEmail(rs.getString("email"));
 					anuncio.setSubject(rs.getString("subject"));
 					anuncio.setContent(rs.getString("content"));
 					anuncio.setEstado(rs.getBoolean("estado"));
@@ -362,6 +370,8 @@ public class AnuncioResource {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
+							uriInfo, rs.getString("anuncioid"), rel));
 
 				}
 
@@ -396,66 +406,97 @@ public class AnuncioResource {
 	@Path("/{anuncioid}")
 	@Consumes(MediaType.VIRTUAL_API_ANUNCIO)
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
-	public Anuncio updateAnuncio(@PathParam("anuncioid") int anuncioid,
+	public Anuncio updateAnuncio(@PathParam("anuncioid") String anuncioid,
 			Anuncio anuncio) {
 
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
 			throw new ServiceUnavailableException(e.getMessage());
 		}
+
 		try {
-
 			stmt = conn.createStatement();
-			String update = null; // TODO: create update query
+			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			email = rs.getString("email");
 
-			update = "UPDATE anuncio SET anuncio.email='" + anuncio.getEmail()
-					+ "', anuncio.subject='" + anuncio.getSubject()
-					+ "', anuncio.content='" + anuncio.getContent()
-					+ "', anuncio.estado=" + anuncio.isEstado()
-					+ ", anuncio.precio='" + anuncio.getPrecio()
-					+ "', anuncio.atributo1='" + anuncio.getAtributo1()
-					+ "', anuncio.atributo2='" + anuncio.getAtributo2()
-					+ "', anuncio.atributo3='" + anuncio.getAtributo3()
-					+ "', anuncio.marca='" + anuncio.getMarca()
-					+ "' WHERE anuncioid='" + anuncioid + "'";
+			if ((security.getUserPrincipal().getName().equals(email))
+					|| (security.isUserInRole("admin"))) {
 
-			int rows = stmt.executeUpdate(update,
-					Statement.RETURN_GENERATED_KEYS);
-			if (rows != 0) {
+				try {
 
-				String sql = "SELECT * FROM anuncio WHERE anuncioid='"
-						+ anuncioid + "'";
-				ResultSet rs = stmt.executeQuery(sql);
-				if (rs.next()) {
-					anuncio.setAnuncioid(rs.getInt("anuncioid"));
-					anuncio.setEmail(rs.getString("Email"));
-					anuncio.setSubject(rs.getString("subject"));
-					anuncio.setContent(rs.getString("content"));
-					anuncio.setEstado(rs.getBoolean("estado"));
-					anuncio.setPrecio(rs.getInt("precio"));
-					anuncio.setCreation_timestamp(rs
-							.getTimestamp("creation_timestamp"));
-					anuncio.setAtributo1(rs.getString("atributo1"));
-					anuncio.setAtributo2(rs.getString("atributo2"));
-					anuncio.setAtributo3(rs.getString("atributo3"));
-					anuncio.setMarca(rs.getString("marca"));
+					stmt = conn.createStatement();
+					String update = null; // TODO: create update query
+
+					update = "UPDATE anuncio SET anuncio.email='"
+							+ anuncio.getEmail() + "', anuncio.subject='"
+							+ anuncio.getSubject() + "', anuncio.content='"
+							+ anuncio.getContent() + "', anuncio.estado="
+							+ anuncio.isEstado() + ", anuncio.precio='"
+							+ anuncio.getPrecio() + "', anuncio.atributo1='"
+							+ anuncio.getAtributo1() + "', anuncio.atributo2='"
+							+ anuncio.getAtributo2() + "', anuncio.atributo3='"
+							+ anuncio.getAtributo3() + "', anuncio.marca='"
+							+ anuncio.getMarca() + "' WHERE anuncioid='"
+							+ anuncioid + "'";
+
+					int rows = stmt.executeUpdate(update,
+							Statement.RETURN_GENERATED_KEYS);
+					if (rows != 0) {
+
+						sql = "SELECT * FROM anuncio WHERE anuncioid='"
+								+ anuncioid + "'";
+						rs = stmt.executeQuery(sql);
+						if (rs.next()) {
+							anuncio.setAnuncioid(rs.getInt("anuncioid"));
+							anuncio.setEmail(rs.getString("Email"));
+							anuncio.setSubject(rs.getString("subject"));
+							anuncio.setContent(rs.getString("content"));
+							anuncio.setEstado(rs.getBoolean("estado"));
+							anuncio.setPrecio(rs.getInt("precio"));
+							anuncio.setCreation_timestamp(rs
+									.getTimestamp("creation_timestamp"));
+							anuncio.setAtributo1(rs.getString("atributo1"));
+							anuncio.setAtributo2(rs.getString("atributo2"));
+							anuncio.setAtributo3(rs.getString("atributo3"));
+							anuncio.setMarca(rs.getString("marca"));
+
+							anuncio.add(VirtualAPILinkBuilder
+									.buildURIAnuncioId(uriInfo, anuncioid, rel));
+
+						}
+					} else
+						throw new AnuncioNotFoundException();
+				} catch (SQLException e) {
+					throw new InternalServerException(e.getMessage());
+				} finally {
+					try {
+						stmt.close();
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-			} else
-				throw new AnuncioNotFoundException();
-		} catch (SQLException e) {
-			throw new InternalServerException(e.getMessage());
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
 			}
+
+			else {
+				throw new NotAllowedException();
+
+			}
+		} catch (SQLException e) {
+			throw new AnuncioNotFoundException();
 		}
+
 		return anuncio;
 	}
 

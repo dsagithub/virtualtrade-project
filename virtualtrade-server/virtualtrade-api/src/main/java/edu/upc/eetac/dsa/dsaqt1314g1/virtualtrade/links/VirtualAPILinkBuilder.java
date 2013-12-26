@@ -2,13 +2,12 @@ package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links;
 
 import java.net.URI;
 
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.UriInfo;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.AnuncioResource;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.MediaType;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.UserResource;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.VirtualRootAPIResource;
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 
 public class VirtualAPILinkBuilder {
 
@@ -393,6 +392,32 @@ public class VirtualAPILinkBuilder {
 		link.setTitle("Anuncios collection resource");
 		link.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
 
+		return link;
+	}
+	
+	public static final Link buildURIUsers(UriInfo uriInfo, String rel) {
+		URI uriUsers;
+
+		uriUsers = uriInfo.getBaseUriBuilder().path(UserResource.class).build();
+
+		Link self = new Link();
+		self.setUri(uriUsers.toString());
+		self.setRel(rel);
+		self.setTitle("Users collection");
+		self.setType(MediaType.VIRTUAL_API_USER_COLLECTION);
+
+		return self;
+	}
+
+	public final static Link buildURIUserEmail(UriInfo uriInfo, String email,
+			String rel) {
+		URI userURI = uriInfo.getBaseUriBuilder().path(UserResource.class)
+				.path(UserResource.class, "getUser").build(email);
+		Link link = new Link();
+		link.setUri(userURI.toString());
+		link.setRel("self");
+		link.setTitle("User Email " + email);
+		link.setType(MediaType.VIRTUAL_API_USER);
 		return link;
 	}
 

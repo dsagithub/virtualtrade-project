@@ -20,6 +20,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.User;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.UserCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
@@ -74,6 +75,9 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
+				
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
 
 				users.add(user);
 			}
@@ -127,6 +131,9 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
+
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
 			}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
@@ -218,6 +225,9 @@ public class UserResource {
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
 
+
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
 				users.add(user);
 				
 				
@@ -293,6 +303,11 @@ public class UserResource {
 				ResultSet rs = stmt.executeQuery(sql);
 				rs.next();
 				
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
+				/*
+				user.add(LibrosAPILinkBuilder.buildURIUserName(uriInfo,
+						rs.getString("username"), rel)); */
 				// TODO: Retrieve the created sting from the database to get all
 				// the remaining fields
 			} else
@@ -351,9 +366,14 @@ public class UserResource {
 			else if (user.getName() == null && user.getEmail() != null) {
 				update = "UPDATE users SET users.email='" + user.getEmail()
 						+ "' WHERE email='" + email + "'";
-			} else {
+			}
+			else if (user.getPhone() != 0){
+			
+			}
+			
+			else {
 				throw new BadRequestException(
-						"name and email are mandatory parameters");
+						"Error");
 			}
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
@@ -363,8 +383,21 @@ public class UserResource {
 				ResultSet rs = stmt.executeQuery(sql);
 				rs.next();
 				
+				/*
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
+				*/
+				
+				user.setEmail(rs.getString("email"));
+				user.setName(rs.getString("name"));
+				user.setPhone(rs.getInt("phone"));
+				user.setFoto(rs.getString("foto"));
+				user.setCiudad(rs.getString("ciudad"));
+				user.setCalle(rs.getString("calle"));
+				user.setNumero(rs.getInt("numero"));
+				user.setPiso(rs.getInt("piso"));
+				user.setPuerta(rs.getInt("puerta"));
+				user.setBanned(rs.getBoolean("banned"));
 			}
 			else
 				throw new UserNotFoundException();

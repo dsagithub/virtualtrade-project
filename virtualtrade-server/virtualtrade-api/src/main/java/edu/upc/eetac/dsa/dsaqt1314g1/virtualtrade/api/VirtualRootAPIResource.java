@@ -25,38 +25,46 @@ public class VirtualRootAPIResource {
 				"anuncios"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, true, true, true,"search"));
+				uriInfo, true, true, true, "search"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, true, true,false, "search"));
+				uriInfo, true, true, false, "search"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, true, false,false, "search"));
-		
+				uriInfo, true, false, false, "search"));
+
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, true, false,true, "search"));
-		
+				uriInfo, true, false, true, "search"));
+
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, false, true,false, "search"));
-		
+				uriInfo, false, true, false, "search"));
+
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosBusqueda(
-				uriInfo, false, true,true, "search"));
+				uriInfo, false, true, true, "search"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
-				uriInfo, true, true, true, true, "orderby"));
+				uriInfo, true, true, true, true, "atributos"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
-				uriInfo, true, true, true, false, "orderby"));
+				uriInfo, true, true, true, false, "atributos"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
-				uriInfo, true, true, false, false, "orderby"));
+				uriInfo, true, true, false, false, "atributos"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosOrderby(
-				uriInfo, true, false, false, false, "orderby"));
+				uriInfo, true, false, false, false, "atributos"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosPrecio(uriInfo,
 				"precio ascendente o descendente"));
 
+		root.add(VirtualAPILinkBuilder.buildURIMensajes(uriInfo,
+				"Mensaje collection"));
+
+		root.add(VirtualAPILinkBuilder
+				.buildURIUsers(uriInfo, "User collection"));
+
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIUserEmail(uriInfo,
+				"get user by email"));
 		return root;
 	}
 

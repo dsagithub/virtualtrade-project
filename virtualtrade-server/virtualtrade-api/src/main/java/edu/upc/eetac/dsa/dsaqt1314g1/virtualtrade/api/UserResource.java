@@ -187,9 +187,9 @@ public class UserResource {
 	}
 
 	@GET
-	@Path("?search")
+	@Path("/search")
 	@Produces(MediaType.VIRTUAL_API_USER_COLLECTION)
-	public UserCollection getUserbusqueda(@QueryParam("name") String name) {
+	public UserCollection getUserBusqueda(@QueryParam("name") String name) {
 
 		UserCollection users = new UserCollection();
 		Connection conn = null;

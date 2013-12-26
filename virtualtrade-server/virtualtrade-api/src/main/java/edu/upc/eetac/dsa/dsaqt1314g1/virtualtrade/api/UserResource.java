@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.naming.ServiceUnavailableException;
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,6 +15,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
@@ -47,7 +49,12 @@ public class UserResource {
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 		try {
@@ -98,7 +105,12 @@ public class UserResource {
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		try {
 			stmt = conn.createStatement();
@@ -139,7 +151,12 @@ public class UserResource {
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		try {
 			stmt = conn.createStatement();
@@ -160,6 +177,83 @@ public class UserResource {
 		}
 	}
 
+	
+	@GET
+	@Path("?search")
+	@Produces(MediaType.VIRTUAL_API_USER_COLLECTION)
+	public UserCollection getUserbusqueda(
+			@QueryParam("name") String name) {
+
+		UserCollection users = new UserCollection();
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		try {
+			stmt = conn.createStatement();
+
+			sql = "SELECT * FROM users WHERE name LIKE '%" + name + "%'";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				
+				
+				User user = new User();
+				user.setEmail(rs.getString("email"));
+				user.setName(rs.getString("name"));
+				user.setPhone(rs.getInt("phone"));
+				user.setFoto(rs.getString("foto"));
+				user.setCiudad(rs.getString("ciudad"));
+				user.setCalle(rs.getString("calle"));
+				user.setNumero(rs.getInt("numero"));
+				user.setPiso(rs.getInt("piso"));
+				user.setPuerta(rs.getInt("puerta"));
+				user.setBanned(rs.getBoolean("banned"));
+
+				users.add(user);
+				
+				
+/*
+				Pelicula pelicula = new Pelicula();
+				pelicula.setCast(rs.getString("cast"));
+				pelicula.setDirector(rs.getString("director"));
+				pelicula.setMovieid(rs.getInt("movieid"));
+				pelicula.setScript(rs.getString("script"));
+				pelicula.setTitle(rs.getString("title"));
+				pelicula.setUsername(rs.getString("username"));
+				pelicula.setYear(rs.getInt("year"));
+				pelicula.setLast_modified(rs.getTimestamp("last_modified"));
+
+				peliculas.add(pelicula);
+				*/
+			}
+
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return users;
+	}
+	
+	
+	
+	
+	
 
 	@POST
 	@Consumes(MediaType.VIRTUAL_API_USER)
@@ -171,7 +265,12 @@ public class UserResource {
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		try {
 			stmt = conn.createStatement();
@@ -226,7 +325,12 @@ public class UserResource {
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
-			throw new ServiceUnavailableException(e.getMessage());
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		try {
 
@@ -278,4 +382,9 @@ public class UserResource {
 		}
 		return user;
 	}
+	
+	
+	
+	
+	
 }

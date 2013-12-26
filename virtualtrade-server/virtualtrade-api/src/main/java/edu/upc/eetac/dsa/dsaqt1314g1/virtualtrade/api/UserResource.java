@@ -75,7 +75,7 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
-				
+
 				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
 						rs.getString("email"), rel));
 
@@ -152,7 +152,9 @@ public class UserResource {
 	@DELETE
 	@Path("/{email}")
 	public void deleteUser(@PathParam("email") String email) {
-
+		if (security.isUserInRole("registered")) {
+			throw new NotAllowedException();
+		}
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -184,12 +186,10 @@ public class UserResource {
 		}
 	}
 
-	
 	@GET
 	@Path("?search")
 	@Produces(MediaType.VIRTUAL_API_USER_COLLECTION)
-	public UserCollection getUserbusqueda(
-			@QueryParam("name") String name) {
+	public UserCollection getUserbusqueda(@QueryParam("name") String name) {
 
 		UserCollection users = new UserCollection();
 		Connection conn = null;
@@ -211,8 +211,7 @@ public class UserResource {
 			sql = "SELECT * FROM users WHERE name LIKE '%" + name + "%'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				
-				
+
 				User user = new User();
 				user.setEmail(rs.getString("email"));
 				user.setName(rs.getString("name"));
@@ -225,25 +224,11 @@ public class UserResource {
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
 
-
 				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
 						rs.getString("email"), rel));
-				users.add(user);
-				
-				
-/*
-				Pelicula pelicula = new Pelicula();
-				pelicula.setCast(rs.getString("cast"));
-				pelicula.setDirector(rs.getString("director"));
-				pelicula.setMovieid(rs.getInt("movieid"));
-				pelicula.setScript(rs.getString("script"));
-				pelicula.setTitle(rs.getString("title"));
-				pelicula.setUsername(rs.getString("username"));
-				pelicula.setYear(rs.getInt("year"));
-				pelicula.setLast_modified(rs.getTimestamp("last_modified"));
 
-				peliculas.add(pelicula);
-				*/
+				users.add(user);
+
 			}
 
 		} catch (SQLException e) {
@@ -259,11 +244,6 @@ public class UserResource {
 		}
 		return users;
 	}
-	
-	
-	
-	
-	
 
 	@POST
 	@Consumes(MediaType.VIRTUAL_API_USER)
@@ -286,15 +266,24 @@ public class UserResource {
 			stmt = conn.createStatement();
 			String update = null; // TODO: create update query
 			update = "INSERT INTO users (email,name,phone,ciudad,calle,numero,piso,puerta,banned,foto) VALUES ('"
-					+ user.getEmail() + "','" + user.getName() + "','"
-					 + user.getPhone() + "','"
-					 + user.getCiudad() + "','"
-					 + user.getCalle() + "','"
-					 + user.getNumero() + "','"
-					 + user.getPiso() + "','"
-					 + user.getPuerta() + "','"
-					 + false + "','"
-					+ user.getFoto() + "')";
+					+ user.getEmail()
+					+ "','"
+					+ user.getName()
+					+ "','"
+					+ user.getPhone()
+					+ "','"
+					+ user.getCiudad()
+					+ "','"
+					+ user.getCalle()
+					+ "','"
+					+ user.getNumero()
+					+ "','"
+					+ user.getPiso()
+					+ "','"
+					+ user.getPuerta()
+					+ "','"
+					+ 0
+					+ "','" + user.getFoto() + "')";
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
 			if (rows != 0) {
@@ -302,12 +291,9 @@ public class UserResource {
 						+ user.getName() + "'";
 				ResultSet rs = stmt.executeQuery(sql);
 				rs.next();
-				
+
 				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
 						rs.getString("email"), rel));
-				/*
-				user.add(LibrosAPILinkBuilder.buildURIUserName(uriInfo,
-						rs.getString("username"), rel)); */
 				// TODO: Retrieve the created sting from the database to get all
 				// the remaining fields
 			} else
@@ -325,8 +311,6 @@ public class UserResource {
 		}
 		return user;
 	}
-	
-	
 
 	@PUT
 	@Path("/{email}")
@@ -362,32 +346,28 @@ public class UserResource {
 				update = "UPDATE users SET users.name='" + user.getName()
 						+ "' WHERE email='" + email + "'";
 
-			}
-			else if (user.getName() == null && user.getEmail() != null) {
+			} else if (user.getName() == null && user.getEmail() != null) {
 				update = "UPDATE users SET users.email='" + user.getEmail()
 						+ "' WHERE email='" + email + "'";
+			} else if (user.getPhone() != 0) {
+
 			}
-			else if (user.getPhone() != 0){
-			
-			}
-			
+
 			else {
-				throw new BadRequestException(
-						"Error");
+				throw new BadRequestException("Error");
 			}
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
 			if (rows != 0) {
-				String sql = "SELECT * FROM users WHERE email='" + email
-						+ "'";
+				String sql = "SELECT * FROM users WHERE email='" + email + "'";
 				ResultSet rs = stmt.executeQuery(sql);
 				rs.next();
-				
+
 				/*
-				user.setName(rs.getString("name"));
-				user.setEmail(rs.getString("email"));
-				*/
-				
+				 * user.setName(rs.getString("name"));
+				 * user.setEmail(rs.getString("email"));
+				 */
+
 				user.setEmail(rs.getString("email"));
 				user.setName(rs.getString("name"));
 				user.setPhone(rs.getInt("phone"));
@@ -398,13 +378,11 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
-			}
-			else
+			} else
 				throw new UserNotFoundException();
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
-		}
-		finally {
+		} finally {
 			try {
 				stmt.close();
 				conn.close();
@@ -415,9 +393,5 @@ public class UserResource {
 		}
 		return user;
 	}
-	
-	
-	
-	
-	
+
 }

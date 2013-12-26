@@ -15,7 +15,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
+
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Imagen;
@@ -27,6 +29,9 @@ public class ImagenResource {
 
 	@Context
 	private UriInfo uriInfo;
+	
+	@Context
+	private SecurityContext security;
 
 	VirtualRootAPI root = new VirtualRootAPI();
 	String rel = null;
@@ -161,8 +166,8 @@ public class ImagenResource {
 
 	@DELETE
 	@Path("/{imagenid}")
-	public String deleteImagen(@PathParam("imagenid") String imagenid) {
-
+	public String deleteImagen(@PathParam("imagenid") String imagenid, @PathParam("anuncioid") String anuncioid) {
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
@@ -177,13 +182,26 @@ public class ImagenResource {
 
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * FROM imagen WHERE imagenid='" + imagenid + "'";
+			
+			
+			sql = "SELECT anuncio.*, users.email FROM users INNER JOIN anuncio ON(anuncioid= '"
+					+ anuncioid
+					+ "' and users.email=anuncio.email) INNER JOIN imagen ON(imagen.imagenid='"
+					+ imagenid + "')";
+			
 			rs = stmt.executeQuery(sql);
 
 			if (rs.next() == false) {
-				throw new ImagenNotFoundException();
+				throw new AnuncioNotFoundException();
 
 			} else {
+				rs.previous();
+				rs.next();
+				email = rs.getString("email");
+				Imagen imagen = new Imagen();
+
+				
+				if ((security.getUserPrincipal().getName().equals(email))|| (security.isUserInRole("admin"))) {
 
 				try {
 					stmt = conn.createStatement();
@@ -192,9 +210,19 @@ public class ImagenResource {
 					stmt.executeUpdate(sql);
 
 					estado = "Imagen borrada correctamente";
-				} catch (SQLException e) {
+				
+				}
+				
+				
+				
+				catch (SQLException e) {
 					throw new InternalServerException(e.getMessage());
-				} finally {
+				
+				} 
+				
+				
+				
+				finally {
 					try {
 						stmt.close();
 						conn.close();
@@ -202,6 +230,12 @@ public class ImagenResource {
 						e.printStackTrace();
 					}
 				}
+			}
+				else{
+					estado = "No tienes permisos para borrar esta imagen";
+				}
+			
+				
 			}
 
 		} catch (SQLException e) {
@@ -214,12 +248,13 @@ public class ImagenResource {
 	@POST
 	@Consumes(MediaType.VIRTUAL_API_IMAGEN)
 	@Produces(MediaType.VIRTUAL_API_IMAGEN)
-	public Imagen createImagen(@PathParam("anuncioid") String anuncioid,
+	public Imagen createImagen(@PathParam("anuncioid") String anuncioid,@PathParam("imagenid") int imagenid,
 			Imagen imagen) {
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
 		ResultSet rs;
+		String email;
 
 		try {
 			conn = ds.getConnection();
@@ -237,7 +272,12 @@ public class ImagenResource {
 			}
 
 			else {
-
+				
+				rs.previous();
+				rs.next();
+				email = rs.getString("email");
+				if ((security.getUserPrincipal().getName().equals(email))|| (security.isUserInRole("admin"))) {	
+					
 				try {
 					stmt = conn.createStatement();
 					String update = null;
@@ -248,7 +288,7 @@ public class ImagenResource {
 
 					if (rs.next()) {
 
-						int imagenid = rs.getInt(1);
+						imagenid = rs.getInt(1);
 						rs.close();
 
 						sql = "SELECT * FROM imagen WHERE imagenid='"
@@ -276,7 +316,11 @@ public class ImagenResource {
 					}
 				}
 			}
+				else{
+					throw new NotAllowedException();
+				}
 
+		}
 		}
 
 		catch (SQLException e) {
@@ -290,9 +334,10 @@ public class ImagenResource {
 	@Path("/{imagenid}")
 	@Consumes(MediaType.VIRTUAL_API_IMAGEN)
 	@Produces(MediaType.VIRTUAL_API_IMAGEN)
-	public Imagen updateImagen(@PathParam("imagenid") String imagenid,
+	public Imagen updateImagen(@PathParam("imagenid") String imagenid, @PathParam("anuncioid") String anuncioid,
 			Imagen imagen) {
 
+		String email;
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
@@ -306,10 +351,18 @@ public class ImagenResource {
 
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * FROM imagen WHERE imagenid='" + imagenid + "'";
+			sql = "SELECT anuncio.*, users.email FROM users INNER JOIN anuncio ON(anuncioid= '"
+					+ anuncioid
+					+ "' and users.email=anuncio.email) INNER JOIN imagen ON(imagen.imagenid='"
+					+ imagenid + "')";
 			rs = stmt.executeQuery(sql);
-			rs.next();
-
+			if (rs.next() == false) {
+				throw new AnuncioNotFoundException();
+			}else{
+				rs.previous();
+				rs.next();
+				email = rs.getString("email");
+				if ((security.getUserPrincipal().getName().equals(email))|| (security.isUserInRole("admin"))) {					
 			try {
 				stmt = conn.createStatement();
 				String update = null;
@@ -346,7 +399,8 @@ public class ImagenResource {
 					e.printStackTrace();
 				}
 			}
-
+				}
+			}
 		} catch (SQLException e) {
 			throw new ImagenNotFoundException();
 		}

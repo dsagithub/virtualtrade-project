@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -212,4 +213,69 @@ public class UserResource {
 	}
 	
 	
+
+	@PUT
+	@Path("/{email}")
+	@Consumes(MediaType.VIRTUAL_API_USER)
+	@Produces(MediaType.VIRTUAL_API_USER)
+	public User updateUser(@PathParam("email") String email, User user) {
+
+		// TODO: get connection from database
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+
+			stmt = conn.createStatement();
+			String update = null; // TODO: create update query
+
+			if (user.getName() != null && user.getEmail() != null) {
+				update = "UPDATE users SET users.name='" + user.getName()
+						+ "' , users.email= '" + user.getEmail()
+						+ "' WHERE email='" + email + "'";
+			}
+
+			else if (user.getName() != null && user.getEmail() == null) {
+				update = "UPDATE users SET users.name='" + user.getName()
+						+ "' WHERE email='" + email + "'";
+
+			}
+			else if (user.getName() == null && user.getEmail() != null) {
+				update = "UPDATE users SET users.email='" + user.getEmail()
+						+ "' WHERE email='" + email + "'";
+			} else {
+				throw new BadRequestException(
+						"name and email are mandatory parameters");
+			}
+			int rows = stmt.executeUpdate(update,
+					Statement.RETURN_GENERATED_KEYS);
+			if (rows != 0) {
+				String sql = "SELECT * FROM users WHERE email='" + email
+						+ "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.next();
+				
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+			}
+			else
+				throw new UserNotFoundException();
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
 }

@@ -6,6 +6,7 @@ import javax.ws.rs.core.UriInfo;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.AnuncioResource;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.MediaType;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.MensajeResource;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.UserResource;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.api.VirtualRootAPIResource;
 
@@ -438,6 +439,21 @@ public class VirtualAPILinkBuilder {
 
 		return link;
 
+	}
+	
+	
+	public static final Link buildURIMensajes(UriInfo uriInfo, String rel) {
+		URI uriMensajes;
+
+		uriMensajes = uriInfo.getBaseUriBuilder().path(MensajeResource.class).build();
+
+		Link self = new Link();
+		self.setUri(uriMensajes.toString());
+		self.setRel(rel);
+		self.setTitle("Users collection");
+		self.setType(MediaType.VIRTUAL_API_USER_COLLECTION);
+
+		return self;
 	}
 
 }

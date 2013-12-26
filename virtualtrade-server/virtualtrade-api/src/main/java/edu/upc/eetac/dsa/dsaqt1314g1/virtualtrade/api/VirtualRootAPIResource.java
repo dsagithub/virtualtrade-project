@@ -57,6 +57,8 @@ public class VirtualRootAPIResource {
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIAnunciosPrecio(uriInfo,
 				"precio ascendente o descendente"));
 
+		
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIUserEmail(uriInfo, "get user by email"));
 		return root;
 	}
 

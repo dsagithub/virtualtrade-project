@@ -115,7 +115,6 @@ public class AnuncioResource {
 			}
 		}
 		return anuncio;
-		// return imagen;
 	}
 
 	@GET
@@ -507,7 +506,8 @@ public class AnuncioResource {
 			@QueryParam("offset") String offset,
 			@QueryParam("length") String length,
 			@QueryParam("subject") String subject,
-			@QueryParam("content") String content) {
+			@QueryParam("content") String content,
+			@QueryParam("email") String email) {
 
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(
@@ -549,24 +549,55 @@ public class AnuncioResource {
 
 			stmt = conn.createStatement();
 
-			if (subject != null && content != null) {
+			if (subject != null && content != null && email != null) {
+
+				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
+						+ "%' AND content LIKE'%" + content + "%' LIMIT "
+						+ offset + "," + length + " AND email = '" + email
+						+ "' LIMIT " + offset + "," + length + "";
+			}
+
+			else if (subject != null && content != null && email == null) {
 
 				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
 						+ "%' AND content LIKE'%" + content + "%' LIMIT "
 						+ offset + "," + length + "";
 			}
 
-			else if (subject != null && content == null) {
+			else if (content != null && subject == null && email == null) {
+
+				sql = "SELECT * FROM anuncio WHERE content LIKE'%" + content
+						+ "%' LIMIT " + offset + "," + length + "";
+			}
+
+			else if (content != null && subject == null && email != null) {
+
+				sql = "SELECT * FROM anuncio WHERE content LIKE'%" + content
+						+ "%' AND email='" + email + "' LIMIT " + offset + ","
+						+ length + "";
+			}
+
+			else if (subject != null && content == null && email == null) {
 
 				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
 						+ "%' LIMIT " + offset + "," + length + "";
-			} else if (content != null && subject == null) {
-
-				sql = "SELECT * FROM anuncio WHERE content LIKE'%" + content
-						+ "%'";
 			}
 
-			else if (content == null && subject == null) {
+			else if (subject != null && content == null && email != null) {
+
+				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
+						+ "%' AND email ='" + email + "'LIMIT " + offset + ","
+						+ length + "";
+			}
+
+			else if (content == null && subject == null && email != null) {
+				sql = "SELECT * FROM anuncio WHERE email ='" + email
+						+ "' ORDER BY creation_timestamp LIMIT " + offset + ","
+						+ length + "";
+
+			}
+
+			else if (content == null && subject == null && email == null) {
 				sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
 						+ offset + "," + length + "";
 
@@ -630,7 +661,7 @@ public class AnuncioResource {
 								+ Integer.parseInt(length))), length, rel));
 
 				links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(
-						uriInfo, offset, length, subject, content, rel));
+						uriInfo, offset, length, subject, content, email, rel));
 
 				anuncios.setLinks(links);
 				anuncios.add(anuncio);

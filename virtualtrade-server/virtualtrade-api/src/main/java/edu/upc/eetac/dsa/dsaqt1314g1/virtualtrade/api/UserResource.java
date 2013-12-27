@@ -312,6 +312,7 @@ public class UserResource {
 		return user;
 	}
 
+
 	@PUT
 	@Path("/{email}")
 	@Consumes(MediaType.VIRTUAL_API_USER)
@@ -336,37 +337,22 @@ public class UserResource {
 			stmt = conn.createStatement();
 			String update = null; // TODO: create update query
 
-			if (user.getName() != null && user.getEmail() != null) {
-				update = "UPDATE users SET users.name='" + user.getName()
-						+ "' , users.email= '" + user.getEmail()
-						+ "' WHERE email='" + email + "'";
-			}
+			update = "UPDATE users SET users.name='" + user.getName()
+					+ "' , users.phone= '" + user.getPhone()
+					+ "' , users.foto= '" + user.getFoto()
+					+ "' , users.ciudad= '" + user.getCiudad()
+					+ "' , users.calle= '" + user.getCalle()
+					+ "' , users.numero= '" + user.getNumero()
+					+ "' , users.piso= '" + user.getPiso()
+					+ "' , users.puerta= '" + user.getPuerta()
+					+ "' WHERE email='" + email + "'";
 
-			else if (user.getName() != null && user.getEmail() == null) {
-				update = "UPDATE users SET users.name='" + user.getName()
-						+ "' WHERE email='" + email + "'";
-
-			} else if (user.getName() == null && user.getEmail() != null) {
-				update = "UPDATE users SET users.email='" + user.getEmail()
-						+ "' WHERE email='" + email + "'";
-			} else if (user.getPhone() != 0) {
-
-			}
-
-			else {
-				throw new BadRequestException("Error");
-			}
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
 			if (rows != 0) {
 				String sql = "SELECT * FROM users WHERE email='" + email + "'";
 				ResultSet rs = stmt.executeQuery(sql);
 				rs.next();
-
-				/*
-				 * user.setName(rs.getString("name"));
-				 * user.setEmail(rs.getString("email"));
-				 */
 
 				user.setEmail(rs.getString("email"));
 				user.setName(rs.getString("name"));

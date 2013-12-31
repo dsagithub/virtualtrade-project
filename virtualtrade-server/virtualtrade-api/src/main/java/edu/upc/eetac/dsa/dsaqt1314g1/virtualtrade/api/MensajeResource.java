@@ -41,7 +41,7 @@ public class MensajeResource {
 	@GET//Obtener los mensajes enviados y recibidos por un usuario 
 	@Path("/user_message")
 	@Produces(MediaType.VIRTUAL_API_MENSAJE_COLLECTION)
-	public MensajeCollection getMensajesConversacion(@QueryParam("email") String email,@QueryParam("offset") String offset,
+	public MensajeCollection getMensajesConversacion(@QueryParam("email") String email,@QueryParam("anuncioid") String anuncioid,@QueryParam("offset") String offset,
 			@QueryParam("length") String length) {
 		MensajeCollection mensajes = new MensajeCollection();
 
@@ -57,7 +57,7 @@ public class MensajeResource {
 
 		try {
 			stmt = conn.createStatement();
-			sql = "SELECT * from mensaje where emailorigen ='"+email+"' or emaildestino='"+email+"' ORDER by creation_timestamp LIMIT "
+			sql = "SELECT * from mensaje where (emailorigen ='"+email+"' OR emaildestino='"+email+"') AND anuncioid="+ anuncioid +" ORDER by creation_timestamp LIMIT "
 					+ offset + "," + length + "";
 
 			ResultSet rs = stmt.executeQuery(sql);

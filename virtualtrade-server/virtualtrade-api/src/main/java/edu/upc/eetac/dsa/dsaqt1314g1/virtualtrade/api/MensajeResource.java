@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +19,7 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.VirtualAPILinkBuilder;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.Mensaje;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.MensajeCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model.VirtualRootAPI;
@@ -125,7 +129,7 @@ public class MensajeResource {
 
 			else {
 				rs.previous();
-				while (rs.next()) {
+				if (rs.next()) {
 					
 					mensaje.setMensajeid(rs.getInt("mensajeid"));
 					mensaje.setEmailorigen(rs.getString("emailorigen"));
@@ -159,8 +163,156 @@ public class MensajeResource {
 
 	}
 
+	@POST
+	@Consumes(MediaType.VIRTUAL_API_MENSAJE)
+	@Produces(MediaType.VIRTUAL_API_MENSAJE)
+	public Mensaje createMensaje(Mensaje mensaje) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+
+			stmt = conn.createStatement();
+			String update = null;
+			update = "INSERT INTO mensaje (emailorigen, emaildestino, anuncioid, subject, content) VALUES ('"
+					+ mensaje.getEmailorigen()
+					+ "','"
+					+ mensaje.getEmaildestino()
+					+ "','"
+					+ mensaje.getAnuncioid()
+					+ "','"
+					+ mensaje.getSubject()
+					+ "','"
+					+ mensaje.getContent()
+					+ "')";
+			stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				int mensajeid = rs.getInt(1);
+				rs.close();
+				String sql = "SELECT * FROM mensaje WHERE mensajeid= '"
+						+ mensajeid + "'";
+
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					
+					mensaje.setMensajeid(rs.getInt("mensajeid"));
+					mensaje.setEmailorigen(rs.getString("emailorigen"));
+					mensaje.setEmaildestino(rs.getString("emaildestino"));
+					mensaje.setCreation_timestamp(rs.getDate("creation_timestamp"));
+					mensaje.setAnuncioid(rs.getInt("anuncioid"));
+					mensaje.setSubject(rs.getString("subject"));
+					mensaje.setContent(rs.getString("content"));
+				
+
+				}
+				else
+					throw new MensajeNotFoundException();
+
+			} 
+
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return mensaje;
+
+	}
 	
 	
+
+
+@PUT
+@Path("/{mensajeid}")
+@Consumes(MediaType.VIRTUAL_API_MENSAJE)
+@Produces(MediaType.VIRTUAL_API_MENSAJE)
+public Mensaje updateMensaje(@PathParam("mensajeid") int mensajeid,
+		Mensaje mensaje) {
+
+	Connection conn = null;
+	Statement stmt = null;
+
+	try {
+		conn = ds.getConnection();
+	} catch (SQLException e) {
+		throw new ServiceUnavailableException(e.getMessage());
+	}
+	try {
+
+		stmt = conn.createStatement();
+		String update = null;
+		update = "UPDATE mensaje SET mensaje.emailorigen='" + mensaje.getEmailorigen()
+				+ "', mensaje.emaildestino='" + mensaje.getEmaildestino()
+				+ "', mensaje.anuncioid='" + mensaje.getAnuncioid()
+				+ "', mensaje.subject='" + mensaje.getSubject()
+				+ "', mensaje.content='" + mensaje.getContent()
+				+ "' WHERE anuncioid='" + mensajeid + "'";
+		
+		int rows = stmt.executeUpdate(update,
+				Statement.RETURN_GENERATED_KEYS);
+		ResultSet rs = stmt.getGeneratedKeys();
+
+		if (rows != 0) {
+
+			rs.close();
+			String sql = "SELECT * FROM mensaje WHERE mensajeid= '"
+					+ mensajeid + "'";
+
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				
+				mensaje.setMensajeid(rs.getInt("mensajeid"));
+				mensaje.setEmailorigen(rs.getString("emailorigen"));
+				mensaje.setEmaildestino(rs.getString("emaildestino"));
+				mensaje.setCreation_timestamp(rs.getDate("creation_timestamp"));
+				mensaje.setAnuncioid(rs.getInt("anuncioid"));
+				mensaje.setSubject(rs.getString("subject"));
+				mensaje.setContent(rs.getString("content"));
+			
+
+			}
+			else
+				throw new MensajeNotFoundException();
+
+		} 
+
+	} catch (SQLException e) {
+		throw new InternalServerException(e.getMessage());
+	}
+
+	finally {
+		try {
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	return mensaje;
+
+}
+
+
 }
 
 

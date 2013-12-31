@@ -350,7 +350,7 @@ public class AnuncioResource2 {
 			stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt.getGeneratedKeys();
 
-			try {
+			if (rs.next()) {
 				int anuncioid = rs.getInt(1);
 				rs.close();
 				String sql = "SELECT * FROM anuncio WHERE anuncioid= '"
@@ -371,15 +371,17 @@ public class AnuncioResource2 {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
+					String anuncioid2 = Integer.toString(anuncioid);
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
+							anuncioid2, rel));
+					
 
 				}
 
 				else
 					throw new AnuncioNotFoundException();
 
-			} catch (SQLException e) {
-				throw new InternalServerException(e.getMessage());
-			}
+			} 
 
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
@@ -388,7 +390,6 @@ public class AnuncioResource2 {
 		finally {
 			try {
 				stmt.close();
-				stmt1.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

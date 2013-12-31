@@ -98,4 +98,69 @@ public class MensajeResource {
 
 	}
 
+	@GET
+	@Path("/{mensajeid}")
+	@Produces(MediaType.VIRTUAL_API_MENSAJE)
+	public Mensaje getMensaje(@PathParam("mensajeid") String mensajeid) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		Mensaje mensaje = new Mensaje();
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+
+		try {
+			stmt = conn.createStatement();
+			sql = "SELECT * from mensaje where mensajeid ="+mensajeid+"";
+
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next() == false) {
+				throw new MensajeNotFoundException();
+			}
+
+			else {
+				rs.previous();
+				while (rs.next()) {
+					
+					mensaje.setMensajeid(rs.getInt("mensajeid"));
+					mensaje.setEmailorigen(rs.getString("emailorigen"));
+					mensaje.setEmaildestino(rs.getString("emaildestino"));
+					mensaje.setCreation_timestamp(rs.getDate("creation_timestamp"));
+					mensaje.setAnuncioid(rs.getInt("anuncioid"));
+					mensaje.setSubject(rs.getString("subject"));
+					mensaje.setContent(rs.getString("content"));
+				
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			}
+
+			catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+		}
+
+		return mensaje;
+
+	}
+
+	
+	
 }
+
+

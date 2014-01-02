@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		// Declaro e inicio las variables
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String userpass = request.getParameter("userpass");
 
 		Connection conn = null;
@@ -56,19 +54,17 @@ public class LoginServlet extends HttpServlet {
 
 			stmt = conn.createStatement();
 			String sql = null;
-			sql = "SELECT * FROM users WHERE username='" + username
+			sql = "SELECT * FROM users WHERE email='" + email
 					+ "' AND userpass=MD5('" + userpass + "')";
 			ResultSet rows = stmt.executeQuery(sql);
 			if (rows.next()) {
 				response.setContentType("text/html");
 				response.sendRedirect("http://localhost:8080/virtualtrade-auth/index.html");
-
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request,

@@ -312,7 +312,6 @@ public class UserResource {
 		return user;
 	}
 
-
 	@PUT
 	@Path("/{email}")
 	@Consumes(MediaType.VIRTUAL_API_USER)
@@ -364,6 +363,8 @@ public class UserResource {
 				user.setPiso(rs.getInt("piso"));
 				user.setPuerta(rs.getInt("puerta"));
 				user.setBanned(rs.getBoolean("banned"));
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
 			} else
 				throw new UserNotFoundException();
 		} catch (SQLException e) {

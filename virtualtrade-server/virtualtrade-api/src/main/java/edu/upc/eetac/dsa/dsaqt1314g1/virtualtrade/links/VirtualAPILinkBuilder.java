@@ -94,19 +94,11 @@ public class VirtualAPILinkBuilder {
 
 		URI uriAnuncios = null;
 
-		if (subject != null && content == null && email != null) {
+		if (subject == null && content == null && email != null) {
 			uriAnuncios = uriInfo.getBaseUriBuilder()
 					.path(AnuncioResource.class, "getAnunciosBusqueda")
 					.queryParam("offset", offset).queryParam("length", length)
-					.queryParam("subject", subject).queryParam("email", email)
-					.build();
-		}
-
-		else if (subject != null && content == null && email == null) {
-			uriAnuncios = uriInfo.getBaseUriBuilder()
-					.path(AnuncioResource.class, "getAnunciosBusqueda")
-					.queryParam("offset", offset).queryParam("length", length)
-					.queryParam("subject", subject).build();
+					.queryParam("email", email).build();
 		}
 
 		else if (subject == null && content != null && email == null) {
@@ -124,12 +116,18 @@ public class VirtualAPILinkBuilder {
 					.build();
 		}
 
-		else if (subject != null && content != null && email != null) {
+		else if (subject != null && content == null && email == null) {
 			uriAnuncios = uriInfo.getBaseUriBuilder()
 					.path(AnuncioResource.class, "getAnunciosBusqueda")
 					.queryParam("offset", offset).queryParam("length", length)
-					.queryParam("subject", subject)
-					.queryParam("content", content).queryParam("email", email)
+					.queryParam("subject", subject).build();
+		}
+
+		else if (subject != null && content == null && email != null) {
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class, "getAnunciosBusqueda")
+					.queryParam("offset", offset).queryParam("length", length)
+					.queryParam("subject", subject).queryParam("email", email)
 					.build();
 		}
 
@@ -141,9 +139,46 @@ public class VirtualAPILinkBuilder {
 					.queryParam("content", content).build();
 		}
 
+		else if (subject != null && content != null && email != null) {
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class, "getAnunciosBusqueda")
+					.queryParam("offset", offset).queryParam("length", length)
+					.queryParam("subject", subject)
+					.queryParam("content", content).queryParam("email", email)
+					.build();
+		}
+
+		else if (subject == null && content == null && email == null) {
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class, "getAnunciosBusqueda")
+					.queryParam("offset", offset).queryParam("length", length)
+					.build();
+		}
+
 		Link self = new Link();
 		self.setUri(uriAnuncios.toString());
 		self.setRel("Anuncios");
+		self.setTitle("Anuncios collection");
+		self.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
+
+		return self;
+	}
+
+	public static final Link buildURIAnunciosPrecios(UriInfo uriInfo,
+			String offset, String length, String precio1, String precio2,
+			String rel) {
+
+		URI uriAnuncios = null;
+
+		uriAnuncios = uriInfo.getBaseUriBuilder()
+				.path(AnuncioResource.class, "getAnunciosEntre")
+				.queryParam("offset", offset).queryParam("length", length)
+				.queryParam("precio1", precio1).queryParam("precio2", precio2)
+				.build();
+
+		Link self = new Link();
+		self.setUri(uriAnuncios.toString());
+		self.setRel("Anuncios por precios");
 		self.setTitle("Anuncios collection");
 		self.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
 
@@ -191,6 +226,14 @@ public class VirtualAPILinkBuilder {
 					.path(AnuncioResource.class, "getAnunciosAtributos")
 					.queryParam("offset", offset).queryParam("length", length)
 					.queryParam("atributo1", atributo1).build();
+		}
+
+		if (atributo1 == null && atributo2 == null && atributo3 == null
+				&& marca == null) {
+			uriAnuncios = uriInfo.getBaseUriBuilder()
+					.path(AnuncioResource.class, "getAnunciosAtributos")
+					.queryParam("offset", offset).queryParam("length", length)
+					.build();
 		}
 		Link self = new Link();
 		self.setUri(uriAnuncios.toString());
@@ -306,6 +349,29 @@ public class VirtualAPILinkBuilder {
 					.queryParam("email", "{email}").build();
 
 		}
+
+		Link link = new Link();
+		link.setUri(URITemplateBuilder.buildTemplatedURI(uriAnuncios));
+		link.setRel(rel);
+
+		link.setTitle("Anuncios collection resource");
+		link.setType(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION);
+
+		return link;
+	}
+
+	public static final Link buildTemplatedURIAnunciosPrecios(UriInfo uriInfo,
+			String rel)
+
+	{
+		URI uriAnuncios = null;
+
+		uriAnuncios = uriInfo.getBaseUriBuilder()
+				.path(AnuncioResource.class, "getAnunciosEntre")
+				.queryParam("offset", "{offset}")
+				.queryParam("length", "{length}")
+				.queryParam("precio1", "{precio1}")
+				.queryParam("precio2", "{precio2}").build();
 
 		Link link = new Link();
 		link.setUri(URITemplateBuilder.buildTemplatedURI(uriAnuncios));
@@ -440,12 +506,12 @@ public class VirtualAPILinkBuilder {
 		return link;
 
 	}
-	
-	
+
 	public static final Link buildURIMensajes(UriInfo uriInfo, String rel) {
 		URI uriMensajes;
 
-		uriMensajes = uriInfo.getBaseUriBuilder().path(MensajeResource.class).build();
+		uriMensajes = uriInfo.getBaseUriBuilder().path(MensajeResource.class)
+				.build();
 
 		Link self = new Link();
 		self.setUri(uriMensajes.toString());

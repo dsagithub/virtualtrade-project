@@ -43,7 +43,6 @@ public class MensajeResource {
 	@Path("/user_message")
 	@Produces(MediaType.VIRTUAL_API_MENSAJE_COLLECTION)
 	public MensajeCollection getMensajesConversacion(
-			@QueryParam("email") String email,
 			@QueryParam("anuncioid") String anuncioid,
 			@QueryParam("offset") String offset,
 			@QueryParam("length") String length) {
@@ -52,6 +51,8 @@ public class MensajeResource {
 		Connection conn = null;
 		Statement stmt = null;
 		String sql;
+		ResultSet rs;
+		String email;
 
 		try {
 			conn = ds.getConnection();
@@ -60,20 +61,21 @@ public class MensajeResource {
 		}
 
 		try {
+			email= security.getUserPrincipal().getName(); 
 			stmt = conn.createStatement();
 			sql = "SELECT * from mensaje where (emailorigen ='" + email
 					+ "' OR emaildestino='" + email + "') AND anuncioid="
 					+ anuncioid + " ORDER by creation_timestamp LIMIT "
 					+ offset + "," + length + "";
 
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 
 			if (rs.next() == false) {
 				throw new MensajeNotFoundException();
 			}
 
 			else {
-
+				rs.previous();
 				while (rs.next()) {
 					Mensaje mensaje = new Mensaje();
 					mensaje.setMensajeid(rs.getInt("mensajeid"));
@@ -118,6 +120,9 @@ public class MensajeResource {
 		Statement stmt = null;
 		String sql;
 		Mensaje mensaje = new Mensaje();
+		ResultSet rs;
+		String emailorigen;
+		String emaildestino;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -125,16 +130,22 @@ public class MensajeResource {
 		}
 
 		try {
+			
 			stmt = conn.createStatement();
-			sql = "SELECT * from mensaje where mensajeid =" + mensajeid + "";
-
-			ResultSet rs = stmt.executeQuery(sql);
-
+			sql = "SELECT * FROM mensaje WHERE mensajeid='" + mensajeid + "'";
+			
+			rs = stmt.executeQuery(sql);
 			if (rs.next() == false) {
 				throw new MensajeNotFoundException();
 			}
+			else{
+			emailorigen = rs.getString("emailorigen");
+			emaildestino = rs.getString("emaildestino");
+			
+			if ((security.getUserPrincipal().getName().equals(emailorigen))||(security.getUserPrincipal().getName().equals(emaildestino))
+					|| (security.isUserInRole("admin"))) {
 
-			else {
+
 				rs.previous();
 				if (rs.next()) {
 
@@ -148,6 +159,10 @@ public class MensajeResource {
 					mensaje.setContent(rs.getString("content"));
 
 				}
+			}
+			else{
+				throw new NotAllowedException();
+			}
 			}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
@@ -163,7 +178,7 @@ public class MensajeResource {
 
 				e.printStackTrace();
 			}
-
+		
 		}
 
 		return mensaje;
@@ -276,9 +291,9 @@ public class MensajeResource {
 
 					stmt = conn.createStatement();
 					String update = null;
-					update = "UPDATE mensaje SET mensaje.emailorigen='"
-							+ email
-							+ "', mensaje.emaildestino='" + mensaje.getEmaildestino()
+					update = "UPDATE mensaje SET mensaje.emailorigen='" + email
+							+ "', mensaje.emaildestino='"
+							+ mensaje.getEmaildestino()
 							+ "', mensaje.anuncioid='" + mensaje.getAnuncioid()
 							+ "', mensaje.subject='" + mensaje.getSubject()
 							+ "', mensaje.content='" + mensaje.getContent()
@@ -305,10 +320,9 @@ public class MensajeResource {
 							mensaje.setSubject(rs.getString("subject"));
 							mensaje.setContent(rs.getString("content"));
 						}
-						} else
-							throw new MensajeNotFoundException();
+					} else
+						throw new MensajeNotFoundException();
 
-					
 				} catch (SQLException e) {
 					throw new InternalServerException(e.getMessage());
 				}

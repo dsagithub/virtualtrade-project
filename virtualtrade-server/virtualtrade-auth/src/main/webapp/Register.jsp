@@ -46,9 +46,7 @@
 			method="post">
 			<h2 class="register-heading">Registrarse</h2>
 			<input type="text" class="form-control" name="name"
-				placeholder="Nombre" required autofocus> <input type="text"
-				class="form-control" name="username" placeholder="Nombre de usuario"
-				required autofocus> <input type="text" class="form-control"
+				placeholder="Nombre" required autofocus>  <input type="text" class="form-control"
 				name="email" placeholder="Email" required autofocus> <input
 				type="password" class="form-control" name="userpass"
 				placeholder="Password" required> </label>

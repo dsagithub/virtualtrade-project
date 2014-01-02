@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		// Declaro e inicio las variables
-		String username = request.getParameter("username");
+	
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String userpass = request.getParameter("userpass");
@@ -79,9 +79,8 @@ public class RegisterServlet extends HttpServlet {
 
 			stmt = conn.createStatement();
 			String update = null;
-			update = "INSERT INTO users (username,name,email,userpass) VALUES ('"
-					+ username
-					+ "','"
+			update = "INSERT INTO users (name,email,userpass) VALUES ('"
+					
 					+ name
 					+ "','"
 					+ email
@@ -90,8 +89,8 @@ public class RegisterServlet extends HttpServlet {
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
 
-			update = "INSERT INTO user_roles (username,rolename) VALUES ('"
-					+ username + "','registered')";
+			update = "INSERT INTO user_roles (email,rolename) VALUES ('"
+					+ email + "','registered')";
 			rows = stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
 
 		} catch (SQLException e) {
@@ -106,6 +105,8 @@ public class RegisterServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		/*
 		HttpHost targetHost = new HttpHost("localhost", 8080, "http");
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
 		credsProvider.setCredentials(new AuthScope(targetHost.getHostName(),
@@ -140,5 +141,9 @@ public class RegisterServlet extends HttpServlet {
 		String line = null;
 		while ((line = reader.readLine()) != null)
 			System.out.println(line);
-	}
+			
+		*/
+		
+		
+	} 
 }

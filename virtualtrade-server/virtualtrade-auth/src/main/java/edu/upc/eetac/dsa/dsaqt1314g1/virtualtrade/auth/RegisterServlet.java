@@ -84,8 +84,8 @@ public class RegisterServlet extends HttpServlet {
 					+ name
 					+ "','"
 					+ email
-					+ "' , '"
-					+ userpass + "')";
+					+ "' , MD5('"
+					+ userpass + "'))";
 			int rows = stmt.executeUpdate(update,
 					Statement.RETURN_GENERATED_KEYS);
 

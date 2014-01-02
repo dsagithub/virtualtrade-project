@@ -183,7 +183,6 @@ public class AnuncioResource {
 						rs.getString("anuncioid"), rel));
 
 				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo, rel));
 				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
 						offset, length, rel));
 
@@ -315,7 +314,6 @@ public class AnuncioResource {
 
 		Connection conn = null;
 		Statement stmt = null;
-		Statement stmt1 = null;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -323,10 +321,11 @@ public class AnuncioResource {
 		}
 		try {
 
+			String email = security.getUserPrincipal().getName();
 			stmt = conn.createStatement();
 			String update = null;
 			update = "INSERT INTO anuncio (email, subject, content, estado, precio, atributo1, atributo2, atributo3, marca) VALUES ('"
-					+ anuncio.getEmail()
+					+ email
 					+ "','"
 					+ anuncio.getSubject()
 					+ "','"
@@ -347,7 +346,7 @@ public class AnuncioResource {
 			stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt.getGeneratedKeys();
 
-			try {
+			if (rs.next()) {
 				int anuncioid = rs.getInt(1);
 				rs.close();
 				String sql = "SELECT * FROM anuncio WHERE anuncioid= '"
@@ -368,16 +367,15 @@ public class AnuncioResource {
 					anuncio.setAtributo2(rs.getString("atributo2"));
 					anuncio.setAtributo3(rs.getString("atributo3"));
 					anuncio.setMarca(rs.getString("marca"));
+					String anuncioid2 = Integer.toString(anuncioid);
 					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
-							uriInfo, rs.getString("anuncioid"), rel));
+							uriInfo, anuncioid2, rel));
 
 				}
 
 				else
 					throw new AnuncioNotFoundException();
 
-			} catch (SQLException e) {
-				throw new InternalServerException(e.getMessage());
 			}
 
 		} catch (SQLException e) {
@@ -387,7 +385,6 @@ public class AnuncioResource {
 		finally {
 			try {
 				stmt.close();
-				stmt1.close();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -410,6 +407,7 @@ public class AnuncioResource {
 		String email;
 		Connection conn = null;
 		Statement stmt = null;
+		Statement stmt1 = null;
 		String sql;
 		ResultSet rs;
 
@@ -434,8 +432,7 @@ public class AnuncioResource {
 					stmt = conn.createStatement();
 					String update = null; // TODO: create update query
 
-					update = "UPDATE anuncio SET anuncio.email='"
-							+ anuncio.getEmail() + "', anuncio.subject='"
+					update = "UPDATE anuncio SET anuncio.subject='"
 							+ anuncio.getSubject() + "', anuncio.content='"
 							+ anuncio.getContent() + "', anuncio.estado="
 							+ anuncio.isEstado() + ", anuncio.precio='"
@@ -454,8 +451,9 @@ public class AnuncioResource {
 								+ anuncioid + "'";
 						rs = stmt.executeQuery(sql);
 						if (rs.next()) {
+
 							anuncio.setAnuncioid(rs.getInt("anuncioid"));
-							anuncio.setEmail(rs.getString("Email"));
+							anuncio.setEmail(rs.getString("email"));
 							anuncio.setSubject(rs.getString("subject"));
 							anuncio.setContent(rs.getString("content"));
 							anuncio.setEstado(rs.getBoolean("estado"));
@@ -466,9 +464,31 @@ public class AnuncioResource {
 							anuncio.setAtributo2(rs.getString("atributo2"));
 							anuncio.setAtributo3(rs.getString("atributo3"));
 							anuncio.setMarca(rs.getString("marca"));
-
 							anuncio.add(VirtualAPILinkBuilder
 									.buildURIAnuncioId(uriInfo, anuncioid, rel));
+
+							try {
+								stmt1 = conn.createStatement();
+								sql = "SELECT * FROM imagen WHERE anuncioid='"
+										+ anuncioid + "'";
+
+								ResultSet rs1 = stmt1.executeQuery(sql);
+
+								while (rs1.next()) {
+									Imagen imagen = new Imagen();
+									imagen.setImagenid(rs1.getInt("imagenid"));
+									imagen.setUrlimagen(rs1
+											.getString("urlimagen"));
+									imagen.setAnuncioid(rs1.getInt("anuncioid"));
+									imagen.add(VirtualAPILinkBuilder
+											.buildURIImagen(uriInfo,
+													rs1.getString("imagenid"),
+													anuncioid, rel));
+									anuncio.add(imagen);
+								}
+							} catch (SQLException e) {
+								throw new AnuncioNotFoundException();
+							}
 
 						}
 					} else

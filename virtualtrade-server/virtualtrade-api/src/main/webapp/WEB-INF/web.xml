@@ -54,8 +54,8 @@
 			<role-name>registered</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
-		<security-constraint>
+
+	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>mensajes</web-resource-name>
 			<url-pattern>/mensajes/*</url-pattern>

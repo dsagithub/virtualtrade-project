@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -348,6 +349,77 @@ public class MensajeResource {
 		}
 
 		return mensaje;
+	}
+	
+	@DELETE
+	@Path("/{mensajeid}")
+	public void deleteMensaje(@PathParam("mensajeid") int mensajeid) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		String email;
+		String sql;
+		ResultSet rs;
+
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+		try {
+			stmt = conn.createStatement();
+			sql = "SELECT * FROM mensaje WHERE mensajeid='" + mensajeid + "'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+			email = rs.getString("emailorigen");
+			}
+			else{
+				throw new MensajeNotFoundException();
+			}
+
+			if ((security.getUserPrincipal().getName().equals(email))
+					|| (security.isUserInRole("admin"))) {
+
+				try {
+
+					stmt = conn.createStatement();
+					String update = null;
+					sql = "DELETE FROM imagen WHERE anuncioid='" + mensajeid
+							+ "'";
+
+					stmt.executeUpdate(sql);
+
+
+						sql = "SELECT * FROM mensaje WHERE mensajeid= '"
+								+ mensajeid + "'";
+
+						rs = stmt.executeQuery(sql);
+
+
+				} catch (SQLException e) {
+					throw new InternalServerException(e.getMessage());
+				}
+
+				finally {
+					try {
+						stmt.close();
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			}
+
+			else {
+				throw new NotAllowedException();
+
+			}
+		} catch (SQLException e) {
+			throw new MensajeNotFoundException();
+		}
+		
 	}
 
 }

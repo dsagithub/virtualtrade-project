@@ -318,7 +318,6 @@ public class AnuncioResource2 {
 
 		Connection conn = null;
 		Statement stmt = null;
-		Statement stmt1 = null;
 		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
@@ -326,10 +325,11 @@ public class AnuncioResource2 {
 		}
 		try {
 
+			String email=security.getUserPrincipal().getName();
 			stmt = conn.createStatement();
 			String update = null;
 			update = "INSERT INTO anuncio (email, subject, content, estado, precio, atributo1, atributo2, atributo3, marca) VALUES ('"
-					+ anuncio.getEmail()
+					+ email
 					+ "','"
 					+ anuncio.getSubject()
 					+ "','"
@@ -434,11 +434,11 @@ public class AnuncioResource2 {
 		
 		try {
 
+
 			stmt = conn.createStatement();
 			String update = null; // TODO: create update query
 
-			update = "UPDATE anuncio SET anuncio.email='" + anuncio.getEmail()
-					+ "', anuncio.subject='" + anuncio.getSubject()
+			update = "UPDATE anuncio SET anuncio.subject='" + anuncio.getSubject()
 					+ "', anuncio.content='" + anuncio.getContent()
 					+ "', anuncio.estado=" + anuncio.isEstado()
 					+ ", anuncio.precio='" + anuncio.getPrecio()

@@ -1,6 +1,10 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.links.Link;
 
 public class Mensaje {
 
@@ -11,6 +15,21 @@ public class Mensaje {
 	private int anuncioid;
 	private String subject;
 	private String content;
+
+	private List<Link> links = new ArrayList<Link>();
+
+	public void add(Link link) {
+		links.add(link);
+
+	}
+
+	public List<Link> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
+	}
 
 	public int getAnuncioid() {
 		return anuncioid;

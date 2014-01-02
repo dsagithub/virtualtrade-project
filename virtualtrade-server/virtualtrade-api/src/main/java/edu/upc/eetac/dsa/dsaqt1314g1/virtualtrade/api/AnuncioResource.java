@@ -60,6 +60,7 @@ public class AnuncioResource {
 		}
 		try {
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
 
 			ResultSet rs = stmt.executeQuery(sql);
@@ -81,7 +82,6 @@ public class AnuncioResource {
 						anuncioid, rel));
 
 				try {
-					stmt1 = conn.createStatement();
 					sql = "SELECT * FROM imagen WHERE anuncioid='" + anuncioid
 							+ "'";
 
@@ -159,69 +159,78 @@ public class AnuncioResource {
 
 		try {
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 
 			sql = "SELECT * FROM anuncio ORDER BY creation_timestamp LIMIT "
 					+ offset + "," + length + "";
 
 			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				Anuncio anuncio = new Anuncio();
 
-				anuncio.setAnuncioid(rs.getInt("anuncioid"));
-				anuncio.setEmail(rs.getString("email"));
-				anuncio.setSubject(rs.getString("subject"));
-				anuncio.setContent(rs.getString("content"));
-				anuncio.setEstado(rs.getBoolean("estado"));
-				anuncio.setPrecio(rs.getInt("precio"));
-				anuncio.setCreation_timestamp(rs
-						.getTimestamp("creation_timestamp"));
-				anuncio.setAtributo1(rs.getString("atributo1"));
-				anuncio.setAtributo2(rs.getString("atributo2"));
-				anuncio.setAtributo3(rs.getString("atributo3"));
-				anuncio.setMarca(rs.getString("marca"));
-				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
-						rs.getString("anuncioid"), rel));
+			if (rs.next()) {
 
-				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
-						offset, length, rel));
+				rs.previous();
+				while (rs.next()) {
+					Anuncio anuncio = new Anuncio();
 
-				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					anuncio.setAnuncioid(rs.getInt("anuncioid"));
+					anuncio.setEmail(rs.getString("email"));
+					anuncio.setSubject(rs.getString("subject"));
+					anuncio.setContent(rs.getString("content"));
+					anuncio.setEstado(rs.getBoolean("estado"));
+					anuncio.setPrecio(rs.getInt("precio"));
+					anuncio.setCreation_timestamp(rs
+							.getTimestamp("creation_timestamp"));
+					anuncio.setAtributo1(rs.getString("atributo1"));
+					anuncio.setAtributo2(rs.getString("atributo2"));
+					anuncio.setAtributo3(rs.getString("atributo3"));
+					anuncio.setMarca(rs.getString("marca"));
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
+							uriInfo, rs.getString("anuncioid"), rel));
+
+					List<Link> links = new ArrayList<Link>();
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
+							offset, length, rel));
+
+					if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+						links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+								uriInfo,
+								(Integer.toString(Integer.parseInt(offset)
+										- Integer.parseInt(length))), length,
+								rel));
+					}
+
 					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
 							uriInfo,
 							(Integer.toString(Integer.parseInt(offset)
-									- Integer.parseInt(length))), length, rel));
-				}
+									+ Integer.parseInt(length))), length, rel));
 
-				links.add(VirtualAPILinkBuilder.buildURIAnuncios(
-						uriInfo,
-						(Integer.toString(Integer.parseInt(offset)
-								+ Integer.parseInt(length))), length, rel));
+					anuncios.setLinks(links);
 
-				anuncios.setLinks(links);
+					try {
+						sql = "SELECT * FROM imagen WHERE anuncioid='"
+								+ rs.getString("anuncioid") + "'";
 
-				try {
-					stmt1 = conn.createStatement();
-					sql = "SELECT * FROM imagen WHERE anuncioid='"
-							+ rs.getString("anuncioid") + "'";
+						ResultSet rs1 = stmt1.executeQuery(sql);
 
-					ResultSet rs1 = stmt1.executeQuery(sql);
-
-					while (rs1.next()) {
-						Imagen imagen = new Imagen();
-						imagen.setImagenid(rs1.getInt("imagenid"));
-						imagen.setUrlimagen(rs1.getString("urlimagen"));
-						imagen.setAnuncioid(rs1.getInt("anuncioid"));
-						imagen.add(VirtualAPILinkBuilder.buildURIImagen(
-								uriInfo, rs1.getString("imagenid"),
-								rs.getString("anuncioid"), rel));
-						anuncio.add(imagen);
+						while (rs1.next()) {
+							Imagen imagen = new Imagen();
+							imagen.setImagenid(rs1.getInt("imagenid"));
+							imagen.setUrlimagen(rs1.getString("urlimagen"));
+							imagen.setAnuncioid(rs1.getInt("anuncioid"));
+							imagen.add(VirtualAPILinkBuilder.buildURIImagen(
+									uriInfo, rs1.getString("imagenid"),
+									rs.getString("anuncioid"), rel));
+							anuncio.add(imagen);
+						}
+					} catch (SQLException e) {
+						throw new AnuncioNotFoundException();
 					}
-				} catch (SQLException e) {
-					throw new AnuncioNotFoundException();
-				}
 
-				anuncios.add(anuncio);
+					anuncios.add(anuncio);
+				}
+			} else {
+
+				throw new AnuncioNotFoundException();
 			}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
@@ -419,6 +428,7 @@ public class AnuncioResource {
 
 		try {
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 			sql = "SELECT * FROM anuncio WHERE anuncioid='" + anuncioid + "'";
 			rs = stmt.executeQuery(sql);
 			rs.next();
@@ -429,8 +439,7 @@ public class AnuncioResource {
 
 				try {
 
-					stmt = conn.createStatement();
-					String update = null; // TODO: create update query
+					String update = null;
 
 					update = "UPDATE anuncio SET anuncio.subject='"
 							+ anuncio.getSubject() + "', anuncio.content='"
@@ -468,7 +477,6 @@ public class AnuncioResource {
 									.buildURIAnuncioId(uriInfo, anuncioid, rel));
 
 							try {
-								stmt1 = conn.createStatement();
 								sql = "SELECT * FROM imagen WHERE anuncioid='"
 										+ anuncioid + "'";
 
@@ -567,6 +575,7 @@ public class AnuncioResource {
 		try {
 
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 
 			if (subject != null && content != null && email != null) {
 
@@ -642,7 +651,6 @@ public class AnuncioResource {
 						rs.getString("anuncioid"), rel));
 
 				try {
-					stmt1 = conn.createStatement();
 					sql = "SELECT * FROM imagen WHERE anuncioid='"
 							+ rs.getString("anuncioid") + "'";
 
@@ -756,6 +764,7 @@ public class AnuncioResource {
 		try {
 
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 
 			if (atributo1 != null && atributo2 != null && atributo3 != null
 					&& marca != null) {
@@ -768,7 +777,7 @@ public class AnuncioResource {
 			}
 
 			else if (atributo1 != null && atributo2 != null
-					&& atributo3 != null) {
+					&& atributo3 != null && marca == null) {
 
 				sql = "SELECT * FROM anuncio WHERE atributo1 ='" + atributo1
 						+ "' AND atributo2= '" + atributo2
@@ -803,71 +812,80 @@ public class AnuncioResource {
 			}
 
 			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				Anuncio anuncio = new Anuncio();
 
-				anuncio.setAnuncioid(rs.getInt("anuncioid"));
-				anuncio.setEmail(rs.getString("email"));
-				anuncio.setSubject(rs.getString("subject"));
-				anuncio.setContent(rs.getString("content"));
-				anuncio.setEstado(rs.getBoolean("estado"));
-				anuncio.setPrecio(rs.getInt("precio"));
-				anuncio.setCreation_timestamp(rs
-						.getTimestamp("creation_timestamp"));
-				anuncio.setAtributo1(rs.getString("atributo1"));
-				anuncio.setAtributo2(rs.getString("atributo2"));
-				anuncio.setAtributo3(rs.getString("atributo3"));
-				anuncio.setMarca(rs.getString("marca"));
+			if (rs.next()) {
 
-				anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(uriInfo,
-						rs.getString("anuncioid"), rel));
+				rs.previous();
+				while (rs.next()) {
+					Anuncio anuncio = new Anuncio();
 
-				try {
-					stmt1 = conn.createStatement();
-					sql = "SELECT * FROM imagen WHERE anuncioid='"
-							+ rs.getString("anuncioid") + "'";
+					anuncio.setAnuncioid(rs.getInt("anuncioid"));
+					anuncio.setEmail(rs.getString("email"));
+					anuncio.setSubject(rs.getString("subject"));
+					anuncio.setContent(rs.getString("content"));
+					anuncio.setEstado(rs.getBoolean("estado"));
+					anuncio.setPrecio(rs.getInt("precio"));
+					anuncio.setCreation_timestamp(rs
+							.getTimestamp("creation_timestamp"));
+					anuncio.setAtributo1(rs.getString("atributo1"));
+					anuncio.setAtributo2(rs.getString("atributo2"));
+					anuncio.setAtributo3(rs.getString("atributo3"));
+					anuncio.setMarca(rs.getString("marca"));
 
-					ResultSet rs1 = stmt1.executeQuery(sql);
+					anuncio.add(VirtualAPILinkBuilder.buildURIAnuncioId(
+							uriInfo, rs.getString("anuncioid"), rel));
 
-					while (rs1.next()) {
-						Imagen imagen = new Imagen();
-						imagen.setImagenid(rs1.getInt("imagenid"));
-						imagen.setUrlimagen(rs1.getString("urlimagen"));
-						imagen.setAnuncioid(rs1.getInt("anuncioid"));
-						imagen.add(VirtualAPILinkBuilder.buildURIImagen(
-								uriInfo, rs1.getString("imagenid"),
-								rs.getString("anuncioid"), rel));
-						anuncio.add(imagen);
+					try {
+
+						sql = "SELECT * FROM imagen WHERE anuncioid='"
+								+ rs.getString("anuncioid") + "'";
+
+						ResultSet rs1 = stmt1.executeQuery(sql);
+
+						while (rs1.next()) {
+							Imagen imagen = new Imagen();
+							imagen.setImagenid(rs1.getInt("imagenid"));
+							imagen.setUrlimagen(rs1.getString("urlimagen"));
+							imagen.setAnuncioid(rs1.getInt("anuncioid"));
+							imagen.add(VirtualAPILinkBuilder.buildURIImagen(
+									uriInfo, rs1.getString("imagenid"),
+									rs.getString("anuncioid"), rel));
+							anuncio.add(imagen);
+						}
+					} catch (SQLException e) {
+						throw new AnuncioNotFoundException();
 					}
-				} catch (SQLException e) {
-					throw new AnuncioNotFoundException();
+
+					anuncios.add(anuncio);
 				}
 
-				anuncios.add(anuncio);
-			}
+				List<Link> links = new ArrayList<Link>();
 
-			List<Link> links = new ArrayList<Link>();
+				links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
+						uriInfo, offset, length, atributo1, atributo2,
+						atributo3, marca, rel));
 
-			links.add(VirtualAPILinkBuilder
-					.buildURIAnunciosOrderby(uriInfo, offset, length,
+				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+					links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									- Integer.parseInt(length))), length,
 							atributo1, atributo2, atributo3, marca, rel));
+				}
 
-			if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 				links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
 						uriInfo,
 						(Integer.toString(Integer.parseInt(offset)
-								- Integer.parseInt(length))), length,
+								+ Integer.parseInt(length))), length,
 						atributo1, atributo2, atributo3, marca, rel));
+
+				anuncios.setLinks(links);
+			} else {
+				throw new AnuncioNotFoundException();
 			}
+		}
 
-			links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
-					uriInfo,
-					(Integer.toString(Integer.parseInt(offset)
-							+ Integer.parseInt(length))), length, atributo1,
-					atributo2, atributo3, marca, rel));
-
-			anuncios.setLinks(links);
-		} catch (SQLException e) {
+		catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
 		}
 
@@ -935,6 +953,7 @@ public class AnuncioResource {
 		try {
 
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 
 			sql = "SELECT * FROM anuncio ORDER BY precio " + precio + " LIMIT "
 					+ offset + "," + length + "";
@@ -960,7 +979,6 @@ public class AnuncioResource {
 						rs.getString("anuncioid"), rel));
 
 				try {
-					stmt1 = conn.createStatement();
 					sql = "SELECT * FROM imagen WHERE anuncioid='"
 							+ rs.getString("anuncioid") + "'";
 
@@ -1070,6 +1088,7 @@ public class AnuncioResource {
 		try {
 
 			stmt = conn.createStatement();
+			stmt1 = conn.createStatement();
 
 			sql = "SELECT * FROM anuncio WHERE precio > " + precio1
 					+ " AND precio < " + precio2 + " LIMIT " + offset + ","
@@ -1096,7 +1115,6 @@ public class AnuncioResource {
 						rs.getString("anuncioid"), rel));
 
 				try {
-					stmt1 = conn.createStatement();
 					sql = "SELECT * FROM imagen WHERE anuncioid='"
 							+ rs.getString("anuncioid") + "'";
 

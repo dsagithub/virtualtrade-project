@@ -473,4 +473,97 @@ public class MensajeResource {
 
 	}
 
+	@GET
+	@Produces(MediaType.VIRTUAL_API_MENSAJE_COLLECTION)
+	public MensajeCollection getMensajesConversacion(
+			@QueryParam("offset") String offset,
+			@QueryParam("length") String length) {
+		if ((offset == null) || (length == null))
+			throw new BadRequestException(
+					"offset and length are mandatory parameters");
+		int ioffset, ilength;
+		try {
+			ioffset = Integer.parseInt(offset);
+			if (ioffset < 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			throw new BadRequestException(
+					"offset must be an integer greater or equal than 0.");
+		}
+		try {
+			ilength = Integer.parseInt(length);
+			if (ilength < 1)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			throw new BadRequestException(
+					"length must be an integer greater or equal than 1.");
+		}
+
+		MensajeCollection mensajes = new MensajeCollection();
+
+		Connection conn = null;
+		Statement stmt = null;
+		String sql;
+		ResultSet rs;
+		String email;
+
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			throw new ServiceUnavailableException(e.getMessage());
+		}
+
+		try {
+			email = security.getUserPrincipal().getName();
+			stmt = conn.createStatement();
+			sql = "SELECT * from mensaje where (emailorigen ='" + email
+					+ "' OR emaildestino='" + email
+					+ "') ORDER by creation_timestamp LIMIT " + offset + ","
+					+ length + "";
+
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next() == false) {
+				throw new MensajeNotFoundException();
+			}
+
+			else {
+				rs.previous();
+				while (rs.next()) {
+					Mensaje mensaje = new Mensaje();
+					mensaje.setMensajeid(rs.getInt("mensajeid"));
+					mensaje.setEmailorigen(rs.getString("emailorigen"));
+					mensaje.setEmaildestino(rs.getString("emaildestino"));
+					mensaje.setCreation_timestamp(rs
+							.getDate("creation_timestamp"));
+					mensaje.setAnuncioid(rs.getInt("anuncioid"));
+					mensaje.setSubject(rs.getString("subject"));
+					mensaje.setContent(rs.getString("content"));
+					mensaje.add(VirtualAPILinkBuilder.buildURIMensajeId(
+							uriInfo, rs.getString("mensajeid"), rel));
+
+					mensajes.add(mensaje);
+				}
+
+			}
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		}
+
+		finally {
+			try {
+				stmt.close();
+				conn.close();
+			}
+
+			catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+		}
+
+		return mensajes;
+
+	}
 }

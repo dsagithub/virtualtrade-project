@@ -1,13 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Hello World, VirtualtradeMainActivity"
-    />
-</LinearLayout>
+    android:orientation="vertical"
+    tools:context=".VirtualtradeMainActivity" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/perfilbutton"
+            android:layout_width="138dp"
+            android:layout_height="84dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="147dp"
+            android:layout_toLeftOf="@+id/mensajesbutton"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/perfilbutton"
+            android:layout_alignTop="@+id/perfilbutton"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="84dp"
+            android:text="Perfil usuario" />
+
+        <ImageButton
+            android:id="@+id/mensajesbutton"
+            android:layout_width="138dp"
+            android:layout_height="84dp"
+            android:layout_above="@+id/perfilbutton"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="33dp"
+            android:layout_marginRight="21dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mensajes" />
+
+        <ImageButton
+            android:id="@+id/anunciosbutton"
+            android:layout_width="138dp"
+            android:layout_height="84dp"
+            android:layout_alignTop="@+id/mensajesbutton"
+            android:layout_toLeftOf="@+id/mensajesbutton"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/anuncio" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/anunciosbutton"
+            android:text="Ver anuncios" />
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/TextView01"
+            android:layout_alignBottom="@+id/TextView01"
+            android:layout_alignRight="@+id/mensajesbutton"
+            android:layout_marginRight="27dp"
+            android:text="Ver mensajes" />
+    </RelativeLayout>
+
+</LinearLayout>

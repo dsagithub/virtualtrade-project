@@ -10,6 +10,13 @@
 
 <title>Registrarse</title>
 
+<script src="https://code.jquery.com/jquery.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+</html>
+<link rel="stylesheet" type="text/css" href="css/login.css">
+
+
 <!-- Bootstrap core CSS -->
 <link href="../../dist/css/bootstrap.css" rel="stylesheet">
 
@@ -38,44 +45,33 @@
     <![endif]-->
 </head>
 
-<body>
 
 	<div class="container">
+		<div class="account-wall">
 
-		<form class="register" action="/virtualtrade-auth/RegisterServlet"
-			method="post">
-			<h2 class="register-heading">Registrarse</h2>
-			<input type="text" class="form-control" name="name"
-				placeholder="Nombre" required autofocus>  <input type="text" class="form-control"
-				name="email" placeholder="Email" required autofocus> <input
-				type="password" class="form-control" name="userpass"
-				placeholder="Password" required> 
-				
-				<input type="text" class="form-control" name="phone"
-				placeholder="Número de Teléfono" required autofocus> 
-				
-				<input type="text" class="form-control" name="ciudad"
-				placeholder="Ciudad" required autofocus> 
-				
-				<input type="text" class="form-control" name="calle"
-				placeholder="Calle" required autofocus> 
-				
-				<input type="text" class="form-control" name="numero"
-				placeholder="Número" required autofocus> 
-				
-				<input type="text" class="form-control" name="piso"
-				placeholder="Piso" required autofocus> 
-				
-				<input type="text" class="form-control" name="puerta"
-				placeholder="Puerta" required autofocus> 
-				
-				<input type="text" class="form-control" name="foto"
-				placeholder="Foto" required autofocus> 
-				
-				</label>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
-		</form>
 
+			<form class="form-signin" action="/virtualtrade-auth/RegisterServlet"
+				method="post">
+				<h2 class="register-heading">Registrarse</h2>
+				<input type="text" class="form-control" name="name"
+					placeholder="Nombre" required autofocus> <input type="text"
+					class="form-control" name="email" placeholder="Email" required
+					autofocus> <input type="password" class="form-control"
+					name="userpass" placeholder="Password" required> <input
+					type="text" class="form-control" name="phone"
+					placeholder="Número de Teléfono" required autofocus> <input
+					type="text" class="form-control" name="ciudad" placeholder="Ciudad"
+					required autofocus> <input type="text" class="form-control"
+					name="calle" placeholder="Calle" required autofocus> <input
+					type="text" class="form-control" name="numero" placeholder="Número"
+					required autofocus> <input type="text" class="form-control"
+					name="piso" placeholder="Piso" required autofocus> <input
+					type="text" class="form-control" name="puerta" placeholder="Puerta"
+					required autofocus> <input type="text" class="form-control"
+					name="foto" placeholder="Foto" required autofocus> </label>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+			</form>
+		</div>
 	</div>
 	<!-- /container -->
 
@@ -83,5 +79,5 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-</body>
+
 </html>

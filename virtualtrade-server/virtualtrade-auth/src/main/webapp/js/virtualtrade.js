@@ -3,8 +3,13 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 $(document).ready(function() {
 	getAnuncios();
 	getMensajes();
+	getCategorias();
 });
 
+function getCategorias(){
+
+
+}
 
 
 function getAnuncios() {

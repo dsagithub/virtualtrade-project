@@ -10,27 +10,40 @@
 <body>
 	<h2>VirtualTrade!</h2>
 
+
 	<form action="" id="virtualtrade-form" class="form-horizontal">
+	
+		<input type="text" name="search" placeholder="Buscar un anuncio..."
+			value=""  /> <select id="categories"
+			name="category" style="margin-top: 10px;">
+			<option value="all">Todas las categorÃ­as</option> 
+		</select> <select id="subcategories" name="subcategory"
+			style="margin-top: 10px;">
+			<option value="all">Todas las subcategorÃ­as</option>
+		</select> <input type="submit" class="btn" style="width: 100px;" value="Buscar" />
 
- 		<div class="input-group">
 
-			<h4>Get Lista Anuncios</h4>
+
+
+		<div class="input-group">
+
+			<h4>Lista Anuncios</h4>
 
 			<span id="anuncios_result"></span>
 
-		</div> 
-		
+		</div>
+
 		<div class="input-group">
 
-			<h4>Get Lista Mensajes</h4>
-		
+			<h4>Lista Mensajes</h4>
+
 			<span id="mensajes_result"></span>
 
 		</div>
 
 	</form>
-	
-	
+
+
 
 	<!-- SCRIPTS -->
 	<script

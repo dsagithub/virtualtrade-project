@@ -66,6 +66,17 @@ public class RegisterServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String userpass = request.getParameter("userpass");
+		
+		
+		String phone = request.getParameter("phone");
+		String ciudad = request.getParameter("ciudad");
+		String calle = request.getParameter("calle");
+		String numero = request.getParameter("numero");
+		String piso = request.getParameter("piso");
+		String puerta = request.getParameter("puerta");
+		String foto = request.getParameter("foto");
+
+		
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -106,7 +117,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 		
-		/*
+		
 		HttpHost targetHost = new HttpHost("localhost", 8080, "http");
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
 		credsProvider.setCredentials(new AuthScope(targetHost.getHostName(),
@@ -127,8 +138,28 @@ public class RegisterServlet extends HttpServlet {
 		httpPost.addHeader("Content-Type",
 				"application/vnd.virtual.api.user+json");
 		httpPost.addHeader("Accept", "application/vnd.virtual.api.user+json");
+	
+		
+		String user =  "{\"email\": \"" + email + "\", \"name\": \""
+				+ name + "\", \"phone\": \"" + phone + "\", \"ciudad\": \""
+				+ ciudad + "\", \"calle\": \""
+				+ calle + "\", \"numero\": \""
+				+ numero + "\", \"piso\": \""
+				+ piso + "\", \"puerta\": \""
+				+ puerta + "\", \"foto\": \""
+				+ foto + "\"	}";
+		
+		
+		
+		
+		/*
+		
 		String user = "{\"username\": \"" + username + "\", \"name\": \""
 				+ name + "\", \"email\": \"" + email + "\"	}";
+		
+		*/
+		
+		
 		httpPost.setEntity(new StringEntity(user));
 		CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
 
@@ -142,7 +173,7 @@ public class RegisterServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null)
 			System.out.println(line);
 			
-		*/
+		
 		
 		
 	} 

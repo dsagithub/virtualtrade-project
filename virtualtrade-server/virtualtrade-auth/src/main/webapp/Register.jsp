@@ -49,7 +49,30 @@
 				placeholder="Nombre" required autofocus>  <input type="text" class="form-control"
 				name="email" placeholder="Email" required autofocus> <input
 				type="password" class="form-control" name="userpass"
-				placeholder="Password" required> </label>
+				placeholder="Password" required> 
+				
+				<input type="text" class="form-control" name="phone"
+				placeholder="Número de Teléfono" required autofocus> 
+				
+				<input type="text" class="form-control" name="ciudad"
+				placeholder="Ciudad" required autofocus> 
+				
+				<input type="text" class="form-control" name="calle"
+				placeholder="Calle" required autofocus> 
+				
+				<input type="text" class="form-control" name="numero"
+				placeholder="Número" required autofocus> 
+				
+				<input type="text" class="form-control" name="piso"
+				placeholder="Piso" required autofocus> 
+				
+				<input type="text" class="form-control" name="puerta"
+				placeholder="Puerta" required autofocus> 
+				
+				<input type="text" class="form-control" name="foto"
+				placeholder="Foto" required autofocus> 
+				
+				</label>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
 		</form>
 

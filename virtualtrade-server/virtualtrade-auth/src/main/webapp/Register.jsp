@@ -67,8 +67,17 @@
 					required autofocus> <input type="text" class="form-control"
 					name="piso" placeholder="Piso" required autofocus> <input
 					type="text" class="form-control" name="puerta" placeholder="Puerta"
-					required autofocus> <input type="text" class="form-control"
-					name="foto" placeholder="Foto" required autofocus> </label>
+					required autofocus>
+		<!-- 			<input type="text" class="form-control"
+						name="foto" placeholder="Foto" required autofocus> 
+			 -->		
+					 
+					
+					 <input id="fileupload" type="file" name="foto" data-url="upload" multiple>
+					
+					 
+		 		
+					</label>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
 			</form>
 		</div>

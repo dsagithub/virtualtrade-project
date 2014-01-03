@@ -45,9 +45,7 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-	}
+	
 
 	DataSource ds = null;
 
@@ -172,9 +170,15 @@ public class RegisterServlet extends HttpServlet {
 		String line = null;
 		while ((line = reader.readLine()) != null)
 			System.out.println(line);
-			
+
+
 		
-		
+			response.setContentType("text/html");
+			response.sendRedirect("http://localhost:8080/virtualtrade-auth/index.html");
 		
 	} 
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+	}
+
 }

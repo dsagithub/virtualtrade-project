@@ -1,5 +1,12 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
+/*
+$(document).ready(function() {
+
+	getUser($("#email").val());
+});
+*/
+
 
 //obté les dades d'un usuari a partir del username
 $("#button_get_user").click(function(e) {

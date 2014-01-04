@@ -107,4 +107,44 @@ public class VirtualtradeAPI {
 		return anuncio;
 	}
 
+	public Anuncio getAnuncio(URL url) {
+		Anuncio anuncio = new Anuncio();
+
+		HttpURLConnection urlConnection = null;
+		try {
+			urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestProperty("Accept",
+					MediaType.VIRTUAL_API_ANUNCIO);
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoInput(true);
+			urlConnection.connect();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					urlConnection.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			JSONObject jsonSting = new JSONObject(sb.toString());
+			anuncio = parseAnuncio(jsonSting);
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (JSONException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+		}
+
+		Log.d(TAG, "anuncio a" + anuncio);
+
+		return anuncio;
+	}
+
 }

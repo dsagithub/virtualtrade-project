@@ -6,18 +6,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Anuncio;
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.AnuncioCollection;
-import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.VirtualtradeAPI;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.ListView;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Anuncio;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.AnuncioCollection;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.VirtualtradeAPI;
 
 public class VerAnuncios extends ListActivity {
 
@@ -97,6 +97,25 @@ public class VerAnuncios extends ListActivity {
 	private void addAnuncios(AnuncioCollection anuncios) {
 		anuncioList.addAll(anuncios.getAnuncios());
 		adapter.notifyDataSetChanged();
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Anuncio anuncio = anuncioList.get(position);
+
+		URL url = null;
+		try {
+			url = new URL(anuncio.getLinks().get(0).getUri());
+		} catch (MalformedURLException e) {
+			return;
+		}
+
+		Log.d(TAG, url.toString());
+
+		Intent intent = new Intent(this, AnuncioDetail.class);
+		intent.putExtra("url", url.toString());
+		startActivity(intent);
+
 	}
 
 }

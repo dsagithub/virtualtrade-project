@@ -87,12 +87,12 @@ public class VirtualtradeAPI {
 			ParseException {
 		Anuncio anuncio = new Anuncio();
 
-		anuncio.setAnuncioid(source.getInt("anuncioid"));
+		anuncio.setAnuncioid(source.getString("anuncioid"));
 		anuncio.setEmail(source.getString("email"));
 		anuncio.setSubject(source.getString("subject"));
 		anuncio.setContent(source.getString("content"));
 		anuncio.setEstado(source.getBoolean("estado"));
-		anuncio.setPrecio(source.getInt("precio"));
+		anuncio.setPrecio(source.getString("precio"));
 		anuncio.setAtributo1(source.getString("atributo1"));
 		anuncio.setAtributo2(source.getString("atributo2"));
 		anuncio.setAtributo3(source.getString("atributo3"));

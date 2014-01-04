@@ -3,10 +3,16 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 $(document).ready(function() {
 	getAnuncios();
 	getMensajes();
+
 	$("#atributo_2").chained("#atributo_1");
+//	$("#atributo_1").chained("#atributo_2");
+	//$("#atributo_2").chainedTo("#atributo_1");
+//	$("#atributo_1").chainedTo("#atributo_2");
+
 	
 });
 
+// $("#atributo_2").chained("#atributo_1");
 
 function getAnuncios() {
 	var url = API_BASE_URL + "/anuncios?offset=0&length=10";

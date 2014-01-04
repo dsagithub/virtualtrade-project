@@ -3,13 +3,85 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 $(document).ready(function() {
 	getAnuncios();
 	getMensajes();
-
 	$("#atributo_2").chained("#atributo_1");
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
 	
-
 });
+
+$("#button_get_anuncios_atributos").click(function(e) {
+	e.preventDefault();
+	getAnuncios_Atributos($('#atributo1 :selected').val(),$('#atributo2 :selected').val(),$('#atributo3 :selected').val(),$('#atributo4 :selected').val());
+});
+
+function getAnuncios_Atributos(atributo1,atributo2,atributo3,atributo4){
+	
+	var atributo = new Object();
+	
+	if(atributo4 != "all"){
+		var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atributo1+"&atributo2="+ atributo2 +"&atributo3="+atributo3+"&marca="+atributo4+"";
+	
+		$.ajax({
+			url : url,
+			type : 'GET',
+			crossDomain : true,
+			dataType : 'json',
+			username : "arnaumail",
+			password : "arnau",
+
+		}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			
+			$("#anuncios_result").text("");
+
+			$.each(anuncios, function(i, v) {
+				var anuncio = v;
+				var $grouplist = $('#anuncios_result');
+				$('<li>' + anuncio.anuncioid + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.email + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.subject + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.content + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.estado + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.precio + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.creation_timestamp + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.atributo1 + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.atributo2 + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.atributo3 + '</li>').appendTo($grouplist);
+				$('<li>' + anuncio.marca + '</li>').appendTo($grouplist);	
+				$('<li><img src="' + anuncio.imagenes[0].urlimagen + '"border="1" width="160" height="90"></li>').appendTo($grouplist);				
+				$("<HR>").appendTo($grouplist);
+			});
+			
+			
+			
+			
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
+
+	}
+
+	
+	
+	else if(atributo3 != "all"){
+		
+	}
+
+	else if(atributo2 != "all"){
+	
+	}
+
+	else if(atributo1 != "all"){
+	
+	}
+	
+	else if(atributo4 == "all"){
+		getAnuncios();
+	}
+	
+	
+}
 
 
 function getAnuncios() {

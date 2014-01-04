@@ -46,6 +46,8 @@
 </head>
 
 
+
+	
 	<div class="container">
 		<div class="account-wall">
 
@@ -56,18 +58,18 @@
 				<input type="text" class="form-control" name="name"
 					placeholder="Nombre" required autofocus> <input type="text"
 					class="form-control" name="email" placeholder="Email" required
-					autofocus> <input type="password" class="form-control"
+					> <input type="password" class="form-control"
 					name="userpass" placeholder="Password" required> <input
 					type="text" class="form-control" name="phone"
-					placeholder="Número de Teléfono" required autofocus> <input
+					placeholder="Número de Teléfono" required > <input
 					type="text" class="form-control" name="ciudad" placeholder="Ciudad"
-					required autofocus> <input type="text" class="form-control"
-					name="calle" placeholder="Calle" required autofocus> <input
+					required > <input type="text" class="form-control"
+					name="calle" placeholder="Calle" required > <input
 					type="text" class="form-control" name="numero" placeholder="Número"
-					required autofocus> <input type="text" class="form-control"
-					name="piso" placeholder="Piso" required autofocus> <input
+					required > <input type="text" class="form-control"
+					name="piso" placeholder="Piso" required > <input
 					type="text" class="form-control" name="puerta" placeholder="Puerta"
-					required autofocus>
+					required >
 		<!-- 			<input type="text" class="form-control"
 						name="foto" placeholder="Foto" required autofocus> 
 			 -->		

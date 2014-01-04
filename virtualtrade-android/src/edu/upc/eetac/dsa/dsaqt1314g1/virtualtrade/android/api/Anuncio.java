@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Anuncio {
 
-	private int anuncioid;
+	private String anuncioid;
 	private String email;
 	private String subject;
 	private String content;
 	private boolean estado;
-	private int precio;
+	private String precio;
 	private Date creation_timestamp;
 	private String atributo1;
 	private String atributo2;
@@ -45,11 +45,11 @@ public class Anuncio {
 		this.imagenes = imagenes;
 	}
 
-	public int getAnuncioid() {
+	public String getAnuncioid() {
 		return anuncioid;
 	}
 
-	public void setAnuncioid(int anuncioid) {
+	public void setAnuncioid(String anuncioid) {
 		this.anuncioid = anuncioid;
 	}
 
@@ -85,11 +85,11 @@ public class Anuncio {
 		this.estado = estado;
 	}
 
-	public int getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 

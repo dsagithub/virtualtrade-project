@@ -87,12 +87,12 @@ public class VirtualtradeAPI {
 			ParseException {
 		Anuncio anuncio = new Anuncio();
 
-		anuncio.setAnuncioid(source.getInt("anuncioid"));
+		anuncio.setAnuncioid(source.getString("anuncioid"));
 		anuncio.setEmail(source.getString("email"));
 		anuncio.setSubject(source.getString("subject"));
 		anuncio.setContent(source.getString("content"));
 		anuncio.setEstado(source.getBoolean("estado"));
-		anuncio.setPrecio(source.getInt("precio"));
+		anuncio.setPrecio(source.getString("precio"));
 		anuncio.setAtributo1(source.getString("atributo1"));
 		anuncio.setAtributo2(source.getString("atributo2"));
 		anuncio.setAtributo3(source.getString("atributo3"));
@@ -104,6 +104,46 @@ public class VirtualtradeAPI {
 
 		JSONArray jsonStingLinks = source.getJSONArray("links");
 		parseLinks(jsonStingLinks, anuncio.getLinks());
+		return anuncio;
+	}
+
+	public Anuncio getAnuncio(URL url) {
+		Anuncio anuncio = new Anuncio();
+
+		HttpURLConnection urlConnection = null;
+		try {
+			urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestProperty("Accept",
+					MediaType.VIRTUAL_API_ANUNCIO);
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoInput(true);
+			urlConnection.connect();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					urlConnection.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			JSONObject jsonSting = new JSONObject(sb.toString());
+			anuncio = parseAnuncio(jsonSting);
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (JSONException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+		}
+
+		Log.d(TAG, "anuncio a" + anuncio);
+
 		return anuncio;
 	}
 

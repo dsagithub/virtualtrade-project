@@ -6,6 +6,7 @@
 
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+
 <head>
 <body>
 	<h2>VirtualTrade!</h2>
@@ -13,14 +14,34 @@
 
 	<form action="" id="virtualtrade-form" class="form-horizontal">
 	
-		<input type="text" name="search" placeholder="Buscar un anuncio..."
-			value=""  /> <select id="categories"
-			name="category" style="margin-top: 10px;">
-			<option value="all">Todas las categorías</option> 
-		</select> <select id="subcategories" name="subcategory"
-			style="margin-top: 10px;">
+	
+		<select id="atributo_1" name="atributo_1" style="margin-top: 10px;">
+			<option value="Electronica">Electronica</option>
+			<option value="Motor">Motor</option>
+			<option value="Entretenimiento">Entretenimiento</option>
+			<option value="Hogar">Deportes</option>
+		</select> 
+		
+		
+		<select id="atributo_2" name="atributo_2" style="margin-top: 10px;">
 			<option value="all">Todas las subcategorías</option>
-		</select> <input type="submit" class="btn" style="width: 100px;" value="Buscar" />
+			<option value="Imagen y Sonido" class="Electronica">Imagen y Sonido</option>
+			<option value="Informatica" class="Electronica">Informatica</option>
+			<option value="Herramientas" class="Motor">Herramientas</option>
+
+		</select> 
+		
+		<select id="atributo_3" name="atributo_3" style="margin-top: 10px;">
+			<option value="all">Todas las subcategorías</option>
+
+		</select>
+		
+		<select id="marca_option" name="marca_option" style="margin-top: 10px;">
+			<option value="all">Todas las marcas</option>
+
+		</select>
+		
+		<input type="submit" class="btn" style="width: 100px;" value="Buscar" />
 
 
 
@@ -48,6 +69,7 @@
 	<!-- SCRIPTS -->
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.chained.min.js"></script>
 	<script type="text/javascript" src="js/virtualtrade.js"></script>
 </body>
 </html>

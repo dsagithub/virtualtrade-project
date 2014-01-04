@@ -14,35 +14,28 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 </html>
+
 <link rel="stylesheet" type="text/css" href="css/login.css">
 
-
-<!-- Bootstrap core CSS -->
-<link href="../../dist/css/bootstrap.css" rel="stylesheet">
-
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+   <!-- Google fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/boostrap.css">
+    <link rel="stylesheet" href="css/boostrap_responsive.css">
+    <!-- Font Awesome styles (icons) -->
+    <link rel="stylesheet" href="css/font_awesome.css">
+    <!-- Main Template styles -->
+    <link rel="stylesheet" href="css/styles.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
+    <!-- IE 8 Fallback -->
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="css/ie.css" />
+<![endif]-->
 
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-
-<!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy this line! -->
-<!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <!-- Your custom styles (blank file) -->
+    <link rel="stylesheet" href="css/mystyles.css">
 </head>
 
 

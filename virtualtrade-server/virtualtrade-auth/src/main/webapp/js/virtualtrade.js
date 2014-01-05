@@ -9,14 +9,20 @@ $(document).ready(function() {
 	
 });
 
+
+
 $("#button_get_anuncios_atributos").click(function(e) {
 	e.preventDefault();
-	getAnuncios_Atributos($('#atributo1 :selected').val(),$('#atributo2 :selected').val(),$('#atributo3 :selected').val(),$('#atributo4 :selected').val());
+	getAnuncios_Atributos();
 });
 
 function getAnuncios_Atributos(atributo1,atributo2,atributo3,atributo4){
 	
-	var atributo = new Object();
+
+	atributo1=$('#atributo_1 :selected').val();
+	atributo2=$('#atributo_2 :selected').val();
+	atributo3=$('#atributo_3 :selected').val();
+	atributo4=$('#atributo_4 :selected').val();
 	
 	if(atributo4 != "all"){
 		var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atributo1+"&atributo2="+ atributo2 +"&atributo3="+atributo3+"&marca="+atributo4+"";

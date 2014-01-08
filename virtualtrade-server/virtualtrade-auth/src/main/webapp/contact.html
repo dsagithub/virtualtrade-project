@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
-
-<title>Registrarse</title>
-
-<script src="https://code.jquery.com/jquery.js"></script>
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-</html>
-
-<link rel="stylesheet" type="text/css" href="css/login.css">
-
-<!-- Latest compiled and minified CSS -->
-   <!-- Google fonts -->
+    <title>Koupon - Contact Us</title>
+    <!-- meta info -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="Koupon HTML5 Template" />
+    <meta name="description" content="Koupon - Premiun HTML5 Template for Coupons Website">
+    <meta name="author" content="Tsoy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <!-- Bootstrap styles -->
@@ -28,15 +19,12 @@
     <link rel="stylesheet" href="css/font_awesome.css">
     <!-- Main Template styles -->
     <link rel="stylesheet" href="css/styles.css">
-
-    <!-- IE 8 Fallback -->
-    <!--[if lt IE 9]>
-	<link rel="stylesheet" type="text/css" href="css/ie.css" />
-<![endif]-->
-
-    <!-- Your custom styles (blank file) -->
     <link rel="stylesheet" href="css/mystyles.css">
 </head>
+
+
+<body>
+
 
 
 
@@ -201,7 +189,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="http://localhost:8080/virtualtrade-auth/contact.html">Contact</a>
+                            <li><a href="contact.html">Contact</a>
                             </li>
                         </ul>
                     </nav>
@@ -294,50 +282,94 @@
         </div>
     </div>
     <!-- END LOGIN REGISTER LINKS CONTENT -->
-	
-	
-	
-	<div class="container">
-		<div class="account-wall">
 
 
-			<form class="form-signin" action="/virtualtrade-auth/RegisterServlet"
-				method="post">
-				<h2 class="register-heading">Registrarse</h2>
-				<input type="text" class="form-control" name="name"
-					placeholder="Nombre" required autofocus> <input type="text"
-					class="form-control" name="email" placeholder="Email" required
-					> <input type="password" class="form-control"
-					name="userpass" placeholder="Password" required> <input
-					type="text" class="form-control" name="phone"
-					placeholder="N˙mero de TelÈfono" required > <input
-					type="text" class="form-control" name="ciudad" placeholder="Ciudad"
-					required > <input type="text" class="form-control"
-					name="calle" placeholder="Calle" required > <input
-					type="text" class="form-control" name="numero" placeholder="N˙mero"
-					required > <input type="text" class="form-control"
-					name="piso" placeholder="Piso" required > <input
-					type="text" class="form-control" name="puerta" placeholder="Puerta"
-					required >
-		<!-- 			<input type="text" class="form-control"
-						name="foto" placeholder="Foto" required autofocus> 
-			 -->		
-					 
-					
-					 <input id="fileupload" type="file" name="foto" data-url="upload" multiple>
-					
-					 
-		 		
-					</label>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
-			</form>
-		</div>
-	</div>
-	<!-- /container -->
+    <!-- PAGE TITLE -->
+    <div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Contact Us</h1>
+        </div>
+    </div>
+    <!-- END PAGE TITLE -->
+
+ 
+
+    <div class="gap"></div>
+
+    <!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
 
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
+    <!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+    <div class="container">
+        <div class="row row-wrap">
+            <div class="span6">
+                <!-- GOOGLE MAP -->
+                <div class="gmap" id="gmap"></div>
+            </div>
+            <div class="span3">
+                <form name="contactForm" id="contact-form" class="contact-form" method="post" action="includes/mail/index.html">
+                    <fieldset>
+                        <div class="row-fluid">
+                            <label>Name</label>
+                            <div class="alert form-alert" id="form-alert-name">Please enter your name</div>
+                            <input class="span12" id="name" type="text" placeholder="Enter Your name here" />
+                        </div>
+                        <div class="row-fluid">
+                            <label>Email</label>
+                            <div class="alert form-alert" id="form-alert-email">Please enter your valid E-mail</div>
+                            <input class="span12" id="email" type="text" placeholder="You E-mail Address" />
+                        </div>
+                        <div class="row-fluid">
+                            <label>Message</label>
+                            <div class="alert form-alert" id="form-alert-message">Please enter message</div>
+                            <textarea class="span12" id="message" placeholder="Your message"></textarea>
+                        </div>
+                        <div class="alert alert-success form-alert" id="form-success">Your message has been sent successfully!</div>
+                        <div class="alert alert-error form-alert" id="form-fail">Sorry, error occured this time sending your message</div>
+                        <button id="send-message" type="submit" class="btn btn-primary">Send Message</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="span3">
+                <h5>Informaci√≥n de contacto</h5>
+                <p>Nisl magna donec gravida dui enim cursus in at amet curae fringilla orci vitae lacinia ad tortor nulla per rutrum</p>
+                <ul class="list">
+                    <li><i class="icon-map-marker"></i> Location: Mountain View, CA 94043</li>
+                    <li><i class="icon-phone"></i> Phone: 555-555-555</li>
+                    <li><i class="icon-envelope"></i> E-mail: <a href="#">mail@domain.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="gap gap-small"></div>
+    </div>
+
+
+    <!-- Scripts queries -->
+    <script src="js/jquery.js"></script>
+    <script src="js/boostrap.min.js"></script>
+    <script src="js/nivo_slider.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/flexnav.min.js"></script>
+    <script src="js/magnific.min.js"></script>
+    <script src="js/tweet.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/gmap3.min.js"></script>
+    <script src="js/wilto_slider.min.js"></script>
+    <script src="js/mediaelement.min.js"></script>
+    <script src="js/fitvids.min.js"></script>
+    <script src="js/mail.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="js/custom.js"></script>
+
+</body>
 
 </html>
+

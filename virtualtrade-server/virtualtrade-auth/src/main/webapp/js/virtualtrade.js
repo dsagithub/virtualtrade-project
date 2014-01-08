@@ -206,6 +206,12 @@ var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atri
 		
 	}
 	
+	else if(atributo1 == "all"){
+		
+		getAnuncios();
+		
+	}
+	
 }
 
 

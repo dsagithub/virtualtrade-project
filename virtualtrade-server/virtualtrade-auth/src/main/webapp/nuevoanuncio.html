@@ -22,7 +22,17 @@
 <!-- Your custom styles (blank file) -->
 <link rel="stylesheet" href="css/mystyles.css">
 
+<!-- SCRIPTS -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.chained.min.js"></script>
+<script type="text/javascript" src="js/anuncio.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery.chained.js"></script>
 
+<script src="https://code.jquery.com/jquery.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 
 <!-- //////////////////////////////////
 //////////////MAIN HEADER///////////// 
@@ -198,14 +208,15 @@
 				class="form-control" id="precio">
 		</div>
 
-
-		<select id="atributo_1" name="atributo_1" style="margin-top: 10px;">
+	<div>
+		<select id="atributo_1" name="atributo_1" style="margin-top: 10px;"> 
 			<option value="Electronica">Electronica</option>
 			<option value="Motor">Motor</option>
 			<option value="Entretenimiento">Entretenimiento</option>
 			<option value="Hogar">Hogar</option>
 			<option value="Deportes">Deportes</option>
-
+		
+	
 		</select> <select id="atributo_2" name="atributo_2" style="margin-top: 10px;">
 			<option value="Imagen y Sonido" class="Electronica">Imagen y
 				Sonido</option>
@@ -241,7 +252,7 @@
 			<option value="Esqui" class="Deportes">Esqui</option>
 			<option value="Otros" class="Deportes">Otros</option>
 
-
+	
 
 
 		</select> <select id="atributo_3" name="atributo_3" style="margin-top: 10px;">
@@ -529,37 +540,23 @@
 			<option value="Volkl" class="Volkl">Accesorios</option>
 			<option value="Otros" class="Esqui">Otros</option>
 
-</select>
-
-			<button type="button" class="btn btn-info" id="button_post_anuncio">Create
-			</button>
-			<div class="container">
-				<span id="create_result"></span>
-			</div>
+		</select>
+		
+		<P>
+		<input id="fileupload1" type="file" name="foto1" data-url="upload" multiple>
+		</P>
+		<P>
+		<input id="fileupload2" type="file" name="foto2" data-url="upload" multiple>
+		</P>
+		<P>
+		<input id="fileupload3" type="file" name="foto3" data-url="upload" multiple>
+		</P>
+		<P>
+		<button type="button" class="btn btn-info" id="button_post_anuncio">Create
+		</button>
+		</P>
+		<div class="container">
+			<span id="create_result"></span>
+		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- SCRIPTS -->
-		<script
-			src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="jquery.chained.min.js"></script>
-		<script type="text/javascript" src="js/anuncio.js"></script>
-		<script src="jquery.js"></script>
-		<script src="jquery.chained.js"></script>
-	
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script
-			src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 </html>

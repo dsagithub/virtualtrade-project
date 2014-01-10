@@ -248,11 +248,11 @@ function getAnuncios() {
 			$('<li>' + anuncio.marca + '</li>').appendTo($grouplist);	
 			$('<li><img src="' + anuncio.imagenes[0].urlimagen + '"border="1" width="160" height="90"></li>').appendTo($grouplist);				
 			$("<HR>").appendTo($grouplist);
+
+			
 		});
-		
-		
-		
-		
+
+				
 	}).fail(function() {
 		$("#anuncios_result").text("No hay anuncios");
 	});

@@ -9,21 +9,10 @@
 		<description></description>
 		<servlet-class>edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.auth.RegisterServlet</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<display-name>LoginServlet</display-name>
-		<description></description>
-		<servlet-class>edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.auth.LoginServlet</servlet-class>
-	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/RegisterServlet</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/LoginServlet</url-pattern>
-	</servlet-mapping>
-
-
 
 </web-app>

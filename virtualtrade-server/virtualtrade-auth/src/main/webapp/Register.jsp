@@ -91,8 +91,7 @@
 								</ul></li>
 
 
-							<li><a href="features-typography.html">Perfil</a></li>
-
+				<li><a href="http://localhost:8080/virtualtrade-auth/perfil.html">Perfil</a></li>
 							<li><a
 								href="http://localhost:8080/virtualtrade-auth/nuevoanuncio.html">Añadir
 									nuevo anuncio</a></li>

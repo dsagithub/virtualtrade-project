@@ -216,15 +216,13 @@ var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atri
 
 
 function getAnuncios() {
-	var url = API_BASE_URL + "/anuncios?offset=0&length=10";
+	var url = API_BASE_URL + "/anuncios?offset=0&length=9";
 
 	$.ajax({
 		url : url,
 		type : 'GET',
 		crossDomain : true,
-		dataType : 'json',
-		username : "arnaumail",
-		password : "arnau",
+		dataType : 'json'
 
 	}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
@@ -234,7 +232,8 @@ function getAnuncios() {
 
 		$.each(anuncios, function(i, v) {
 			var anuncio = v;
-			var $grouplist = $('#anuncios_result');
+			
+			var $grouplist = $('#span3');
 			$('<li>' + anuncio.anuncioid + '</li>').appendTo($grouplist);
 			$('<li>' + anuncio.email + '</li>').appendTo($grouplist);
 			$('<li>' + anuncio.subject + '</li>').appendTo($grouplist);

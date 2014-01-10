@@ -45,8 +45,8 @@ public class VirtualtradeAPI {
 			JSONObject jsonObject = new JSONObject(sb.toString());
 			JSONArray jsonLinks = jsonObject.getJSONArray("links");
 			parseLinks(jsonLinks, anuncios.getLinks());
-
 			JSONArray jsonStings = jsonObject.getJSONArray("anuncios");
+
 			for (int i = 0; i < jsonStings.length(); i++) {
 				JSONObject jsonSting = jsonStings.getJSONObject(i);
 				Anuncio anuncio = parseAnuncio(jsonSting);
@@ -83,6 +83,18 @@ public class VirtualtradeAPI {
 		}
 	}
 
+	private void parseImagenes(JSONArray source, List<Imagen> imagenes)
+			throws JSONException {
+		for (int i = 0; i < source.length(); i++) {
+			JSONObject jsonImagen = source.getJSONObject(i);
+			Imagen imagen = new Imagen();
+			imagen.setAnuncioid(jsonImagen.getInt("anuncioid"));
+			imagen.setImagenid(jsonImagen.getInt("imagenid"));
+			imagen.setUrlimagen(jsonImagen.getString("urlimagen"));
+			imagenes.add(imagen);
+		}
+	}
+
 	private Anuncio parseAnuncio(JSONObject source) throws JSONException,
 			ParseException {
 		Anuncio anuncio = new Anuncio();
@@ -102,8 +114,12 @@ public class VirtualtradeAPI {
 				.replace("T", " ");
 		anuncio.setCreation_timestamp(sdf.parse(creation_timestamp));
 
-		JSONArray jsonStingLinks = source.getJSONArray("links");
-		parseLinks(jsonStingLinks, anuncio.getLinks());
+		JSONArray jsonAnuncioLinks = source.getJSONArray("links");
+		parseLinks(jsonAnuncioLinks, anuncio.getLinks());
+
+		JSONArray jsonImagen = source.getJSONArray("imagenes");
+		parseImagenes(jsonImagen, anuncio.getImagenes());
+
 		return anuncio;
 	}
 
@@ -126,8 +142,8 @@ public class VirtualtradeAPI {
 				sb.append(line);
 			}
 
-			JSONObject jsonSting = new JSONObject(sb.toString());
-			anuncio = parseAnuncio(jsonSting);
+			JSONObject jsonAnuncio = new JSONObject(sb.toString());
+			anuncio = parseAnuncio(jsonAnuncio);
 		} catch (IOException e) {
 			Log.e(TAG, e.getMessage(), e);
 			return null;

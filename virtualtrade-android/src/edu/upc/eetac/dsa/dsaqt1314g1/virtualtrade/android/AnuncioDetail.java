@@ -1,15 +1,22 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Anuncio;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Imagen;
+import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.ImagenCollection;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.VirtualtradeAPI;
 
 public class AnuncioDetail extends Activity {
@@ -28,7 +35,8 @@ public class AnuncioDetail extends Activity {
 			url = new URL((String) getIntent().getExtras().get("url"));
 		} catch (MalformedURLException e) {
 		}
-		(new FetchStingTask()).execute(url);
+		(new FetchAnuncioTask()).execute(url);
+
 	}
 
 	private void loadAnuncio(Anuncio anuncio) {
@@ -44,7 +52,39 @@ public class AnuncioDetail extends Activity {
 				anuncio.getCreation_timestamp()));
 	}
 
-	private class FetchStingTask extends AsyncTask<URL, Void, Anuncio> {
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+		ImageView bmImage;
+
+		public DownloadImageTask(ImageView bmImage) {
+			this.bmImage = bmImage;
+		}
+
+		@Override
+		protected Bitmap doInBackground(String... url) {
+			String urldisplay = url[0];
+			Bitmap bitmap = null;
+			try {
+
+				URL imageUrl = null;
+				HttpURLConnection conn = null;
+				imageUrl = new URL(urldisplay);
+				conn = (HttpURLConnection) imageUrl.openConnection();
+				conn.connect();
+				bitmap = BitmapFactory.decodeStream(conn.getInputStream());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return bitmap;
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap result) {
+			bmImage.setImageBitmap(result);
+		}
+
+	}
+
+	private class FetchAnuncioTask extends AsyncTask<URL, Void, Anuncio> {
 		private ProgressDialog pd;
 
 		@Override
@@ -56,6 +96,12 @@ public class AnuncioDetail extends Activity {
 		@Override
 		protected void onPostExecute(Anuncio result) {
 			loadAnuncio(result);
+			ImagenCollection imagenes = new ImagenCollection();
+			imagenes.setImagenes(result.getImagenes());
+
+			new DownloadImageTask(
+					(ImageView) findViewById(R.id.imagenesanuncio))
+					.execute(imagenes.getImagenes().get(0).getUrlimagen());
 			if (pd != null) {
 				pd.dismiss();
 			}

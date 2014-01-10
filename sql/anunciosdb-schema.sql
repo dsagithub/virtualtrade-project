@@ -1,5 +1,5 @@
 drop database if exists anunciosdb;
-create database anunciosdb;
+create database anunciosdb CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 use anunciosdb;
 

@@ -21,8 +21,12 @@ function getAnuncio() {
 
 		if(anuncio.estado==true){
 		
+			
+			
+			
 			var $grouplist = $('#anuncio_result');
-			$('<h2>' + anuncio.subject + '</h2>').appendTo($grouplist);
+			
+	//		$('<h2>' + anuncio.subject + '</h2>').appendTo($grouplist);
 			$('<h4>'+ anuncio.precio +'euros</h4>').appendTo($grouplist);
 			$('<li> Descripci&oacuten: ' + anuncio.content + '</li>').appendTo($grouplist);
 			$('<li>Usuario vendedor: ' + anuncio.email + '</li>').appendTo($grouplist);

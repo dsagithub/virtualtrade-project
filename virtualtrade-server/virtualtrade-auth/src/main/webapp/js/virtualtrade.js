@@ -231,24 +231,15 @@ function getAnuncios() {
 		$("#anuncios_result").text("");
 
 		$.each(anuncios, function(i, v) {
+			
 			var anuncio = v;
 			
-			var $grouplist = $('#span3');
-			$('<li>' + anuncio.anuncioid + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.email + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.subject + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.content + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.estado + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.precio + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.creation_timestamp + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.atributo1 + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.atributo2 + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.atributo3 + '</li>').appendTo($grouplist);
-			$('<li>' + anuncio.marca + '</li>').appendTo($grouplist);	
-			$('<li><img src="' + anuncio.imagenes[0].urlimagen + '"border="1" width="160" height="90"></li>').appendTo($grouplist);				
-			$("<HR>").appendTo($grouplist);
+			$(foto_anuncio.src=anuncio.imagenes[0].urlimagen);
+			$("#title_anuncio").innerHTML=anuncio.subject;
+			$(content_anuncio.innerHTML=anuncio.content);
+			$("#precio_anuncio").val=anuncio.precio;
 
-			
+
 		});
 
 				

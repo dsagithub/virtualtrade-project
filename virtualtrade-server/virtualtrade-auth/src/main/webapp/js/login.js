@@ -25,9 +25,7 @@ function getLogin(email, userpass) {
 
 		$.cookie('email', email);
 		$.cookie('userpass', userpass);
-
-		// document.cookie="email="+email;
-		// document.cookie="userpass="+userpass;
+		
 		window.location = "http://localhost:8080/virtualtrade-auth/index.html";
 		console.log(data);
 	}).fail(function(jqXHR, textStatus) {

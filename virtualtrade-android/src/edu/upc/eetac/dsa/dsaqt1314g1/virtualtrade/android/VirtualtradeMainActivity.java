@@ -44,7 +44,7 @@ public class VirtualtradeMainActivity extends Activity {
 	}
 
 	public void verAnuncios(View view) {
-		Intent i = new Intent(this, VerAnuncios.class);
+		Intent i = new Intent(this, AnuncioSelection.class);
 		startActivity(i);
 	}
 

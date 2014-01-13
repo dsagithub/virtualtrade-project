@@ -47,15 +47,18 @@ function create() {
 					"Content-Type" : "application/vnd.virtual.api.anuncio+json"
 				},
 				data : data,
-				username : usrmail,
-				password : usrpass,
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa(usrmail + ':' + usrpass));
+				}
 				
 			}).done(function(data, status, jqxhr) {
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-	
+
 	var data2 = JSON.stringify(imagen);
 	$.ajax(
 			{
@@ -68,8 +71,11 @@ function create() {
 					"Content-Type" : "application/vnd.virtual.api.picture+json"
 				},
 				data : data2,
-				username : 'arnaumail',
-				password : 'arnau',
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa(usrmail + ':' + usrpass));
+				}
 				
 			}).done(function(data2, status, jqxhr) {
 		$("#create_result").text("Imagen agregada correctamente");

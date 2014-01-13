@@ -7,6 +7,12 @@ $(document).ready(function() {
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
 	
+	var a=	$.cookie('email');
+//	$("#nombreusuarioaqui").text($.cookie('email'));
+	$("#nombreusuarioaqui").text(a);
+	$("#singup").text("tret");
+
+
 });
 
 
@@ -32,8 +38,11 @@ function getAnuncios_Atributos(atributo1,atributo2,atributo3,atributo4){
 			type : 'GET',
 			crossDomain : true,
 			dataType : 'json',
-			username : "arnaumail",
-			password : "arnau",
+			beforeSend : function(request) {
+				request.withCredentials = true;
+				request.setRequestHeader("Authorization", "Basic "
+						+ btoa('arnaumail' + ':' + 'arnau'));
+			},
 
 		}).done(function(data, status, jqxhr) {
 			var response = JSON.parse(jqxhr.responseText);
@@ -77,9 +86,11 @@ function getAnuncios_Atributos(atributo1,atributo2,atributo3,atributo4){
 			type : 'GET',
 			crossDomain : true,
 			dataType : 'json',
-			username : "arnaumail",
-			password : "arnau",
-
+			beforeSend : function(request) {
+				request.withCredentials = true;
+				request.setRequestHeader("Authorization", "Basic "
+						+ btoa('arnaumail' + ':' + 'arnau'));
+			},
 		}).done(function(data, status, jqxhr) {
 			var response = JSON.parse(jqxhr.responseText);
 			var anuncios = response.anuncios;
@@ -123,8 +134,11 @@ var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atri
 			type : 'GET',
 			crossDomain : true,
 			dataType : 'json',
-			username : "arnaumail",
-			password : "arnau",
+			beforeSend : function(request) {
+				request.withCredentials = true;
+				request.setRequestHeader("Authorization", "Basic "
+						+ btoa('arnaumail' + ':' + 'arnau'));
+			},
 
 		}).done(function(data, status, jqxhr) {
 			var response = JSON.parse(jqxhr.responseText);
@@ -168,8 +182,11 @@ var url = API_BASE_URL +"/anuncios/atributos?offset=0&length=10&atributo1="+atri
 			type : 'GET',
 			crossDomain : true,
 			dataType : 'json',
-			username : "arnaumail",
-			password : "arnau",
+			beforeSend : function(request) {
+				request.withCredentials = true;
+				request.setRequestHeader("Authorization", "Basic "
+						+ btoa('arnaumail' + ':' + 'arnau'));
+			},
 
 		}).done(function(data, status, jqxhr) {
 			var response = JSON.parse(jqxhr.responseText);
@@ -256,8 +273,11 @@ function getMensajes() {
 		type : 'GET',
 		crossDomain : true,
 		dataType : 'json',
-		username : "arnaumail",
-		password : "arnau",
+		beforeSend : function(request) {
+			request.withCredentials = true;
+			request.setRequestHeader("Authorization", "Basic "
+					+ btoa('arnaumail' + ':' + 'arnau'));
+		},
 
 	}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);

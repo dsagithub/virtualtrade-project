@@ -2,5 +2,242 @@
 <resources>
 
     <string name="app_name">Virtual Trade</string>
+    <string name="ver_perfil">Ver perfil</string>
+    <string name="ver_anuncios">Ver anuncios</string>
+    <string name="ver_mensajes">Ver mensajes</string>
+    <string name="login_l_username">Username</string>
+    <string name="login_l_password">Password</string>
+    <string name="login_l_signin">Sign in</string>
+    <string name="login_l_register">Registrarse en Vritual Trade</string>
+
+    <string-array name="atributo1">
+        <item>Todas las categorías</item>
+        <item>Electrónica</item>
+        <item>Motor</item>
+        <item>Entretenimiento</item>
+        <item>Hogar</item>
+        <item>Deportes</item>
+    </string-array>
+    <string-array name="atributo2Electronica">
+        <item>Todas las subcategorías</item>
+        <item>Imagen y Sonido</item>
+        <item>Informática</item>
+        <item>Consolas y Videojuegos</item>
+        <item>Cámaras y Fotografía</item>
+        <item>Móviles y Telefonía</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo2Motor">
+        <item>Todas las subcategorías</item>
+        <item>Coches</item>
+        <item>Herramientas</item>
+        <item>Motos</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo2Entretenimiento">
+        <item>Todas las subcategorías</item>
+        <item>Libros y Cómics</item>
+        <item>Música</item>
+        <item>DVD y Películas</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo2Hogar">
+        <item>Todas las subcategorías</item>
+        <item>Herramientas</item>
+        <item>Muebles</item>
+        <item>Cocina</item>
+        <item>Electrodomésticos</item>
+        <item>Decoración</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo2Deportes">
+        <item>Todas las subcategorías</item>
+        <item>Atletismo</item>
+        <item>Baloncesto</item>
+        <item>Ciclismo</item>
+        <item>Esquí</item>
+        <item>Futbol</item>
+        <item>Tenis</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3ImagenSonido">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>TV</item>
+        <item>Auriculares</item>
+        <item>iPods y reproductores mp3</item>
+        <item>DVD, Blu-ray y Home Cinema</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Informatica">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Tablets</item>
+        <item>Portatiles y Netbooks</item>
+        <item>Ordenadores de sobremesa</item>
+        <item>Impresoras</item>
+        <item>E-books</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Consolas">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Consolas</item>
+        <item>Juegos</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Camaras">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Camaras</item>
+        <item>Marcos digitales</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Moviles">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Moviles</item>
+        <item>Telefonos fijos y accesorios</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3HerramientasMotor">
+        <item>Todas las subcategorías</item>
+        <item>Kit de herramientas</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Coches">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios coche</item>
+        <item>Coches</item>
+        <item>Piezas</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Motos">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios moto</item>
+        <item>Motos</item>
+        <item>Piezas</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Libros">
+        <item>Todas las subcategorías</item>
+        <item>Comics</item>
+        <item>Libros</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Musica">
+        <item>Todas las subcategorías</item>
+        <item>CDs</item>
+        <item>Cintas</item>
+        <item>Descarga digital</item>
+        <item>Merchandising</item>
+        <item>Vinilos</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3DVD">
+        <item>Todas las subcategorías</item>
+        <item>DVDs</item>
+        <item>Películas</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3HerramientasHogar">
+        <item>Todas las subcategorías</item>
+        <item>Caja de herramientas</item>
+        <item>Herramientas electrónicas</item>
+        <item>Sierras</item>
+        <item>Soldadores</item>
+        <item>Taladros</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Muebles">
+        <item>Todas las subcategorías</item>
+        <item>Mesas y escritorios</item>
+        <item>Estantes</item>
+        <item>Muebles de salon</item>
+        <item>Sillas y sofás</item>
+        <item>Iluminación</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Cocina">
+        <item>Todas las subcategorías</item>
+        <item>Cubertería</item>
+        <item>Envases</item>
+        <item>Utensilios de cocina</item>
+        <item>Sartenes y cazuelas</item>
+        <item>Vajillas</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Electrodomesticos">
+        <item>Todas las subcategorías</item>
+        <item>Aspiradoras</item>
+        <item>Batidoras</item>
+        <item>Cafeteras</item>
+        <item>Cocinas y hornos</item>
+        <item>Freidoras</item>
+        <item>Neveras</item>
+        <item>Lavadoras y secadoras</item>
+        <item>Lavavajillas</item>
+        <item>Tostadoras</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Decoracion">
+        <item>Todas las subcategorías</item>
+        <item>Alfombras</item>
+        <item>Cajas y jarrones</item>
+        <item>Ceramica</item>
+        <item>Cortinas</item>
+        <item>Cuadros y pinturas</item>
+        <item>Esculturas y figuras</item>
+        <item>Textil cama</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Ciclismo">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Bicicletas</item>
+        <item>Calzado</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Baloncesto">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Balones</item>
+        <item>Calzado</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Atletismo">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Calzado</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Futbol">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Balones</item>
+        <item>Calzado</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Tenis">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Calzado</item>
+        <item>Raquetas</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo3Esqui">
+        <item>Todas las subcategorías</item>
+        <item>Accesorios</item>
+        <item>Calzado</item>
+        <item>Esquís</item>
+        <item>Ropa</item>
+        <item>Otros</item>
+    </string-array>
 
 </resources>

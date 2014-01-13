@@ -20,7 +20,7 @@ function getLogin(email, userpass) {
 					request.withCredentials = true;
 					request.setRequestHeader("Authorization", "Basic "
 							+ btoa(email + ':' + userpass));
-				},
+				}
 			}).done(function(data, status, jqxhr) {
 				
 		$.cookie('email', email);

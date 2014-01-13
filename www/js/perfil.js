@@ -6,6 +6,7 @@ $(document).ready(function() {
 });
 
 function getUser(email) {
+	//console.log("JSDFJGSDJGSDKGSDK");
 	var url = API_BASE_URL + "/users/" + email;
 	$
 			.ajax({
@@ -13,8 +14,14 @@ function getUser(email) {
 				type : 'GET',
 				crossDomain : true,
 				dataType : 'json',
-				username : "adminmail",
-				password : "admin",
+				headers : {
+					"Accept" : "application/vnd.virtual.api.user+json",
+				},
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa('adminmail' + ':' + 'admin'));
+				},
 			})
 			.done(
 					function(data, status, jqxhr) {

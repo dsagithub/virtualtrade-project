@@ -3,76 +3,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@drawable/background"
     android:orientation="vertical"
+    android:paddingTop="40dip"
     tools:context=".VirtualtradeMainActivity" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dip" >
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
+            android:id="@+id/header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/perfilbutton"
-            android:layout_alignTop="@+id/perfilbutton"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="84dp"
-            android:text="Perfil usuario" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_below="@+id/anunciosbutton"
-            android:text="Ver anuncios" />
-
-        <TextView
-            android:id="@+id/TextView02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/TextView01"
-            android:layout_alignBottom="@+id/TextView01"
-            android:layout_alignRight="@+id/mensajesbutton"
-            android:layout_marginRight="27dp"
-            android:text="Ver mensajes" />
-
-        <ImageButton
-            android:id="@+id/mensajesbutton"
-            android:layout_width="138dp"
-            android:layout_height="84dp"
-            android:layout_above="@+id/perfilbutton"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="64dp"
-            android:layout_marginRight="17dp"
-            android:background="@null"
-            android:onClick="verMensajes"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mensajes" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="60dip" >
 
         <ImageButton
             android:id="@+id/anunciosbutton"
-            android:layout_width="138dp"
+            android:layout_width="250dp"
             android:layout_height="84dp"
-            android:layout_alignTop="@+id/mensajesbutton"
-            android:layout_toLeftOf="@+id/mensajesbutton"
-            android:background="@null"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dip"
+            android:background="@drawable/button"
+            android:gravity="right|center"
             android:onClick="verAnuncios"
-            android:scaleType="centerInside"
+            android:paddingTop="5dp"
+            android:scaleType="fitStart"
             android:src="@drawable/anuncio" />
+
+        <TextView
+            android:id="@+id/textanuncios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/anunciosbutton"
+            android:layout_alignTop="@+id/anunciosbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/ver_anuncios"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="10dip" >
 
         <ImageButton
             android:id="@+id/perfilbutton"
-            android:layout_width="138dp"
+            android:layout_width="250dp"
             android:layout_height="84dp"
-            android:layout_alignLeft="@+id/anunciosbutton"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="148dp"
-            android:background="@null"
-            android:scaleType="centerInside"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dip"
+            android:background="@drawable/button"
+            android:gravity="right|center"
+            android:paddingTop="20dp"
+            android:scaleType="fitStart"
             android:src="@drawable/user" />
 
+        <TextView
+            android:id="@+id/textuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/perfilbutton"
+            android:layout_alignTop="@+id/perfilbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="38dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/ver_perfil"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="10dip" >
+
+        <ImageButton
+            android:id="@+id/mensajesbutton"
+            android:layout_width="250dp"
+            android:layout_height="84dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dip"
+            android:background="@drawable/button"
+            android:gravity="right|center"
+            android:onClick="verMensajes"
+            android:paddingTop="10dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/mensajes" />
+
+        <TextView
+            android:id="@+id/textmensajes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/mensajesbutton"
+            android:layout_alignTop="@+id/mensajesbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/ver_mensajes"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
 
 </LinearLayout>

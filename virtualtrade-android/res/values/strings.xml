@@ -5,7 +5,7 @@
     <string name="ver_perfil">Ver perfil</string>
     <string name="ver_anuncios">Ver anuncios</string>
     <string name="ver_mensajes">Ver mensajes</string>
-    <string name="login_l_username">Username</string>
+    <string name="login_l_email">Username</string>
     <string name="login_l_password">Password</string>
     <string name="login_l_signin">Sign in</string>
     <string name="login_l_register">Registrarse en Vritual Trade</string>

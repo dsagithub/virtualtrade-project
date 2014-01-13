@@ -22,10 +22,10 @@ function getLogin(email, userpass) {
 							+ btoa(email + ':' + userpass));
 				},
 			}).done(function(data, status, jqxhr) {
-
+				
 		$.cookie('email', email);
 		$.cookie('userpass', userpass);
-		
+
 		window.location = "http://localhost:8080/virtualtrade-auth/index.html";
 		console.log(data);
 	}).fail(function(jqXHR, textStatus) {

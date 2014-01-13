@@ -1,10 +1,8 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 $(document).ready(function() {
+	getUser($.cookie('email'));
 
-	getUser($.cookie('email').val());
-
-	// getUser($("#email").val());
 });
 
 function getUser(email) {

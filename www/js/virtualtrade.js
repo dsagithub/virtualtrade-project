@@ -7,12 +7,15 @@ $(document).ready(function() {
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
 	
+	
+	
+/*	
 	var a=	$.cookie('email');
-//	$("#nombreusuarioaqui").text($.cookie('email'));
 	$("#nombreusuarioaqui").text(a);
-	$("#singup").text("tret");
-
-
+	$("#singup").text("");
+	$("#signin").text("");
+*/
+	
 });
 
 

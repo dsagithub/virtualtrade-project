@@ -233,17 +233,11 @@ function getAnuncios() {
 		$.each(anuncios, function(i, v) {
 			
 			var anuncio = v;
-			
-			$(foto_anuncio.src=anuncio.imagenes[0].urlimagen);
-	//		jQuery("#title_anuncio").text(anuncio.subject);
-	//		$("#title_anuncio").text(anuncio.subject);
-	//		jQuery("#title_anuncio").html(anuncio.subject);
-			$("#title_anuncio").html(anuncio.subject);
-			
-			//	$("#title_anuncio").innerHTML=anuncio.subject;
-			$(content_anuncio.innerHTML=anuncio.content);
-			$("#precio_anuncio").val=anuncio.precio;
 
+			foto_anuncio.src=anuncio.imagenes[0].urlimagen;
+			$("#title").text(anuncio.subject);
+			$("#content").text(anuncio.content);
+			$("#precio").text(anuncio.precio+" \u20ac");
 
 		});
 

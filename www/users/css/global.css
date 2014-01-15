@@ -3,11 +3,15 @@
 /* @group resets and elements */
 * { margin: 0; padding: 0; }
 
-html { height: 101%; font-family: “Helvetica Neue”, Arial, Helvetica, sans-serif; background: #fff; }
+html { height: 101%; font-family: â€œHelvetica Neueâ€�, Arial, Helvetica, sans-serif; background: #fff; }
 body { font-size: 62.5%; font-family: Helvetica, Arial, sans-serif; line-height: 10%; }
 
-img { border: 0;}
-
+img {
+  width: 100%;
+  height: 100%;
+  max-width: 150;
+  max-height: 150;
+}
 a { color: #3c86b7; text-decoration: none; }
 a:hover { text-decoration: underline; }
 

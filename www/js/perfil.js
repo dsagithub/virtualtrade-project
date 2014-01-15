@@ -30,6 +30,22 @@ function getUser(email) {
 								.ready(
 										function() {
 											$("#user_result").text("");
+											foto.src=user.foto;
+//											$("#nom").text(user.name);
+											
+//											foto.height=150;
+//											foto.width=150;
+//											
+//											$("#email").text(user.email);
+//											$("#telef").text(user.phone);
+//											$("#ciudad").text(user.ciudad);
+//											$("#calle").text(user.calle);
+//											$("#numero").text(user.numero);
+//											$("#piso").text(user.piso);
+//											$("#puerta").text(user.puerta);
+//											
+//										
+											
 											var $grouplist = $('#user_result');
 											$(
 													'<li>' + "User Email: "
@@ -57,7 +73,7 @@ function getUser(email) {
 															+ '</li>')
 													.appendTo($grouplist);
 											$(
-													'<li>' + "Número: "
+													'<li>' + "Numero: "
 															+ user.numero
 															+ '</li>')
 													.appendTo($grouplist);
@@ -72,13 +88,15 @@ function getUser(email) {
 															+ '</li>')
 													.appendTo($grouplist);
 
-											$(
-													'<li><img src="'
-															+ user.foto
-															+ '"border="1" width="160" height="90"></li>')
-													.appendTo($grouplist)
+										
 
 										});
+						
+						
+						
+					
+						
+						
 					}).fail(function() {
 				$("#user_result").text("User no encontrado");
 			});

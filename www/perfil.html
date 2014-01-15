@@ -1,18 +1,35 @@
-<html>
-<link rel="stylesheet" type="text/css" href="css/login.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/global.css" />
+	
+	
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="keywords" content="Koupon HTML5 Template" />
+<meta name="description"
+	content="Koupon - Premiun HTML5 Template for Coupons Website">
+<meta name="author" content="Tsoy">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google fonts -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700'
+	rel='stylesheet' type='text/css'>
+<!-- Bootstrap styles -->
+<link rel="stylesheet" href="css/boostrap.css">
+<link rel="stylesheet" href="css/boostrap_responsive.css">
+<!-- Font Awesome styles (icons) -->
+<link rel="stylesheet" href="css/font_awesome.css">
+<!-- Main Template styles -->
+<link rel="stylesheet" href="css/styles.css">
 
-<!-- Latest compiled and minified CSS -->
-   <!-- Google fonts -->
-    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="css/boostrap.css">
-    <link rel="stylesheet" href="css/boostrap_responsive.css">
-    <!-- Font Awesome styles (icons) -->
-    <link rel="stylesheet" href="css/font_awesome.css">
-    <!-- Main Template styles -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/mystyles.css">
+<link rel="stylesheet" href="css/mystyles.css">
+</head>
+
+
+
+<body>
 
 
 	<!-- //////////////////////////////////
@@ -22,8 +39,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="span2">
-					<a href="http://localhost/virtualtrade/index.html"> <img src="img/logo-small.png" alt="logo"
-						title="logo" class="logo">
+					<a href="http://localhost/virtualtrade/index.html"> <img
+						src="img/logo-small.png" alt="logo" title="logo" class="logo">
 					</a>
 				</div>
 				<div class="span8">
@@ -66,17 +83,14 @@
 										</ul></li>
 								</ul></li>
 
+							<li><a href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
 							<li><a
-								href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
-							<li><a
-								href="http://localhost/virtualtrade/nuevoanuncio.html">A�adir
+								href="http://localhost/virtualtrade/nuevoanuncio.html">Añadir
 									nuevo anuncio</a></li>
 
-							<li><a
-								href="http://localhost/virtualtrade/users/users.html">Buscar
+							<li><a href="http://localhost/virtualtrade/users/users.html">Buscar
 									Usuario</a></li>
-							<li><a
-								href="http://localhost/virtualtrade/contact.html">Contactar</a>
+							<li><a href="http://localhost/virtualtrade/contact.html">Contactar</a>
 							</li>
 						</ul>
 					</nav>
@@ -85,116 +99,87 @@
 				<div class="span2">
 					<!-- LOGIN REGISTER LINKS -->
 					<ul class="login-register">
-						<li><a class="popup-text"
+						<li><a id="singup" class="popup-text"
 							href="http://localhost/virtualtrade/login.html"
 							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign
 								in</a></li>
-						<li><a class="popup-text"
+						<li><a id="nombreusuarioaqui" class="popup-text"
+							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Perfil</a></li>
+
+						<li><a id="signin" class="popup-text"
 							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
 							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign
 								up</a></li>
+
+
+						<li><a id="logout" class="popup-text"
+							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
+							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Log Out
+								</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<!-- LOGIN REGISTER LINKS CONTENT -->
-	<div id="login-dialog"
-		class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-		<i class="icon-signin dialog-icon"></i>
-		<h3>Member Login</h3>
-		<h5>Welcome back, friend. Login to get started</h5>
-		<div class="row-fluid">
-			<form class="dialog-form">
-				<label>E-mail</label> <input type="text"
-					placeholder="email@domain.com" class="span12"> <label>Password</label>
-				<input type="password" placeholder="My secret password"
-					class="span12"> <label class="checkbox"> <input
-					type="checkbox">Remember me
-				</label> <input type="submit" value="Sign in" class="btn btn-primary">
-			</form>
-		</div>
-		<ul class="dialog-alt-links">
-			<li><a class="popup-text" href="#register-dialog"
-				data-effect="mfp-zoom-out">Not member yet</a></li>
-			<li><a class="popup-text" href="#password-recover-dialog"
-				data-effect="mfp-zoom-out">Forgot password</a></li>
-		</ul>
-	</div>
 
-
-	<div id="register-dialog"
-		class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-		<i class="icon-edit dialog-icon"></i>
-		<h3>Member Register</h3>
-		<h5>Ready to get best offers? Let's get started!</h5>
-		<div class="row-fluid">
-			<form class="dialog-form">
-				<label>E-mail</label> <input type="text"
-					placeholder="email@domain.com" class="span12"> <label>Password</label>
-				<input type="password" placeholder="My secret password"
-					class="span12"> <label>Repeat Password</label> <input
-					type="password" placeholder="Type your password again"
-					class="span12">
-				<div class="row-fluid">
-					<div class="span8">
-						<label>Your Area</label> <input type="password"
-							placeholder="Boston" class="span12">
-					</div>
-					<div class="span4">
-						<label>Postal/Zip</label> <input type="password"
-							placeholder="12345" class="span12">
-					</div>
+	
+	
+	<div id="content" class="clearfix">
+		<section id="left">
+			<div id="userStats" class="clearfix">
+				<div id="nom" class="data">
+					<h1>Perfil de Usuario</h1> </div>
+				<div>
+				<div class="pic">
+					<a href="#"><img id="foto" src="img/user_avatar.jpg" width="50" height="50" /></a>
 				</div>
-				<label class="checkbox"> <input type="checkbox">Get
-					hot offers via e-mail
-				</label> <input type="submit" value="Sign up" class="btn btn-primary">
-			</form>
-		</div>
-		<ul class="dialog-alt-links">
-			<li><a class="popup-text" href="#login-dialog"
-				data-effect="mfp-zoom-out">Already member</a></li>
-		</ul>
-	</div>
 
-
-	<div id="password-recover-dialog"
-		class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-		<i class="icon-retweet dialog-icon"></i>
-		<h3>Password Recovery</h3>
-		<h5>Fortgot your password? Don't worry we can deal with it</h5>
-		<div class="row-fluid">
-			<form class="dialog-form">
-				<label>E-mail</label> <input type="text"
-					placeholder="email@domain.com" class="span12"> <input
-					type="submit" value="Request new password" class="btn btn-primary">
-			</form>
-		</div>
-	</div>
-	<!-- END LOGIN REGISTER LINKS CONTENT -->
-
-
-     <body>
-     
-     
-     
-     
-	<div>
+					<div class="sep"></div>
+					<ul class="numbers clearfix">
+					
+				
+						<div>
 		<div class="bs-callout bs-callout-info">
-			<h4>Perfil de Usuario</h4>
 			<div class="container">
 				<span id="user_result"></span>
 			</div>
 		</div>
 	</div>
-
-
-     
-     
-      
-<!-- Latest compiled and minified JavaScript -->
-
+					
+					
+			<!-- 												
+						<li class="nobrdr">Email:</strong></li>
+						<li id="email" class="nobrdr">Days Out</strong></li>
+						
+						
+						
+						<li class="nobrdr">Número de Teléfono:</strong></li>
+						<li id="telef" class="nobrdr">Days Out</li>
+						<li class="nobrdr">Ciudad:</strong></li>
+						<li id="ciudad" class="nobrdr">Days Out</li>
+						<li class="nobrdr">Calle:</strong></li>
+						<li id="calle" class="nobrdr">Days Out</li>
+						<li class="nobrdr">Número:</strong></li>
+						<li id="numero" class="nobrdr">Days Out</li>
+						<li class="nobrdr">Piso:</strong></li>
+						<li id="piso" class="nobrdr">Days Out</li>
+						<li class="nobrdr">Puerta:</strong></li>
+						<li id="puerta" class="nobrdr">Days Out</li>
+						
+						
+						 -->
+					</ul>
+				</div>
+			</div>
+			
+			
+		</section>
+		
+		
+			
+		
+</body>
       <script src="https://code.jquery.com/jquery.js"></script>
                 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
                 <script src="http://cachedcommons.org/cache/jquery-cookie/0.0.0/javascripts/jquery-cookie.js"></script>
@@ -202,6 +187,6 @@
     <script type="text/javascript" src="js/jquery.cookie.js"></script>    
     <script type="text/javascript" src="js/perfil.js"></script>   
 	<script type="text/javascript" src="js/login.js"></script>   
-	
+
 
 </html>

@@ -249,17 +249,55 @@ function getAnuncios() {
 		var anuncios = response.anuncios;
 		
 		$("#anuncios_result").text("");
+		var size = "'width='800' height='600'";
 
-		$.each(anuncios, function(i, v) {
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
 			
-			var anuncio = v;
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen ;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			
 
-			foto_anuncio.src=anuncio.imagenes[0].urlimagen;
-			$("#title").text(anuncio.subject);
-			$("#content").text(anuncio.content);
-			$("#precio").text(anuncio.precio+" \u20ac");
-
-		});
 
 				
 	}).fail(function() {

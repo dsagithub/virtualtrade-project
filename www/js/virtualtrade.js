@@ -250,7 +250,7 @@ function getAnuncios() {
 		
 		$("#anuncios_result").text("");
 		var size = "'width='800' height='600'";
-
+		
 
 			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
 			$("#title1").text(anuncios[0].subject);

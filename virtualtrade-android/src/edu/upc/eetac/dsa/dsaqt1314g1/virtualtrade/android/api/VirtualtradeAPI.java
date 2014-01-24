@@ -48,8 +48,8 @@ public class VirtualtradeAPI {
 			JSONArray jsonStings = jsonObject.getJSONArray("anuncios");
 
 			for (int i = 0; i < jsonStings.length(); i++) {
-				JSONObject jsonSting = jsonStings.getJSONObject(i);
-				Anuncio anuncio = parseAnuncio(jsonSting);
+				JSONObject jsonAnuncio = jsonStings.getJSONObject(i);
+				Anuncio anuncio = parseAnuncio(jsonAnuncio);
 
 				anuncios.add(anuncio);
 			}
@@ -161,6 +161,120 @@ public class VirtualtradeAPI {
 		Log.d(TAG, "anuncio a" + anuncio);
 
 		return anuncio;
+	}
+
+	private Mensaje parseMensaje(JSONObject source) throws JSONException,
+			ParseException {
+
+		Mensaje mensaje = new Mensaje();
+
+		mensaje.setMensajeid(source.getString("mensajeid"));
+		mensaje.setAnuncioid(source.getString("anuncioid"));
+		mensaje.setSubject(source.getString("subject"));
+		mensaje.setContent(source.getString("content"));
+		String creation_timestamp = source.getString("creation_timestamp")
+				.replace("T", " ");
+		mensaje.setCreation_timestamp(sdf.parse(creation_timestamp));
+		mensaje.setEmaildestino(source.getString("emaildestino"));
+		mensaje.setEmailorigen(source.getString("emailorigen"));
+
+		JSONArray jsonAnuncioLinks = source.getJSONArray("links");
+		parseLinks(jsonAnuncioLinks, mensaje.getLinks());
+
+		return mensaje;
+	}
+
+	public Mensaje getMensaje(URL url)
+
+	{
+
+		Mensaje mensaje = new Mensaje();
+
+		HttpURLConnection urlConnection = null;
+		try {
+			urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestProperty("Accept",
+					MediaType.VIRTUAL_API_MENSAJE);
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoInput(true);
+			urlConnection.connect();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					urlConnection.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			JSONObject jsonAnuncio = new JSONObject(sb.toString());
+			mensaje = parseMensaje(jsonAnuncio);
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (JSONException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+		}
+
+		Log.d(TAG, "anuncio a" + mensaje);
+
+		return mensaje;
+	}
+
+	public MensajeCollection getMensajes(URL url) {
+		MensajeCollection mensajes = new MensajeCollection();
+
+		HttpURLConnection urlConnection = null;
+		try {
+			urlConnection = (HttpURLConnection) url.openConnection();
+
+			urlConnection.setRequestProperty("Accept",
+					MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoInput(true);
+			urlConnection.connect();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					urlConnection.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			JSONObject jsonObject = new JSONObject(sb.toString());
+			JSONArray jsonLinks = jsonObject.getJSONArray("links");
+			parseLinks(jsonLinks, mensajes.getLinks());
+			JSONArray jsonStings = jsonObject.getJSONArray("mensajes");
+
+			for (int i = 0; i < jsonStings.length(); i++) {
+				JSONObject jsonMensaje = jsonStings.getJSONObject(i);
+				Mensaje mensaje = parseMensaje(jsonMensaje);
+				;
+
+				mensajes.add(mensaje);
+			}
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (JSONException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+		}
+
+		return mensajes;
 	}
 
 }

@@ -8,6 +8,10 @@ $(document).ready(function() {
 	  $(mensaje).hide();
 	  $(subjec).hide();
 	  $(cont).hide();
+	  $(userStats).hide();
+	  $(foto).hide();
+			
+	  
 	  
 	//  subject
 //	getUser($("#email").val());
@@ -78,6 +82,11 @@ function getUser(email) {
 //					$("#puerta").text(user.puerta);
 //					
 //				
+					 $(button_message).show();
+					 $(userStats).show();
+				
+					 $(foto).show();	
+						
 					
 					var $grouplist = $('#user_result');
 					$(
@@ -124,10 +133,7 @@ function getUser(email) {
 				
 
 				});		
-				 $(button_message).show();
 			
-					
-					
 //					
 //					$("#user_result").text("");
 //									var $grouplist = $('#user_result');

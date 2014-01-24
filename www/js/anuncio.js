@@ -4,7 +4,6 @@ $(document).ready(function() {
 	$("#atributo_2").chained("#atributo_1");
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
-
 });
 
 $("#button_post_anuncio").click(function(e) {
@@ -100,9 +99,7 @@ function create() {
 		$("#create_result").text("No agregado");
 	});
 	
-	
-	
-	imagen.
+
 	imagen.foto1 = $('#fileupload1').val();
 	imagen.foto2 = $('#fileupload1').val();
 	imagen.foto3 = $('#fileupload1').val();

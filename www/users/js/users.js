@@ -1,11 +1,18 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
-/*
-$(document).ready(function() {
 
-	getUser($("#email").val());
+$(document).ready(function() {
+	  $(button_message).hide();
+	  $(button_send_msg).hide();
+	  $(subject).hide();
+	  $(mensaje).hide();
+	  $(subjec).hide();
+	  $(cont).hide();
+	  
+	//  subject
+//	getUser($("#email").val());
 });
-*/
+
 
 
 //obté les dades d'un usuari a partir del username
@@ -13,6 +20,29 @@ $("#button_get_user").click(function(e) {
 	e.preventDefault();
 	getUser($("#email").val());
 });
+
+
+
+$("#button_message").click(function(e) {
+	e.preventDefault();
+	sendMensaje();
+	//getUser($("#email").val());
+});
+
+
+function sendMensaje() {
+	
+	$(subjec).show();
+	  $(cont).show();
+	 $(button_send_msg).show();
+	  $(subject).show();
+	  $(mensaje).show();
+}
+
+
+
+
+
 
 function getUser(email) {
 	var url = API_BASE_URL + "/users/" + email;
@@ -94,7 +124,8 @@ function getUser(email) {
 				
 
 				});		
-					
+				 $(button_message).show();
+			
 					
 					
 //					

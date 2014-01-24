@@ -30,7 +30,11 @@
 
 <!-- Your custom styles (blank file) -->
 <link rel="stylesheet" href="css/mystyles.css">
+
+<!--  <a href="http://localhost/virtualtrade/index.html"> <img src="img/logo-small.png" alt="logo"
+						title="logo" class="logo">  -->
 </head>
+	
 
 <body>
 
@@ -42,11 +46,11 @@
 //////////////MAIN HEADER///////////// 
 ////////////////////////////////////-->
 	<header class="main">
+
 		<div class="container">
 			<div class="row">
 				<div class="span2">
-					<a href="http://localhost/virtualtrade/index.html"> <img src="img/logo-small.png" alt="logo"
-						title="logo" class="logo">
+					
 					</a>
 				</div>
 				<div class="span8">
@@ -55,7 +59,9 @@
 					<nav>
 						<ul class="nav nav-pills flexnav" id="flexnav"
 							data-breakpoint="800">
-							<li class="active"><a href="index.html">Home</a>
+						<!-- 	<li class="active">Virtual Trade</a> -->
+							<li class="active"><a href="http://localhost/virtualtrade/index.html">Virtual Trade</a>
+							
 								<ul>
 									<li class="active"><a href="index.html">Slider</a>
 										<ul>
@@ -214,12 +220,33 @@
 					type="text" class="form-control" id="email">
 			</div>
 			<button type="button" class="btn btn-info" id="button_get_user">Buscar usuario</button>
-				<button type="button" class="btn btn-info" id="button_get_user">Escribir un Mensaje</button>
+				<button type="button" class="btn btn-info" id="button_message">Escribir un Mensaje</button>
 				<div id="content" class="clearfix">
 				
 				
-		<section id="left">
+			
+			
+	
 		
+				
+				
+		<section id="left">
+			<div>
+			<div class="bs-callout bs-callout-info">
+				<div class="input-group input-group-sm">
+					<span id="subjec" class="input-group-addon">subject</span> <input type="text"
+						class="form-control" id="subject">
+				</div>
+				<div class="input-group input-group-sm">
+					<span id="cont" class="input-group-addon">content</span>
+					<textarea class="form-control" rows="3" id="mensaje"></textarea>
+				</div>
+				<button type="button" class="btn btn-info" id="button_send_msg">Enviar</button>
+				<div class="container">
+					<span id="post_result"></span>
+				</div>
+			</div>
+		</div>
 			<div id="userStats" class="clearfix">
 				
 				<div class="pic">
@@ -238,10 +265,10 @@
 		</div>
 	</div>
 				
-				
 		</div>
 	</div>
-
+	
+			
 
 
 

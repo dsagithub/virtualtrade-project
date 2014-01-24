@@ -1,41 +1,42 @@
-<!DOCTYPE HTML>
-<html>
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Koupon - Index</title>
-<!-- meta info -->
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta name="keywords" content="Koupon HTML5 Template" />
-<meta name="description"
-	content="Koupon - Premiun HTML5 Template for Coupons Website">
-<meta name="author" content="Tsoy">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google fonts -->
-<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700'
-	rel='stylesheet' type='text/css'>
-<!-- Bootstrap styles -->
-<link rel="stylesheet" href="css/boostrap.css">
-<link rel="stylesheet" href="css/boostrap_responsive.css">
-<!-- Font Awesome styles (icons) -->
-<link rel="stylesheet" href="css/font_awesome.css">
-<!-- Main Template styles -->
-<link rel="stylesheet" href="css/styles.css">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-<!-- IE 8 Fallback -->
-<!--[if lt IE 9]>
-	<link rel="stylesheet" type="text/css" href="css/ie.css" />
+<title>Registrarse</title>
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script
+        src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+</html>
+
+<link rel="stylesheet" type="text/css" href="css/login.css">
+
+<!-- Latest compiled and minified CSS -->
+   <!-- Google fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/boostrap.css">
+    <link rel="stylesheet" href="css/boostrap_responsive.css">
+    <!-- Font Awesome styles (icons) -->
+    <link rel="stylesheet" href="css/font_awesome.css">
+    <!-- Main Template styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- IE 8 Fallback -->
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" type="text/css" href="css/ie.css" />
 <![endif]-->
 
-<!-- Your custom styles (blank file) -->
-<link rel="stylesheet" href="css/mystyles.css">
+    <!-- Your custom styles (blank file) -->
+    <link rel="stylesheet" href="css/mystyles.css">
 </head>
-
-<body>
-
-
-
 
 	<!-- //////////////////////////////////
 //////////////MAIN HEADER///////////// 
@@ -90,7 +91,7 @@
 
 							<li><a href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
 							<li><a
-								href="http://localhost/virtualtrade/nuevoanuncio.html">AÃ±adir
+								href="http://localhost/virtualtrade/nuevoanuncio.html">Añadir
 									nuevo anuncio</a></li>
 
 							<li><a href="http://localhost/virtualtrade/users/users.html">Buscar
@@ -104,14 +105,23 @@
 				<div class="span2">
 					<!-- LOGIN REGISTER LINKS -->
 					<ul class="login-register">
-						<li><a class="popup-text"
+						<li><a id="singup" class="popup-text"
 							href="http://localhost/virtualtrade/login.html"
 							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign
 								in</a></li>
-						<li><a class="popup-text"
+						<li><a id="nombreusuarioaqui" class="popup-text"
+							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Perfil</a></li>
+
+						<li><a id="signin" class="popup-text"
 							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
 							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign
 								up</a></li>
+
+
+						<li><a id="logout" class="popup-text"
+							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
+							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Log Out
+								</a></li>
 					</ul>
 				</div>
 			</div>
@@ -193,72 +203,48 @@
 	</div>
 	<!-- END LOGIN REGISTER LINKS CONTENT -->
 
+        
+        <div class="container">
+                <div class="account-wall">
 
 
-	<!-- TOP AREA -->
-	<div class="top-area"></div>
-	<!-- END TOP AREA -->
+                        <form class="form-signin" action="/virtualtrade-auth/RegisterServlet"
+                                method="post">
+                                <h2 class="register-heading">Registrarse</h2>
+                                <input type="text" class="form-control" name="name"
+                                        placeholder="Nombre" required autofocus> <input type="text"
+                                        class="form-control" name="email" placeholder="Email" required
+                                        > <input type="password" class="form-control"
+                                        name="userpass" placeholder="Password" required> <input
+                                        type="text" class="form-control" name="phone"
+                                        placeholder="Número de Teléfono" required > <input
+                                        type="text" class="form-control" name="ciudad" placeholder="Ciudad"
+                                        required > <input type="text" class="form-control"
+                                        name="calle" placeholder="Calle" required > <input
+                                        type="text" class="form-control" name="numero" placeholder="Número"
+                                        required > <input type="text" class="form-control"
+                                        name="piso" placeholder="Piso" required > <input
+                                        type="text" class="form-control" name="puerta" placeholder="Puerta"
+                                        required >
+                <!--                         <input type="text" class="form-control"
+                                                name="foto" placeholder="Foto" required autofocus> 
+                         -->                
+                                         
+                                        
+                                         <input id="fileupload" type="file" name="foto" data-url="upload" multiple>
+                                        
+                                         
+                                 
+                                        </label>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+                        </form>
+                </div>
+        </div>
+        <!-- /container -->
 
 
-	<div class="gap"></div>
-
-	<!-- //////////////////////////////////
-//////////////END MAIN HEADER////////// 
-////////////////////////////////////-->
-
-
-	<!-- //////////////////////////////////
-//////////////PAGE CONTENT///////////// 
-////////////////////////////////////-->
-
-
-
-
-	<div class="container">
-		<div class="row">
-
-			<ul class="nav nav-tabs nav-stacked nav-coupon-category">
-				<div class="input-group">
-
-					<span id="anuncio_result"></span>
-			</ul>
-		</div>
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-	<!-- //////////////////////////////////
-//////////////END PAGE CONTENT///////// 
-////////////////////////////////////-->
-
-
-
-
-	<!-- s queries -->
-	<script src="js/jquery.js"></script>
-	<script src="js/boostrap.min.js"></script>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="js/veranuncio.js"></script>
-	<script src="jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.tpl.js"></script>
-	<script type="text/javascript" src="js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/anuncio.js"></script>
-	<script type="text/javascript" src="js/jquery.chained.js"></script>
-
-	<!-- Custom scripts -->
-	<script src="js/custom.js"></script>
-</body>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
 
 </html>
-
-
-

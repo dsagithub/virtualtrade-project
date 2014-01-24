@@ -8,6 +8,14 @@ body { font-size: 62.5%; font-family: Helvetica, Arial, sans-serif; line-height:
 
 img { border: 0;}
 
+img {
+  width: 100%;
+  height: 100%;
+  max-width: 150;
+  max-height: 150;
+}
+
+
 a { color: #3c86b7; text-decoration: none; }
 a:hover { text-decoration: underline; }
 

@@ -188,6 +188,12 @@ public class AnuncioResource {
 							uriInfo, rs.getString("anuncioid"), rel));
 
 					List<Link> links = new ArrayList<Link>();
+					
+					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									+ Integer.parseInt(length))), length, rel));
+					
 					links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
 							offset, length, rel));
 
@@ -199,10 +205,7 @@ public class AnuncioResource {
 								rel));
 					}
 
-					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
-							uriInfo,
-							(Integer.toString(Integer.parseInt(offset)
-									+ Integer.parseInt(length))), length, rel));
+					
 
 					anuncios.setLinks(links);
 

@@ -17,7 +17,18 @@ insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atr
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Mueble salón','FANTÁSTICO MUEBLE DE SALÓN MODULAR EN COLOR BLANCO NEGRO BRILLO CON EFECTO LACADO',true,110,'Hogar','Muebles','Muebles de salon','Otros');
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Vendo libro  El Lazarrillo de Tormes',' Ideal para estudiantes al ser una lectura obligatoria.',true,10,'Entretenimiento','Libros y Comics','Libros','Otros');
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
-
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo2','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo3','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo4','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo5','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo6','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo7','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo8','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo9','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo10','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo11','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo12','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo13','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
 
 
 
@@ -38,7 +49,19 @@ insert into imagen (anuncioid,urlimagen) values (8,'https://encrypted-tbn1.gstat
 insert into imagen (anuncioid,urlimagen) values (9,'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQgAq9xZiYzn0M30cmwiBesEZmwyGgxMS9meOquEUBjxB_zmk4b');
 insert into imagen (anuncioid,urlimagen) values (10,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmwXa87wRZn32E_CBDMK58FClat_yFmN-SxTnY5NgHq27yWGxv');
 insert into imagen (anuncioid,urlimagen) values (11,'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTj7vthgYD_giudDxZQfJ2wyN5KivD5yX4wUyHGOCEFJ4dxX40Y');
-insert into imagen (anuncioid,urlimagen) values  (12,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values (12,'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTj7vthgYD_giudDxZQfJ2wyN5KivD5yX4wUyHGOCEFJ4dxX40Y');
+insert into imagen (anuncioid,urlimagen) values  (13,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (14,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (15,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (16,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (17,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (18,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (19,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (20,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (21,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (22,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (23,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
+insert into imagen (anuncioid,urlimagen) values  (24,'http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/AwwAAOxyTkJSST85/$T2eC16R,!y8E9s2fjK+7BSST84jtOw~~60_57.JPG');
 
 
 insert into mensaje (emailorigen,emaildestino,anuncioid,subject,content) values ('arnaumail','roxanamail',8,'Interes en la batamanta','La batamanta me interesa para estas navidades me gustaria comprarla por 15 euros si estas de acuerdo responde');

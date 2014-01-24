@@ -4,7 +4,7 @@ var prev;
 var next;
 
 $(document).ready(function() {
-	getAnuncios();
+	getAnuncios_Atributos();
 	getMensajes();
 	$("#atributo_2").chained("#atributo_1");
 	$("#atributo_3").chained("#atributo_2");
@@ -19,12 +19,17 @@ $(document).ready(function() {
 
 $("#button_prev").click(function(e) {
 	e.preventDefault();
-	getAnunciosPrev(prev);
+	getAnunciosPrev();
 });
 
 $("#button_next").click(function(e) {
 	e.preventDefault();
-	getAnunciosNext(next);
+	getAnunciosNext();
+});
+
+$("#button_get_anuncios_atributos").click(function(e) {
+	e.preventDefault();
+	getAnuncios_Atributos();
 });
 
 function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
@@ -40,487 +45,655 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 				+ atributo1 + "&atributo2=" + atributo2 + "&atributo3="
 				+ atributo3 + "&marca=" + atributo4 + "";
 
-		$
-				.ajax(
-						{
-							url : url,
-							type : 'GET',
-							crossDomain : true,
-							dataType : 'json',
-							beforeSend : function(request) {
-								request.withCredentials = true;
-								request.setRequestHeader("Authorization",
-										"Basic "
-												+ btoa('arnaumail' + ':'
-														+ 'arnau'));
-							},
+		$.ajax(
+				{
+					url : url,
+					type : 'GET',
+					crossDomain : true,
+					dataType : 'json',
+					beforeSend : function(request) {
+						request.withCredentials = true;
+						request.setRequestHeader("Authorization", "Basic "
+								+ btoa('arnaumail' + ':' + 'arnau'));
+					},
 
-						})
-				.done(
-						function(data, status, jqxhr) {
-							var response = JSON.parse(jqxhr.responseText);
-							var anuncios = response.anuncios;
+				}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			var links = response.links;
 
-							$("#anuncios_result").text("");
+			next = links[0].uri;
+			prev = links[1].uri;
 
-							$
-									.each(
-											anuncios,
-											function(i, v) {
-												var anuncio = v;
-												var $grouplist = $('#anuncios_result');
-												$(
-														'<li>'
-																+ anuncio.anuncioid
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.email
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.subject
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.content
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.estado
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.precio
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.creation_timestamp
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo1
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo2
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo3
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.marca
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li><img src="'
-																+ anuncio.imagenes[0].urlimagen
-																+ '"border="1" width="160" height="90"></li>')
-														.appendTo($grouplist);
-												$("<HR>").appendTo($grouplist);
-											});
+			console.log("El proximo next es:" + next);
 
-						}).fail(function() {
-					$("#anuncios_result").text("No hay anuncios");
-				});
+			foto_anuncio1.src = null;
+			$("#title1").text(null);
+			$("#content1").text(null);
+			$("#precio1").text(null);
+
+			foto_anuncio2.src = null;
+			$("#title2").text(null);
+			$("#content2").text(null);
+			$("#precio2").text(null);
+
+			foto_anuncio3.src = null;
+			$("#title3").text(null);
+			$("#content3").text(null);
+			$("#precio3").text(null);
+
+			foto_anuncio4.src = null;
+			$("#title4").text(null);
+			$("#content4").text(null);
+			$("#precio4").text(null);
+
+			foto_anuncio5.src = null;
+			$("#title5").text(null);
+			$("#content5").text(null);
+			$("#precio5").text(null);
+
+			foto_anuncio6.src = null;
+			$("#title6").text(null);
+			$("#content6").text(null);
+			$("#precio6").text(null);
+
+			foto_anuncio7.src = null;
+			$("#title7").text(null);
+			$("#content7").text(null);
+			$("#precio7").text(null);
+
+			foto_anuncio8.src = null;
+			$("#title8").text(null);
+			$("#content8").text(null);
+			$("#precio8").text(null);
+
+			foto_anuncio9.src = null;
+			$("#title9").text(null);
+			$("#content9").text(null);
+			$("#precio9").text(null);
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
+
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
 
 	}
 
 	else if (atributo3 != "all") {
 
 		var url = API_BASE_URL
-				+ "/anuncios/atributos?offset=0&length=10&atributo1="
+				+ "/anuncios/atributos?offset=0&length=9&atributo1="
 				+ atributo1 + "&atributo2=" + atributo2 + "&atributo3="
 				+ atributo3;
 
-		$
-				.ajax(
-						{
-							url : url,
-							type : 'GET',
-							crossDomain : true,
-							dataType : 'json',
-							beforeSend : function(request) {
-								request.withCredentials = true;
-								request.setRequestHeader("Authorization",
-										"Basic "
-												+ btoa('arnaumail' + ':'
-														+ 'arnau'));
-							},
-						})
-				.done(
-						function(data, status, jqxhr) {
-							var response = JSON.parse(jqxhr.responseText);
-							var anuncios = response.anuncios;
+		$.ajax(
+				{
+					url : url,
+					type : 'GET',
+					crossDomain : true,
+					dataType : 'json',
+					beforeSend : function(request) {
+						request.withCredentials = true;
+						request.setRequestHeader("Authorization", "Basic "
+								+ btoa('arnaumail' + ':' + 'arnau'));
+					},
+				}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			var links = response.links;
 
-							$("#anuncios_result").text("");
+			next = links[0].uri;
+			prev = links[1].uri;
 
-							$
-									.each(
-											anuncios,
-											function(i, v) {
-												var anuncio = v;
-												var $grouplist = $('#anuncios_result');
-												$(
-														'<li>'
-																+ anuncio.anuncioid
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.email
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.subject
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.content
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.estado
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.precio
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.creation_timestamp
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo1
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo2
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo3
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.marca
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li><img src="'
-																+ anuncio.imagenes[0].urlimagen
-																+ '"border="1" width="160" height="90"></li>')
-														.appendTo($grouplist);
-												$("<HR>").appendTo($grouplist);
-											});
+			console.log("El proximo next es:" + next);
 
-						}).fail(function() {
-					$("#anuncios_result").text("No hay anuncios");
-				});
+			foto_anuncio1.src = null;
+			$("#title1").text(null);
+			$("#content1").text(null);
+			$("#precio1").text(null);
+
+			foto_anuncio2.src = null;
+			$("#title2").text(null);
+			$("#content2").text(null);
+			$("#precio2").text(null);
+
+			foto_anuncio3.src = null;
+			$("#title3").text(null);
+			$("#content3").text(null);
+			$("#precio3").text(null);
+
+			foto_anuncio4.src = null;
+			$("#title4").text(null);
+			$("#content4").text(null);
+			$("#precio4").text(null);
+
+			foto_anuncio5.src = null;
+			$("#title5").text(null);
+			$("#content5").text(null);
+			$("#precio5").text(null);
+
+			foto_anuncio6.src = null;
+			$("#title6").text(null);
+			$("#content6").text(null);
+			$("#precio6").text(null);
+
+			foto_anuncio7.src = null;
+			$("#title7").text(null);
+			$("#content7").text(null);
+			$("#precio7").text(null);
+
+			foto_anuncio8.src = null;
+			$("#title8").text(null);
+			$("#content8").text(null);
+			$("#precio8").text(null);
+
+			foto_anuncio9.src = null;
+			$("#title9").text(null);
+			$("#content9").text(null);
+			$("#precio9").text(null);
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
+
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
 
 	}
 
 	else if (atributo2 != "all") {
 
 		var url = API_BASE_URL
-				+ "/anuncios/atributos?offset=0&length=10&atributo1="
+				+ "/anuncios/atributos?offset=0&length=9&atributo1="
 				+ atributo1 + "&atributo2=" + atributo2;
 
-		$
-				.ajax(
-						{
-							url : url,
-							type : 'GET',
-							crossDomain : true,
-							dataType : 'json',
-							beforeSend : function(request) {
-								request.withCredentials = true;
-								request.setRequestHeader("Authorization",
-										"Basic "
-												+ btoa('arnaumail' + ':'
-														+ 'arnau'));
-							},
+		$.ajax(
+				{
+					url : url,
+					type : 'GET',
+					crossDomain : true,
+					dataType : 'json',
+					beforeSend : function(request) {
+						request.withCredentials = true;
+						request.setRequestHeader("Authorization", "Basic "
+								+ btoa('arnaumail' + ':' + 'arnau'));
+					},
 
-						})
-				.done(
-						function(data, status, jqxhr) {
-							var response = JSON.parse(jqxhr.responseText);
-							var anuncios = response.anuncios;
+				}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			var links = response.links;
 
-							$("#anuncios_result").text("");
+			next = links[0].uri;
+			prev = links[1].uri;
 
-							$
-									.each(
-											anuncios,
-											function(i, v) {
-												var anuncio = v;
-												var $grouplist = $('#anuncios_result');
-												$(
-														'<li>'
-																+ anuncio.anuncioid
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.email
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.subject
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.content
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.estado
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.precio
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.creation_timestamp
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo1
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo2
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo3
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.marca
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li><img src="'
-																+ anuncio.imagenes[0].urlimagen
-																+ '"border="1" width="160" height="90"></li>')
-														.appendTo($grouplist);
-												$("<HR>").appendTo($grouplist);
-											});
+			console.log("El proximo next es:" + next);
 
-						}).fail(function() {
-					$("#anuncios_result").text("No hay anuncios");
-				});
+			foto_anuncio1.src = null;
+			$("#title1").text(null);
+			$("#content1").text(null);
+			$("#precio1").text(null);
+
+			foto_anuncio2.src = null;
+			$("#title2").text(null);
+			$("#content2").text(null);
+			$("#precio2").text(null);
+
+			foto_anuncio3.src = null;
+			$("#title3").text(null);
+			$("#content3").text(null);
+			$("#precio3").text(null);
+
+			foto_anuncio4.src = null;
+			$("#title4").text(null);
+			$("#content4").text(null);
+			$("#precio4").text(null);
+
+			foto_anuncio5.src = null;
+			$("#title5").text(null);
+			$("#content5").text(null);
+			$("#precio5").text(null);
+
+			foto_anuncio6.src = null;
+			$("#title6").text(null);
+			$("#content6").text(null);
+			$("#precio6").text(null);
+
+			foto_anuncio7.src = null;
+			$("#title7").text(null);
+			$("#content7").text(null);
+			$("#precio7").text(null);
+
+			foto_anuncio8.src = null;
+			$("#title8").text(null);
+			$("#content8").text(null);
+			$("#precio8").text(null);
+
+			foto_anuncio9.src = null;
+			$("#title9").text(null);
+			$("#content9").text(null);
+			$("#precio9").text(null);
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
+
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
 
 	}
 
 	else if (atributo1 != "all") {
 
 		var url = API_BASE_URL
-				+ "/anuncios/atributos?offset=0&length=10&atributo1="
+				+ "/anuncios/atributos?offset=0&length=9&atributo1="
 				+ atributo1;
 
-		$
-				.ajax(
-						{
-							url : url,
-							type : 'GET',
-							crossDomain : true,
-							dataType : 'json',
-							beforeSend : function(request) {
-								request.withCredentials = true;
-								request.setRequestHeader("Authorization",
-										"Basic "
-												+ btoa('arnaumail' + ':'
-														+ 'arnau'));
-							},
+		$.ajax(
+				{
+					url : url,
+					type : 'GET',
+					crossDomain : true,
+					dataType : 'json',
+					beforeSend : function(request) {
+						request.withCredentials = true;
+						request.setRequestHeader("Authorization", "Basic "
+								+ btoa('arnaumail' + ':' + 'arnau'));
+					},
 
-						})
-				.done(
-						function(data, status, jqxhr) {
-							var response = JSON.parse(jqxhr.responseText);
-							var anuncios = response.anuncios;
+				}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			var links = response.links;
 
-							$("#anuncios_result").text("");
+			next = links[0].uri;
+			prev = links[1].uri;
 
-							$
-									.each(
-											anuncios,
-											function(i, v) {
-												var anuncio = v;
-												var $grouplist = $('#anuncios_result');
-												$(
-														'<li>'
-																+ anuncio.anuncioid
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.email
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.subject
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.content
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.estado
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.precio
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.creation_timestamp
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo1
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo2
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>'
-																+ anuncio.atributo3
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li>' + anuncio.marca
-																+ '</li>')
-														.appendTo($grouplist);
-												$(
-														'<li><img src="'
-																+ anuncio.imagenes[0].urlimagen
-																+ '"border="1" width="160" height="90"></li>')
-														.appendTo($grouplist);
-												$("<HR>").appendTo($grouplist);
-											});
+			console.log("El proximo next es:" + next);
 
-						}).fail(function() {
-					$("#anuncios_result").text("No hay anuncios");
-				});
+			foto_anuncio1.src = null;
+			$("#title1").text(null);
+			$("#content1").text(null);
+			$("#precio1").text(null);
+
+			foto_anuncio2.src = null;
+			$("#title2").text(null);
+			$("#content2").text(null);
+			$("#precio2").text(null);
+
+			foto_anuncio3.src = null;
+			$("#title3").text(null);
+			$("#content3").text(null);
+			$("#precio3").text(null);
+
+			foto_anuncio4.src = null;
+			$("#title4").text(null);
+			$("#content4").text(null);
+			$("#precio4").text(null);
+
+			foto_anuncio5.src = null;
+			$("#title5").text(null);
+			$("#content5").text(null);
+			$("#precio5").text(null);
+
+			foto_anuncio6.src = null;
+			$("#title6").text(null);
+			$("#content6").text(null);
+			$("#precio6").text(null);
+
+			foto_anuncio7.src = null;
+			$("#title7").text(null);
+			$("#content7").text(null);
+			$("#precio7").text(null);
+
+			foto_anuncio8.src = null;
+			$("#title8").text(null);
+			$("#content8").text(null);
+			$("#precio8").text(null);
+
+			foto_anuncio9.src = null;
+			$("#title9").text(null);
+			$("#content9").text(null);
+			$("#precio9").text(null);
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
+
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
 
 	}
 
 	else if (atributo1 == "all") {
 
-		getAnuncios();
+		var url = API_BASE_URL + "/anuncios?offset=0&length=9";
+
+		$.ajax({
+			url : url,
+			type : 'GET',
+			crossDomain : true,
+			dataType : 'json'
+
+		}).done(function(data, status, jqxhr) {
+			var response = JSON.parse(jqxhr.responseText);
+			var anuncios = response.anuncios;
+			var links = response.links;
+
+			next = links[0].uri;
+			prev = links[1].uri;
+
+			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+			$("#title1").text(anuncios[0].subject);
+			$("#content1").text(anuncios[0].content);
+			$("#precio1").text(anuncios[0].precio + " \u20ac");
+
+			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+			$("#title2").text(anuncios[1].subject);
+			$("#content2").text(anuncios[1].content);
+			$("#precio2").text(anuncios[1].precio + " \u20ac");
+
+			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+			$("#title3").text(anuncios[2].subject);
+			$("#content3").text(anuncios[2].content);
+			$("#precio3").text(anuncios[2].precio + " \u20ac");
+
+			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+			$("#title4").text(anuncios[3].subject);
+			$("#content4").text(anuncios[3].content);
+			$("#precio4").text(anuncios[3].precio + " \u20ac");
+
+			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+			$("#title5").text(anuncios[4].subject);
+			$("#content5").text(anuncios[4].content);
+			$("#precio5").text(anuncios[4].precio + " \u20ac");
+
+			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+			$("#title6").text(anuncios[5].subject);
+			$("#content6").text(anuncios[5].content);
+			$("#precio6").text(anuncios[5].precio + " \u20ac");
+
+			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+			$("#title7").text(anuncios[6].subject);
+			$("#content7").text(anuncios[6].content);
+			$("#precio7").text(anuncios[6].precio + " \u20ac");
+
+			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+			$("#title8").text(anuncios[7].subject);
+			$("#content8").text(anuncios[7].content);
+			$("#precio8").text(anuncios[7].precio + " \u20ac");
+
+			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+			$("#title9").text(anuncios[8].subject);
+			$("#content9").text(anuncios[8].content);
+			$("#precio9").text(anuncios[8].precio + " \u20ac");
+
+		}).fail(function() {
+			$("#anuncios_result").text("No hay anuncios");
+		});
 
 	}
 
 }
 
-function getAnuncios() {
+// function getAnuncios() {
+//
+// var url = API_BASE_URL + "/anuncios?offset=0&length=9";
+//
+// $.ajax({
+// url : url,
+// type : 'GET',
+// crossDomain : true,
+// dataType : 'json'
+//
+// }).done(function(data, status, jqxhr) {
+// var response = JSON.parse(jqxhr.responseText);
+// var anuncios = response.anuncios;
+// var links = response.links;
+//
+// next = links[0].uri;
+// prev = links[1].uri;
+//
+// console.log("Pag principal, next:"+next);
+//
+// foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+// $("#title1").text(anuncios[0].subject);
+// $("#content1").text(anuncios[0].content);
+// $("#precio1").text(anuncios[0].precio + " \u20ac");
+//
+// foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
+// $("#title2").text(anuncios[1].subject);
+// $("#content2").text(anuncios[1].content);
+// $("#precio2").text(anuncios[1].precio + " \u20ac");
+//
+// foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
+// $("#title3").text(anuncios[2].subject);
+// $("#content3").text(anuncios[2].content);
+// $("#precio3").text(anuncios[2].precio + " \u20ac");
+//
+// foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
+// $("#title4").text(anuncios[3].subject);
+// $("#content4").text(anuncios[3].content);
+// $("#precio4").text(anuncios[3].precio + " \u20ac");
+//
+// foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
+// $("#title5").text(anuncios[4].subject);
+// $("#content5").text(anuncios[4].content);
+// $("#precio5").text(anuncios[4].precio + " \u20ac");
+//
+// foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
+// $("#title6").text(anuncios[5].subject);
+// $("#content6").text(anuncios[5].content);
+// $("#precio6").text(anuncios[5].precio + " \u20ac");
+//
+// foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
+// $("#title7").text(anuncios[6].subject);
+// $("#content7").text(anuncios[6].content);
+// $("#precio7").text(anuncios[6].precio + " \u20ac");
+//
+// foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
+// $("#title8").text(anuncios[7].subject);
+// $("#content8").text(anuncios[7].content);
+// $("#precio8").text(anuncios[7].precio + " \u20ac");
+//
+// foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
+// $("#title9").text(anuncios[8].subject);
+// $("#content9").text(anuncios[8].content);
+// $("#precio9").text(anuncios[8].precio + " \u20ac");
+//
+// }).fail(function() {
+// $("#anuncios_result").text("No hay anuncios");
+// });
+//
+// }
 
-	var url = API_BASE_URL + "/anuncios?offset=0&length=9";
+function getAnunciosNext() {
 
-	$.ajax({
-		url : url,
-		type : 'GET',
-		crossDomain : true,
-		dataType : 'json'
-
-	}).done(function(data, status, jqxhr) {
-		var response = JSON.parse(jqxhr.responseText);
-		var anuncios = response.anuncios;
-		var links = response.links;
-
-		next = links[0].uri;
-
-		console.log("Pag principal, next:"+next);
-
-		foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
-		$("#title1").text(anuncios[0].subject);
-		$("#content1").text(anuncios[0].content);
-		$("#precio1").text(anuncios[0].precio + " \u20ac");
-
-		foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
-		$("#title2").text(anuncios[1].subject);
-		$("#content2").text(anuncios[1].content);
-		$("#precio2").text(anuncios[1].precio + " \u20ac");
-
-		foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
-		$("#title3").text(anuncios[2].subject);
-		$("#content3").text(anuncios[2].content);
-		$("#precio3").text(anuncios[2].precio + " \u20ac");
-
-		foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
-		$("#title4").text(anuncios[3].subject);
-		$("#content4").text(anuncios[3].content);
-		$("#precio4").text(anuncios[3].precio + " \u20ac");
-
-		foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
-		$("#title5").text(anuncios[4].subject);
-		$("#content5").text(anuncios[4].content);
-		$("#precio5").text(anuncios[4].precio + " \u20ac");
-
-		foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
-		$("#title6").text(anuncios[5].subject);
-		$("#content6").text(anuncios[5].content);
-		$("#precio6").text(anuncios[5].precio + " \u20ac");
-
-		foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
-		$("#title7").text(anuncios[6].subject);
-		$("#content7").text(anuncios[6].content);
-		$("#precio7").text(anuncios[6].precio + " \u20ac");
-
-		foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
-		$("#title8").text(anuncios[7].subject);
-		$("#content8").text(anuncios[7].content);
-		$("#precio8").text(anuncios[7].precio + " \u20ac");
-
-		foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
-		$("#title9").text(anuncios[8].subject);
-		$("#content9").text(anuncios[8].content);
-		$("#precio9").text(anuncios[8].precio + " \u20ac");
-
-	}).fail(function() {
-		$("#anuncios_result").text("No hay anuncios");
-	});
-
-}
-
-function getAnunciosNext(next) {
+	console.log("prev:" + prev);
+	console.log("next:" + next);
 
 	var url = next;
 
-	$.ajax({
-		url : url,
-		type : 'GET',
-		crossDomain : true,
-		dataType : 'json'
+	$.ajax(
+			{
+				url : url,
+				type : 'GET',
+				crossDomain : true,
+				dataType : 'json',
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa('arnaumail' + ':' + 'arnau'));
+				},
 
 	}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
@@ -528,8 +701,9 @@ function getAnunciosNext(next) {
 		var links = response.links;
 
 		next = links[0].uri;
-		
-		console.log("El proximo next es:"+next);
+		prev = links[1].uri;
+
+		console.log("El proximo next es:" + next);
 
 		foto_anuncio1.src = null;
 		$("#title1").text(null);
@@ -627,15 +801,23 @@ function getAnunciosNext(next) {
 
 }
 
-function getAnunciosPrev(prev) {
+function getAnunciosPrev() {
 
 	var url = prev;
+	console.log("prev:" + prev);
+	console.log("next:" + next);
 
-	$.ajax({
-		url : url,
-		type : 'GET',
-		crossDomain : true,
-		dataType : 'json'
+	$.ajax(
+			{
+				url : url,
+				type : 'GET',
+				crossDomain : true,
+				dataType : 'json',
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa('arnaumail' + ':' + 'arnau'));
+				},
 
 	}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
@@ -643,6 +825,9 @@ function getAnunciosPrev(prev) {
 		var links = response.links;
 
 		next = links[0].uri;
+		prev = links[1].uri;
+
+		console.log("El proximo prev es:" + next);
 
 		foto_anuncio1.src = null;
 		$("#title1").text(null);

@@ -1,5 +1,4 @@
 drop database if exists anunciosdb;
-charset utf8;
 create database anunciosdb;
 
 use anunciosdb;

@@ -1,6 +1,8 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android;
 
 import java.io.IOException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -8,7 +10,9 @@ import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.AnuncioCollection;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +24,9 @@ public class VirtualtradeMainActivity extends Activity {
 
 	String serverAddress;
 	String serverPort;
+
+	String email;
+	String password;
 
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +48,27 @@ public class VirtualtradeMainActivity extends Activity {
 
 		setContentView(R.layout.virtualtrade_layout);
 
+		SharedPreferences prefs = getSharedPreferences("virtualtrade-profile",
+				Context.MODE_PRIVATE);
+
+		email = prefs.getString("email", null);
+		password = prefs.getString("password", null);
+
+		Authenticator.setDefault(new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(email, password.toCharArray());
+			}
+		});
+		Log.d(TAG, "authenticated with " + email + ":" + password);
 	}
 
 	public void verAnuncios(View view) {
 		Intent i = new Intent(this, AnuncioSelection.class);
+		startActivity(i);
+	}
+
+	public void verMensajes(View view) {
+		Intent i = new Intent(this, VerMensajes.class);
 		startActivity(i);
 	}
 

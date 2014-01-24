@@ -88,6 +88,7 @@ public class MensajeResource {
 		try {
 			email = security.getUserPrincipal().getName();
 			stmt = conn.createStatement();
+			
 			sql = "SELECT * from mensaje where (emailorigen ='" + email
 					+ "' OR emaildestino='" + email + "') AND anuncioid="
 					+ anuncioid + " ORDER by creation_timestamp LIMIT "
@@ -475,8 +476,7 @@ public class MensajeResource {
 
 	@GET
 	@Produces(MediaType.VIRTUAL_API_MENSAJE_COLLECTION)
-	public MensajeCollection getMensajesConversacion(
-			@QueryParam("offset") String offset,
+	public MensajeCollection getMensajes(@QueryParam("offset") String offset,
 			@QueryParam("length") String length) {
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(

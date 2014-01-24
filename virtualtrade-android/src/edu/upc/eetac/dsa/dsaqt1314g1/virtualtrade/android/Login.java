@@ -104,7 +104,8 @@ public class Login extends Activity {
 			URL url = null;
 			try {
 				url = new URL("http://" + serverAddress + ":" + serverPort
-						+ "/virtualtrade-auth/LoginServlet?email="+email+"&password="+password);
+						+ "/virtualtrade-auth/LoginServlet?email=" + email
+						+ "&password=" + password);
 
 			} catch (MalformedURLException e) {
 				Log.d(TAG, e.getMessage(), e);
@@ -112,22 +113,12 @@ public class Login extends Activity {
 			}
 			try {
 
-//				ArrayList<NameValuePair> uservalues = new ArrayList<NameValuePair>(
-//						2);
-//				uservalues.add(new BasicNameValuePair("email", email));
-//				uservalues.add(new BasicNameValuePair("userpass", password));
-
 				urlConnection = (HttpURLConnection) url.openConnection();
 
 				urlConnection.setDoInput(true);
-				//urlConnection.setDoOutput(true);
-				urlConnection.connect();
-//				PrintWriter writer = new PrintWriter(
-//						urlConnection.getOutputStream());
-//				writer.println(uservalues.toString());
-//				writer.close();
 
-				// leemos la respuesta
+				urlConnection.connect();
+
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(urlConnection.getInputStream()));
 
@@ -157,7 +148,7 @@ public class Login extends Activity {
 
 				SharedPreferences.Editor editor = prefs.edit();
 				editor.clear();
-				editor.putString("username", email);
+				editor.putString("email", email);
 				editor.putString("password", password);
 				boolean done = editor.commit();
 				if (done)

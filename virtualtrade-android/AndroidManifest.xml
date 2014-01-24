@@ -21,6 +21,7 @@
         <activity android:name="AnuncioSelection" />
         <activity android:name="VerAnuncios" />
         <activity android:name="AnuncioDetail" />
+        <activity android:name="VerMensajes" />
     </application>
 
     <uses-sdk

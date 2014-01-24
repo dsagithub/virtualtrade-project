@@ -1,5 +1,8 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
+var prev;
+var next;
+
 $(document).ready(function() {
 	getAnuncios();
 	getMensajes();
@@ -247,10 +250,16 @@ function getAnuncios() {
 	}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
 		var anuncios = response.anuncios;
+		var links = response.links;
+		
+		prev= links[1].uri;
+		next= links[2].uri;
+		
+		console.log(prev);
+		console.log(next);
 		
 		$("#anuncios_result").text("");
-		var size = "'width='800' height='600'";
-
+	
 
 			foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
 			$("#title1").text(anuncios[0].subject);
@@ -296,6 +305,8 @@ function getAnuncios() {
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			
+			
 			
 
 

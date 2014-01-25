@@ -64,8 +64,10 @@ public class VirtualRootAPIResource {
 				"Mensaje collection"));
 
 		root.add(VirtualAPILinkBuilder.buildTemplatedURIMensajesConversacion(
-				uriInfo, "Mensajes conversación"));
+				uriInfo, "Mensajes conversación", false));
 
+		root.add(VirtualAPILinkBuilder.buildTemplatedURIMensajesConversacion(
+				uriInfo, "Mensajes conversación", true));
 		root.add(VirtualAPILinkBuilder
 				.buildURIUsers(uriInfo, "User collection"));
 

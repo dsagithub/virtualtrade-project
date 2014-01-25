@@ -1,7 +1,9 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android;
 
 import java.io.IOException;
+import java.net.Authenticator;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -59,7 +61,13 @@ public class VerMensajes extends ListActivity {
 			finish();
 		}
 
-		setContentView(R.layout.anuncios_layout);
+		Authenticator.setDefault(new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(email, password.toCharArray());
+			}
+		});
+
+		setContentView(R.layout.mensajes_layout);
 		mensajeList = new ArrayList<Mensaje>();
 		adapter = new MensajeAdapter(this, mensajeList);
 		setListAdapter(adapter);
@@ -68,8 +76,7 @@ public class VerMensajes extends ListActivity {
 		URL url = null;
 		try {
 			url = new URL("http://" + serverAddress + ":" + serverPort
-					+ "/virtualtrade-api/mensajes/'" + email
-					+ "'?offset=0&length=20");
+					+ "/virtualtrade-api/mensajes/recibidos?offset=0&length=20");
 		} catch (MalformedURLException e) {
 			Log.d(TAG, e.getMessage(), e);
 			finish();
@@ -125,7 +132,7 @@ public class VerMensajes extends ListActivity {
 
 		Log.d(TAG, url.toString());
 
-		Intent intent = new Intent(this, AnuncioDetail.class);
+		Intent intent = new Intent(this, MensajeDetail.class);
 		intent.putExtra("url", url.toString());
 		startActivity(intent);
 

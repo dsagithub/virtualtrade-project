@@ -169,9 +169,58 @@ public class VirtualAPILinkBuilder {
 
 		URI uriMensajes = null;
 
+		if (anuncioid == null) {
+			uriMensajes = uriInfo.getBaseUriBuilder()
+					.path(MensajeResource.class, "getMensajesConversacion")
+					.queryParam("offset", offset).queryParam("length", length)
+					.build();
+
+		}
+
+		else {
+			uriMensajes = uriInfo.getBaseUriBuilder()
+					.path(MensajeResource.class, "getMensajesConversacion")
+					.queryParam("anuncioid", anuncioid)
+					.queryParam("offset", offset).queryParam("length", length)
+					.build();
+
+		}
+
+		Link self = new Link();
+		self.setUri(uriMensajes.toString());
+		self.setRel("Mensajes");
+		self.setTitle("Mensajes collection");
+		self.setType(MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
+
+		return self;
+	}
+
+	public static final Link buildURIMensajesEnviados(UriInfo uriInfo,
+			String offset, String length, String rel) {
+
+		URI uriMensajes = null;
+
 		uriMensajes = uriInfo.getBaseUriBuilder()
-				.path(MensajeResource.class, "getMensajesConversacion")
-				.queryParam("anuncioid", anuncioid)
+				.path(MensajeResource.class, "getMensajesEnvidaos")
+				.queryParam("offset", offset).queryParam("length", length)
+				.build();
+
+		Link self = new Link();
+		self.setUri(uriMensajes.toString());
+		self.setRel("Mensajes");
+		self.setTitle("Mensajes collection");
+		self.setType(MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
+
+		return self;
+	}
+
+	public static final Link buildURIMensajesRecibidos(UriInfo uriInfo,
+			String offset, String length, String rel) {
+
+		URI uriMensajes = null;
+
+		uriMensajes = uriInfo.getBaseUriBuilder()
+				.path(MensajeResource.class, "getMensajesrecibidos")
 				.queryParam("offset", offset).queryParam("length", length)
 				.build();
 
@@ -544,7 +593,7 @@ public class VirtualAPILinkBuilder {
 
 	public final static Link buildURIMensajeId(UriInfo uriInfo,
 			String mensajeid, String rel) {
-		URI libroURI = uriInfo.getBaseUriBuilder().path(AnuncioResource.class)
+		URI libroURI = uriInfo.getBaseUriBuilder().path(MensajeResource.class)
 				.path(MensajeResource.class, "getMensaje").build(mensajeid);
 		Link link = new Link();
 		link.setUri(libroURI.toString());
@@ -556,14 +605,46 @@ public class VirtualAPILinkBuilder {
 	}
 
 	public static final Link buildTemplatedURIMensajesConversacion(
-			UriInfo uriInfo, String rel)
+			UriInfo uriInfo, String rel, boolean anuncioid)
+
+	{
+		URI uriMensajes = null;
+
+		if (anuncioid == false) {
+			uriMensajes = uriInfo.getBaseUriBuilder()
+					.path(MensajeResource.class, "getMensajesConversacion")
+					.queryParam("offset", "{offset}")
+					.queryParam("length", "{length}").build();
+
+		}
+
+		else if (anuncioid == true) {
+
+			uriMensajes = uriInfo.getBaseUriBuilder()
+					.path(MensajeResource.class, "getMensajesConversacion")
+					.queryParam("anuncioid", "{anuncioid}")
+					.queryParam("offset", "{offset}")
+					.queryParam("length", "{length}").build();
+		}
+
+		Link link = new Link();
+		link.setUri(URITemplateBuilder.buildTemplatedURI(uriMensajes));
+		link.setRel(rel);
+
+		link.setTitle("Mensajes conversacion");
+		link.setType(MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
+
+		return link;
+	}
+
+	public static final Link buildTemplatedURIMensajesEnviados(UriInfo uriInfo,
+			String rel)
 
 	{
 		URI uriMensajes = null;
 
 		uriMensajes = uriInfo.getBaseUriBuilder()
-				.path(MensajeResource.class, "getMensajesConversacion")
-				.queryParam("anuncioid", "{anuncioid}")
+				.path(MensajeResource.class, "getMensajesEnviados")
 				.queryParam("offset", "{offset}")
 				.queryParam("length", "{length}").build();
 
@@ -571,7 +652,28 @@ public class VirtualAPILinkBuilder {
 		link.setUri(URITemplateBuilder.buildTemplatedURI(uriMensajes));
 		link.setRel(rel);
 
-		link.setTitle("Mensajes conversacion");
+		link.setTitle("Mensajes enviados");
+		link.setType(MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
+
+		return link;
+	}
+
+	public static final Link buildTemplatedURIMensajesRecibidos(
+			UriInfo uriInfo, String rel)
+
+	{
+		URI uriMensajes = null;
+
+		uriMensajes = uriInfo.getBaseUriBuilder()
+				.path(MensajeResource.class, "getMensajesRecibidos")
+				.queryParam("offset", "{offset}")
+				.queryParam("length", "{length}").build();
+
+		Link link = new Link();
+		link.setUri(URITemplateBuilder.buildTemplatedURI(uriMensajes));
+		link.setRel(rel);
+
+		link.setTitle("Mensajes recibidos");
 		link.setType(MediaType.VIRTUAL_API_MENSAJE_COLLECTION);
 
 		return link;

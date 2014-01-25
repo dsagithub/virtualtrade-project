@@ -66,7 +66,7 @@ public class MensajeAdapter extends BaseAdapter {
 
 		// Obtención de datos
 		String subject = data.get(position).getSubject();
-		String email = data.get(position).getEmaildestino();
+		String email = data.get(position).getEmailorigen();
 		String date = SimpleDateFormat.getInstance().format(
 				data.get(position).getCreation_timestamp());
 

@@ -927,7 +927,8 @@ function getAnunciosPrev() {
 
 function getMensajes() {
 
-	var url = API_BASE_URL + "/mensajes?offset=0&length=4";
+	var url = API_BASE_URL + "/mensajes/recibidos?offset=0&length=4";
+	
 	$.ajax(
 			{
 				url : url,
@@ -950,17 +951,17 @@ function getMensajes() {
 				$.each(mensajes, function(i, v) {
 					var mensaje = v;
 					var $grouplist = $('#mensajes_result');
-					$('<li>' + mensaje.anuncioid + '</li>')
-							.appendTo($grouplist);
-					$('<li>' + mensaje.mensajeid + '</li>')
-							.appendTo($grouplist);
-					$('<li>' + mensaje.subject + '</li>').appendTo($grouplist);
-					$('<li>' + mensaje.content + '</li>').appendTo($grouplist);
-					$('<li>' + mensaje.creation_timestamp + '</li>').appendTo(
+//					$('<li>' + mensaje.anuncioid + '</li>')
+//							.appendTo($grouplist);
+//					$('<li>' + mensaje.mensajeid + '</li>')
+//							.appendTo($grouplist);
+					$('<li>Asunto: ' + mensaje.subject + '</li>').appendTo($grouplist);
+					$('<li>Contenido: ' + mensaje.content + '</li>').appendTo($grouplist);
+					$('<li>Fecha y hora: ' + mensaje.creation_timestamp + '</li>').appendTo(
 							$grouplist);
-					$('<li>' + mensaje.emaildestino + '</li>').appendTo(
-							$grouplist);
-					$('<li>' + mensaje.emailorigen + '</li>').appendTo(
+//					$('<li>' + mensaje.emaildestino + '</li>').appendTo(
+//							$grouplist);
+					$('<li>Origen: ' + mensaje.emailorigen + '</li>').appendTo(
 							$grouplist);
 					$("<HR>").appendTo($grouplist);
 				});

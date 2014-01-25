@@ -36,7 +36,7 @@ public class MensajeDetail extends Activity {
 	private void loadMensaje(Mensaje mensaje) {
 		TextView tvDetailSubject = (TextView) findViewById(R.id.tvDetailSubject);
 		TextView tvDetailContent = (TextView) findViewById(R.id.tvDetailContent);
-		TextView tvDetailEmailOrgen = (TextView) findViewById(R.id.tvDetailEmailOrigen);
+		TextView tvDetailEmailOrgen = (TextView) findViewById(R.id.tvDetailEmail);
 		TextView tvDetailDate = (TextView) findViewById(R.id.tvDetailDate);
 
 		tvDetailSubject.setText(mensaje.getSubject());

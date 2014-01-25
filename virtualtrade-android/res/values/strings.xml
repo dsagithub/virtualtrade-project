@@ -17,10 +17,15 @@
         <item>Entretenimiento</item>
         <item>Hogar</item>
         <item>Deportes</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="otros">
+        <item>Todas las categorías</item>
+        <item>Otros</item>
     </string-array>
     <string-array name="atributo2Electronica">
         <item>Todas las subcategorías</item>
-        <item>Imagen y Sonido</item>
+        <item>Imágen y Sonido</item>
         <item>Informática</item>
         <item>Consolas y Videojuegos</item>
         <item>Cámaras y Fotografía</item>

@@ -11,14 +11,6 @@
         android:layout_margin="5dip"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/tvDetailContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dip"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,19 +20,27 @@
         android:paddingRight="5dip" >
 
         <TextView
-            android:id="@+id/tvDetailEmailOrigen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textAppearance="?android:attr/textAppearanceSmall" />       
-
-        <TextView
             android:id="@+id/tvDetailDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/tvDetailEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDetailContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:layout_weight="0.69"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

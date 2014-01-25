@@ -3,12 +3,12 @@
 
     <string name="app_name">Virtual Trade</string>
     <string name="ver_perfil">Ver perfil</string>
-    <string name="ver_anuncios">Ver anuncios</string>
     <string name="ver_mensajes">Ver mensajes</string>
     <string name="login_l_email">Username</string>
     <string name="login_l_password">Password</string>
     <string name="login_l_signin">Sign in</string>
     <string name="login_l_register">Registrarse en Vritual Trade</string>
+    <string name="ver_anuncios">Ver anuncios</string>
 
     <string-array name="atributo1">
         <item>Todas las categorías</item>
@@ -269,6 +269,17 @@
         <item>BQ</item>
         <item>Otros</item>
     </string-array>
+    <string-array name="atributo4Camaras">
+        <item>Todas las marcas</item>
+        <item>Canon</item>
+        <item>Nikon</item>
+        <item>Fujifilm</item>
+        <item>Sony</item>
+        <item>Olympus</item>
+        <item>Panasonic</item>
+        <item>Samsung</item>
+        <item>Otros</item>
+    </string-array>
     <string-array name="atributo4Consolas">
         <item>Todas las marcas</item>
         <item>Sony</item>
@@ -337,7 +348,7 @@
         <item>Senseo</item>
         <item>Otros</item>
     </string-array>
-    <string-array name="atributo4ciclismo">
+    <string-array name="atributo4Ciclismo">
         <item>Todas las marcas</item>
         <item>Specialized</item>
         <item>Felt</item>
@@ -394,7 +405,9 @@
         <item>Accesorios</item>
         <item>Otros</item>
     </string-array>
-    <string-array name="atributo4TodosOtros">
+    
+    
+    <string-array name="atributo4Otros">
         <item>Otros</item>
     </string-array>
 

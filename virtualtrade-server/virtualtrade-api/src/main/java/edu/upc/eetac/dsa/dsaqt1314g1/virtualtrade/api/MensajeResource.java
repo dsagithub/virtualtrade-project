@@ -240,28 +240,30 @@ public class MensajeResource {
 							uriInfo, rs.getString("mensajeid"), rel));
 
 					mensajes.add(mensaje);
-				}
+					List<Link> links = new ArrayList<Link>();
+					links.add(VirtualAPILinkBuilder
+							.buildURIMensajesConversacion(uriInfo, offset,
+									length, rs.getString("anuncioid"), rel));
 
-				List<Link> links = new ArrayList<Link>();
-				links.add(VirtualAPILinkBuilder.buildURIMensajesConversacion(
-						uriInfo, offset, length, rs.getString("anuncioid"), rel));
+					if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
+						links.add(VirtualAPILinkBuilder
+								.buildURIMensajesConversacion(uriInfo, (Integer
+										.toString(Integer.parseInt(offset)
+												- Integer.parseInt(length))),
+										length, rs.getString("anuncioid"), rel));
+					}
 
-				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 					links.add(VirtualAPILinkBuilder
 							.buildURIMensajesConversacion(
 									uriInfo,
 									(Integer.toString(Integer.parseInt(offset)
-											- Integer.parseInt(length))),
+											+ Integer.parseInt(length))),
 									length, rs.getString("anuncioid"), rel));
+
+					mensajes.setLinks(links);
+
 				}
 
-				links.add(VirtualAPILinkBuilder.buildURIMensajesConversacion(
-						uriInfo,
-						(Integer.toString(Integer.parseInt(offset)
-								+ Integer.parseInt(length))), length,
-						rs.getString("anuncioid"), rel));
-
-				mensajes.setLinks(links);
 			}
 		} catch (SQLException e) {
 			throw new InternalServerException(e.getMessage());
@@ -366,15 +368,13 @@ public class MensajeResource {
 								.buildURIMensajesEnviados(uriInfo, (Integer
 										.toString(Integer.parseInt(offset)
 												- Integer.parseInt(length))),
-										length,  rel));
+										length, rel));
 					}
 
-					links.add(VirtualAPILinkBuilder
-							.buildURIMensajesEnviados(
-									uriInfo,
-									(Integer.toString(Integer.parseInt(offset)
-											+ Integer.parseInt(length))),
-									length,  rel));
+					links.add(VirtualAPILinkBuilder.buildURIMensajesEnviados(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									+ Integer.parseInt(length))), length, rel));
 
 					mensajes.setLinks(links);
 				}

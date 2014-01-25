@@ -30,6 +30,8 @@ public class VerAnuncios extends ListActivity {
 	private ArrayList<Anuncio> anuncioList;
 	private AnuncioAdapter adapter;
 
+	String a1, a2, a3, a4;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "onCreate()");
@@ -54,13 +56,17 @@ public class VerAnuncios extends ListActivity {
 
 		api = new VirtualtradeAPI();
 		URL url = null;
-		try {
-			url = new URL("http://" + serverAddress + ":" + serverPort
-					+ "/virtualtrade-api/anuncios?&offset=0&length=20");
-		} catch (MalformedURLException e) {
-			Log.d(TAG, e.getMessage(), e);
-			finish();
+
+		if (a1 != null) {
+			try {
+				url = new URL("http://" + serverAddress + ":" + serverPort
+						+ "/virtualtrade-api/anuncios?&offset=0&length=20");
+			} catch (MalformedURLException e) {
+				Log.d(TAG, e.getMessage(), e);
+				finish();
+			}
 		}
+
 		(new FetchAnunciosTask()).execute(url);
 
 	}

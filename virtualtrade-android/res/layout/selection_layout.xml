@@ -37,12 +37,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/verAnuncios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
+        android:onClick="verAnuncios"
         android:text="@string/ver_anuncios" />
 
 </RelativeLayout>

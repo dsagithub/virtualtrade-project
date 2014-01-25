@@ -2,6 +2,15 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 var prev;
 var next;
+var id1;
+var id2;
+var id3;
+var id4;
+var id5
+var id6;
+var id7;
+var id8
+var id9;
 
 $(document).ready(function() {
 	getAnuncios_Atributos();
@@ -9,6 +18,15 @@ $(document).ready(function() {
 	$("#atributo_2").chained("#atributo_1");
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
+	
+	console.log($.cookie('email'));
+	
+	if(	$.cookie('email')==0){	
+		
+	}
+	//	$.cookie('userpass', userpass);)
+	
+//	ocultar();
 
 	/*
 	 * var a= $.cookie('email'); $("#nombreusuarioaqui").text(a);
@@ -27,13 +45,94 @@ $("#button_next").click(function(e) {
 	getAnunciosNext();
 });
 
+
 $("#button_get_anuncios_atributos").click(function(e) {
 	e.preventDefault();
 	getAnuncios_Atributos();
 });
+//
+//function getAnuncio1() {
+//
+//	var url = API_BASE_URL
+//	+ "/anuncios/atributos?offset=0&length=10";
+//	
+//	$.ajax(
+//			{
+//				url : url,
+//				type : 'GET',
+//				crossDomain : true,
+//				dataType : 'json',
+//				beforeSend : function(request) {
+//					request.withCredentials = true;
+//					request.setRequestHeader("Authorization", "Basic "
+//							+ btoa('arnaumail' + ':' + 'arnau'));
+//				},
+//
+//			}).done(function(data, status, jqxhr) {
+//		var response = JSON.parse(jqxhr.responseText);
+//		var anuncios = response.anuncios;
+//		var links = response.links;
+//
+//		// $.cookie('idanuncio', );
+//
+//		next = links[0].uri;
+//		prev = links[1].uri;
+//
+//		console.log("El proximo next es:" + next);
+//
+//		foto_anuncio1.src = anuncios[0].imagenes[0].urlimagen;
+//		$("#title1").text(anuncios[0].subject);
+//		$("#content1").text(anuncios[0].content);
+//		$("#precio1").text(anuncios[0].precio + " \u20ac");
+//
+//	}).fail(function() {
+//		$("#anuncios_result").text("No hay anuncios");
+//	});
+//}
+
+
+function getAnuncio1() {
+	$.cookie('id', id1);
+}
+function getAnuncio2() {
+	
+	$.cookie('id', id2);
+}
+function getAnuncio3() {
+	
+	$.cookie('id', id3);
+}
+function getAnuncio4() {
+	
+	$.cookie('id', id4);
+}
+function getAnuncio5() {
+	
+	$.cookie('id', id5);
+}
+function getAnuncio6() {
+	
+	$.cookie('id', id6);
+}
+function getAnuncio7() {
+	
+	$.cookie('id', id7);
+}
+function getAnuncio8() {
+	
+	$.cookie('id', id8);
+}
+function getAnuncio9() {
+	
+	$.cookie('id', id9);
+}
+
+
 
 function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
+	
+	
 	atributo1 = $('#atributo_1 :selected').val();
 	atributo2 = $('#atributo_2 :selected').val();
 	atributo3 = $('#atributo_3 :selected').val();
@@ -41,7 +140,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
 	if (atributo4 != "all" & atributo3 != "all") {
 		var url = API_BASE_URL
-				+ "/anuncios/atributos?offset=0&length=10&atributo1="
+				+ "/anuncios/atributos?offset=0&length=9&atributo1="
 				+ atributo1 + "&atributo2=" + atributo2 + "&atributo3="
 				+ atributo3 + "&marca=" + atributo4 + "";
 
@@ -62,6 +161,10 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			var anuncios = response.anuncios;
 			var links = response.links;
 
+			
+			
+			// $.cookie('idanuncio', );
+
 			next = links[0].uri;
 			prev = links[1].uri;
 
@@ -72,6 +175,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#content1").text(null);
 			$("#precio1").text(null);
 
+			
 			foto_anuncio2.src = null;
 			$("#title2").text(null);
 			$("#content2").text(null);
@@ -116,51 +220,63 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#title1").text(anuncios[0].subject);
 			$("#content1").text(anuncios[0].content);
 			$("#precio1").text(anuncios[0].precio + " \u20ac");
+			id1=anuncios[0].anuncioid;
+
+			console.log(id1);
 
 			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 			$("#title2").text(anuncios[1].subject);
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
+			id2=anuncios[1].anuncioid;
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
 			$("#content3").text(anuncios[2].content);
 			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			id3=anuncios[2].anuncioid;
 
 			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 			$("#title4").text(anuncios[3].subject);
 			$("#content4").text(anuncios[3].content);
 			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			id4=anuncios[3].anuncioid;
 
 			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 			$("#title5").text(anuncios[4].subject);
 			$("#content5").text(anuncios[4].content);
 			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			id5=anuncios[4].anuncioid;
 
 			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 			$("#title6").text(anuncios[5].subject);
 			$("#content6").text(anuncios[5].content);
 			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			id6=anuncios[5].anuncioid;
 
 			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 			$("#title7").text(anuncios[6].subject);
 			$("#content7").text(anuncios[6].content);
 			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			id7=anuncios[6].anuncioid;
 
 			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 			$("#title8").text(anuncios[7].subject);
 			$("#content8").text(anuncios[7].content);
 			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			id8=anuncios[7].anuncioid;
 
 			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			id9=anuncios[8].anuncioid;
+			
+			console.log(id1);
 
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");
 		});
-
 	}
 
 	else if (atributo3 != "all") {
@@ -240,46 +356,57 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#title1").text(anuncios[0].subject);
 			$("#content1").text(anuncios[0].content);
 			$("#precio1").text(anuncios[0].precio + " \u20ac");
+			id1=anuncios[0].anuncioid;
+
+			console.log(id1);
 
 			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 			$("#title2").text(anuncios[1].subject);
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
+			id2=anuncios[1].anuncioid;
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
 			$("#content3").text(anuncios[2].content);
 			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			id3=anuncios[2].anuncioid;
 
 			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 			$("#title4").text(anuncios[3].subject);
 			$("#content4").text(anuncios[3].content);
 			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			id4=anuncios[3].anuncioid;
 
 			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 			$("#title5").text(anuncios[4].subject);
 			$("#content5").text(anuncios[4].content);
 			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			id5=anuncios[4].anuncioid;
 
 			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 			$("#title6").text(anuncios[5].subject);
 			$("#content6").text(anuncios[5].content);
 			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			id6=anuncios[5].anuncioid;
 
 			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 			$("#title7").text(anuncios[6].subject);
 			$("#content7").text(anuncios[6].content);
 			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			id7=anuncios[6].anuncioid;
 
 			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 			$("#title8").text(anuncios[7].subject);
 			$("#content8").text(anuncios[7].content);
 			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			id8=anuncios[7].anuncioid;
 
 			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			id9=anuncios[8].anuncioid;
 
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");
@@ -364,46 +491,57 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#title1").text(anuncios[0].subject);
 			$("#content1").text(anuncios[0].content);
 			$("#precio1").text(anuncios[0].precio + " \u20ac");
+			id1=anuncios[0].anuncioid;
+
+			console.log(id1);
 
 			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 			$("#title2").text(anuncios[1].subject);
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
+			id2=anuncios[1].anuncioid;
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
 			$("#content3").text(anuncios[2].content);
 			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			id3=anuncios[2].anuncioid;
 
 			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 			$("#title4").text(anuncios[3].subject);
 			$("#content4").text(anuncios[3].content);
 			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			id4=anuncios[3].anuncioid;
 
 			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 			$("#title5").text(anuncios[4].subject);
 			$("#content5").text(anuncios[4].content);
 			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			id5=anuncios[4].anuncioid;
 
 			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 			$("#title6").text(anuncios[5].subject);
 			$("#content6").text(anuncios[5].content);
 			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			id6=anuncios[5].anuncioid;
 
 			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 			$("#title7").text(anuncios[6].subject);
 			$("#content7").text(anuncios[6].content);
 			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			id7=anuncios[6].anuncioid;
 
 			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 			$("#title8").text(anuncios[7].subject);
 			$("#content8").text(anuncios[7].content);
 			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			id8=anuncios[7].anuncioid;
 
 			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			id9=anuncios[8].anuncioid;
 
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");
@@ -488,46 +626,58 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#title1").text(anuncios[0].subject);
 			$("#content1").text(anuncios[0].content);
 			$("#precio1").text(anuncios[0].precio + " \u20ac");
+			id1=anuncios[0].anuncioid;
+
+			console.log(id1);
 
 			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 			$("#title2").text(anuncios[1].subject);
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
+			id2=anuncios[1].anuncioid;
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
 			$("#content3").text(anuncios[2].content);
 			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			id3=anuncios[2].anuncioid;
 
 			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 			$("#title4").text(anuncios[3].subject);
 			$("#content4").text(anuncios[3].content);
 			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			id4=anuncios[3].anuncioid;
 
 			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 			$("#title5").text(anuncios[4].subject);
 			$("#content5").text(anuncios[4].content);
 			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			id5=anuncios[4].anuncioid;
 
 			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 			$("#title6").text(anuncios[5].subject);
 			$("#content6").text(anuncios[5].content);
 			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			id6=anuncios[5].anuncioid;
 
 			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 			$("#title7").text(anuncios[6].subject);
 			$("#content7").text(anuncios[6].content);
 			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			id7=anuncios[6].anuncioid;
 
 			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 			$("#title8").text(anuncios[7].subject);
 			$("#content8").text(anuncios[7].content);
 			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			id8=anuncios[7].anuncioid;
 
 			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			id9=anuncios[8].anuncioid;
+			
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");
 		});
@@ -556,46 +706,57 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#title1").text(anuncios[0].subject);
 			$("#content1").text(anuncios[0].content);
 			$("#precio1").text(anuncios[0].precio + " \u20ac");
+			id1=anuncios[0].anuncioid;
+
+			console.log(id1);
 
 			foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 			$("#title2").text(anuncios[1].subject);
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
+			id2=anuncios[1].anuncioid;
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
 			$("#content3").text(anuncios[2].content);
 			$("#precio3").text(anuncios[2].precio + " \u20ac");
+			id3=anuncios[2].anuncioid;
 
 			foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 			$("#title4").text(anuncios[3].subject);
 			$("#content4").text(anuncios[3].content);
 			$("#precio4").text(anuncios[3].precio + " \u20ac");
+			id4=anuncios[3].anuncioid;
 
 			foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 			$("#title5").text(anuncios[4].subject);
 			$("#content5").text(anuncios[4].content);
 			$("#precio5").text(anuncios[4].precio + " \u20ac");
+			id5=anuncios[4].anuncioid;
 
 			foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 			$("#title6").text(anuncios[5].subject);
 			$("#content6").text(anuncios[5].content);
 			$("#precio6").text(anuncios[5].precio + " \u20ac");
+			id6=anuncios[5].anuncioid;
 
 			foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 			$("#title7").text(anuncios[6].subject);
 			$("#content7").text(anuncios[6].content);
 			$("#precio7").text(anuncios[6].precio + " \u20ac");
+			id7=anuncios[6].anuncioid;
 
 			foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 			$("#title8").text(anuncios[7].subject);
 			$("#content8").text(anuncios[7].content);
 			$("#precio8").text(anuncios[7].precio + " \u20ac");
+			id8=anuncios[7].anuncioid;
 
 			foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 			$("#title9").text(anuncios[8].subject);
 			$("#content9").text(anuncios[8].content);
 			$("#precio9").text(anuncios[8].precio + " \u20ac");
+			id9=anuncios[8].anuncioid;
 
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");
@@ -695,7 +856,7 @@ function getAnunciosNext() {
 							+ btoa('arnaumail' + ':' + 'arnau'));
 				},
 
-	}).done(function(data, status, jqxhr) {
+			}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
 		var anuncios = response.anuncios;
 		var links = response.links;
@@ -754,46 +915,58 @@ function getAnunciosNext() {
 		$("#title1").text(anuncios[0].subject);
 		$("#content1").text(anuncios[0].content);
 		$("#precio1").text(anuncios[0].precio + " \u20ac");
+		id1=anuncios[0].anuncioid;
+
+		console.log(id1);
 
 		foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 		$("#title2").text(anuncios[1].subject);
 		$("#content2").text(anuncios[1].content);
 		$("#precio2").text(anuncios[1].precio + " \u20ac");
+		id2=anuncios[1].anuncioid;
 
 		foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 		$("#title3").text(anuncios[2].subject);
 		$("#content3").text(anuncios[2].content);
 		$("#precio3").text(anuncios[2].precio + " \u20ac");
+		id3=anuncios[2].anuncioid;
 
 		foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 		$("#title4").text(anuncios[3].subject);
 		$("#content4").text(anuncios[3].content);
 		$("#precio4").text(anuncios[3].precio + " \u20ac");
+		id4=anuncios[3].anuncioid;
 
 		foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 		$("#title5").text(anuncios[4].subject);
 		$("#content5").text(anuncios[4].content);
 		$("#precio5").text(anuncios[4].precio + " \u20ac");
+		id5=anuncios[4].anuncioid;
 
 		foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 		$("#title6").text(anuncios[5].subject);
 		$("#content6").text(anuncios[5].content);
 		$("#precio6").text(anuncios[5].precio + " \u20ac");
+		id6=anuncios[5].anuncioid;
 
 		foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 		$("#title7").text(anuncios[6].subject);
 		$("#content7").text(anuncios[6].content);
 		$("#precio7").text(anuncios[6].precio + " \u20ac");
+		id7=anuncios[6].anuncioid;
 
 		foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 		$("#title8").text(anuncios[7].subject);
 		$("#content8").text(anuncios[7].content);
 		$("#precio8").text(anuncios[7].precio + " \u20ac");
+		id8=anuncios[7].anuncioid;
 
 		foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 		$("#title9").text(anuncios[8].subject);
 		$("#content9").text(anuncios[8].content);
 		$("#precio9").text(anuncios[8].precio + " \u20ac");
+		id9=anuncios[8].anuncioid;
+		
 
 	}).fail(function() {
 		$("#anuncios_result").text("No hay anuncios");
@@ -819,7 +992,7 @@ function getAnunciosPrev() {
 							+ btoa('arnaumail' + ':' + 'arnau'));
 				},
 
-	}).done(function(data, status, jqxhr) {
+			}).done(function(data, status, jqxhr) {
 		var response = JSON.parse(jqxhr.responseText);
 		var anuncios = response.anuncios;
 		var links = response.links;
@@ -878,46 +1051,58 @@ function getAnunciosPrev() {
 		$("#title1").text(anuncios[0].subject);
 		$("#content1").text(anuncios[0].content);
 		$("#precio1").text(anuncios[0].precio + " \u20ac");
+		id1=anuncios[0].anuncioid;
+
+		console.log(id1);
 
 		foto_anuncio2.src = anuncios[1].imagenes[0].urlimagen;
 		$("#title2").text(anuncios[1].subject);
 		$("#content2").text(anuncios[1].content);
 		$("#precio2").text(anuncios[1].precio + " \u20ac");
+		id2=anuncios[1].anuncioid;
 
 		foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 		$("#title3").text(anuncios[2].subject);
 		$("#content3").text(anuncios[2].content);
 		$("#precio3").text(anuncios[2].precio + " \u20ac");
+		id3=anuncios[2].anuncioid;
 
 		foto_anuncio4.src = anuncios[3].imagenes[0].urlimagen;
 		$("#title4").text(anuncios[3].subject);
 		$("#content4").text(anuncios[3].content);
 		$("#precio4").text(anuncios[3].precio + " \u20ac");
+		id4=anuncios[3].anuncioid;
 
 		foto_anuncio5.src = anuncios[4].imagenes[0].urlimagen;
 		$("#title5").text(anuncios[4].subject);
 		$("#content5").text(anuncios[4].content);
 		$("#precio5").text(anuncios[4].precio + " \u20ac");
+		id5=anuncios[4].anuncioid;
 
 		foto_anuncio6.src = anuncios[5].imagenes[0].urlimagen;
 		$("#title6").text(anuncios[5].subject);
 		$("#content6").text(anuncios[5].content);
 		$("#precio6").text(anuncios[5].precio + " \u20ac");
+		id6=anuncios[5].anuncioid;
 
 		foto_anuncio7.src = anuncios[6].imagenes[0].urlimagen;
 		$("#title7").text(anuncios[6].subject);
 		$("#content7").text(anuncios[6].content);
 		$("#precio7").text(anuncios[6].precio + " \u20ac");
+		id7=anuncios[6].anuncioid;
 
 		foto_anuncio8.src = anuncios[7].imagenes[0].urlimagen;
 		$("#title8").text(anuncios[7].subject);
 		$("#content8").text(anuncios[7].content);
 		$("#precio8").text(anuncios[7].precio + " \u20ac");
+		id8=anuncios[7].anuncioid;
 
 		foto_anuncio9.src = anuncios[8].imagenes[0].urlimagen;
 		$("#title9").text(anuncios[8].subject);
 		$("#content9").text(anuncios[8].content);
 		$("#precio9").text(anuncios[8].precio + " \u20ac");
+		id9=anuncios[8].anuncioid;
+		
 
 	}).fail(function() {
 		$("#anuncios_result").text("No hay anuncios");
@@ -925,10 +1110,40 @@ function getAnunciosPrev() {
 
 }
 
+function loggedout(){
+	$("#logout").hide();
+	$("#perfil").hide();
+	$("#añadir").hide();
+	$("#buscar").hide();
+	$("#mensajes").hide();
+	
+//	perfil
+//	añadir
+//	buscar
+//	mensajes
+}
+function loggedin(){
+	$("#singup").hide();
+	$("#signin").hide();
+}
+
+
+function logout(){
+	 
+//	$.cookie('email', 0);
+//	$.cookie('userpass', 0);
+//	console.log(cookie('email');
+	loggedout();
+//	
+	$.removeCookie('email');
+	$.removeCookie('userpass');
+//	
+}
+
 function getMensajes() {
 
 	var url = API_BASE_URL + "/mensajes/recibidos?offset=0&length=4";
-	
+
 	$.ajax(
 			{
 				url : url,
@@ -951,16 +1166,19 @@ function getMensajes() {
 				$.each(mensajes, function(i, v) {
 					var mensaje = v;
 					var $grouplist = $('#mensajes_result');
-//					$('<li>' + mensaje.anuncioid + '</li>')
-//							.appendTo($grouplist);
-//					$('<li>' + mensaje.mensajeid + '</li>')
-//							.appendTo($grouplist);
-					$('<li>Asunto: ' + mensaje.subject + '</li>').appendTo($grouplist);
-					$('<li>Contenido: ' + mensaje.content + '</li>').appendTo($grouplist);
-					$('<li>Fecha y hora: ' + mensaje.creation_timestamp + '</li>').appendTo(
+					// $('<li>' + mensaje.anuncioid + '</li>')
+					// .appendTo($grouplist);
+					// $('<li>' + mensaje.mensajeid + '</li>')
+					// .appendTo($grouplist);
+					$('<li>Asunto: ' + mensaje.subject + '</li>').appendTo(
 							$grouplist);
-//					$('<li>' + mensaje.emaildestino + '</li>').appendTo(
-//							$grouplist);
+					$('<li>Contenido: ' + mensaje.content + '</li>').appendTo(
+							$grouplist);
+					$(
+							'<li>Fecha y hora: ' + mensaje.creation_timestamp
+									+ '</li>').appendTo($grouplist);
+					// $('<li>' + mensaje.emaildestino + '</li>').appendTo(
+					// $grouplist);
 					$('<li>Origen: ' + mensaje.emailorigen + '</li>').appendTo(
 							$grouplist);
 					$("<HR>").appendTo($grouplist);

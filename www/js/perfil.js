@@ -2,6 +2,8 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 $(document).ready(function() {
 	getUser($.cookie('email'));
+	var password = $.cookie('userpass');
+	
 
 });
 
@@ -86,16 +88,9 @@ function getUser(email) {
 													'<li>' + "Puerta: "
 															+ user.puerta
 															+ '</li>')
-													.appendTo($grouplist);
-
-										
-
+													.appendTo($grouplist);								
 										});
-						
-						
-						
-					
-						
+	
 						
 					}).fail(function() {
 				$("#user_result").text("User no encontrado");

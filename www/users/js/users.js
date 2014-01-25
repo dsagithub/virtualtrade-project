@@ -2,7 +2,8 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 
 $(document).ready(function() {
-	  $(button_message).hide();
+	
+	$(button_message).hide();
 	  $(button_send_msg).hide();
 	  $(subject).hide();
 	  $(mensaje).hide();
@@ -10,8 +11,6 @@ $(document).ready(function() {
 	  $(cont).hide();
 	  $(userStats).hide();
 	  $(foto).hide();
-			
-	  
 	  
 	//  subject
 //	getUser($("#email").val());

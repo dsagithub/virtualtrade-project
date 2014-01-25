@@ -1,23 +1,28 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
-var destinatario= $cookie.('destinatario');
-var anuncioid= $cookie.('anuncioid');
-var origen= $cookie.('email');
-var password = $cookie.('userpass')
+var destinatario= $.cookie('destinatario');
+var anuncioid= $.cookie('anuncioid');
+var origen= $.cookie('email');
+var password = $.cookie('userpass')
 
 
 $("#button_send_msg").click(function(e) {
 	e.preventDefault();
 	EnviarMensaje();
-}
+});
 
 function EnviarMensaje() {
-	
-	var url = API_BASE_URL + '/anuncios';
+
+	var url = API_BASE_URL + '/mensajes';
 	var object = new Object();
-	var imagen = new Object();
+	object.emaildestino = destinatario;
+	object.anuncioid = anuncioid;
 	object.subject = $("#subject").val();
 	object.content = $("#content").val();
+	console.log(object.emaildestino);
+	console.log(object.anuncioid);
+	console.log(object.subject);
+	console.log(object.content);
 	
 	var data = JSON.stringify(object);
 
@@ -39,6 +44,7 @@ function EnviarMensaje() {
 				}
 			}).done(function(data, status, jqxhr) {
 		$("#create_result").text("Anuncio creado correctamente");
+		console.log("Mensaje enviado")
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});

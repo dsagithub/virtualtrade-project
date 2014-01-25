@@ -69,6 +69,8 @@ public class AnuncioSelection extends Activity {
 																android.R.layout.simple_spinner_item);
 												adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 												atributo3.setAdapter(adapter3);
+												
+												
 											}
 
 											else if (a2.equals("Informática")) {

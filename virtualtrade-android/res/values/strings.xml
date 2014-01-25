@@ -244,5 +244,158 @@
         <item>Ropa</item>
         <item>Otros</item>
     </string-array>
+    <string-array name="atributo4ImagenSonido">
+        <item>Todas las marcas</item>
+        <item>Sony</item>
+        <item>Philips</item>
+        <item>Panasonic</item>
+        <item>LG</item>
+        <item>Apple</item>
+        <item>Samsung</item>
+        <item>Sharp</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Informatica">
+        <item>Todas las marcas</item>
+        <item>HP</item>
+        <item>Acer</item>
+        <item>Asus</item>
+        <item>Toshiba</item>
+        <item>Apple</item>
+        <item>Packard bell</item>
+        <item>Samsung</item>
+        <item>Sony</item>
+        <item>Woxter</item>
+        <item>BQ</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Consolas">
+        <item>Todas las marcas</item>
+        <item>Sony</item>
+        <item>Microsoft</item>
+        <item>Nintendo</item>
+        <item>Sega</item>
+        <item>Ubisoft</item>
+        <item>Bethesda</item>
+        <item>EA</item>
+        <item>Rockstar Games</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Moviles">
+        <item>Todas las marcas</item>
+        <item>Samsung</item>
+        <item>HTC</item>
+        <item>LG</item>
+        <item>Nokia</item>
+        <item>Blackberry</item>
+        <item>Apple</item>
+        <item>Sony</item>
+        <item>Huawei</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Coches">
+        <item>Todas las marcas</item>
+        <item>Seat</item>
+        <item>Volvo</item>
+        <item>Citroen</item>
+        <item>Peugeot</item>
+        <item>BMW</item>
+        <item>Audi</item>
+        <item>Nissan</item>
+        <item>Suzuki</item>
+        <item>Opel</item>
+        <item>Honda</item>
+        <item>Mercedes Benz</item>
+        <item>Mitsubishi</item>
+        <item>Wolkswagen</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Motos">
+        <item>Todas las marcas</item>
+        <item>Yamaha</item>
+        <item>Vespa</item>
+        <item>Honda</item>
+        <item>Ducati</item>
+        <item>Bultaco</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Electrodomesticos">
+        <item>Todas las marcas</item>
+        <item>Bosch</item>
+        <item>Fagor</item>
+        <item>Electrolux</item>
+        <item>Siemens</item>
+        <item>Zanussi</item>
+        <item>LG</item>
+        <item>Whirlpool</item>
+        <item>Taurus</item>
+        <item>Balay</item>
+        <item>Moulinex</item>
+        <item>Nespresso</item>
+        <item>Dolce Gusto</item>
+        <item>Tassimo</item>
+        <item>Senseo</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4ciclismo">
+        <item>Todas las marcas</item>
+        <item>Specialized</item>
+        <item>Felt</item>
+        <item>Campagnolo</item>
+        <item>Shimano</item>
+        <item>Mavic</item>
+        <item>Conor</item>
+        <item>Zip</item>
+        <item>Inverse</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Baloncesto">
+        <item>Todas las marcas</item>
+        <item>Nike</item>
+        <item>Adidas</item>
+        <item>Spalding</item>
+        <item>Li-ning</item>
+        <item>Reebok</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Atletismo">
+        <item>Todas las marcas</item>
+        <item>Nike</item>
+        <item>Adidas</item>
+        <item>Reebok</item>
+        <item>Puma</item>
+        <item>Salomon</item>
+        <item>Asics</item>
+        <item>Camelbak</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Futbol">
+        <item>Todas las marcas</item>
+        <item>Nike</item>
+        <item>Adidas</item>
+        <item>Reebok</item>
+        <item>Puma</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Tenis">
+        <item>Todas las marcas</item>
+        <item>Wilson</item>
+        <item>Prince</item>
+        <item>Babolat</item>
+        <item>Head</item>
+        <item>Dunlop</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4Esqui">
+        <item>Todas las marcas</item>
+        <item>Atomic</item>
+        <item>Rossignol</item>
+        <item>Fischer</item>
+        <item>Accesorios</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="atributo4TodosOtros">
+        <item>Otros</item>
+    </string-array>
 
 </resources>

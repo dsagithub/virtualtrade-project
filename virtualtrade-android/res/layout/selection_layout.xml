@@ -5,27 +5,41 @@
     android:background="#00CC54" >
 
     <Spinner
-        android:id="@+id/atributo1"
+        android:id="@+id/atributo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp" />
+        android:layout_below="@+id/atributo2" />
 
     <Spinner
         android:id="@+id/atributo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/atributo1"
-        android:layout_marginTop="44dp" />
+        android:layout_below="@+id/atributo1" />
 
     <Spinner
-        android:id="@+id/atributo3"
+        android:id="@+id/atributo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/atributo2"
-        android:layout_marginTop="27dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="58dp" />
+
+    <Spinner
+        android:id="@+id/atributo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/atributo3" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:text="Button" />
 
 </RelativeLayout>

@@ -45,8 +45,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="span2">
-					<a href="http://localhost/virtualtrade/index.html"> <img
-						src="img/logo-small.png" alt="logo" title="logo" class="logo">
+					<a href="http://localhost/virtualtrade/index.html"> 
 					</a>
 				</div>
 				<div class="span8">
@@ -55,7 +54,7 @@
 					<nav>
 						<ul class="nav nav-pills flexnav" id="flexnav"
 							data-breakpoint="800">
-							<li class="active"><a href="index.html">Home</a>
+							<li class="active"><a href="http://localhost/virtualtrade/index.html">Virtual Trade</a>
 								<ul>
 									<li class="active"><a href="index.html">Slider</a>
 										<ul>

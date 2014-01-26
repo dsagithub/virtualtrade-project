@@ -188,12 +188,12 @@ public class AnuncioResource {
 							uriInfo, rs.getString("anuncioid"), rel));
 
 					List<Link> links = new ArrayList<Link>();
-					
+
 					links.add(VirtualAPILinkBuilder.buildURIAnuncios(
 							uriInfo,
 							(Integer.toString(Integer.parseInt(offset)
 									+ Integer.parseInt(length))), length, rel));
-					
+
 					if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 						links.add(VirtualAPILinkBuilder.buildURIAnuncios(
 								uriInfo,
@@ -201,13 +201,9 @@ public class AnuncioResource {
 										- Integer.parseInt(length))), length,
 								rel));
 					}
-					
+
 					links.add(VirtualAPILinkBuilder.buildURIAnuncios(uriInfo,
 							offset, length, rel));
-
-				
-
-					
 
 					anuncios.setLinks(links);
 
@@ -679,10 +675,11 @@ public class AnuncioResource {
 			}
 
 			List<Link> links = new ArrayList<Link>();
-
-			links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(uriInfo,
-					offset, length, subject, content, email, rel));
-
+			links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(
+					uriInfo,
+					(Integer.toString(Integer.parseInt(offset)
+							+ Integer.parseInt(length))), length, subject,
+					content, email, rel));
 			if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 				links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(
 						uriInfo,
@@ -691,11 +688,8 @@ public class AnuncioResource {
 						content, email, rel));
 			}
 
-			links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(
-					uriInfo,
-					(Integer.toString(Integer.parseInt(offset)
-							+ Integer.parseInt(length))), length, subject,
-					content, email, rel));
+			links.add(VirtualAPILinkBuilder.buildURIAnunciosBusqueda(uriInfo,
+					offset, length, subject, content, email, rel));
 
 			anuncios.setLinks(links);
 
@@ -865,13 +859,13 @@ public class AnuncioResource {
 				}
 
 				List<Link> links = new ArrayList<Link>();
-				
+
 				links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
 						uriInfo,
 						(Integer.toString(Integer.parseInt(offset)
 								+ Integer.parseInt(length))), length,
 						atributo1, atributo2, atributo3, marca, rel));
-				
+
 				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 					links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
 							uriInfo,
@@ -883,10 +877,6 @@ public class AnuncioResource {
 				links.add(VirtualAPILinkBuilder.buildURIAnunciosOrderby(
 						uriInfo, offset, length, atributo1, atributo2,
 						atributo3, marca, rel));
-
-				
-
-				
 
 				anuncios.setLinks(links);
 			} else {

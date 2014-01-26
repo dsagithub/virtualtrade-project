@@ -184,6 +184,24 @@ public class VirtualtradeAPI {
 		return mensaje;
 	}
 
+	private User parseUser(JSONObject source) throws JSONException,
+			ParseException {
+
+		User user = new User();
+
+		user.setName(source.getString("name"));
+		user.setEmail(source.getString("email"));
+		user.setPhone(source.getInt("phone"));
+		user.setFoto(source.getString("foto"));
+		user.setCiudad(source.getString("ciudad"));
+		user.setCalle(source.getString("calle"));
+		user.setNumero(source.getInt("numero"));
+		user.setPiso(source.getInt("piso"));
+		user.setPuerta(source.getInt("puerta"));
+
+		return user;
+	}
+
 	public Mensaje getMensaje(URL url)
 
 	{
@@ -275,6 +293,49 @@ public class VirtualtradeAPI {
 		}
 
 		return mensajes;
+	}
+
+	public User getUser(URL url)
+
+	{
+
+		User user = new User();
+
+		HttpURLConnection urlConnection = null;
+		try {
+			urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestProperty("Accept",
+					MediaType.VIRTUAL_API_USER);
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoInput(true);
+			urlConnection.connect();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					urlConnection.getInputStream()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			JSONObject jsonAnuncio = new JSONObject(sb.toString());
+			mensaje = parseMensaje(jsonAnuncio);
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (JSONException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} catch (ParseException e) {
+			Log.e(TAG, e.getMessage(), e);
+			return null;
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+		}
+
+		Log.d(TAG, "anuncio a" + mensaje);
+
+		return user;
 	}
 
 }

@@ -36,20 +36,20 @@ function getUser() {
 			}).done(function(data, status, jqxhr) {
 		var user = JSON.parse(jqxhr.responseText);
 
-		$("#name").text(user.name);
-		$("#phone").text(user.phone);
-		$("#ciudad").text(user.ciudad);
-		$("#calle").text(user.calle);
-		$("#numero").text(user.numero);
-		$("#piso").text(user.piso);
-		$("#puerta").text(user.puerta);
-		console.log(user.name);
-		console.log(user.phone);
-		console.log(user.ciudad);
-		console.log(user.calle);
-		console.log(user.numero);
-		console.log(user.piso);
-		console.log(user.puerta);
+		$("#name").val(user.name);
+		$("#phone").val(user.phone);
+		$("#ciudad").val(user.ciudad);
+		$("#calle").val(user.calle);
+		$("#numero").val(user.numero);
+		$("#piso").val(user.piso);
+		$("#puerta").val(user.puerta);
+//		console.log(user.name);
+//		console.log(user.phone);
+//		console.log(user.ciudad);
+//		console.log(user.calle);
+//		console.log(user.numero);
+//		console.log(user.piso);
+//		console.log(user.puerta);
 
 
 	}).fail(function() {

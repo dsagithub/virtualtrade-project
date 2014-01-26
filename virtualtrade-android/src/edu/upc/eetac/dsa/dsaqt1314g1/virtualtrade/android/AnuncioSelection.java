@@ -36,7 +36,6 @@ public class AnuncioSelection extends Activity {
 				this, R.array.atributo1, android.R.layout.simple_spinner_item);
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		atributo1.setAdapter(adapter1);
-		
 
 		atributo1
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -54,10 +53,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
 
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,6 +80,11 @@ public class AnuncioSelection extends Activity {
 																	R.array.atributo3ImagenSonido,
 																	android.R.layout.simple_spinner_item);
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+													atributo3
+															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -106,6 +111,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -150,8 +157,12 @@ public class AnuncioSelection extends Activity {
 																	R.array.atributo3Informatica,
 																	android.R.layout.simple_spinner_item);
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -178,6 +189,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -223,6 +236,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -237,38 +253,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Consolas,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																	if (!a3.equals("Selecciona un valor")) {
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Consolas,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+
+																	}
 																}
 
 																@Override
@@ -290,6 +311,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -304,39 +328,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Camaras,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Camaras,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -358,6 +386,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -372,39 +403,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Moviles,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Moviles,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -425,6 +460,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -439,39 +477,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				}
+																					}
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
-																				}
-																			});
+																					}
+																				});
 
+																	}
 																}
 
 																@Override
@@ -504,10 +546,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
 
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -532,6 +575,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -541,9 +587,14 @@ public class AnuncioSelection extends Activity {
 																		android.view.View v,
 																		int position,
 																		long id) {
+																	a3 = atributo3
+																			.getSelectedItem()
+																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
+																	if (!a3.equals("Selecciona un valor"))
+
+																		atributo4
+																				.setEnabled(true);
 																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
 																			.createFromResource(
 																					AnuncioSelection.this,
@@ -552,7 +603,8 @@ public class AnuncioSelection extends Activity {
 																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																	atributo4
 																			.setAdapter(adapter4);
-
+																	atributo4
+																			.setSelection(0);
 																	atributo4
 																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -596,6 +648,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -610,39 +665,44 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+
+																	}
 																}
 
 																@Override
@@ -663,6 +723,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -677,39 +740,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Motos,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Motos,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -730,6 +797,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -744,39 +814,44 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+
+																	}
 																}
 
 																@Override
@@ -808,10 +883,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
 
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -836,6 +912,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -850,39 +929,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -903,6 +986,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -916,40 +1002,43 @@ public class AnuncioSelection extends Activity {
 																	a3 = atributo3
 																			.getSelectedItem()
 																			.toString();
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				}
+																					}
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
-																				}
-																			});
-
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -971,6 +1060,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -985,39 +1077,44 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+
+																	}
 																}
 
 																@Override
@@ -1038,6 +1135,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1052,39 +1152,43 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	atributo4
-																			.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Otros,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
+																	if (!a3.equals("Selecciona un valor")) {
 
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		atributo4
+																				.setEnabled(true);
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Otros,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																				}
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					}
 
-																				}
-																			});
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
+																					}
+																				});
+																	}
 																}
 
 																@Override
@@ -1115,10 +1219,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
 
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1143,6 +1248,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1169,6 +1277,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1212,6 +1322,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1237,6 +1350,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -1279,6 +1394,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1305,6 +1423,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1349,6 +1469,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1375,6 +1498,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1420,6 +1545,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1446,6 +1574,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -1490,6 +1620,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1516,6 +1649,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1571,11 +1706,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
-
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -1599,6 +1734,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1624,6 +1762,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1668,6 +1808,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1694,6 +1837,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1737,6 +1882,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1763,6 +1911,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1806,6 +1956,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1832,6 +1985,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1875,6 +2030,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1901,6 +2059,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1946,6 +2106,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1972,6 +2135,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -2014,6 +2179,9 @@ public class AnuncioSelection extends Activity {
 													adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 													atributo3
 															.setAdapter(adapter3);
+													atributo3.setSelection(0);
+													atributo4.setSelection(0);
+													atributo4.setEnabled(false);
 
 													atributo3
 															.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -2040,6 +2208,8 @@ public class AnuncioSelection extends Activity {
 																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 																		atributo4
 																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
 
 																		atributo4
 																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -2095,11 +2265,11 @@ public class AnuncioSelection extends Activity {
 											android.R.layout.simple_spinner_item);
 							adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 							atributo2.setAdapter(adapter2);
-							atributo2.setSelection(0); 
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
-
-
 							atributo2
 									.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -2120,6 +2290,9 @@ public class AnuncioSelection extends Activity {
 																android.R.layout.simple_spinner_item);
 												adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 												atributo3.setAdapter(adapter3);
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo4.setEnabled(false);
 
 												atributo3
 														.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -172,7 +172,7 @@ public class VirtualAPILinkBuilder {
 
 		if (anuncioid == null) {
 			uriMensajes = uriInfo.getBaseUriBuilder()
-					.path(MensajeResource.class, "getMensajesConversacion")
+					.path(MensajeResource.class).path("/user_message")
 					.queryParam("offset", offset).queryParam("length", length)
 					.build();
 
@@ -180,7 +180,7 @@ public class VirtualAPILinkBuilder {
 
 		else {
 			uriMensajes = uriInfo.getBaseUriBuilder()
-					.path(MensajeResource.class, "getMensajesConversacion")
+					.path(MensajeResource.class).path("/user_message")
 					.queryParam("anuncioid", anuncioid)
 					.queryParam("offset", offset).queryParam("length", length)
 					.build();
@@ -201,10 +201,9 @@ public class VirtualAPILinkBuilder {
 
 		URI uriMensajes = null;
 
-		uriMensajes = uriInfo.getBaseUriBuilder()
-				.path(MensajeResource.class, "getMensajesEnviados")
-				.queryParam("offset", offset).queryParam("length", length)
-				.build();
+		uriMensajes = uriInfo.getBaseUriBuilder().path(MensajeResource.class)
+				.path("/enviados").queryParam("offset", offset)
+				.queryParam("length", length).build();
 
 		Link self = new Link();
 		self.setUri(uriMensajes.toString());
@@ -220,10 +219,9 @@ public class VirtualAPILinkBuilder {
 
 		URI uriMensajes = null;
 
-		uriMensajes = uriInfo.getBaseUriBuilder()
-				.path(MensajeResource.class, "getMensajesRecibidos")
-				.queryParam("offset", offset).queryParam("length", length)
-				.build();
+		uriMensajes = uriInfo.getBaseUriBuilder().path(MensajeResource.class)
+				.path("/recibidos").queryParam("offset", offset)
+				.queryParam("length", length).build();
 
 		Link self = new Link();
 		self.setUri(uriMensajes.toString());

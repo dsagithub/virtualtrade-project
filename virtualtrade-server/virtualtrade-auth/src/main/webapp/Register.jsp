@@ -201,7 +201,7 @@
 		</div>
 	</div>
 	<!-- END LOGIN REGISTER LINKS CONTENT -->
-
+  <h1 class="text-center login-title">Registrarse</h1>
         
         <div class="container">
                 <div class="account-wall">
@@ -209,7 +209,7 @@
 
                         <form class="form-signin" action="/virtualtrade-auth/RegisterServlet"
                                 method="post">
-                                <h2 class="register-heading">Registrarse</h2>
+                              <!--   <h2 class="register-heading">Registrarse</h2> -->
                                 <input type="text" class="form-control" name="name"
                                         placeholder="Nombre" required autofocus> <input type="text"
                                         class="form-control" name="email" placeholder="Email" required

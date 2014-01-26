@@ -6,8 +6,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
@@ -57,6 +59,7 @@ public class VerAnuncios extends ListActivity {
 		}
 
 		setContentView(R.layout.anuncios_layout);
+
 		anuncioList = new ArrayList<Anuncio>();
 		adapter = new AnuncioAdapter(this, anuncioList);
 		setListAdapter(adapter);
@@ -65,21 +68,117 @@ public class VerAnuncios extends ListActivity {
 		URL url = null;
 
 		if (a1 != null && a2 == null && a3 == null && a4 == null) {
-			try {
-				url = new URL(
-						"http://"
-								+ serverAddress
-								+ ":"
-								+ serverPort
-								+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
-								+ a1);
-			} catch (MalformedURLException e) {
-				Log.d(TAG, e.getMessage(), e);
-				finish();
+
+			if (a1.equals("Todas las categorías")) {
+				try {
+
+					if (a1.equals("Todas las categorías)")) {
+
+					}
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20"
+									+ a1);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
+			}
+
+			else {
+				try {
+
+					if (a1.equals("Todas las categorías)")) {
+
+					}
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+									+ a1);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
 			}
 		}
 
 		else if (a1 != null && a2 != null && a3 == null && a4 == null) {
+
+			if (a2.equals("Todas las subcategorías")) {
+
+				try {
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+									+ a1);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
+
+			}
+
+			else {
+				try {
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+									+ a1 + "&atributo2=" + a2);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
+			}
+
+		}
+
+		else if (a1 != null && a2 != null && a3 != null && a4 == null) {
+
+			if (a3.equals("Todas las subcategorías")) {
+				try {
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+									+ a1 + "&atributo2=" + a2);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
+			}
+
+			else {
+				try {
+					url = new URL(
+							"http://"
+									+ serverAddress
+									+ ":"
+									+ serverPort
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+									+ a1 + "&atributo2=" + a2 + "&atributo3="
+									+ a3);
+				} catch (MalformedURLException e) {
+					Log.d(TAG, e.getMessage(), e);
+					finish();
+				}
+			}
+		}
+
+		else if (a1 != null && a2 != null && a3 != null && a4 != null) {
 			try {
 				url = new URL(
 						"http://"
@@ -119,17 +218,41 @@ public class VerAnuncios extends ListActivity {
 
 		@Override
 		protected void onPostExecute(AnuncioCollection result) {
-			addAnuncios(result);
-			if (pd != null) {
-				pd.dismiss();
+
+			if (result != null) {
+				addAnuncios(result);
+				if (pd != null) {
+					pd.dismiss();
+				}
+
 			}
+
+			else {
+				pd.dismiss();
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						VerAnuncios.this);
+				builder.setMessage("No se han encontrado anuncios")
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										finish();
+									}
+								});
+				builder.create();
+				builder.show();
+			}
+
 		}
 
 	}
 
 	private void addAnuncios(AnuncioCollection anuncios) {
+
 		anuncioList.addAll(anuncios.getAnuncios());
 		adapter.notifyDataSetChanged();
+
 	}
 
 	@Override
@@ -148,6 +271,13 @@ public class VerAnuncios extends ListActivity {
 		Intent intent = new Intent(this, AnuncioDetail.class);
 		intent.putExtra("url", url.toString());
 		startActivity(intent);
+
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		finish();
 
 	}
 

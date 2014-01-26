@@ -22,14 +22,20 @@ function getLogin(email, userpass) {
 							+ btoa(email + ':' + userpass));
 				}
 			}).done(function(data, status, jqxhr) {
-				
-				
-				
-		$.cookie('email', email);
-		$.cookie('userpass', userpass);
+			var user = JSON.parse(jqxhr.responseText);
+			console.log(user.banned);
+			if(user.banned==false){
+				$.cookie('email', email);
+				$.cookie('userpass', userpass);
 
-		window.location = "http://localhost/virtualtrade/index.html";
-		console.log(data);
+				window.location = "http://localhost/virtualtrade/index.html";
+			//	console.log(data);
+			}
+			else{
+				window.location = "http://localhost/virtualtrade/banned.html";
+			}
+				
+		
 	}).fail(function(jqXHR, textStatus) {
 		console.log(textStatus);
 	});

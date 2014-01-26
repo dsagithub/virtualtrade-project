@@ -11,3 +11,6 @@ insert into user_roles values ('joanmail', 'registered');
 
 insert into users values('roxanamail', 'Roxana', MD5('roxana'));
 insert into user_roles values ('roxanamail', 'registered');
+
+insert into users values('josemail', 'Jose', MD5('jose'));
+insert into user_roles values ('josemail', 'registered');

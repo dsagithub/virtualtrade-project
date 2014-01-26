@@ -11,6 +11,8 @@ var id6;
 var id7;
 var id8
 var id9;
+var email = $.cookie('email');
+var userpass = $.cookie('userpass');
 
 $(document).ready(function() {
 	getAnuncios_Atributos();
@@ -19,7 +21,7 @@ $(document).ready(function() {
 	$("#atributo_3").chained("#atributo_2");
 	$("#atributo_4").chained("#atributo_2");
 	
-	console.log($.cookie('email'));
+	console.log(email);
 	
 	if(	$.cookie('email')==0){	
 		
@@ -65,7 +67,7 @@ $("#button_get_anuncios_atributos").click(function(e) {
 //				beforeSend : function(request) {
 //					request.withCredentials = true;
 //					request.setRequestHeader("Authorization", "Basic "
-//							+ btoa('arnaumail' + ':' + 'arnau'));
+//							+ btoa(email + ':' + userpass));
 //				},
 //
 //			}).done(function(data, status, jqxhr) {
@@ -153,7 +155,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 					beforeSend : function(request) {
 						request.withCredentials = true;
 						request.setRequestHeader("Authorization", "Basic "
-								+ btoa('arnaumail' + ':' + 'arnau'));
+								+ btoa(email + ':' + userpass));
 					},
 
 				}).done(function(data, status, jqxhr) {
@@ -295,7 +297,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 					beforeSend : function(request) {
 						request.withCredentials = true;
 						request.setRequestHeader("Authorization", "Basic "
-								+ btoa('arnaumail' + ':' + 'arnau'));
+								+ btoa(email + ':' + userpass));
 					},
 				}).done(function(data, status, jqxhr) {
 			var response = JSON.parse(jqxhr.responseText);
@@ -429,7 +431,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 					beforeSend : function(request) {
 						request.withCredentials = true;
 						request.setRequestHeader("Authorization", "Basic "
-								+ btoa('arnaumail' + ':' + 'arnau'));
+								+ btoa(email + ':' + userpass));
 					},
 
 				}).done(function(data, status, jqxhr) {
@@ -564,7 +566,7 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 					beforeSend : function(request) {
 						request.withCredentials = true;
 						request.setRequestHeader("Authorization", "Basic "
-								+ btoa('arnaumail' + ':' + 'arnau'));
+								+ btoa(email + ':' + userpass));
 					},
 
 				}).done(function(data, status, jqxhr) {
@@ -853,7 +855,7 @@ function getAnunciosNext() {
 				beforeSend : function(request) {
 					request.withCredentials = true;
 					request.setRequestHeader("Authorization", "Basic "
-							+ btoa('arnaumail' + ':' + 'arnau'));
+							+ btoa(email + ':' + userpass));
 				},
 
 			}).done(function(data, status, jqxhr) {
@@ -989,7 +991,7 @@ function getAnunciosPrev() {
 				beforeSend : function(request) {
 					request.withCredentials = true;
 					request.setRequestHeader("Authorization", "Basic "
-							+ btoa('arnaumail' + ':' + 'arnau'));
+							+ btoa(email + ':' + userpass));
 				},
 
 			}).done(function(data, status, jqxhr) {
@@ -1153,7 +1155,7 @@ function getMensajes() {
 				beforeSend : function(request) {
 					request.withCredentials = true;
 					request.setRequestHeader("Authorization", "Basic "
-							+ btoa('arnaumail' + ':' + 'arnau'));
+							+ btoa(email + ':' + userpass));
 				},
 
 			}).done(

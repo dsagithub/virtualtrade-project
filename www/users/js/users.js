@@ -26,21 +26,21 @@ $("#button_get_user").click(function(e) {
 
 
 
-$("#button_message").click(function(e) {
-	e.preventDefault();
-	sendMensaje();
-	//getUser($("#email").val());
-});
+//$("#button_message").click(function(e) {
+//	e.preventDefault();
+//	sendMensaje();
+//	//getUser($("#email").val());
+//});
 
-
-function sendMensaje() {
-	
-	$(subjec).show();
-	  $(cont).show();
-	 $(button_send_msg).show();
-	  $(subject).show();
-	  $(mensaje).show();
-}
+//
+//function sendMensaje() {
+//	
+//	$(subjec).show();
+//	  $(cont).show();
+//	 $(button_send_msg).show();
+//	  $(subject).show();
+//	  $(mensaje).show();
+//}
 
 
 

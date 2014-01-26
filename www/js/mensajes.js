@@ -106,7 +106,8 @@ $("#button_next").click(function(e) {
 //});
 function getEnviados() {
 	var url = API_BASE_URL + "/mensajes/enviados?offset=0&length=10";
-	
+	$(button_prev).hide();
+	$(button_next).hide();
 	$("#mensajes_result").text("");
 	
 	$.ajax(
@@ -224,6 +225,8 @@ function getResponderMensaje9() {
 function getConversacion0() {
 	
 var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[0]+"&offset=0&length=10";
+$(button_prev).hide();
+$(button_next).hide();
 $(button_enviados).hide();
 	$.ajax(
 			{
@@ -273,6 +276,8 @@ $(button_enviados).hide();
 
 function getConversacion1() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[1]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -322,6 +327,8 @@ function getConversacion1() {
 	}
 function getConversacion2() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[2]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -371,6 +378,8 @@ function getConversacion2() {
 	}
 function getConversacion3() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[3]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -420,6 +429,8 @@ function getConversacion3() {
 	}
 function getConversacion4() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[4]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -469,6 +480,8 @@ function getConversacion4() {
 	}
 function getConversacion5() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[5]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -518,6 +531,8 @@ function getConversacion5() {
 	}
 function getConversacion6() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[6]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -567,6 +582,8 @@ function getConversacion6() {
 	}
 function getConversacion7() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[7]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -617,6 +634,8 @@ function getConversacion7() {
 
 function getConversacion8() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[8]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -666,6 +685,8 @@ function getConversacion8() {
 	}
 function getConversacion9() {
 	$(button_enviados).hide();
+	$(button_prev).hide();
+	$(button_next).hide();
 	var url = API_BASE_URL + "/mensajes/user_message?anuncioid="+anuncioid[9]+"&offset=0&length=10";
 		
 		$.ajax(
@@ -783,7 +804,7 @@ function getMensajesNext() {
 
 	var url = next;
 	contador=0;
-	
+
 	$.ajax(
 			{
 				url : url,

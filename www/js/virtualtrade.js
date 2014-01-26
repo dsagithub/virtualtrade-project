@@ -92,6 +92,25 @@ $("#button_get_anuncios_atributos").click(function(e) {
 // });
 // }
 
+
+
+
+function getanuncio_palabra(){
+	
+	// aqui la función
+	
+	
+	/* doing stuff 
+	 * 
+	 * */ 
+	 
+	console.log("fsafda");
+}
+
+
+
+
+
 function getAnuncio1() {
 	$.cookie('id', id1);
 }

@@ -21,6 +21,7 @@ public class AnuncioSelection extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.selection_layout);
 
 		atributo1 = (Spinner) findViewById(R.id.atributo1);
@@ -44,7 +45,17 @@ public class AnuncioSelection extends Activity {
 							android.view.View v, int position, long id) {
 						verAnuncios.setEnabled(true);
 						a1 = atributo1.getSelectedItem().toString();
-						if (a1.equals("Electrónica")) {
+
+						if (a1.equals("Todas las categorías")) {
+							atributo2.setSelection(0);
+							atributo3.setSelection(0);
+							atributo4.setSelection(0);
+							atributo3.setEnabled(false);
+							atributo4.setEnabled(false);
+
+						}
+
+						else if (a1.equals("Electrónica")) {
 							atributo2.setEnabled(true);
 							ArrayAdapter<CharSequence> adapter2 = ArrayAdapter
 									.createFromResource(
@@ -70,7 +81,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (!a2.equals("Selecciona un valor")) {
+											if (!a2.equals("Todas las subcategorías")) {
 
 												if (a2.equals("Imágen y Sonido")) {
 													atributo3.setEnabled(true);
@@ -99,7 +110,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -136,6 +147,11 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	} else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -177,7 +193,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -214,6 +230,11 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	} else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -253,7 +274,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -289,6 +310,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -328,7 +356,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -364,6 +392,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -403,7 +438,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -439,6 +474,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -477,7 +519,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 																		atributo4
 																				.setEnabled(true);
 																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
@@ -514,6 +556,13 @@ public class AnuncioSelection extends Activity {
 																				});
 
 																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
 																}
 
 																@Override
@@ -524,6 +573,13 @@ public class AnuncioSelection extends Activity {
 															});
 												}
 
+											}
+
+											else {
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo3.setEnabled(false);
+												atributo4.setEnabled(false);
 											}
 										}
 
@@ -563,7 +619,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (!a2.equals("Selecciona un valor")) {
+											if (!a2.equals("Todas las subcategorías")) {
 
 												if (a2.equals("Coches")) {
 													atributo3.setEnabled(true);
@@ -591,42 +647,50 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor"))
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
-																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																			.createFromResource(
-																					AnuncioSelection.this,
-																					R.array.atributo4Coches,
-																					android.R.layout.simple_spinner_item);
-																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																	atributo4
-																			.setAdapter(adapter4);
-																	atributo4
-																			.setSelection(0);
-																	atributo4
-																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																				.createFromResource(
+																						AnuncioSelection.this,
+																						R.array.atributo4Coches,
+																						android.R.layout.simple_spinner_item);
+																		adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																		atributo4
+																				.setAdapter(adapter4);
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																				public void onItemSelected(
-																						AdapterView<?> parent,
-																						android.view.View v,
-																						int position,
-																						long id) {
+																					public void onItemSelected(
+																							AdapterView<?> parent,
+																							android.view.View v,
+																							int position,
+																							long id) {
 
-																					a4 = atributo4
-																							.getSelectedItem()
-																							.toString();
+																						a4 = atributo4
+																								.getSelectedItem()
+																								.toString();
 
-																				}
+																					}
 
-																				@Override
-																				public void onNothingSelected(
-																						AdapterView<?> arg0) {
+																					@Override
+																					public void onNothingSelected(
+																							AdapterView<?> arg0) {
 
-																				}
-																			});
+																					}
+																				});
+																	}
 
+																	else {
+
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
 																}
 
 																@Override
@@ -665,7 +729,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -702,6 +766,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -740,7 +811,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -776,6 +847,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -814,7 +892,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -852,6 +930,13 @@ public class AnuncioSelection extends Activity {
 																				});
 
 																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
 																}
 
 																@Override
@@ -862,6 +947,13 @@ public class AnuncioSelection extends Activity {
 															});
 												}
 
+											}
+
+											else {
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo3.setEnabled(false);
+												atributo4.setEnabled(false);
 											}
 										}
 
@@ -900,7 +992,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (!a2.equals("Selecciona un valor")) {
+											if (!a2.equals("Todas las subcategorías")) {
 
 												if (a2.equals("Libros y Cómics")) {
 													atributo3.setEnabled(true);
@@ -929,7 +1021,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -965,6 +1057,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1002,7 +1101,7 @@ public class AnuncioSelection extends Activity {
 																	a3 = atributo3
 																			.getSelectedItem()
 																			.toString();
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1038,6 +1137,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1077,7 +1183,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1114,6 +1220,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1152,7 +1265,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1189,6 +1302,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
 																}
 
 																@Override
@@ -1198,6 +1318,13 @@ public class AnuncioSelection extends Activity {
 																}
 															});
 												}
+											}
+
+											else {
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo3.setEnabled(false);
+												atributo4.setEnabled(false);
 											}
 										}
 
@@ -1236,7 +1363,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (!a2.equals("Selecciona un valor")) {
+											if (!a2.equals("Todas las subcategorías")) {
 
 												if (a2.equals("Herramientas")) {
 													atributo3.setEnabled(true);
@@ -1265,7 +1392,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Seleccionar un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1301,6 +1428,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1339,7 +1473,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Seleccionar un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 																		atributo4
 																				.setEnabled(true);
 																		ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
@@ -1373,6 +1507,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1411,7 +1552,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Seleccionar un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1447,6 +1588,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1486,7 +1634,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1523,6 +1671,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1562,7 +1717,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1598,6 +1753,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1637,7 +1799,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1675,6 +1837,13 @@ public class AnuncioSelection extends Activity {
 																				});
 																	}
 
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
+
 																}
 
 																@Override
@@ -1685,6 +1854,13 @@ public class AnuncioSelection extends Activity {
 															});
 												}
 
+											}
+
+											else {
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo3.setEnabled(false);
+												atributo4.setEnabled(false);
 											}
 										}
 
@@ -1722,7 +1898,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (!a2.equals("Selecciona un valor")) {
+											if (!a2.equals("Todas las subcategorías")) {
 
 												if (a2.equals("Atletismo")) {
 													atributo3.setEnabled(true);
@@ -1750,7 +1926,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1786,6 +1962,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1825,7 +2008,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1861,6 +2044,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1899,7 +2089,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -1935,6 +2125,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -1973,7 +2170,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -2009,6 +2206,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -2047,7 +2251,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -2084,6 +2288,13 @@ public class AnuncioSelection extends Activity {
 																					}
 																				});
 
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -2123,7 +2334,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -2159,6 +2370,13 @@ public class AnuncioSelection extends Activity {
 
 																					}
 																				});
+																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
 																	}
 																}
 
@@ -2196,7 +2414,7 @@ public class AnuncioSelection extends Activity {
 																			.getSelectedItem()
 																			.toString();
 
-																	if (!a3.equals("Selecciona un valor")) {
+																	if (!a3.equals("Todas las subcategorías")) {
 
 																		atributo4
 																				.setEnabled(true);
@@ -2234,6 +2452,13 @@ public class AnuncioSelection extends Activity {
 																				});
 
 																	}
+
+																	else {
+																		atributo4
+																				.setSelection(0);
+																		atributo4
+																				.setEnabled(false);
+																	}
 																}
 
 																@Override
@@ -2244,6 +2469,13 @@ public class AnuncioSelection extends Activity {
 															});
 												}
 
+											}
+
+											else {
+												atributo3.setSelection(0);
+												atributo4.setSelection(0);
+												atributo3.setEnabled(false);
+												atributo4.setEnabled(false);
 											}
 										}
 
@@ -2281,7 +2513,7 @@ public class AnuncioSelection extends Activity {
 											a2 = atributo2.getSelectedItem()
 													.toString();
 
-											if (a2 != null) {
+											if (!a2.equals("Todas las subcategorías")) {
 												atributo3.setEnabled(true);
 												ArrayAdapter<CharSequence> adapter3 = ArrayAdapter
 														.createFromResource(
@@ -2369,26 +2601,28 @@ public class AnuncioSelection extends Activity {
 	}
 
 	public void verAnuncios(View v) {
+
 		Intent intent = new Intent(this, VerAnuncios.class);
 
 		intent.putExtra("a1", a1.toString());
 
 		if (a2 != null) {
-			if (!a2.equals("Selecciona un valor"))
+			if (!a2.equals("Todas las subcategorías"))
 				intent.putExtra("a2", a2.toString());
 		}
 
 		if (a3 != null) {
-			if (!a3.equals("Selecciona un valor"))
+			if (!a3.equals("Todas las subcategorías"))
 				intent.putExtra("a3", a3.toString());
 		}
 
 		if (a4 != null) {
-			if (!a4.equals("Selecciona un valor"))
+			if (!a4.equals("Todas las subcategorías"))
 				intent.putExtra("a4", a4.toString());
 		}
 
 		startActivity(intent);
 
 	}
+
 }

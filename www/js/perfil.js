@@ -7,6 +7,11 @@ $(document).ready(function() {
 
 });
 
+$("#button_edit_user").click(function(e) {
+	e.preventDefault();
+	document.location.href='/virtualtrade/modificarperfil.html';
+});
+
 function getUser(email) {
 	//console.log("JSDFJGSDJGSDKGSDK");
 	var url = API_BASE_URL + "/users/" + email;

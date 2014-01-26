@@ -22,12 +22,12 @@
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="css/boostrap.css">
-    <link rel="stylesheet" href="css/boostrap_responsive.css">
+     <link rel="stylesheet" href="css/boostrap.css">
+<!--     <link rel="stylesheet" href="css/boostrap_responsive.css">   --> 
     <!-- Font Awesome styles (icons) -->
     <link rel="stylesheet" href="css/font_awesome.css">
     <!-- Main Template styles -->
-    <link rel="stylesheet" href="css/styles.css">
+     <link rel="stylesheet" href="css/styles.css"> 
 
     <!-- IE 8 Fallback -->
     <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
 <![endif]-->
 
     <!-- Your custom styles (blank file) -->
-    <link rel="stylesheet" href="css/mystyles.css">
+   <!--  <link rel="stylesheet" href="css/mystyles.css"> -->
 </head>
 
 	<!-- //////////////////////////////////

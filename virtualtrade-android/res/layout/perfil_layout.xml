@@ -118,7 +118,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/userimage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"

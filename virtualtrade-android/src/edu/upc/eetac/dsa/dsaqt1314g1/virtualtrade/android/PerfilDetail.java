@@ -1,22 +1,35 @@
 package edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android;
 
+import java.io.IOException;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
-import java.text.SimpleDateFormat;
+import java.util.Properties;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.User;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.VirtualtradeAPI;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PerfilDetail extends Activity {
+
+	String serverAddress;
+	String serverPort;
+
+	String email;
+	String password;
 
 	private final static String TAG = PerfilDetail.class.toString();
 	VirtualtradeAPI api;
@@ -25,15 +38,47 @@ public class PerfilDetail extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.anuncio_detail_layout);
 
+		SharedPreferences prefs = getSharedPreferences("virtualtrade-profile",
+				Context.MODE_PRIVATE);
+
+		email = prefs.getString("email", null);
+		password = prefs.getString("password", null);
+
+		AssetManager assetManager = getAssets();
+		Properties config = new Properties();
+
+		try {
+			config.load(assetManager.open("config.properties"));
+			serverAddress = config.getProperty("server.address");
+			serverPort = config.getProperty("server.port");
+
+			Log.d(TAG, "Configured server " + serverAddress + ":" + serverPort);
+		} catch (IOException e) {
+			Log.e(TAG, e.getMessage(), e);
+			finish();
+		}
+
+		Authenticator.setDefault(new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(email, password.toCharArray());
+			}
+		});
+
+		setContentView(R.layout.perfil_layout);
 		api = new VirtualtradeAPI();
 		URL url = null;
+
 		try {
-			url = new URL((String) getIntent().getExtras().get("url"));
+
+			url = new URL("http://" + serverAddress + ":" + serverPort
+					+ "/virtualtrade-api/users/" + email);
 		} catch (MalformedURLException e) {
+			Log.d(TAG, e.getMessage(), e);
+			finish();
 		}
-		(new FetchAnuncioTask()).execute(url);
+
+		(new FetchUsuarioTask()).execute(url);
 
 	}
 
@@ -49,12 +94,12 @@ public class PerfilDetail extends Activity {
 
 		name.setText(user.getName());
 		email.setText(user.getEmail());
-		phone.setText(user.getPhone());
+		phone.setText(Integer.toString((user.getPhone())));
 		ciudad.setText(user.getCiudad());
 		calle.setText(user.getCalle());
-		numero.setText(user.getNumero());
-		piso.setText(user.getPiso());
-		puerta.setText(user.getPuerta());
+		numero.setText(Integer.toString(user.getNumero()));
+		piso.setText(Integer.toString(user.getPiso()));
+		puerta.setText(Integer.toString(user.getPuerta()));
 
 	}
 
@@ -90,7 +135,7 @@ public class PerfilDetail extends Activity {
 
 	}
 
-	private class FetchAnuncioTask extends AsyncTask<URL, Void, User> {
+	private class FetchUsuarioTask extends AsyncTask<URL, Void, User> {
 		private ProgressDialog pd;
 
 		@Override
@@ -100,14 +145,11 @@ public class PerfilDetail extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(Anuncio result) {
-			loadAnuncio(result);
-			ImagenCollection imagenes = new ImagenCollection();
-			imagenes.setImagenes(result.getImagenes());
+		protected void onPostExecute(User result) {
+			loadUser(result);
 
-			new DownloadImageTask(
-					(ImageView) findViewById(R.id.imagenesanuncio))
-					.execute(imagenes.getImagenes().get(0).getUrlimagen());
+			new DownloadImageTask((ImageView) findViewById(R.id.userimage))
+					.execute(result.getFoto());
 			if (pd != null) {
 				pd.dismiss();
 			}
@@ -115,7 +157,7 @@ public class PerfilDetail extends Activity {
 
 		@Override
 		protected void onPreExecute() {
-			pd = new ProgressDialog(AnuncioDetail.this);
+			pd = new ProgressDialog(PerfilDetail.this);
 			pd.setTitle("Loading...");
 			pd.setCancelable(false);
 			pd.setIndeterminate(true);

@@ -317,8 +317,8 @@ public class VirtualtradeAPI {
 				sb.append(line);
 			}
 
-			JSONObject jsonAnuncio = new JSONObject(sb.toString());
-			mensaje = parseMensaje(jsonAnuncio);
+			JSONObject jsonUser = new JSONObject(sb.toString());
+			user = parseUser(jsonUser);
 		} catch (IOException e) {
 			Log.e(TAG, e.getMessage(), e);
 			return null;
@@ -333,7 +333,7 @@ public class VirtualtradeAPI {
 				urlConnection.disconnect();
 		}
 
-		Log.d(TAG, "anuncio a" + mensaje);
+		Log.d(TAG, "anuncio a" + user);
 
 		return user;
 	}

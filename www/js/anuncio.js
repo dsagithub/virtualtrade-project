@@ -1,10 +1,31 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 var id = $.cookie('id');
+var password = $.cookie('userpass')
+var email = $.cookie('email')
+var anuncioid =id;
+
+
+
 
 $(document).ready(function() {
 	getanuncio();
 });
+
+
+$("#send-message").click(function(e) {
+	e.preventDefault();
+	getEnviarMensaje();
+	
+});
+
+function getEnviarMensaje() {
+	$.cookie('destinatario',destinatario);
+	$.cookie('anuncioid',anuncioid);	
+	document.location.href='/virtualtrade/redactar.html';
+}
+
+
 
 function getanuncio() {
 
@@ -38,8 +59,8 @@ function getanuncio() {
 
 //		console.log("El proximo next es:" + next);
 
-		
-
+			destinatario=anuncio.email;
+			console.log=("El creador del anuncio es:"+destinatario)
 			foto_anuncio1.src = anuncio.imagenes[0].urlimagen;
 			$("#title1").text(anuncio.subject);
 			$("titulooo").text(anuncio.subject);

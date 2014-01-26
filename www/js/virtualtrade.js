@@ -223,6 +223,8 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			$("#content2").text(anuncios[1].content);
 			$("#precio2").text(anuncios[1].precio + " \u20ac");
 			id2 = anuncios[1].anuncioid;
+			
+			
 
 			foto_anuncio3.src = anuncios[2].imagenes[0].urlimagen;
 			$("#title3").text(anuncios[2].subject);
@@ -267,6 +269,11 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 			id9 = anuncios[8].anuncioid;
 
 			console.log(id1);
+//			
+//			
+//			foto99.src = anuncios[1].imagenes[0].urlimagen;
+//			foto100.src = anuncios[2].imagenes[0].urlimagen;
+//			foto101.src = anuncios[3].imagenes[0].urlimagen;
 
 		}).fail(function() {
 			$("#anuncios_result").text("No hay anuncios");

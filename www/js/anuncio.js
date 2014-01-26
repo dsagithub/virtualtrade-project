@@ -42,8 +42,18 @@ function getanuncio() {
 
 			foto_anuncio1.src = anuncio.imagenes[0].urlimagen;
 			$("#title1").text(anuncio.subject);
+			$("titulooo").text(anuncio.subject);
 			$("#content1").text(anuncio.content);
 			$("#precio1").text(anuncio.precio + " \u20ac");
+		
+			if(anuncio.imagenes[1].urlimagen != undefined){
+				foto_anuncio2.src = anuncio.imagenes[1].urlimagen;
+			}
+			
+			else if (anuncio.imagenes[1].urlimagen != undefined){
+				foto_anuncio3.src = anuncio.imagenes[2].urlimagen;
+			}
+			
 			
 //		
 //		else if (id == 2) {

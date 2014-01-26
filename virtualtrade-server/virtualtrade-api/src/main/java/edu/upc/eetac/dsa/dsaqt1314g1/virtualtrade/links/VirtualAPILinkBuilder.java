@@ -202,7 +202,7 @@ public class VirtualAPILinkBuilder {
 		URI uriMensajes = null;
 
 		uriMensajes = uriInfo.getBaseUriBuilder()
-				.path(MensajeResource.class, "getMensajesEnvidaos")
+				.path(MensajeResource.class, "getMensajesEnviados")
 				.queryParam("offset", offset).queryParam("length", length)
 				.build();
 

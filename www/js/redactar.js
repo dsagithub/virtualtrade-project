@@ -11,6 +11,17 @@ $("#button_send_msg").click(function(e) {
 	EnviarMensaje();
 });
 
+$("#button_cancell").click(function(e) {
+	e.preventDefault();
+	CancelarMensaje();
+});
+
+function CancelarMensaje() {
+	//FALTA BORRAR cookies
+	document.location.href='/virtualtrade/index.html';
+}
+
+
 function EnviarMensaje() {
 
 	var url = API_BASE_URL + '/mensajes';
@@ -44,7 +55,9 @@ function EnviarMensaje() {
 				}
 			}).done(function(data, status, jqxhr) {
 		$("#create_result").text("Anuncio creado correctamente");
-		console.log("Mensaje enviado")
+		console.log("Mensaje enviado");
+		//FALTA BORRAR COOKIES
+		document.location.href='/virtualtrade/index.html';
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});

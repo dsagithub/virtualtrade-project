@@ -10,9 +10,17 @@ $(document).ready(function() {
 	
 });
 
+$("#button_enviados").click(function(e) {
+	e.preventDefault();
+	getEnviados();
+	
+	
+});
+
+
+
 $("#button_responder_mensaje_0").click(function(e) {
 	e.preventDefault();
-	console.log("HOLA");
 	$.cookie('destinatario',destinatario[0]);
 	$.cookie('anuncioid',anuncioid[0]);	
 	getResponderMensaje();
@@ -84,7 +92,60 @@ $("#button_responder_mensaje_8").click(function(e) {
 	$cookie('anuncioid',anuncioid[8]);	
 	getResponderMensaje();
 });
+function getEnviados() {
+	var url = API_BASE_URL + "/mensajes/enviados?offset=0&length=10";
+	
+	$("#mensajes_result").text("");
+	
+	$.ajax(
+			{
+				url : url,
+				type : 'GET',
+				crossDomain : true,
+				dataType : 'json',
+				beforeSend : function(request) {
+					request.withCredentials = true;
+					request.setRequestHeader("Authorization", "Basic "
+							+ btoa('arnaumail' + ':' + 'arnau'));
+				},
 
+			}).done(
+			function(data, status, jqxhr) {
+				var response = JSON.parse(jqxhr.responseText);
+				var mensajes = response.mensajes;
+				
+				
+				$("#mensajes_result").text("");
+
+				$.each(mensajes, function(i, v) {
+					var mensaje = v;
+					var $grouplist = $('#mensajes_result');
+//					$('<li>' + mensaje.anuncioid + '</li>')
+//							.appendTo($grouplist);
+//					$('<li>' + mensaje.mensajeid + '</li>')
+//							.appendTo($grouplist);
+					$('<div><p align=right>'+mensaje.creation_timestamp+ '</p><h5>Destino: ' + mensaje.emaildestino +'</h5></div>').appendTo(
+							$grouplist);
+					
+					$('<h5>Asunto: ' + mensaje.subject + '</h5>').appendTo($grouplist);
+					$("<hr noshade size=1> ").appendTo($grouplist);
+					$('<div style="height:100px">Contenido: ' + mensaje.content + '</div>').appendTo($grouplist);
+					$("<hr noshade size=1> ").appendTo($grouplist);
+
+//					$('<li>' + mensaje.emaildestino + '</li>').appendTo(
+//							$grouplist);
+
+					$("<hr noshade size=7> ").appendTo($grouplist);					
+					
+				});
+
+			}).fail(function() {
+		$("#mensajes_result").text("No hay mensajes");
+	});
+
+
+	
+}
 
 function getResponderMensaje() {
 
@@ -129,7 +190,7 @@ function getMensajes() {
 					$('<h5>Asunto: ' + mensaje.subject + '</h5>').appendTo($grouplist);
 					$("<hr noshade size=1> ").appendTo($grouplist);
 					$('<div style="height:100px">Contenido: ' + mensaje.content + '</div>').appendTo($grouplist);
-					
+					$("<hr noshade size=1> ").appendTo($grouplist);
 					$('<button type="button" class="btn btn-info" id="button_responder_mensaje_'+contador+'">Responder</button>').appendTo($grouplist);
 
 //					$('<li>' + mensaje.emaildestino + '</li>').appendTo(

@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-     android:background="#7FA832">
+    android:background="#7FA832"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tvDetailSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/b"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -17,18 +20,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.39"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
         android:id="@+id/imagenesanuncio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.39" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.05"
         android:orientation="horizontal"
         android:paddingBottom="10dip"
         android:paddingLeft="5dip"

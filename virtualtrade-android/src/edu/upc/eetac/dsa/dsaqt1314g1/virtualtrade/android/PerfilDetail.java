@@ -93,13 +93,13 @@ public class PerfilDetail extends Activity {
 		TextView puerta = (TextView) findViewById(R.id.puerta);
 
 		name.setText(user.getName());
-		email.setText(user.getEmail());
-		phone.setText(Integer.toString((user.getPhone())));
-		ciudad.setText(user.getCiudad());
-		calle.setText(user.getCalle());
-		numero.setText(Integer.toString(user.getNumero()));
-		piso.setText(Integer.toString(user.getPiso()));
-		puerta.setText(Integer.toString(user.getPuerta()));
+		email.setText("Email usuario: " + user.getEmail());
+		phone.setText("Teléfono: " + Integer.toString((user.getPhone())));
+		ciudad.setText("Ciudad: " + user.getCiudad());
+		calle.setText("Calle: " + user.getCalle());
+		numero.setText("Número: " + Integer.toString(user.getNumero()));
+		piso.setText("Piso: " + Integer.toString(user.getPiso()));
+		puerta.setText("Puerta :" + Integer.toString(user.getPuerta()));
 
 	}
 

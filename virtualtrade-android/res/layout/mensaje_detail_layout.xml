@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-     android:background="#7FA832" >
+    android:background="#7FA832"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tvDetailSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
+        android:background="@drawable/b"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout

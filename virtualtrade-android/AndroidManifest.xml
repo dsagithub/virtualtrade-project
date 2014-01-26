@@ -23,6 +23,7 @@
         <activity android:name="AnuncioDetail" />
         <activity android:name="VerMensajes" />
         <activity android:name="MensajeDetail" />
+         <activity android:name="PerfilDetail" />
     </application>
 
     <uses-sdk

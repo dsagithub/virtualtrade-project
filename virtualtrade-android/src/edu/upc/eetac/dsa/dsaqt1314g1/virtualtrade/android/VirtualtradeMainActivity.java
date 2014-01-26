@@ -72,4 +72,9 @@ public class VirtualtradeMainActivity extends Activity {
 		startActivity(i);
 	}
 
+	public void verPerfil(View view) {
+		Intent i = new Intent(this, PerfilDetail.class);
+		startActivity(i);
+	}
+
 }

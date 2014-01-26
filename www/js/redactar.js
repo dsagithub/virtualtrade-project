@@ -19,6 +19,9 @@ $("#button_cancell").click(function(e) {
 function CancelarMensaje() {
 	//FALTA BORRAR cookies
 	document.location.href='/virtualtrade/index.html';
+	
+	$.removeCookie('destinatario');
+	$.removeCookie('anuncioid');
 }
 
 
@@ -58,6 +61,10 @@ function EnviarMensaje() {
 		console.log("Mensaje enviado");
 		//FALTA BORRAR COOKIES
 		document.location.href='/virtualtrade/index.html';
+		
+		$.removeCookie('destinatario');
+		$.removeCookie('anuncioid');
+		
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});

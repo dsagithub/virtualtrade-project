@@ -2,8 +2,9 @@
 <html>
 
 
+
 <head>
-<title>Koupon - Contact Us</title>
+<title>Koupon - Index</title>
 <!-- meta info -->
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta name="keywords" content="Koupon HTML5 Template" />
@@ -22,11 +23,18 @@
 <link rel="stylesheet" href="css/font_awesome.css">
 <!-- Main Template styles -->
 <link rel="stylesheet" href="css/styles.css">
+
+<!-- IE 8 Fallback -->
+<!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="css/ie.css" />
+<![endif]-->
+
+<!-- Your custom styles (blank file) -->
 <link rel="stylesheet" href="css/mystyles.css">
 </head>
 
-
 <body>
+
 
 
 
@@ -38,7 +46,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="span2">
-					<a href="http://localhost/virtualtrade/index.html"> </a>
+					<a href="http://localhost/virtualtrade/index.html">
+					</a>
 				</div>
 				<div class="span8">
 					<!-- MAIN NAVIGATION -->
@@ -80,13 +89,14 @@
 										</ul></li>
 								</ul></li>
 
-							<li><a href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
-							<li><a
+							<li><a id="perfil" href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
+							<li><a id="añadir"
 								href="http://localhost/virtualtrade/nuevoanuncio.html">Añadir
 									nuevo anuncio</a></li>
 
-							<li><a href="http://localhost/virtualtrade/users/users.html">Buscar
+							<li><a id="buscar" href="http://localhost/virtualtrade/users/users.html">Buscar
 									Usuario</a></li>
+							<li><a id="mensajes" href="http://localhost/virtualtrade/mensajes.html">Mensajes</a></li>		
 							<li><a href="http://localhost/virtualtrade/contact.html">Contactar</a>
 							</li>
 						</ul>
@@ -96,14 +106,23 @@
 				<div class="span2">
 					<!-- LOGIN REGISTER LINKS -->
 					<ul class="login-register">
-						<li><a class="popup-text"
+						<li><a id="singup" class="popup-text"
 							href="http://localhost/virtualtrade/login.html"
 							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign
 								in</a></li>
-						<li><a class="popup-text"
+					<!-- 	<li><a id="nombreusuarioaqui" class="popup-text"
+							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Perfil</a></li>
+ -->
+						<li><a id="signin" class="popup-text"
 							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
 							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign
 								up</a></li>
+
+
+						<li><a id="logout" class="popup-text"
+							href="http://localhost/virtualtrade/index.html"
+							data-effect="mfp-move-from-top"><i onclick="logout()" class="icon-edit"></i>Log Out
+								</a></li>
 					</ul>
 				</div>
 			</div>
@@ -189,6 +208,23 @@
 
 
 
+
+
+	<!-- TOP AREA -->
+	<div class="top-area"></div>
+	<!-- END TOP AREA -->
+
+
+	<div class="gap"></div>
+
+	<!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+
+
+
 	<div class="gap"></div>
 
 	<!-- //////////////////////////////////
@@ -205,8 +241,7 @@
 
 						<span id="mensajes_result"></span>
 
-						<button type="button" class="btn btn-info"
-							id="button_responder_mensaje_0">Prueba responder</button>
+					
 							<button type="button" class="btn btn-info"
 							id="button_enviados">Mensajes enviados</button>
 

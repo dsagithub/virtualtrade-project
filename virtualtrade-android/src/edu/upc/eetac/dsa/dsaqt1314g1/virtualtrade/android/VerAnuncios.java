@@ -30,11 +30,18 @@ public class VerAnuncios extends ListActivity {
 	private ArrayList<Anuncio> anuncioList;
 	private AnuncioAdapter adapter;
 
-	String a1, a2, a3, a4;
-
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "onCreate()");
+
+		String a1 = null;
+		String a2 = null;
+		String a3 = null;
+		String a4 = null;
+		a1 = ((String) getIntent().getExtras().get("a1"));
+		a2 = ((String) getIntent().getExtras().get("a2"));
+		a3 = ((String) getIntent().getExtras().get("a3"));
+		a4 = ((String) getIntent().getExtras().get("a4"));
 
 		AssetManager assetManager = getAssets();
 		Properties config = new Properties();
@@ -57,10 +64,30 @@ public class VerAnuncios extends ListActivity {
 		api = new VirtualtradeAPI();
 		URL url = null;
 
-		if (a1 != null) {
+		if (a1 != null && a2 == null && a3 == null && a4 == null) {
 			try {
-				url = new URL("http://" + serverAddress + ":" + serverPort
-						+ "/virtualtrade-api/anuncios?&offset=0&length=20");
+				url = new URL(
+						"http://"
+								+ serverAddress
+								+ ":"
+								+ serverPort
+								+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+								+ a1);
+			} catch (MalformedURLException e) {
+				Log.d(TAG, e.getMessage(), e);
+				finish();
+			}
+		}
+
+		else if (a1 != null && a2 != null && a3 == null && a4 == null) {
+			try {
+				url = new URL(
+						"http://"
+								+ serverAddress
+								+ ":"
+								+ serverPort
+								+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20&atributo1="
+								+ a1 + "&atributo2=" + a2);
 			} catch (MalformedURLException e) {
 				Log.d(TAG, e.getMessage(), e);
 				finish();

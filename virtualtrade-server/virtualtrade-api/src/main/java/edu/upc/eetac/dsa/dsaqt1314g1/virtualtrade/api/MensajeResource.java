@@ -359,9 +359,11 @@ public class MensajeResource {
 					mensajes.add(mensaje);
 
 					List<Link> links = new ArrayList<Link>();
-					links.add(VirtualAPILinkBuilder
-							.buildURIMensajesConversacion(uriInfo, offset,
-									length, rs.getString("anuncioid"), rel));
+
+					links.add(VirtualAPILinkBuilder.buildURIMensajesEnviados(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									+ Integer.parseInt(length))), length, rel));
 
 					if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 						links.add(VirtualAPILinkBuilder
@@ -372,9 +374,7 @@ public class MensajeResource {
 					}
 
 					links.add(VirtualAPILinkBuilder.buildURIMensajesEnviados(
-							uriInfo,
-							(Integer.toString(Integer.parseInt(offset)
-									+ Integer.parseInt(length))), length, rel));
+							uriInfo, offset, length, rel));
 
 					mensajes.setLinks(links);
 				}
@@ -473,24 +473,22 @@ public class MensajeResource {
 
 					mensajes.add(mensaje);
 					List<Link> links = new ArrayList<Link>();
-					links.add(VirtualAPILinkBuilder
-							.buildURIMensajesConversacion(uriInfo, offset,
-									length, rs.getString("anuncioid"), rel));
+
+					links.add(VirtualAPILinkBuilder.buildURIMensajesRecibidos(
+							uriInfo,
+							(Integer.toString(Integer.parseInt(offset)
+									+ Integer.parseInt(length))), length, rel));
 
 					if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 						links.add(VirtualAPILinkBuilder
-								.buildURIMensajesConversacion(uriInfo, (Integer
+								.buildURIMensajesRecibidos(uriInfo, (Integer
 										.toString(Integer.parseInt(offset)
 												- Integer.parseInt(length))),
-										length, rs.getString("anuncioid"), rel));
+										length, rel));
 					}
 
-					links.add(VirtualAPILinkBuilder
-							.buildURIMensajesConversacion(
-									uriInfo,
-									(Integer.toString(Integer.parseInt(offset)
-											+ Integer.parseInt(length))),
-									length, rs.getString("anuncioid"), rel));
+					links.add(VirtualAPILinkBuilder.buildURIMensajesRecibidos(
+							uriInfo, offset, length, rel));
 
 					mensajes.setLinks(links);
 				}

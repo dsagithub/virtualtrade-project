@@ -36,7 +36,7 @@ function getUser() {
 			}).done(function(data, status, jqxhr) {
 		var user = JSON.parse(jqxhr.responseText);
 
-		$("#name").text(user.nombre);
+		$("#name").text(user.name);
 		$("#phone").text(user.phone);
 		$("#ciudad").text(user.ciudad);
 		$("#calle").text(user.calle);

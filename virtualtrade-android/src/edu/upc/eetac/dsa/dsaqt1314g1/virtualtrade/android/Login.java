@@ -137,7 +137,7 @@ public class Login extends Activity {
 
 				try {
 					JSONObject result = new JSONObject(reader.readLine());
-					success = Boolean.toString(result.getBoolean("success"));
+					success = result.getString("success");
 
 				} catch (JSONException ex) {
 					Log.w("Aviso", ex.toString());

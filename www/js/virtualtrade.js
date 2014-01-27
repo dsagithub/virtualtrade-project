@@ -12,11 +12,8 @@ var id7;
 var id8
 var id9;
 
-
 var email = $.cookie('email');
 var userpass = $.cookie('userpass');
-
-$.notify("Hello World");
 
 $(document).ready(function() {
         getAnuncios_Atributos();

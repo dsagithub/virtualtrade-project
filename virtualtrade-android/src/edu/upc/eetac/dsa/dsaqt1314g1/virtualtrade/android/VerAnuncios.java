@@ -72,9 +72,6 @@ public class VerAnuncios extends ListActivity {
 			if (a1.equals("Todas las categorías")) {
 				try {
 
-					if (a1.equals("Todas las categorías)")) {
-
-					}
 					url = new URL(
 							"http://"
 									+ serverAddress
@@ -85,15 +82,13 @@ public class VerAnuncios extends ListActivity {
 				} catch (MalformedURLException e) {
 					Log.d(TAG, e.getMessage(), e);
 					finish();
+
 				}
 			}
 
 			else {
 				try {
 
-					if (a1.equals("Todas las categorías)")) {
-
-					}
 					url = new URL(
 							"http://"
 									+ serverAddress

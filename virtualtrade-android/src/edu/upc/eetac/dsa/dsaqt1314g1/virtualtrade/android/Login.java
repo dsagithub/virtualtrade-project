@@ -22,7 +22,10 @@ import org.json.JSONObject;
 
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.VirtualtradeAPI;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -95,6 +98,16 @@ public class Login extends Activity {
 
 	private class LoginTask extends AsyncTask<URL, Integer, String> {
 		String success = null;
+		private ProgressDialog pd;
+
+		@Override
+		protected void onPreExecute() {
+			pd = new ProgressDialog(Login.this);
+			pd.setTitle("Log in...");
+			pd.setCancelable(false);
+			pd.setIndeterminate(true);
+			pd.show();
+		}
 
 		@Override
 		protected String doInBackground(URL... params) {
@@ -141,7 +154,7 @@ public class Login extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			if (success == "true") {
+			if (success.equals("true")) {
 
 				SharedPreferences prefs = getSharedPreferences(
 						"virtualtrade-profile", Context.MODE_PRIVATE);
@@ -159,7 +172,23 @@ public class Login extends Activity {
 				// arrancamos la actividad Virtualtrade
 				startVirtualtradeActivity();
 
-			} else if (success == "true") {
+			}
+
+			else {
+				pd.dismiss();
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						Login.this);
+				builder.setMessage("Usuario no encontrado")
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+
+									}
+								});
+				builder.create();
+				builder.show();
 
 			}
 

@@ -1,5 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app=":http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true" >
@@ -7,7 +8,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#00CC54" >
+        android:background="#4B610B" >
 
         <!-- Login form -->
 
@@ -32,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
-                android:inputType="text"
                 android:singleLine="true" />
 
             <TextView
@@ -57,18 +57,6 @@
                 android:layout_marginTop="25dip"
                 android:onClick="signIn"
                 android:text="@string/login_l_signin" />
-
-            <TextView
-                android:id="@+id/lLinkRegister"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dip"
-                android:layout_marginTop="40dip"
-                android:clickable="true"
-                android:gravity="center"
-                android:text="@string/login_l_register"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <RelativeLayout
@@ -77,30 +65,33 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/linearLayout1"
             android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:paddingTop="10dip" >
-
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+            android:gravity="center" >
 
             <ImageView
                 android:id="@+id/virtualimage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="44dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:src="@drawable/ic_launcher" />
+
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/head"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
 </ScrollView>

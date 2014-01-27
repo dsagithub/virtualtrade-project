@@ -3,17 +3,16 @@
 
     <string name="app_name">Virtual Trade</string>
     <string name="ver_perfil">Ver perfil</string>
+    <string name="ver_anuncios">Ver anuncios</string>
     <string name="ver_mensajes">Ver mensajes</string>
     <string name="login_l_email">Username</string>
     <string name="login_l_password">Password</string>
     <string name="login_l_signin">Sign in</string>
     <string name="login_l_register">Registrarse en Vritual Trade</string>
-    <string name="ver_anuncios">Ver anuncios</string>
-    <string name="cerrarSesion">Cerrar sesi√≥n</string>
 
     <string-array name="atributo1">
-        <item>Todas las categor√≠as</item>
-        <item>Electr√≥nica</item>
+        <item>Todas las categorÌas</item>
+        <item>ElectrÛnica</item>
         <item>Motor</item>
         <item>Entretenimiento</item>
         <item>Hogar</item>
@@ -21,53 +20,53 @@
         <item>Otros</item>
     </string-array>
     <string-array name="otros">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las categorÌas</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo2Electronica">
-        <item>Todas las subcategor√≠as</item>
-        <item>Im√°gen y Sonido</item>
-        <item>Inform√°tica</item>
+        <item>Todas las subcategorÌas</item>
+        <item>Im·gen y Sonido</item>
+        <item>Inform·tica</item>
         <item>Consolas y Videojuegos</item>
-        <item>C√°maras y Fotograf√≠a</item>
-        <item>M√≥viles y Telefon√≠a</item>
+        <item>C·maras y FotografÌa</item>
+        <item>MÛviles y TelefonÌa</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo2Motor">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Coches</item>
         <item>Herramientas</item>
         <item>Motos</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo2Entretenimiento">
-        <item>Todas las subcategor√≠as</item>
-        <item>Libros y C√≥mics</item>
-        <item>M√∫sica</item>
-        <item>DVD y Pel√≠culas</item>
+        <item>Todas las subcategorÌas</item>
+        <item>Libros y CÛmics</item>
+        <item>M˙sica</item>
+        <item>DVD y PelÌculas</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo2Hogar">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Herramientas</item>
         <item>Muebles</item>
         <item>Cocina</item>
-        <item>Electrodom√©sticos</item>
-        <item>Decoraci√≥n</item>
+        <item>ElectrodomÈsticos</item>
+        <item>DecoraciÛn</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo2Deportes">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Atletismo</item>
         <item>Baloncesto</item>
         <item>Ciclismo</item>
-        <item>Esqu√≠</item>
+        <item>EsquÌ</item>
         <item>Futbol</item>
         <item>Tenis</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3ImagenSonido">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>TV</item>
         <item>Auriculares</item>
@@ -76,7 +75,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Informatica">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Tablets</item>
         <item>Portatiles y Netbooks</item>
@@ -86,40 +85,40 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Consolas">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Consolas</item>
         <item>Juegos</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Camaras">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Camaras</item>
         <item>Marcos digitales</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Moviles">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Moviles</item>
         <item>Telefonos fijos y accesorios</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3HerramientasMotor">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Kit de herramientas</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Coches">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios coche</item>
         <item>Coches</item>
         <item>Piezas</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Motos">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios moto</item>
         <item>Motos</item>
         <item>Piezas</item>
@@ -127,13 +126,13 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Libros">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Comics</item>
         <item>Libros</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Musica">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>CDs</item>
         <item>Cintas</item>
         <item>Descarga digital</item>
@@ -142,32 +141,32 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3DVD">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>DVDs</item>
-        <item>Pel√≠culas</item>
+        <item>PelÌculas</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3HerramientasHogar">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Caja de herramientas</item>
-        <item>Herramientas electr√≥nicas</item>
+        <item>Herramientas electrÛnicas</item>
         <item>Sierras</item>
         <item>Soldadores</item>
         <item>Taladros</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Muebles">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Mesas y escritorios</item>
         <item>Estantes</item>
         <item>Muebles de salon</item>
-        <item>Sillas y sof√°s</item>
-        <item>Iluminaci√≥n</item>
+        <item>Sillas y sof·s</item>
+        <item>IluminaciÛn</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Cocina">
-        <item>Todas las subcategor√≠as</item>
-        <item>Cuberter√≠a</item>
+        <item>Todas las subcategorÌas</item>
+        <item>CuberterÌa</item>
         <item>Envases</item>
         <item>Utensilios de cocina</item>
         <item>Sartenes y cazuelas</item>
@@ -175,7 +174,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Electrodomesticos">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Aspiradoras</item>
         <item>Batidoras</item>
         <item>Cafeteras</item>
@@ -188,7 +187,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Decoracion">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Alfombras</item>
         <item>Cajas y jarrones</item>
         <item>Ceramica</item>
@@ -199,7 +198,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Ciclismo">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Bicicletas</item>
         <item>Calzado</item>
@@ -207,7 +206,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Baloncesto">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Balones</item>
         <item>Calzado</item>
@@ -215,14 +214,14 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Atletismo">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Calzado</item>
         <item>Ropa</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Futbol">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Balones</item>
         <item>Calzado</item>
@@ -230,7 +229,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Tenis">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Calzado</item>
         <item>Raquetas</item>
@@ -238,15 +237,15 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo3Esqui">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las subcategorÌas</item>
         <item>Accesorios</item>
         <item>Calzado</item>
-        <item>Esqu√≠s</item>
+        <item>EsquÌs</item>
         <item>Ropa</item>
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4ImagenSonido">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Sony</item>
         <item>Philips</item>
         <item>Panasonic</item>
@@ -257,7 +256,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Informatica">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>HP</item>
         <item>Acer</item>
         <item>Asus</item>
@@ -270,19 +269,8 @@
         <item>BQ</item>
         <item>Otros</item>
     </string-array>
-    <string-array name="atributo4Camaras">
-        <item>Todas las subcategor√≠as</item>
-        <item>Canon</item>
-        <item>Nikon</item>
-        <item>Fujifilm</item>
-        <item>Sony</item>
-        <item>Olympus</item>
-        <item>Panasonic</item>
-        <item>Samsung</item>
-        <item>Otros</item>
-    </string-array>
     <string-array name="atributo4Consolas">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Sony</item>
         <item>Microsoft</item>
         <item>Nintendo</item>
@@ -294,7 +282,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Moviles">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Samsung</item>
         <item>HTC</item>
         <item>LG</item>
@@ -306,7 +294,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Coches">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Seat</item>
         <item>Volvo</item>
         <item>Citroen</item>
@@ -323,7 +311,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Motos">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Yamaha</item>
         <item>Vespa</item>
         <item>Honda</item>
@@ -332,7 +320,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Electrodomesticos">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Bosch</item>
         <item>Fagor</item>
         <item>Electrolux</item>
@@ -349,8 +337,8 @@
         <item>Senseo</item>
         <item>Otros</item>
     </string-array>
-    <string-array name="atributo4Ciclismo">
-        <item>Todas las subcategor√≠as</item>
+    <string-array name="atributo4ciclismo">
+        <item>Todas las marcas</item>
         <item>Specialized</item>
         <item>Felt</item>
         <item>Campagnolo</item>
@@ -362,7 +350,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Baloncesto">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Nike</item>
         <item>Adidas</item>
         <item>Spalding</item>
@@ -371,7 +359,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Atletismo">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Nike</item>
         <item>Adidas</item>
         <item>Reebok</item>
@@ -382,7 +370,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Futbol">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Nike</item>
         <item>Adidas</item>
         <item>Reebok</item>
@@ -390,7 +378,7 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Tenis">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Wilson</item>
         <item>Prince</item>
         <item>Babolat</item>
@@ -399,16 +387,16 @@
         <item>Otros</item>
     </string-array>
     <string-array name="atributo4Esqui">
-        <item>Todas las subcategor√≠as</item>
+        <item>Todas las marcas</item>
         <item>Atomic</item>
         <item>Rossignol</item>
         <item>Fischer</item>
         <item>Accesorios</item>
         <item>Otros</item>
     </string-array>
-    <string-array name="atributo4Otros">
-        <item>Todas las subcategor√≠as</item>
+    <string-array name="atributo4TodosOtros">
         <item>Otros</item>
     </string-array>
+
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:background="#7FA832"
+    android:background="#4B610B"
     android:orientation="vertical"
     android:paddingTop="40dip"
     tools:context=".VirtualtradeMainActivity" >
@@ -31,6 +31,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/anuncios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -69,6 +70,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/perfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -106,6 +108,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/mensajes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -139,6 +142,28 @@
             android:layout_marginTop="28dp"
             android:text="@string/ver_mensajes"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cerrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/cerrarSesion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dip"
+            android:layout_marginTop="40dip"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="cerrarSesion"
+            android:text="@string/cerrarSesion"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
     </RelativeLayout>
 

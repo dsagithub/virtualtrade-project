@@ -27,11 +27,15 @@ public class VirtualtradeMainActivity extends Activity {
 
 	String email;
 	String password;
+	SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "onCreate()");
+
+		prefs = getSharedPreferences("virtualtrade-profile",
+				Context.MODE_PRIVATE);
 
 		AssetManager assetManager = getAssets();
 		Properties config = new Properties();
@@ -47,9 +51,6 @@ public class VirtualtradeMainActivity extends Activity {
 		}
 
 		setContentView(R.layout.virtualtrade_layout);
-
-		SharedPreferences prefs = getSharedPreferences("virtualtrade-profile",
-				Context.MODE_PRIVATE);
 
 		email = prefs.getString("email", null);
 		password = prefs.getString("password", null);
@@ -74,6 +75,13 @@ public class VirtualtradeMainActivity extends Activity {
 
 	public void verPerfil(View view) {
 		Intent i = new Intent(this, PerfilDetail.class);
+		startActivity(i);
+	}
+
+	public void cerrarSesion(View view) {
+
+		prefs.edit().clear().commit();
+		Intent i = new Intent(this, Login.class);
 		startActivity(i);
 	}
 

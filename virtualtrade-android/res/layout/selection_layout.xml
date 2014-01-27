@@ -2,47 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7FA832">
+    android:background="#7FA832" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
+    <Spinner
+        android:id="@+id/atributo1"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center" />
 
-        <Spinner
-            android:id="@+id/atributo1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
+    <Spinner
+        android:id="@+id/atributo2"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/atributo1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:gravity="center" />
 
-        <Spinner
-            android:id="@+id/atributo2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
+    <Spinner
+        android:id="@+id/atributo3"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/atributo2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:gravity="center" />
 
-        <Spinner
-            android:id="@+id/atributo3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
-        <Spinner
-            android:id="@+id/atributo4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.36" />
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/atributo4"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/atributo3"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
 
     <Button
         android:id="@+id/verAnuncios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/atributo4"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="40dp"
         android:onClick="verAnuncios"
         android:text="@string/ver_anuncios" />
 

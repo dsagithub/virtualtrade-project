@@ -50,6 +50,7 @@ public class AnuncioSelection extends Activity {
 							atributo2.setSelection(0);
 							atributo3.setSelection(0);
 							atributo4.setSelection(0);
+							atributo2.setEnabled(false);
 							atributo3.setEnabled(false);
 							atributo4.setEnabled(false);
 

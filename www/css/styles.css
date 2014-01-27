@@ -708,12 +708,16 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 
 .coupon-desciption {
+	
+	width: 200px;
+	/* height: 115px;
+	 */
 	color: #7a7a7a;
 	font-size: 11px;
 	margin-bottom: 0;
 	line-height: 1.4em;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	/* overflow: hidden; */
+/* 	text-overflow: ellipsis; */
 	white-space: nowrap;
 }
 
@@ -751,6 +755,9 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 
 .coupon-thumb .coupon-inner {
+	
+	
+	
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -780,6 +787,8 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 
 .coupon-thumb .coupon-title {
+	width: 200px;
+		/* height: 115px; */
 	-webkit-transform: translate3d(0, 0, 0);
 	-moz-transform: translate3d(0, 0, 0);
 	-o-transform: translate3d(0, 0, 0);

@@ -56,10 +56,14 @@ public class LoginServlet extends HttpServlet {
 					+ "' AND userpass=MD5('" + userpass + "')";
 			ResultSet rows = stmt.executeQuery(sql);
 			if (rows.next()) {
+				String banned;
+				banned = rows.getString("banned");
 
-				if (rows.getBoolean("banned") == true) {
+				if (banned.equals("1")) {
 					success = "{\"success\":banned}";
-				} else {
+				} 
+				
+				else {
 					success = "{\"success\":true}";
 				}
 			} else

@@ -25,9 +25,11 @@ function getLogin(email, userpass) {
 			var user = JSON.parse(jqxhr.responseText);
 			console.log(user.banned);
 			if(user.banned==false){
+//				$.notify("Logueado!");
 				$.cookie('email', email);
 				$.cookie('userpass', userpass);
 
+				
 				window.location = "http://localhost/virtualtrade/index.html";
 			//	console.log(data);
 			}
@@ -37,6 +39,7 @@ function getLogin(email, userpass) {
 				
 		
 	}).fail(function(jqXHR, textStatus) {
+		$.notify("Incorrecto!");
 		console.log(textStatus);
 	});
 }

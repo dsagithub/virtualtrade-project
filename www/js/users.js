@@ -1,9 +1,13 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
+var admin = $.cookie('email');
+var userpass = $.cookie('userpass');
 
 $(document).ready(function() {
 	
-	$(button_message).hide();
+	
+	$(button_banned).hide();
+	$(button_des_banned).hide();
 	  $(button_send_msg).hide();
 	  $(subject).hide();
 	  $(mensaje).hide();
@@ -24,7 +28,86 @@ $("#button_get_user").click(function(e) {
 	getUser($("#email").val());
 });
 
+$("#button_banned").click(function(e) {
+	e.preventDefault();
+	BannerUser($("#email").val());
+});
 
+$("#button_des_banned").click(function(e) {
+	e.preventDefault();
+	UnbannerUser($("#email").val());
+});
+
+function BannerUser(user_banned){
+	
+	var url = API_BASE_URL + '/users/ban/' + user_banned;
+	var object = new Object();
+	object.banned = "true";
+	
+
+
+	var data = JSON.stringify(object);
+	$.ajax({
+		url : url,
+		type : 'PUT',
+		dataType : "json",
+		crossDomain : true,
+		headers : {
+			"Accept" : "application/vnd.virtual.api.user+json",
+			"Content-Type" : "application/vnd.virtual.api.user+json"
+		},
+		data : data,
+		beforeSend : function(request) {
+			request.withCredentials = true;
+			request.setRequestHeader("Authorization", "Basic "
+					+ btoa($.cookie('email') + ':' + $.cookie('userpass')));
+		},
+	}).done(function(data, status, jqxhr) {
+		console.log("baneo");
+		getUser($("#email").val());
+
+		
+	}).fail(function(jqXHR, textStatus) {
+		$("#update_result").text("Usuario no baneado");
+	});
+	
+}
+
+function UnbannerUser(user_des_banned){
+	
+	var url = API_BASE_URL + '/users/ban/' + user_des_banned;
+	console.log(user_des_banned);
+	var object = new Object();
+	object.banned = "false";
+	
+
+
+	var data = JSON.stringify(object);
+	$.ajax({
+		url : url,
+		type : 'PUT',
+		dataType : "json",
+		crossDomain : true,
+		headers : {
+			"Accept" : "application/vnd.virtual.api.user+json",
+			"Content-Type" : "application/vnd.virtual.api.user+json"
+		},
+		data : data,
+		beforeSend : function(request) {
+			request.withCredentials = true;
+			request.setRequestHeader("Authorization", "Basic "
+					+ btoa($.cookie('email') + ':' + $.cookie('userpass')));
+		},
+	}).done(function(data, status, jqxhr) {
+		console.log("des baneo");
+		getUser($("#email").val());
+
+		
+	}).fail(function(jqXHR, textStatus) {
+		$("#update_result").text("Usuario no des baneado");
+	});
+	
+}
 
 //$("#button_message").click(function(e) {
 //	e.preventDefault();
@@ -63,6 +146,7 @@ function getUser(email) {
 					+ btoa('adminmail' + ':' + 'admin'));
 		}
 	}).done(function(data, status, jqxhr) {
+		var mostrar_estado;
 				var user = JSON.parse(jqxhr.responseText);
 				$(document).ready(function() {
 					$("#user_result").text("");
@@ -80,8 +164,14 @@ function getUser(email) {
 //					$("#piso").text(user.piso);
 //					$("#puerta").text(user.puerta);
 //					
-//				
-					 $(button_message).show();
+//					
+					if(admin=="adminmail"){
+						console.log(admin);
+						 $(button_banned).show();
+						 $(button_des_banned).show();
+						
+					}
+					
 					 $(userStats).show();
 				
 					 $(foto).show();	
@@ -126,6 +216,18 @@ function getUser(email) {
 					$(
 							'<li>' + "Puerta: "
 									+ user.puerta
+									+ '</li>')
+							.appendTo($grouplist);
+					if(user.banned==false){
+						mostrar_estado="No baneado"
+					}
+					if(user.banned==true){
+						mostrar_estado="Baneado"
+					}
+					
+					$(
+							'<li>' + "Estado: "
+									+ mostrar_estado
 									+ '</li>')
 							.appendTo($grouplist);
 

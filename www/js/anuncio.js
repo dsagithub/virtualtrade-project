@@ -7,9 +7,18 @@ var anuncioid =id;
 
 
 
+$("#button_delete").click(function(e) {
+	e.preventDefault();
+	delete_anuncio();
+	
+});
+
 
 $(document).ready(function() {
+	$(button_delete).hide();
+
 	getanuncio();
+	
 });
 
 
@@ -25,6 +34,30 @@ function getEnviarMensaje() {
 	document.location.href='/virtualtrade/redactar.html';
 }
 
+function delete_anuncio() {
+	
+	var url = API_BASE_URL + '/anuncios/' + id;
+
+	$.ajax({
+		url : url,
+		type : 'DELETE',
+		crossDomain : true,
+		dataType : 'json',
+		beforeSend : function(request) {
+			request.withCredentials = true;
+			request.setRequestHeader("Authorization", "Basic "
+					+ btoa($.cookie('email') + ':' + $.cookie('userpass')));
+		},
+
+	}).done(function(data, status, jqxhr) {
+		window.location = "http://localhost/virtualtrade/index.html"
+
+	}).fail(function(jqXHR, textStatus) {
+		console.log(textStatus);
+	});
+
+	
+}
 
 
 function getanuncio() {
@@ -43,7 +76,7 @@ function getanuncio() {
 				beforeSend : function(request) {
 					request.withCredentials = true;
 					request.setRequestHeader("Authorization", "Basic "
-							+ btoa('arnaumail' + ':' + 'arnau'));
+							+ btoa($.cookie('email') + ':' + $.cookie('userpass')));
 				},
 
 			}).done(function(data, status, jqxhr) {
@@ -66,6 +99,11 @@ function getanuncio() {
 			$("titulooo").text(anuncio.subject);
 			$("#content1").text(anuncio.content);
 			$("#precio1").text(anuncio.precio + " \u20ac");
+			
+			
+			if($.cookie('email') == (destinatario||"adminmail")){
+				$(button_delete).show();
+			}
 		
 			if(anuncio.imagenes[1].urlimagen != undefined){
 				foto_anuncio2.src = anuncio.imagenes[1].urlimagen;

@@ -8,7 +8,7 @@ $(document).ready(function() {
 	console.log("has pulsado el boton");
 });
 
-$("#button_update_stings").click(function(e) {
+$("#button_update_user").click(function(e) {
 	e.preventDefault();
 	Modificar();
 });

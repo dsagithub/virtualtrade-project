@@ -381,4 +381,69 @@ public class UserResource {
 		return user;
 	}
 
+	@PUT
+	@Path("/ban/{email}")
+	@Consumes(MediaType.VIRTUAL_API_USER)
+	@Produces(MediaType.VIRTUAL_API_USER)
+	public User banUser(@PathParam("email") String email, User user) {
+
+		if (security.isUserInRole("registered")) {
+			throw new NotAllowedException();
+		}
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			try {
+				throw new ServiceUnavailableException(e.getMessage());
+			} catch (ServiceUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		try {
+
+			stmt = conn.createStatement();
+			String update = null; // TODO: create update query
+
+			update = "UPDATE users SET users.banned=" + user.isBanned()
+					+ "  WHERE email='" + email + "'";
+
+			int rows = stmt.executeUpdate(update,
+					Statement.RETURN_GENERATED_KEYS);
+			if (rows != 0) {
+				String sql = "SELECT * FROM users WHERE email='" + email + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.next();
+
+				user.setEmail(rs.getString("email"));
+				user.setName(rs.getString("name"));
+				user.setPhone(rs.getInt("phone"));
+				user.setFoto(rs.getString("foto"));
+				user.setCiudad(rs.getString("ciudad"));
+				user.setCalle(rs.getString("calle"));
+				user.setNumero(rs.getInt("numero"));
+				user.setPiso(rs.getInt("piso"));
+				user.setPuerta(rs.getInt("puerta"));
+				user.setBanned(rs.getBoolean("banned"));
+				user.add(VirtualAPILinkBuilder.buildURIUserEmail(uriInfo,
+						rs.getString("email"), rel));
+			} else
+				throw new UserNotFoundException();
+		} catch (SQLException e) {
+			throw new InternalServerException(e.getMessage());
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
+
 }

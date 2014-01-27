@@ -103,7 +103,7 @@ public class Login extends Activity {
 		@Override
 		protected void onPreExecute() {
 			pd = new ProgressDialog(Login.this);
-			pd.setTitle("Log in...");
+			pd.setTitle("Conectando...");
 			pd.setCancelable(false);
 			pd.setIndeterminate(true);
 			pd.show();
@@ -174,11 +174,29 @@ public class Login extends Activity {
 
 			}
 
-			else {
+			else if (success.equals("false")) {
 				pd.dismiss();
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						Login.this);
 				builder.setMessage("Usuario no encontrado")
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+
+									}
+								});
+				builder.create();
+				builder.show();
+
+			}
+
+			else if (success.equals("banned")) {
+				pd.dismiss();
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						Login.this);
+				builder.setMessage("Usuario banneado")
 						.setCancelable(false)
 						.setPositiveButton("OK",
 								new DialogInterface.OnClickListener() {

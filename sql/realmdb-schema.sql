@@ -6,6 +6,7 @@ use realmdb;
 create table users (
 	email	varchar(40) not null primary key,
 	name	varchar(20) not null,
+	banned 	boolean not null,
 	userpass char(32) not null
 
 );

@@ -34,8 +34,8 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		String success=null;
+
+		String success = null;
 		// Declaro e inicio las variables
 		String email = request.getParameter("email");
 		String userpass = request.getParameter("password");
@@ -56,10 +56,13 @@ public class LoginServlet extends HttpServlet {
 					+ "' AND userpass=MD5('" + userpass + "')";
 			ResultSet rows = stmt.executeQuery(sql);
 			if (rows.next()) {
-				
-				success = "{\"success\":true}";
-			}
-			else
+
+				if (rows.getBoolean("banned") == true) {
+					success = "{\"success\":banned}";
+				} else {
+					success = "{\"success\":true}";
+				}
+			} else
 				success = "{\"success\":false}";
 
 		} catch (SQLException e) {

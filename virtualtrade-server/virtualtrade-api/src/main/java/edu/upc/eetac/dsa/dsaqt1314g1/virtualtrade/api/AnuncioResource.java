@@ -581,8 +581,7 @@ public class AnuncioResource {
 			if (subject != null && content != null && email != null) {
 
 				sql = "SELECT * FROM anuncio WHERE subject LIKE'%" + subject
-						+ "%' AND content LIKE'%" + content + "%' LIMIT "
-						+ offset + "," + length + " AND email = '" + email
+						+ "%' AND content LIKE'%" + content + "%' AND email = '" + email
 						+ "' LIMIT " + offset + "," + length + "";
 			}
 

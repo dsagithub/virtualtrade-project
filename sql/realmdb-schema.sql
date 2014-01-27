@@ -11,7 +11,7 @@ create table users (
 );
  
 create table user_roles (
-	email	varchar(20) not null,
+	email	varchar(40) not null,
 	rolename 	varchar(20) not null,
 	foreign key(email) references users(email) on delete cascade,
 	primary key (email, rolename)

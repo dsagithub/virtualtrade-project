@@ -28,7 +28,8 @@ function getLogin(email, userpass) {
 //				$.notify("Logueado!");
 				$.cookie('email', email);
 				$.cookie('userpass', userpass);
-
+				
+				$.cookie('loggedin', "logueado");
 				
 				window.location = "http://localhost/virtualtrade/index.html";
 			//	console.log(data);

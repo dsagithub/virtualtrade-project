@@ -15,6 +15,7 @@ var id9;
 var email = $.cookie('email');
 var userpass = $.cookie('userpass');
 
+
 $(document).ready(function() {
         getAnuncios_Atributos();
         getMensajes();
@@ -22,8 +23,32 @@ $(document).ready(function() {
         $("#atributo_3").chained("#atributo_2");
         $("#atributo_4").chained("#atributo_2");
 
-        console.log(email);
+        console.log($.cookie('loggedin'));
 
+if ($.cookie('loggedin')=='nologueado'){
+  	  $("#logout").hide();
+      $("#perfil").hide();
+      $("#anadirnuevo").hide();
+      $("#buscar").hide();
+      $("#mensajes").hide();
+}
+
+if ($.cookie('loggedin')=='logueado'){
+	
+//	$("#logout").hide();
+//    $("#perfil").hide();
+//    $("#anadirnuevo").hide();
+//    $("#buscar").hide();
+//    $("#mensajes").hide();
+//   
+    
+    $("#singup").hide();
+    $("#signin").hide();
+    
+}
+        
+        
+        
 //        if (email == 0) {
 //
 //                $("#logout").hide();
@@ -40,9 +65,15 @@ $(document).ready(function() {
 
 });
 
-$("#button_prev").click(function(e) {
+$("#logout").click(function(e) {
         e.preventDefault();
-        getAnunciosPrev();
+        console.log("dsag");
+       logout();
+});
+
+$("#button_prev").click(function(e) {
+    e.preventDefault();
+    logout();
 });
 
 $("#button_next").click(function(e) {
@@ -1255,17 +1286,20 @@ function getAnunciosPrev() {
 }
 
 function logout() {
-
-        // $.cookie('email', 0);
-        // $.cookie('userpass', 0);
-        // console.log(cookie('email');
-        // loggedout();
-        email = 0;
-        userpass = 0;
-        // $.removeCookie('email');
-        // $.removeCookie('userpass');
+	 
+	$("#logout").hide();
+    $("#perfil").hide();
+    $("#anadirnuevo").hide();
+    $("#buscar").hide();
+    $("#mensajes").hide();
+	  
+		 $.removeCookie('email');
+		 $.removeCookie('userpass');
+         $.cookie('loggedin', "nologueado");
+     
         window.location = "http://localhost/virtualtrade/index.html";
 }
+
 
 function getMensajes() {
 
@@ -1315,124 +1349,124 @@ function getMensajes() {
         });
 }
 
-;
-(function($, window, document, undefined) {
-        "use strict";
-
-        $.fn.chained = function(parent_selector, options) {
-
-                return this
-                                .each(function() {
-
-                                        /*
-                                         * Save this to child because this changes when scope
-                                         * changes.
-                                         */
-                                        var child = this;
-                                        var backup = $(child).clone();
-
-                                        /* Handles maximum two parents now. */
-                                        $(parent_selector).each(
-                                                        function() {
-                                                                $(this).bind("change", function() {
-                                                                        updateChildren();
-                                                                });
-
-                                                                /*
-                                                                 * Force IE to see something selected on first
-                                                                 * page load,
-                                                                 */
-                                                                /* unless something is already selected */
-                                                                if (!$("option:selected", this).length) {
-                                                                        $("option", this).first().attr("selected",
-                                                                                        "selected");
-                                                                }
-
-                                                                /* Force updating the children. */
-                                                                updateChildren();
-                                                        });
-
-                                        function updateChildren() {
-                                                var trigger_change = true;
-                                                var currently_selected_value = $("option:selected",
-                                                                child).val();
-
-                                                $(child).html(backup.html());
-
-                                                /* If multiple parents build classname like foo\bar. */
-                                                var selected = "";
-                                                $(parent_selector).each(
-                                                                function() {
-                                                                        var selectedClass = $("option:selected",
-                                                                                        this).val();
-                                                                        if (selectedClass) {
-                                                                                if (selected.length > 0) {
-                                                                                        if (window.Zepto) {
-                                                                                                /*
-                                                                                                 * Zepto class regexp dies with
-                                                                                                 * classes like foo\bar.
-                                                                                                 */
-                                                                                                selected += "\\\\";
-                                                                                        } else {
-                                                                                                selected += "\\";
-                                                                                        }
-                                                                                }
-                                                                                selected += selectedClass;
-                                                                        }
-                                                                });
-
-                                                /* Also check for first parent without subclassing. */
-                                                /*
-                                                 * TODO: This should be dynamic and check for each
-                                                 * parent
-                                                 */
-                                                /* without subclassing. */
-                                                var first;
-                                                if ($.isArray(parent_selector)) {
-                                                        first = $(parent_selector[0]).first();
-                                                } else {
-                                                        first = $(parent_selector).first();
-                                                }
-                                                var selected_first = $("option:selected", first).val();
-
-                                                $("option", child)
-                                                                .each(
-                                                                                function() {
-                                                                                        /*
-                                                                                         * Remove unneeded items but save
-                                                                                         * the default value.
-                                                                                         */
-                                                                                        if ($(this).hasClass(selected)
-                                                                                                        && $(this).val() === currently_selected_value) {
-                                                                                                $(this).prop("selected", true);
-                                                                                                trigger_change = false;
-                                                                                        } else if (!$(this).hasClass(
-                                                                                                        selected)
-                                                                                                        && !$(this).hasClass(
-                                                                                                                        selected_first)
-                                                                                                        && $(this).val() !== "") {
-                                                                                                $(this).remove();
-                                                                                        }
-                                                                                });
-
-                                                /* If we have only the default value disable select. */
-                                                if (1 === $("option", child).size()
-                                                                && $(child).val() === "") {
-                                                        $(child).attr("disabled", "disabled");
-                                                } else {
-                                                        $(child).removeAttr("disabled");
-                                                }
-                                                if (trigger_change) {
-                                                        $(child).trigger("change");
-                                                }
-                                        }
-                                });
-        };
-
-        /* Alias for those who like to use more English like syntax. */
-        $.fn.chainedTo = $.fn.chained;
-
-        /* Default settings for plugin. */
-        $.fn.chained.defaults = {};
-
-})(window.jQuery || window.Zepto, window, document);
+//;
+//(function($, window, document, undefined) {
+//        "use strict";
+//
+//        $.fn.chained = function(parent_selector, options) {
+//
+//                return this
+//                                .each(function() {
+//
+//                                        /*
+//                                         * Save this to child because this changes when scope
+//                                         * changes.
+//                                         */
+//                                        var child = this;
+//                                        var backup = $(child).clone();
+//
+//                                        /* Handles maximum two parents now. */
+//                                        $(parent_selector).each(
+//                                                        function() {
+//                                                                $(this).bind("change", function() {
+//                                                                        updateChildren();
+//                                                                });
+//
+//                                                                /*
+//                                                                 * Force IE to see something selected on first
+//                                                                 * page load,
+//                                                                 */
+//                                                                /* unless something is already selected */
+//                                                                if (!$("option:selected", this).length) {
+//                                                                        $("option", this).first().attr("selected",
+//                                                                                        "selected");
+//                                                                }
+//
+//                                                                /* Force updating the children. */
+//                                                                updateChildren();
+//                                                        });
+//
+//                                        function updateChildren() {
+//                                                var trigger_change = true;
+//                                                var currently_selected_value = $("option:selected",
+//                                                                child).val();
+//
+//                                                $(child).html(backup.html());
+//
+//                                                /* If multiple parents build classname like foo\bar. */
+//                                                var selected = "";
+//                                                $(parent_selector).each(
+//                                                                function() {
+//                                                                        var selectedClass = $("option:selected",
+//                                                                                        this).val();
+//                                                                        if (selectedClass) {
+//                                                                                if (selected.length > 0) {
+//                                                                                        if (window.Zepto) {
+//                                                                                                /*
+//                                                                                                 * Zepto class regexp dies with
+//                                                                                                 * classes like foo\bar.
+//                                                                                                 */
+//                                                                                                selected += "\\\\";
+//                                                                                        } else {
+//                                                                                                selected += "\\";
+//                                                                                        }
+//                                                                                }
+//                                                                                selected += selectedClass;
+//                                                                        }
+//                                                                });
+//
+//                                                /* Also check for first parent without subclassing. */
+//                                                /*
+//                                                 * TODO: This should be dynamic and check for each
+//                                                 * parent
+//                                                 */
+//                                                /* without subclassing. */
+//                                                var first;
+//                                                if ($.isArray(parent_selector)) {
+//                                                        first = $(parent_selector[0]).first();
+//                                                } else {
+//                                                        first = $(parent_selector).first();
+//                                                }
+//                                                var selected_first = $("option:selected", first).val();
+//
+//                                                $("option", child)
+//                                                                .each(
+//                                                                                function() {
+//                                                                                        /*
+//                                                                                         * Remove unneeded items but save
+//                                                                                         * the default value.
+//                                                                                         */
+//                                                                                        if ($(this).hasClass(selected)
+//                                                                                                        && $(this).val() === currently_selected_value) {
+//                                                                                                $(this).prop("selected", true);
+//                                                                                                trigger_change = false;
+//                                                                                        } else if (!$(this).hasClass(
+//                                                                                                        selected)
+//                                                                                                        && !$(this).hasClass(
+//                                                                                                                        selected_first)
+//                                                                                                        && $(this).val() !== "") {
+//                                                                                                $(this).remove();
+//                                                                                        }
+//                                                                                });
+//
+//                                                /* If we have only the default value disable select. */
+//                                                if (1 === $("option", child).size()
+//                                                                && $(child).val() === "") {
+//                                                        $(child).attr("disabled", "disabled");
+//                                                } else {
+//                                                        $(child).removeAttr("disabled");
+//                                                }
+//                                                if (trigger_change) {
+//                                                        $(child).trigger("change");
+//                                                }
+//                                        }
+//                                });
+//        };
+//
+//        /* Alias for those who like to use more English like syntax. */
+//        $.fn.chainedTo = $.fn.chained;
+//
+//        /* Default settings for plugin. */
+//        $.fn.chained.defaults = {};
+//
+//})(window.jQuery || window.Zepto, window, document);

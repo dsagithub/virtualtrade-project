@@ -18,8 +18,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
@@ -45,8 +48,11 @@ public class AnuncioResource {
 	@GET
 	@Path("/{anuncioid}")
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO)
-	public Anuncio getAnuncio(@PathParam("anuncioid") String anuncioid) {
+	public Response getAnuncio(@PathParam("anuncioid") String anuncioid,
+			@Context Request req) {
 
+		// Create CacheControl
+		CacheControl cc = new CacheControl();
 		Anuncio anuncio = new Anuncio();
 
 		Connection conn = null;
@@ -113,13 +119,39 @@ public class AnuncioResource {
 				e.printStackTrace();
 			}
 		}
-		return anuncio;
+
+		// Calculate the ETag on last modified date of user resource
+		EntityTag eTag = new EntityTag(Integer.toString(anuncio
+				.getCreation_timestamp().hashCode()));
+
+		// Verify if it matched with etag available in http request
+		Response.ResponseBuilder rb = req.evaluatePreconditions(eTag);
+
+		// If ETag matches the rb will be non-null;
+		// Use the rb to return the response without any further processing
+		if (rb != null) {
+			rb = Response.ok(anuncio).cacheControl(cc).tag(eTag);
+
+			return rb.build();
+
+		}
+
+		// If rb is null then either it is first time request; or resource is
+		// modified
+		// Get the updated representation and return with Etag attached to it
+		return rb.cacheControl(cc).tag(eTag).build();
+
 	}
 
+	@SuppressWarnings("null")
 	@GET
 	@Produces(MediaType.VIRTUAL_API_ANUNCIO_COLLECTION)
-	public AnuncioCollection getAnuncios(@QueryParam("offset") String offset,
-			@QueryParam("length") String length) {
+	public Response getAnuncios(@QueryParam("offset") String offset,
+			@QueryParam("length") String length, @Context Request req) {
+
+		// Create CacheControl
+		CacheControl cc = new CacheControl();
+		AnuncioCollection anuncios = new AnuncioCollection();
 
 		if ((offset == null) || (length == null))
 			throw new BadRequestException(
@@ -141,8 +173,6 @@ public class AnuncioResource {
 			throw new BadRequestException(
 					"length must be an integer greater or equal than 1.");
 		}
-
-		AnuncioCollection anuncios = new AnuncioCollection();
 
 		// TODO: Retrieve all stings stored in the database, instantiate one
 		// Sting for each one and store them in the StingCollection.
@@ -248,8 +278,28 @@ public class AnuncioResource {
 			}
 
 		}
+		int i = 0;
+		Response.ResponseBuilder rb = null;
+		EntityTag eTag = null;
 
-		return anuncios;
+		while (i < anuncios.getAnuncios().size()) {
+			// Calculate the ETag on last modified date of user resource
+			eTag = new EntityTag(Integer.toString(anuncios.getAnuncios().get(i)
+					.getCreation_timestamp().hashCode()));
+
+			// Verify if it matched with etag available in http request
+			rb = req.evaluatePreconditions(eTag);
+
+			if (rb != null) {
+				return rb.cacheControl(cc).tag(eTag).build();
+
+			}
+			rb = Response.ok(anuncios).cacheControl(cc).tag(eTag);
+			i++;
+		}
+
+		return rb.build();
+
 	}
 
 	@DELETE
@@ -1003,7 +1053,6 @@ public class AnuncioResource {
 						(Integer.toString(Integer.parseInt(offset)
 								+ Integer.parseInt(length))), length, precio,
 						rel));
-
 				if (Integer.parseInt(offset) - Integer.parseInt(length) >= 0) {
 					links.add(VirtualAPILinkBuilder.buildURIAnunciosPrecio(
 							uriInfo,

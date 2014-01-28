@@ -4,6 +4,7 @@ insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, bann
 insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('joanmail','joan','617646696','Ciutadella de Menorca','General Quadrado','5','2','7',false,'https://lh3.googleusercontent.com/-r2zQhwdYFRA/AAAAAAAAAAI/AAAAAAAAAEs/_ItBNFRE4T4/photo.jpg');
 insert into users (email, name, phone, ciudad, calle, numero, piso, puerta, banned, foto) values ('josemail','jose','686370896','Barcelona','Passeig de Gracia','5','1','6',true,'http://www.latostadora.com/generados/tiendas/4075/dibujos/41908.jpg');
 
+insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('joanmail','galaxy s3 2','samsung galaxy s3 en perfecto estado',true,270,'Otros','Otros','Otros','Otros');
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('joanmail','galaxy s3','samsung galaxy s3 en perfecto estado',true,270,'Electronica','Moviles y telefonia','moviles','Samsung');
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('joanmail','zapatillas new balance','calzado running marca new balance número de pie 45',true,85,'deportes','atletismo','calzado','New balance');
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('arnaumail','Vendo portátil', 'En venta portátil casi nuevo en perfecto estado, está como el primer día', true, 400,'Electronica','Informatica','Portatiles','HP');
@@ -30,8 +31,7 @@ insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atr
 insert into anuncio (email,subject,content,estado,precio,atributo1,atributo2,atributo3,marca) values ('roxanamail','Lámpara techo13','Lampara Techo Nuevo Cromo Hojas de Vidrio Iluminacion Habitacion Salon Interior',true,40,'Hogar','Muebles','Iluminacion','Otros');
 
 
-insert into imagen (anuncioid,urlimagen) values (1,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSH2_69GuRkUnujLzhfelrC_DkJLzisDwB6WttcSU0__5jxGJhdpA');
-insert into imagen (anuncioid,urlimagen) values (1,'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRmGUocV-PCX5QyQKzALpfTusuq_ff8alrrMmH84Q1QUlj6xKil2g');
+
 insert into imagen (anuncioid,urlimagen) values (2,'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTI7pTqyU0CiAga7SjX3YfCCskjRIIt9s_mxbmTJas2LSiDLCY');
 insert into imagen (anuncioid,urlimagen) values (3,'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfcUdZJMzEiTLjBQwPGhofk5cqrRYIxB_87C1jwRGcqCVjFdpr');
 insert into imagen (anuncioid,urlimagen) values (3,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRut4IqlpPTwM77KAX3-xgGCf_Mpz7jQdyVtvBpLoiZb9Ay3afC');

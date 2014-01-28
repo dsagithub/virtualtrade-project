@@ -123,47 +123,47 @@ function getAnuncios_Descendentes() {
 
             console.log("El proximo next es:" + next);
 
-            foto_anuncio1.src = null;
+            foto_anuncio1.src = "img/800x600.png";
             $("#title1").text(null);
             $("#content1").text(null);
             $("#precio1").text(null);
 
-            foto_anuncio2.src = null;
+            foto_anuncio2.src = "img/800x600.png";
             $("#title2").text(null);
             $("#content2").text(null);
             $("#precio2").text(null);
 
-            foto_anuncio3.src = null;
+            foto_anuncio3.src = "img/800x600.png";
             $("#title3").text(null);
             $("#content3").text(null);
             $("#precio3").text(null);
 
-            foto_anuncio4.src = null;
+            foto_anuncio4.src = "img/800x600.png";
             $("#title4").text(null);
             $("#content4").text(null);
             $("#precio4").text(null);
 
-            foto_anuncio5.src = null;
+            foto_anuncio5.src = "img/800x600.png";
             $("#title5").text(null);
             $("#content5").text(null);
             $("#precio5").text(null);
 
-            foto_anuncio6.src = null;
+            foto_anuncio6.src = "img/800x600.png";
             $("#title6").text(null);
             $("#content6").text(null);
             $("#precio6").text(null);
 
-            foto_anuncio7.src = null;
+            foto_anuncio7.src = "img/800x600.png";
             $("#title7").text(null);
             $("#content7").text(null);
             $("#precio7").text(null);
 
-            foto_anuncio8.src = null;
+            foto_anuncio8.src = "img/800x600.png";
             $("#title8").text(null);
             $("#content8").text(null);
             $("#precio8").text(null);
 
-            foto_anuncio9.src = null;
+            foto_anuncio9.src = "img/800x600.png";
             $("#title9").text(null);
             $("#content9").text(null);
             $("#precio9").text(null);
@@ -265,47 +265,47 @@ function getAnuncios_Ascendentes() {
 
             console.log("El proximo next es:" + next);
 
-            foto_anuncio1.src = null;
+            foto_anuncio1.src = "img/800x600.png";
             $("#title1").text(null);
             $("#content1").text(null);
             $("#precio1").text(null);
 
-            foto_anuncio2.src = null;
+            foto_anuncio2.src = "img/800x600.png";
             $("#title2").text(null);
             $("#content2").text(null);
             $("#precio2").text(null);
 
-            foto_anuncio3.src = null;
+            foto_anuncio3.src = "img/800x600.png";
             $("#title3").text(null);
             $("#content3").text(null);
             $("#precio3").text(null);
 
-            foto_anuncio4.src = null;
+            foto_anuncio4.src = "img/800x600.png";
             $("#title4").text(null);
             $("#content4").text(null);
             $("#precio4").text(null);
 
-            foto_anuncio5.src = null;
+            foto_anuncio5.src = "img/800x600.png";
             $("#title5").text(null);
             $("#content5").text(null);
             $("#precio5").text(null);
 
-            foto_anuncio6.src = null;
+            foto_anuncio6.src = "img/800x600.png";
             $("#title6").text(null);
             $("#content6").text(null);
             $("#precio6").text(null);
 
-            foto_anuncio7.src = null;
+            foto_anuncio7.src = "img/800x600.png";
             $("#title7").text(null);
             $("#content7").text(null);
             $("#precio7").text(null);
 
-            foto_anuncio8.src = null;
+            foto_anuncio8.src = "img/800x600.png";
             $("#title8").text(null);
             $("#content8").text(null);
             $("#precio8").text(null);
 
-            foto_anuncio9.src = null;
+            foto_anuncio9.src = "img/800x600.png";
             $("#title9").text(null);
             $("#content9").text(null);
             $("#precio9").text(null);
@@ -455,47 +455,47 @@ function getanuncio_palabra() {
 
                 console.log("El proximo next es:" + next);
 
-                foto_anuncio1.src = null;
+                foto_anuncio1.src = "img/800x600.png";
                 $("#title1").text(null);
                 $("#content1").text(null);
                 $("#precio1").text(null);
 
-                foto_anuncio2.src = null;
+                foto_anuncio2.src = "img/800x600.png";
                 $("#title2").text(null);
                 $("#content2").text(null);
                 $("#precio2").text(null);
 
-                foto_anuncio3.src = null;
+                foto_anuncio3.src = "img/800x600.png";
                 $("#title3").text(null);
                 $("#content3").text(null);
                 $("#precio3").text(null);
 
-                foto_anuncio4.src = null;
+                foto_anuncio4.src = "img/800x600.png";
                 $("#title4").text(null);
                 $("#content4").text(null);
                 $("#precio4").text(null);
 
-                foto_anuncio5.src = null;
+                foto_anuncio5.src = "img/800x600.png";
                 $("#title5").text(null);
                 $("#content5").text(null);
                 $("#precio5").text(null);
 
-                foto_anuncio6.src = null;
+                foto_anuncio6.src = "img/800x600.png";
                 $("#title6").text(null);
                 $("#content6").text(null);
                 $("#precio6").text(null);
 
-                foto_anuncio7.src = null;
+                foto_anuncio7.src = "img/800x600.png";
                 $("#title7").text(null);
                 $("#content7").text(null);
                 $("#precio7").text(null);
 
-                foto_anuncio8.src = null;
+                foto_anuncio8.src = "img/800x600.png";
                 $("#title8").text(null);
                 $("#content8").text(null);
                 $("#precio8").text(null);
 
-                foto_anuncio9.src = null;
+                foto_anuncio9.src = "img/800x600.png";
                 $("#title9").text(null);
                 $("#content9").text(null);
                 $("#precio9").text(null);
@@ -643,47 +643,47 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
                         console.log("El proximo next es:" + next);
 
-                        foto_anuncio1.src = null;
+                        foto_anuncio1.src = "img/800x600.png";
                         $("#title1").text(null);
                         $("#content1").text(null);
                         $("#precio1").text(null);
 
-                        foto_anuncio2.src = null;
+                        foto_anuncio2.src = "img/800x600.png";
                         $("#title2").text(null);
                         $("#content2").text(null);
                         $("#precio2").text(null);
 
-                        foto_anuncio3.src = null;
+                        foto_anuncio3.src = "img/800x600.png";
                         $("#title3").text(null);
                         $("#content3").text(null);
                         $("#precio3").text(null);
 
-                        foto_anuncio4.src = null;
+                        foto_anuncio4.src = "img/800x600.png";
                         $("#title4").text(null);
                         $("#content4").text(null);
                         $("#precio4").text(null);
 
-                        foto_anuncio5.src = null;
+                        foto_anuncio5.src = "img/800x600.png";
                         $("#title5").text(null);
                         $("#content5").text(null);
                         $("#precio5").text(null);
 
-                        foto_anuncio6.src = null;
+                        foto_anuncio6.src = "img/800x600.png";
                         $("#title6").text(null);
                         $("#content6").text(null);
                         $("#precio6").text(null);
 
-                        foto_anuncio7.src = null;
+                        foto_anuncio7.src = "img/800x600.png";
                         $("#title7").text(null);
                         $("#content7").text(null);
                         $("#precio7").text(null);
 
-                        foto_anuncio8.src = null;
+                        foto_anuncio8.src = "img/800x600.png";
                         $("#title8").text(null);
                         $("#content8").text(null);
                         $("#precio8").text(null);
 
-                        foto_anuncio9.src = null;
+                        foto_anuncio9.src = "img/800x600.png";
                         $("#title9").text(null);
                         $("#content9").text(null);
                         $("#precio9").text(null);
@@ -784,47 +784,47 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
                         console.log("El proximo next es:" + next);
 
-                        foto_anuncio1.src = null;
+                        foto_anuncio1.src = "img/800x600.png";
                         $("#title1").text(null);
                         $("#content1").text(null);
                         $("#precio1").text(null);
 
-                        foto_anuncio2.src = null;
+                        foto_anuncio2.src = "img/800x600.png";
                         $("#title2").text(null);
                         $("#content2").text(null);
                         $("#precio2").text(null);
 
-                        foto_anuncio3.src = null;
+                        foto_anuncio3.src = "img/800x600.png";
                         $("#title3").text(null);
                         $("#content3").text(null);
                         $("#precio3").text(null);
 
-                        foto_anuncio4.src = null;
+                        foto_anuncio4.src = "img/800x600.png";
                         $("#title4").text(null);
                         $("#content4").text(null);
                         $("#precio4").text(null);
 
-                        foto_anuncio5.src = null;
+                        foto_anuncio5.src = "img/800x600.png";
                         $("#title5").text(null);
                         $("#content5").text(null);
                         $("#precio5").text(null);
 
-                        foto_anuncio6.src = null;
+                        foto_anuncio6.src = "img/800x600.png";
                         $("#title6").text(null);
                         $("#content6").text(null);
                         $("#precio6").text(null);
 
-                        foto_anuncio7.src = null;
+                        foto_anuncio7.src = "img/800x600.png";
                         $("#title7").text(null);
                         $("#content7").text(null);
                         $("#precio7").text(null);
 
-                        foto_anuncio8.src = null;
+                        foto_anuncio8.src = "img/800x600.png";
                         $("#title8").text(null);
                         $("#content8").text(null);
                         $("#precio8").text(null);
 
-                        foto_anuncio9.src = null;
+                        foto_anuncio9.src = "img/800x600.png";
                         $("#title9").text(null);
                         $("#content9").text(null);
                         $("#precio9").text(null);
@@ -919,47 +919,47 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
                         console.log("El proximo next es:" + next);
 
-                        foto_anuncio1.src = null;
+                        foto_anuncio1.src = "img/800x600.png";
                         $("#title1").text(null);
                         $("#content1").text(null);
                         $("#precio1").text(null);
 
-                        foto_anuncio2.src = null;
+                        foto_anuncio2.src = "img/800x600.png";
                         $("#title2").text(null);
                         $("#content2").text(null);
                         $("#precio2").text(null);
 
-                        foto_anuncio3.src = null;
+                        foto_anuncio3.src = "img/800x600.png";
                         $("#title3").text(null);
                         $("#content3").text(null);
                         $("#precio3").text(null);
 
-                        foto_anuncio4.src = null;
+                        foto_anuncio4.src = "img/800x600.png";
                         $("#title4").text(null);
                         $("#content4").text(null);
                         $("#precio4").text(null);
 
-                        foto_anuncio5.src = null;
+                        foto_anuncio5.src = "img/800x600.png";
                         $("#title5").text(null);
                         $("#content5").text(null);
                         $("#precio5").text(null);
 
-                        foto_anuncio6.src = null;
+                        foto_anuncio6.src = "img/800x600.png";
                         $("#title6").text(null);
                         $("#content6").text(null);
                         $("#precio6").text(null);
 
-                        foto_anuncio7.src = null;
+                        foto_anuncio7.src = "img/800x600.png";
                         $("#title7").text(null);
                         $("#content7").text(null);
                         $("#precio7").text(null);
 
-                        foto_anuncio8.src = null;
+                        foto_anuncio8.src = "img/800x600.png";
                         $("#title8").text(null);
                         $("#content8").text(null);
                         $("#precio8").text(null);
 
-                        foto_anuncio9.src = null;
+                        foto_anuncio9.src = "img/800x600.png";
                         $("#title9").text(null);
                         $("#content9").text(null);
                         $("#precio9").text(null);
@@ -1054,47 +1054,47 @@ function getAnuncios_Atributos(atributo1, atributo2, atributo3, atributo4) {
 
                         console.log("El proximo next es:" + next);
 
-                        foto_anuncio1.src = null;
+                        foto_anuncio1.src = "img/800x600.png";
                         $("#title1").text(null);
                         $("#content1").text(null);
                         $("#precio1").text(null);
 
-                        foto_anuncio2.src = null;
+                        foto_anuncio2.src = "img/800x600.png";
                         $("#title2").text(null);
                         $("#content2").text(null);
                         $("#precio2").text(null);
 
-                        foto_anuncio3.src = null;
+                        foto_anuncio3.src = "img/800x600.png";
                         $("#title3").text(null);
                         $("#content3").text(null);
                         $("#precio3").text(null);
 
-                        foto_anuncio4.src = null;
+                        foto_anuncio4.src = "img/800x600.png";
                         $("#title4").text(null);
                         $("#content4").text(null);
                         $("#precio4").text(null);
 
-                        foto_anuncio5.src = null;
+                        foto_anuncio5.src = "img/800x600.png";
                         $("#title5").text(null);
                         $("#content5").text(null);
                         $("#precio5").text(null);
 
-                        foto_anuncio6.src = null;
+                        foto_anuncio6.src = "img/800x600.png";
                         $("#title6").text(null);
                         $("#content6").text(null);
                         $("#precio6").text(null);
 
-                        foto_anuncio7.src = null;
+                        foto_anuncio7.src = "img/800x600.png";
                         $("#title7").text(null);
                         $("#content7").text(null);
                         $("#precio7").text(null);
 
-                        foto_anuncio8.src = null;
+                        foto_anuncio8.src = "img/800x600.png";
                         $("#title8").text(null);
                         $("#content8").text(null);
                         $("#precio8").text(null);
 
-                        foto_anuncio9.src = null;
+                        foto_anuncio9.src = "img/800x600.png";
                         $("#title9").text(null);
                         $("#content9").text(null);
                         $("#precio9").text(null);
@@ -1343,47 +1343,47 @@ function getAnunciosNext() {
 
                 console.log("El proximo next es:" + next);
 
-                foto_anuncio1.src = null;
+                foto_anuncio1.src = "img/800x600.png";
                 $("#title1").text(null);
                 $("#content1").text(null);
                 $("#precio1").text(null);
 
-                foto_anuncio2.src = null;
+                foto_anuncio2.src = "img/800x600.png";
                 $("#title2").text(null);
                 $("#content2").text(null);
                 $("#precio2").text(null);
 
-                foto_anuncio3.src = null;
+                foto_anuncio3.src = "img/800x600.png";
                 $("#title3").text(null);
                 $("#content3").text(null);
                 $("#precio3").text(null);
 
-                foto_anuncio4.src = null;
+                foto_anuncio4.src = "img/800x600.png";
                 $("#title4").text(null);
                 $("#content4").text(null);
                 $("#precio4").text(null);
 
-                foto_anuncio5.src = null;
+                foto_anuncio5.src = "img/800x600.png";
                 $("#title5").text(null);
                 $("#content5").text(null);
                 $("#precio5").text(null);
 
-                foto_anuncio6.src = null;
+                foto_anuncio6.src = "img/800x600.png";
                 $("#title6").text(null);
                 $("#content6").text(null);
                 $("#precio6").text(null);
 
-                foto_anuncio7.src = null;
+                foto_anuncio7.src = "img/800x600.png";
                 $("#title7").text(null);
                 $("#content7").text(null);
                 $("#precio7").text(null);
 
-                foto_anuncio8.src = null;
+                foto_anuncio8.src = "img/800x600.png";
                 $("#title8").text(null);
                 $("#content8").text(null);
                 $("#precio8").text(null);
 
-                foto_anuncio9.src = null;
+                foto_anuncio9.src = "img/800x600.png";
                 $("#title9").text(null);
                 $("#content9").text(null);
                 $("#precio9").text(null);
@@ -1478,47 +1478,47 @@ function getAnunciosPrev() {
 
                 console.log("El proximo prev es:" + next);
 
-                foto_anuncio1.src = null;
+                foto_anuncio1.src = "img/800x600.png";
                 $("#title1").text(null);
                 $("#content1").text(null);
                 $("#precio1").text(null);
 
-                foto_anuncio2.src = null;
+                foto_anuncio2.src = "img/800x600.png";
                 $("#title2").text(null);
                 $("#content2").text(null);
                 $("#precio2").text(null);
 
-                foto_anuncio3.src = null;
+                foto_anuncio3.src = "img/800x600.png";
                 $("#title3").text(null);
                 $("#content3").text(null);
                 $("#precio3").text(null);
 
-                foto_anuncio4.src = null;
+                foto_anuncio4.src = "img/800x600.png";
                 $("#title4").text(null);
                 $("#content4").text(null);
                 $("#precio4").text(null);
 
-                foto_anuncio5.src = null;
+                foto_anuncio5.src = "img/800x600.png";
                 $("#title5").text(null);
                 $("#content5").text(null);
                 $("#precio5").text(null);
 
-                foto_anuncio6.src = null;
+                foto_anuncio6.src = "img/800x600.png";
                 $("#title6").text(null);
                 $("#content6").text(null);
                 $("#precio6").text(null);
 
-                foto_anuncio7.src = null;
+                foto_anuncio7.src = "img/800x600.png";
                 $("#title7").text(null);
                 $("#content7").text(null);
                 $("#precio7").text(null);
 
-                foto_anuncio8.src = null;
+                foto_anuncio8.src = "img/800x600.png";
                 $("#title8").text(null);
                 $("#content8").text(null);
                 $("#precio8").text(null);
 
-                foto_anuncio9.src = null;
+                foto_anuncio9.src = "img/800x600.png";
                 $("#title9").text(null);
                 $("#content9").text(null);
                 $("#precio9").text(null);

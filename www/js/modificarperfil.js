@@ -77,6 +77,7 @@ function getUser() {
 		$("#numero").val(user.numero);
 		$("#piso").val(user.piso);
 		$("#puerta").val(user.puerta);
+		$("#imagen").val(user.foto);
 
 	}).fail(function() {
 		console.log("error");
@@ -116,6 +117,9 @@ function Modificar() {
 	object.numero = $("#numero").val();
 	object.piso = $("#piso").val();
 	object.puerta = $("#puerta").val();
+	object.foto = $("#imagen").val();
+	console.log(object.foto);
+	
 
 
 	var data = JSON.stringify(object);

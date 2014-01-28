@@ -61,7 +61,6 @@ function createfoto1() {
 
 	var object = new Object();
 
-	object.urlimagen = $('#fileupload1').val();
 // $(function () {
 // $('#fileupload1').fileupload({
 // dataType: 'json',
@@ -72,7 +71,9 @@ function createfoto1() {
 // }
 // });
 // });
-	object.urlimagen = $('#fileupload1').val();
+	
+	//object.urlimagen = $('#fileupload1').val();
+	object.urlimagen = $('#imagen_1').val();
 	var data = JSON.stringify(object);
 
 	$.ajax(
@@ -94,7 +95,8 @@ function createfoto1() {
 			}).done(function(data, status, jqxhr) {
 
 				 
-				 var imgVal2 = $('#fileupload2').val(); 
+				// var imgVal2 = $('#fileupload2').val(); 
+				 var imgVal2 = $('#imagen_2').val(); 
 				
 			    if (imgVal2==''){
 			       window.location="http://localhost/virtualtrade/index.html"}
@@ -116,7 +118,8 @@ function createfoto2() {
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
 // if ($('#fileupload2').val() !=null){
-	object.urlimagen = $('#fileupload2').val();
+	//object.urlimagen = $('#fileupload2').val();
+	object.urlimagen = $('#imagen_2').val();
 	var data = JSON.stringify(object);
 	$.ajax(
 			{
@@ -135,7 +138,8 @@ function createfoto2() {
 							+ btoa(usrmail + ':' + usrpass));
 				}
 			}).done(function(data, status, jqxhr) {
-				 var imgVal3 = $('#fileupload3').val(); 
+				// var imgVal3 = $('#fileupload3').val(); 
+				 var imgVal3 = $('#imagen_3').val(); 
 				if (imgVal3==''){
 					window.location="http://localhost/virtualtrade/index.html";			
 				}
@@ -159,7 +163,8 @@ function createfoto3() {
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
 // if ($('#fileupload3').val() !=null){
-	object.urlimagen = $('#fileupload3').val();
+	//object.urlimagen = $('#fileupload3').val();
+	object.urlimagen = $('#imagen_3').val();
 	var data = JSON.stringify(object);
 	$.ajax(
 			{
@@ -191,7 +196,14 @@ function createfoto3() {
 
 function create() {
 	
-	var imgVal = $('#fileupload1').val(); 
+//	var imgVal = $('#fileupload1').val(); 
+//	if(imgVal=='') 
+//    { 
+//        alert("Debe introducir almenos una imagen"); 
+//
+//    } 
+	
+	var imgVal = $('#imagen_1').val(); 
 	if(imgVal=='') 
     { 
         alert("Debe introducir almenos una imagen"); 

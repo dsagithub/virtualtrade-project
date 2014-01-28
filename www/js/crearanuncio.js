@@ -19,20 +19,21 @@ function createfoto1() {
 	var url = API_BASE_URL + '/anuncios/' + idanuncio + '/imagenes';
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
+	
 
 	var object = new Object();
 
 	object.urlimagen = $('#fileupload1').val();
-//	$(function () {
-//	    $('#fileupload1').fileupload({
-//	        dataType: 'json',
-//	        done: function (e, data) {
-//	            $.each(data.result.files, function (index, file) {
-//	                $('<p/>').text(file.name).appendTo(document.body);
-//	            });
-//	        }
-//	    });
-//	});
+// $(function () {
+// $('#fileupload1').fileupload({
+// dataType: 'json',
+// done: function (e, data) {
+// $.each(data.result.files, function (index, file) {
+// $('<p/>').text(file.name).appendTo(document.body);
+// });
+// }
+// });
+// });
 	object.urlimagen = $('#fileupload1').val();
 	var data = JSON.stringify(object);
 
@@ -54,24 +55,19 @@ function createfoto1() {
 				}
 			}).done(function(data, status, jqxhr) {
 
-				 var imgVal = $('#fileupload1').val(); 
+				 
 				 var imgVal2 = $('#fileupload2').val(); 
-				if(imgVal=='') 
-		        { 
-		            alert("Debe introducir almenos una imagen"); 
-
-		        } 
-			    else if (imgVal==''){
+				
+			    if (imgVal2==''){
 			       window.location="http://localhost/virtualtrade/index.html"}
 				
-			    else if (imgVal==''){
+			    else if (imgVal2!=''){
 			        createfoto2();}
 				
-				
-		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
+	
 }
 
 
@@ -81,7 +77,7 @@ function createfoto2() {
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
-//if ($('#fileupload2').val() !=null){
+// if ($('#fileupload2').val() !=null){
 	object.urlimagen = $('#fileupload2').val();
 	var data = JSON.stringify(object);
 	$.ajax(
@@ -101,24 +97,20 @@ function createfoto2() {
 							+ btoa(usrmail + ':' + usrpass));
 				}
 			}).done(function(data, status, jqxhr) {
-				if ($('#fileupload3').Length ==0){
-					console.log("lksjaflkdjfa");
-//					window.location = "http://localhost/virtualtrade/index.html";
+				 var imgVal3 = $('#fileupload3').val(); 
+				if (imgVal3==''){
+					window.location="http://localhost/virtualtrade/index.html";			
+				}
+				else if (imgVal3!=''){
+					createfoto3();			
 				}
 				
-//				if ($('#fileupload3').val() !=null){
-//				createfoto3();
-//				}
-//				else if ($('#fileupload3').HasFile ==true){
-//					console.log("lksjaflkdjfa");
-////					window.location = "http://localhost/virtualtrade/index.html";
-//				}
-		$("#create_result").text("Anuncio creado correctamente");
+			
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-//	}
-}
+	}
+
 
 
 
@@ -128,7 +120,7 @@ function createfoto3() {
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
-//	if ($('#fileupload3').val() !=null){
+// if ($('#fileupload3').val() !=null){
 	object.urlimagen = $('#fileupload3').val();
 	var data = JSON.stringify(object);
 	$.ajax(
@@ -149,20 +141,26 @@ function createfoto3() {
 				}
 			}).done(function(data, status, jqxhr) {
 			
-//					window.location = "http://localhost/virtualtrade/index.html";
-//				
+					window.location = "http://localhost/virtualtrade/index.html";
 
-		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-//	}
+// }
 }
 
 
 
 function create() {
+	
+	var imgVal = $('#fileupload1').val(); 
+	if(imgVal=='') 
+    { 
+        alert("Debe introducir almenos una imagen"); 
 
+    } 
+
+	else{
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
 
@@ -203,13 +201,14 @@ function create() {
 		
 		
 		idanuncio=anuncio.anuncioid;
-//		console.log(idanuncio);
+// console.log(idanuncio);
 		createfoto1();
 
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
+}
 
 }
 

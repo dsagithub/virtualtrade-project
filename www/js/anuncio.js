@@ -92,7 +92,7 @@ $(document).ready(function() {
 	
 	
 	$(button_delete).hide();
-
+	$(button_update).hide();
 	getanuncio();
 	
 });
@@ -177,6 +177,7 @@ function getanuncio() {
 			
 			if($.cookie('email') == (destinatario||"adminmail")){
 				$(button_delete).show();
+				$(button_update).show();
 			}
 		
 			if(anuncio.imagenes[1].urlimagen != undefined){

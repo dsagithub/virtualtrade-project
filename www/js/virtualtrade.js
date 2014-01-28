@@ -24,14 +24,14 @@ $(document).ready(function() {
 	      $("#buscar").hide();
 	      $("#mensajes").hide();
 	}
-
+	  getAnuncios_Atributos();
 	if ($.cookie('loggedin')=='logueado'){
 		
 	    $("#singup").hide();
 	    $("#signin").hide();
 	    
 	    getMensajes();
-        getAnuncios_Atributos();
+      
 //        getMensajes();
         $("#atributo_2").chained("#atributo_1");
         $("#atributo_3").chained("#atributo_2");
@@ -267,38 +267,40 @@ function getanuncio_palabra() {
 }
 
 function getAnuncio1() {
+	$.removeCookie('id');
         $.cookie('id', id1);
 }
 function getAnuncio2() {
 
+	$.removeCookie('id');
         $.cookie('id', id2);
 }
 function getAnuncio3() {
-
+	$.removeCookie('id');
         $.cookie('id', id3);
 }
 function getAnuncio4() {
-
+	$.removeCookie('id');
         $.cookie('id', id4);
 }
 function getAnuncio5() {
-
+	$.removeCookie('id');
         $.cookie('id', id5);
 }
 function getAnuncio6() {
-
+	$.removeCookie('id');
         $.cookie('id', id6);
 }
 function getAnuncio7() {
-
+	$.removeCookie('id');
         $.cookie('id', id7);
 }
 function getAnuncio8() {
-
+	$.removeCookie('id');
         $.cookie('id', id8);
 }
 function getAnuncio9() {
-
+	$.removeCookie('id');
         $.cookie('id', id9);
 }
 

@@ -13,6 +13,46 @@ $("#button_delete").click(function(e) {
 	
 });
 
+$("#button_update").click(function(e) {
+	e.preventDefault();
+	document.location.href = '/virtualtrade/modificaranuncio.html';
+});
+
+//
+//$("#button_update").click(function(e) {
+//	e.preventDefault();
+//	update_anuncio();
+//});
+
+//
+//function update_anuncio() {
+//	
+//	var url = API_BASE_URL + '/anuncios/' + id;
+//
+//	$.ajax({
+//		url : url,
+//		type : 'PUT',
+//		crossDomain : true,
+//		dataType : 'json',
+//		headers : {
+//			"Accept" : "application/vnd.virtual.api.anuncio+json",
+//			"Content-Type" : "application/vnd.virtual.api.anuncio+json"
+//		},
+//		beforeSend : function(request) {
+//			request.withCredentials = true;
+//			request.setRequestHeader("Authorization", "Basic "
+//					+ btoa($.cookie('email') + ':' + $.cookie('userpass')));
+//		},
+//
+//	}).done(function(data, status, jqxhr) {
+//		window.location = "http://localhost/virtualtrade/index.html"
+//
+//	}).fail(function(jqXHR, textStatus) {
+//		console.log(textStatus);
+//	});
+//
+//}
+//
 
 
 
@@ -91,8 +131,6 @@ function delete_anuncio() {
 	}).fail(function(jqXHR, textStatus) {
 		console.log(textStatus);
 	});
-
-	
 }
 
 
@@ -149,7 +187,7 @@ function getanuncio() {
 				foto_anuncio3.src = anuncio.imagenes[2].urlimagen;
 			}
 			
-			
+//			$.removeCookie('id');
 //		
 //		else if (id == 2) {
 //
@@ -223,5 +261,5 @@ function getanuncio() {
 		$("#anuncios_result").text("No hay anuncios");
 	});
 
-	$.removeCookie('id');
+
 }

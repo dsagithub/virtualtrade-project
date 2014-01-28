@@ -3,7 +3,8 @@
     xmlns:app=":http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true"
+    android:screenOrientation="portrait" >
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -75,7 +76,6 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:src="@drawable/ic_launcher" />
-
         </RelativeLayout>
 
         <TextView
@@ -91,7 +91,6 @@
             android:textColor="#FFFFFF"
             android:textSize="45sp"
             android:textStyle="bold" />
-
     </RelativeLayout>
 
 </ScrollView>

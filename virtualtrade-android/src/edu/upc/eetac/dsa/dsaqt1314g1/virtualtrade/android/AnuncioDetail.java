@@ -99,9 +99,12 @@ public class AnuncioDetail extends Activity {
 			ImagenCollection imagenes = new ImagenCollection();
 			imagenes.setImagenes(result.getImagenes());
 
-			new DownloadImageTask(
-					(ImageView) findViewById(R.id.imagenesanuncio))
-					.execute(imagenes.getImagenes().get(0).getUrlimagen());
+			if (imagenes.getImagenes().size() != 0) {
+				new DownloadImageTask(
+						(ImageView) findViewById(R.id.imagenesanuncio))
+						.execute(imagenes.getImagenes().get(0).getUrlimagen());
+			}
+
 			if (pd != null) {
 				pd.dismiss();
 			}

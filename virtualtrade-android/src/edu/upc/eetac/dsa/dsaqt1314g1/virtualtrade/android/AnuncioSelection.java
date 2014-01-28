@@ -2540,39 +2540,42 @@ public class AnuncioSelection extends Activity {
 																		.getSelectedItem()
 																		.toString();
 
-																atributo4
-																		.setEnabled(true);
-																ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
-																		.createFromResource(
-																				AnuncioSelection.this,
-																				R.array.atributo4Otros,
-																				android.R.layout.simple_spinner_item);
-																adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-																atributo4
-																		.setAdapter(adapter4);
+																if (!a3.equals("Todas las subcategorías")) {
 
-																atributo4
-																		.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+																	atributo4
+																			.setEnabled(true);
+																	ArrayAdapter<CharSequence> adapter4 = ArrayAdapter
+																			.createFromResource(
+																					AnuncioSelection.this,
+																					R.array.atributo4Otros,
+																					android.R.layout.simple_spinner_item);
+																	adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+																	atributo4
+																			.setAdapter(adapter4);
 
-																			public void onItemSelected(
-																					AdapterView<?> parent,
-																					android.view.View v,
-																					int position,
-																					long id) {
+																	atributo4
+																			.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-																				a4 = atributo4
-																						.getSelectedItem()
-																						.toString();
+																				public void onItemSelected(
+																						AdapterView<?> parent,
+																						android.view.View v,
+																						int position,
+																						long id) {
 
-																			}
+																					a4 = atributo4
+																							.getSelectedItem()
+																							.toString();
 
-																			@Override
-																			public void onNothingSelected(
-																					AdapterView<?> arg0) {
+																				}
 
-																			}
-																		});
+																				@Override
+																				public void onNothingSelected(
+																						AdapterView<?> arg0) {
 
+																				}
+																			});
+
+																}
 															}
 
 															@Override

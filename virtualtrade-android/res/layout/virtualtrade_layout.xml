@@ -8,6 +8,7 @@
     android:background="#4B610B"
     android:orientation="vertical"
     android:paddingTop="40dip"
+    android:screenOrientation="portrait"
     tools:context=".VirtualtradeMainActivity" >
 
     <RelativeLayout

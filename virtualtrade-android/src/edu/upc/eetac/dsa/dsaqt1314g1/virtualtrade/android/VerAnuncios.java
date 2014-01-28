@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.Anuncio;
 import edu.upc.eetac.dsa.dsaqt1314g1.virtualtrade.android.api.AnuncioCollection;
@@ -31,6 +32,7 @@ public class VerAnuncios extends ListActivity {
 	VirtualtradeAPI api;
 	private ArrayList<Anuncio> anuncioList;
 	private AnuncioAdapter adapter;
+	URL next;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,8 +79,7 @@ public class VerAnuncios extends ListActivity {
 									+ serverAddress
 									+ ":"
 									+ serverPort
-									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20"
-									+ a1);
+									+ "/virtualtrade-api/anuncios/atributos?&offset=0&length=20");
 				} catch (MalformedURLException e) {
 					Log.d(TAG, e.getMessage(), e);
 					finish();
@@ -208,6 +209,25 @@ public class VerAnuncios extends ListActivity {
 		@Override
 		protected AnuncioCollection doInBackground(URL... params) {
 			AnuncioCollection anuncios = api.getAnuncios(params[0]);
+
+			if (anuncios != null) {
+				try {
+					next = new URL(anuncios.getLinks().get(0).getUri());
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			else {
+				try {
+					next = new URL("no hay anuncios");
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
 			return anuncios;
 		}
 
@@ -223,20 +243,44 @@ public class VerAnuncios extends ListActivity {
 			}
 
 			else {
-				pd.dismiss();
-				AlertDialog.Builder builder = new AlertDialog.Builder(
-						VerAnuncios.this);
-				builder.setMessage("No se han encontrado anuncios")
-						.setCancelable(false)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										finish();
-									}
-								});
-				builder.create();
-				builder.show();
+
+				if (next == null) {
+					pd.dismiss();
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							VerAnuncios.this);
+					builder.setMessage("No se han encontrado anuncios")
+							.setCancelable(false)
+							.setPositiveButton("OK",
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog, int id) {
+											finish();
+										}
+									});
+					builder.create();
+					builder.show();
+
+				}
+
+				else {
+					pd.dismiss();
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							VerAnuncios.this);
+					builder.setMessage("No se han encontrado más anuncios")
+							.setCancelable(false)
+							.setPositiveButton("OK",
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog, int id) {
+										}
+									});
+					builder.create();
+					builder.show();
+					Button button = (Button) findViewById(R.id.cargarAnuncios);
+					button.setEnabled(false);
+
+				}
+
 			}
 
 		}
@@ -273,6 +317,14 @@ public class VerAnuncios extends ListActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		finish();
+
+	}
+
+	public void cargarAnuncios(View view) {
+
+		if (!next.equals("no hay anuncios")) {
+			(new FetchAnunciosTask()).execute(next);
+		}
 
 	}
 

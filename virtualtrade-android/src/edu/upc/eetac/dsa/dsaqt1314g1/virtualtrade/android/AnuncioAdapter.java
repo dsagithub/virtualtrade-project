@@ -62,6 +62,10 @@ public class AnuncioAdapter extends BaseAdapter {
 			// actualizamos los datos que se visualizan
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+		
+		
+		
+		
 
 		// Obtención de datos
 		String subject = data.get(position).getSubject();

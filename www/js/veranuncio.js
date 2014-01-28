@@ -1,8 +1,49 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 $(document).ready(function() {
+	
+
+		if ($.cookie('loggedin')=='nologueado'){
+		  	  $("#logout").hide();
+		      $("#perfil").hide();
+		      $("#anadirnuevo").hide();
+		      $("#buscar").hide();
+		      $("#mensajes").hide();
+		}
+
+		if ($.cookie('loggedin')=='logueado'){
+		    $("#singup").hide();
+		    $("#signin").hide();
+		
+		
+		
+	});
+	
 	getAnuncio();
 });
+
+
+
+
+$("#logout").click(function(e) {
+    e.preventDefault();
+    console.log("dsag");
+   logout();
+});
+
+function logout() {
+	$("#logout").hide();
+    $("#perfil").hide();
+    $("#anadirnuevo").hide();
+    $("#buscar").hide();
+    $("#mensajes").hide();
+		 $.removeCookie('email');
+		 $.removeCookie('userpass');
+         $.cookie('loggedin', "nologueado");
+        window.location = "http://localhost/virtualtrade/index.html";
+}
+
+
 
 function getAnuncio() {
 	//Hay que poner el 3 como una variable en cuanto se le pase la id al clicar en una anuncio

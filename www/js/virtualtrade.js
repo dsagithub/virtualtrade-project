@@ -18,7 +18,7 @@ var userpass = $.cookie('userpass');
 
 $(document).ready(function() {
         getAnuncios_Atributos();
-        getMensajes();
+//        getMensajes();
         $("#atributo_2").chained("#atributo_1");
         $("#atributo_3").chained("#atributo_2");
         $("#atributo_4").chained("#atributo_2");
@@ -45,6 +45,8 @@ if ($.cookie('loggedin')=='logueado'){
     $("#singup").hide();
     $("#signin").hide();
     
+    getMensajes();
+    
 }
         
         
@@ -67,7 +69,6 @@ if ($.cookie('loggedin')=='logueado'){
 
 $("#logout").click(function(e) {
         e.preventDefault();
-        console.log("dsag");
        logout();
 });
 

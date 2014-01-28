@@ -16,6 +16,24 @@ $(document).ready(function() {
 	  $(userStats).hide();
 	  $(foto).hide();
 	  
+	  
+	  
+		if ($.cookie('loggedin')=='nologueado'){
+		  	  $("#logout").hide();
+		      $("#perfil").hide();
+		      $("#anadirnuevo").hide();
+		      $("#buscar").hide();
+		      $("#mensajes").hide();
+		}
+
+		if ($.cookie('loggedin')=='logueado'){
+		    $("#singup").hide();
+		    $("#signin").hide();
+		}
+		
+	  
+	  
+	  
 	//  subject
 //	getUser($("#email").val());
 });
@@ -37,6 +55,26 @@ $("#button_des_banned").click(function(e) {
 	e.preventDefault();
 	UnbannerUser($("#email").val());
 });
+
+
+$("#logout").click(function(e) {
+    e.preventDefault();
+    console.log("dsag");
+   logout();
+});
+
+function logout() {
+	$("#logout").hide();
+    $("#perfil").hide();
+    $("#anadirnuevo").hide();
+    $("#buscar").hide();
+    $("#mensajes").hide();
+		 $.removeCookie('email');
+		 $.removeCookie('userpass');
+         $.cookie('loggedin', "nologueado");
+        window.location = "http://localhost/virtualtrade/index.html";
+}
+
 
 function BannerUser(user_banned){
 	

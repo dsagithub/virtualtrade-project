@@ -5,6 +5,45 @@ $("#login").click(function(e) {
 	getLogin(email, userpass);
 });
 
+$(document).ready(function() {
+
+	
+	if ($.cookie('loggedin')=='nologueado'){
+	  	  $("#logout").hide();
+	      $("#perfil").hide();
+	      $("#anadirnuevo").hide();
+	      $("#buscar").hide();
+	      $("#mensajes").hide();
+	}
+
+	if ($.cookie('loggedin')=='logueado'){
+	    $("#singup").hide();
+	    $("#signin").hide();
+	}
+	
+	
+});
+
+
+$("#logout").click(function(e) {
+    e.preventDefault();
+    console.log("dsag");
+   logout();
+});
+
+function logout() {
+	$("#logout").hide();
+    $("#perfil").hide();
+    $("#anadirnuevo").hide();
+    $("#buscar").hide();
+    $("#mensajes").hide();
+		 $.removeCookie('email');
+		 $.removeCookie('userpass');
+         $.cookie('loggedin', "nologueado");
+        window.location = "http://localhost/virtualtrade/index.html";
+}
+
+
 function getLogin(email, userpass) {
 	var url = "http://localhost:8080/virtualtrade-api/" + "users/" + email;
 	$.ajax(

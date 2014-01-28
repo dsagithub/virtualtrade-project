@@ -86,6 +86,24 @@ function getUser() {
 
 
 
+$("#logout").click(function(e) {
+    e.preventDefault();
+    console.log("dsag");
+   logout();
+});
+
+function logout() {
+	$("#logout").hide();
+    $("#perfil").hide();
+    $("#anadirnuevo").hide();
+    $("#buscar").hide();
+    $("#mensajes").hide();
+		 $.removeCookie('email');
+		 $.removeCookie('userpass');
+         $.cookie('loggedin', "nologueado");
+        window.location = "http://localhost/virtualtrade/index.html";
+}
+
 
 
 function Modificar() {

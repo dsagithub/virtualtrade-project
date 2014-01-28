@@ -13,6 +13,7 @@ $("#button_post_anuncio").click(function(e) {
 	create();
 });
 
+
 function createfoto1() {
 
 	var url = API_BASE_URL + '/anuncios/' + idanuncio + '/imagenes';
@@ -21,6 +22,17 @@ function createfoto1() {
 
 	var object = new Object();
 
+	object.urlimagen = $('#fileupload1').val();
+//	$(function () {
+//	    $('#fileupload1').fileupload({
+//	        dataType: 'json',
+//	        done: function (e, data) {
+//	            $.each(data.result.files, function (index, file) {
+//	                $('<p/>').text(file.name).appendTo(document.body);
+//	            });
+//	        }
+//	    });
+//	});
 	object.urlimagen = $('#fileupload1').val();
 	var data = JSON.stringify(object);
 
@@ -42,7 +54,15 @@ function createfoto1() {
 				}
 			}).done(function(data, status, jqxhr) {
 
+				
+				if ($('#fileupload2').val() !=null){
 				createfoto2();
+				}
+				else if ($('#fileupload2').val() ==null){
+					console.log($('#fileupload2').val());
+				//	window.location = "http://localhost/virtualtrade/index.html";
+				}
+				
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
@@ -56,7 +76,7 @@ function createfoto2() {
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
-	if ($('#fileupload2').val() !=null){
+//if ($('#fileupload2').val() !=null){
 	object.urlimagen = $('#fileupload2').val();
 	var data = JSON.stringify(object);
 	$.ajax(
@@ -76,12 +96,23 @@ function createfoto2() {
 							+ btoa(usrmail + ':' + usrpass));
 				}
 			}).done(function(data, status, jqxhr) {
-				createfoto3();
+				if ($('#fileupload3').Length ==0){
+					console.log("lksjaflkdjfa");
+//					window.location = "http://localhost/virtualtrade/index.html";
+				}
+				
+//				if ($('#fileupload3').val() !=null){
+//				createfoto3();
+//				}
+//				else if ($('#fileupload3').HasFile ==true){
+//					console.log("lksjaflkdjfa");
+////					window.location = "http://localhost/virtualtrade/index.html";
+//				}
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-	}
+//	}
 }
 
 
@@ -92,8 +123,8 @@ function createfoto3() {
 	var usrmail = ($.cookie('email'));
 	var usrpass = ($.cookie('userpass'));
 	var object = new Object();
-	if ($('#fileupload3').val() !=null){
-	object.urlimagen = $('#fileupload1').val();
+//	if ($('#fileupload3').val() !=null){
+	object.urlimagen = $('#fileupload3').val();
 	var data = JSON.stringify(object);
 	$.ajax(
 			{
@@ -112,12 +143,15 @@ function createfoto3() {
 							+ btoa(usrmail + ':' + usrpass));
 				}
 			}).done(function(data, status, jqxhr) {
+			
+//					window.location = "http://localhost/virtualtrade/index.html";
+//				
 
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-	}
+//	}
 }
 
 
@@ -164,93 +198,13 @@ function create() {
 		
 		
 		idanuncio=anuncio.anuncioid;
-		console.log(idanuncio);
+//		console.log(idanuncio);
 		createfoto1();
 
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");
 	});
-
-	// var url2 = API_BASE_URL + '/anuncios' + anuncio.anuncioid + '/imagenes';
-	//
-	// imagen.foto1 = $('#fileupload1').val();
-	// // imagen.foto2 = $('#fileupload1').val();
-	// // imagen.foto3 = $('#fileupload1').val();
-	//
-	// var data2 = JSON.stringify(imagen);
-	//
-	// $.ajax(
-	// {
-	// url : url2,
-	// type : 'POST',
-	// dataType : "json",
-	// crossDomain : true,
-	// headers : {
-	// "Accept" : "application/vnd.virtual.api.picture+json",
-	// "Content-Type" : "application/vnd.virtual.api.picture+json"
-	// },
-	// data : data2,
-	// beforeSend : function(request) {
-	// request.withCredentials = true;
-	// request.setRequestHeader("Authorization", "Basic "
-	// + btoa(usrmail + ':' + usrpass));
-	// }
-	// }).done(function(data, status, jqxhr) {
-	//
-	// $("#create_result").text("Anuncio creado correctamente");
-	// }).fail(function(jqXHR, textStatus) {
-	// $("#create_result").text("No agregado");
-	// });
-//
-//	var data3 = JSON.stringify($('#fileupload2').val());
-//	$.ajax(
-//			{
-//				url : url2,
-//				type : 'POST',
-//				dataType : "json",
-//				crossDomain : true,
-//				headers : {
-//					"Accept" : "application/vnd.virtual.api.picture+json",
-//					"Content-Type" : "application/vnd.virtual.api.picture+json"
-//				},
-//				data : data3,
-//				beforeSend : function(request) {
-//					request.withCredentials = true;
-//					request.setRequestHeader("Authorization", "Basic "
-//							+ btoa(usrmail + ':' + usrpass));
-//				}
-//			}).done(function(data, status, jqxhr) {
-//		$("#create_result").text("Anuncio creado correctamente");
-//	}).fail(function(jqXHR, textStatus) {
-//		$("#create_result").text("No agregado");
-//	});
-//
-//	imagen.foto3 = $('#fileupload3').val();
-//	var data4 = JSON.stringify(imagen);
-//
-//	$.ajax(
-//			{
-//				url : url2,
-//				type : 'POST',
-//				dataType : "json",
-//				crossDomain : true,
-//				headers : {
-//					"Accept" : "application/vnd.virtual.api.picture+json",
-//					"Content-Type" : "application/vnd.virtual.api.picture+json"
-//				},
-//				data : data4,
-//				beforeSend : function(request) {
-//					request.withCredentials = true;
-//					request.setRequestHeader("Authorization", "Basic "
-//							+ btoa(usrmail + ':' + usrpass));
-//				}
-//			}).done(function(data, status, jqxhr) {
-//
-//		$("#create_result").text("Anuncio creado correctamente");
-//	}).fail(function(jqXHR, textStatus) {
-//		$("#create_result").text("No agregado");
-//	});
 
 }
 

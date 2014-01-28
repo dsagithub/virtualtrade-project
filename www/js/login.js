@@ -40,12 +40,12 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 
 function getLogin(email, userpass) {
-	var url = "http://localhost:8080/virtualtrade-api/" + "users/" + email;
+	var url = "http://147.83.7.155:8080/virtualtrade-api/" + "users/" + email;
 	$.ajax(
 			{
 				url : url,
@@ -70,11 +70,11 @@ function getLogin(email, userpass) {
 				
 				$.cookie('loggedin', "logueado");
 				
-				window.location = "http://localhost/virtualtrade/index.html";
+				window.location = "http://147.83.7.155/virtualtrade/index.html";
 			//	console.log(data);
 			}
 			else{
-				window.location = "http://localhost/virtualtrade/banned.html";
+				window.location = "http://147.83.7.155/virtualtrade/banned.html";
 			}
 				
 		

@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
+var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 
 var idanuncio;
 
@@ -48,7 +48,7 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 
@@ -99,7 +99,7 @@ function createfoto1() {
 				 var imgVal2 = $('#imagen_2').val(); 
 				
 			    if (imgVal2==''){
-			       window.location="http://localhost/virtualtrade/index.html"}
+			       window.location="http://147.83.7.155/virtualtrade/index.html"}
 				
 			    else if (imgVal2!=''){
 			        createfoto2();}
@@ -141,7 +141,7 @@ function createfoto2() {
 				// var imgVal3 = $('#fileupload3').val(); 
 				 var imgVal3 = $('#imagen_3').val(); 
 				if (imgVal3==''){
-					window.location="http://localhost/virtualtrade/index.html";			
+					window.location="http://147.83.7.155/virtualtrade/index.html";			
 				}
 				else if (imgVal3!=''){
 					createfoto3();			
@@ -184,7 +184,7 @@ function createfoto3() {
 				}
 			}).done(function(data, status, jqxhr) {
 			
-					window.location = "http://localhost/virtualtrade/index.html";
+					window.location = "http://147.83.7.155/virtualtrade/index.html";
 
 	}).fail(function(jqXHR, textStatus) {
 		$("#create_result").text("No agregado");

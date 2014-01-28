@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
+var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 
 var id = $.cookie('id');
 var password = $.cookie('userpass')
@@ -45,7 +45,7 @@ $("#button_update").click(function(e) {
 //		},
 //
 //	}).done(function(data, status, jqxhr) {
-//		window.location = "http://localhost/virtualtrade/index.html"
+//		window.location = "http://147.83.7.155/virtualtrade/index.html"
 //
 //	}).fail(function(jqXHR, textStatus) {
 //		console.log(textStatus);
@@ -71,7 +71,7 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 
@@ -127,7 +127,7 @@ function delete_anuncio() {
 		},
 
 	}).done(function(data, status, jqxhr) {
-		window.location = "http://localhost/virtualtrade/index.html"
+		window.location = "http://147.83.7.155/virtualtrade/index.html"
 
 	}).fail(function(jqXHR, textStatus) {
 		console.log(textStatus);

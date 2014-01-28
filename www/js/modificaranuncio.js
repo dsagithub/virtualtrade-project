@@ -2,11 +2,19 @@ var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 var user = $.cookie('email');
 var password = $.cookie('userpass');
-var idanuncio = $.cookie('');
+var idanuncio = $.cookie('id');
 
 $(document).ready(function() {
+	console.log(idanuncio);
 	getAnuncio();
 	console.log("has pulsado el boton");
+	
+	
+    $("#atributo_2").chained("#atributo_1");
+    $("#atributo_3").chained("#atributo_2");
+    $("#atributo_4").chained("#atributo_2");
+	
+	
 });
 
 $("#button_update_user").click(function(e) {
@@ -33,15 +41,19 @@ function getAnuncio() {
 							+ btoa(user + ':' + password));
 				},
 			}).done(function(data, status, jqxhr) {
-		var user = JSON.parse(jqxhr.responseText);
-
-		$("#name").val(user.name);
-		$("#phone").val(user.phone);
-		$("#ciudad").val(user.ciudad);
-		$("#calle").val(user.calle);
-		$("#numero").val(user.numero);
-		$("#piso").val(user.piso);
-		$("#puerta").val(user.puerta);
+		var object = JSON.parse(jqxhr.responseText);
+		$("#name").val(object.subject);
+		$("#phone").val(object.content);
+		$("#calle").val(object.precio);
+		$('#atributo_1 :selected').val(object.atributo1);
+		$('#atributo_2 :selected').val(object.atributo2);
+		$('#atributo_3 :selected').val(object.atributo3);
+		$('#atributo_4 :selected').val(object.marca);
+//		
+//		$("#atributo_2").val(object.atributo2);
+//		$("#atributo_3").val(object.atributo3);
+//		$("#atributo_4").val(object.marca);
+//		$("#numero").val(object.marca);
 
 	}).fail(function() {
 		console.log("error");
@@ -72,15 +84,37 @@ function logout() {
 
 
 function Modificar() {
-	var url = API_BASE_URL + '/users/' + user;
+	
+	var url = API_BASE_URL + "/anuncios/" + idanuncio;
 	var object = new Object();
-	object.name = $("#name").val();
-	object.phone = $("#phone").val();
-	object.ciudad = $("#ciudad").val();
-	object.calle = $("#calle").val();
-	object.numero = $("#numero").val();
-	object.piso = $("#piso").val();
-	object.puerta = $("#puerta").val();
+
+	object.subject = $("#name").val();
+	object.content = $("#phone").val();
+	object.precio = $("#calle").val();
+//	object.marca = $("#numero").val();
+
+    object.atributo1 = $('#atributo_1 :selected').val();
+    object.atributo2 = $('#atributo_2 :selected').val();
+    object.atributo3 = $('#atributo_3 :selected').val();
+    object.marca = $('#atributo_4 :selected').val();
+	
+    
+    
+    
+//	$("#name").val(object.subject);
+//	$("#phone").val(object.content);
+//	$("#calle").val(object.precio);
+//	$("#numero").val(object.marca);
+//	
+//	
+//	
+//	object.name = $("#name").val();
+//	object.phone = $("#phone").val();
+//	object.ciudad = $("#ciudad").val();
+//	object.calle = $("#calle").val();
+//	object.numero = $("#numero").val();
+//	object.piso = $("#piso").val();
+//	object.puerta = $("#puerta").val();
 
 
 	var data = JSON.stringify(object);
@@ -90,8 +124,8 @@ function Modificar() {
 		dataType : "json",
 		crossDomain : true,
 		headers : {
-			"Accept" : "application/vnd.virtual.api.user+json",
-			"Content-Type" : "application/vnd.virtual.api.user+json"
+			"Accept" : "application/vnd.virtual.api.anuncio+json",
+			"Content-Type" : "application/vnd.virtual.api.anuncio+json"
 		},
 		data : data,
 		beforeSend : function(request) {
@@ -100,11 +134,10 @@ function Modificar() {
 					+ btoa(user + ':' + password));
 		},
 	}).done(function(data, status, jqxhr) {
-		
-		document.location.href=("http://localhost/virtualtrade/perfil.html");
+		document.location.href=("http://localhost/virtualtrade/anuncio.html");
 
-		$("#update_result").text("Usuario modificado correctamente");
+		$("#update_result").text("Anuncio modificado correctamente");
 	}).fail(function(jqXHR, textStatus) {
-		$("#update_result").text("Usuario no modificado");
+		$("#update_result").text("Anuncio no modificado");
 	});
 }

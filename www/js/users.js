@@ -4,7 +4,20 @@ var admin = $.cookie('email');
 var userpass = $.cookie('userpass');
 
 $(document).ready(function() {
+	if ($.cookie('loggedin')=='nologueado'){
+	  	  $("#logout").hide();
+	      $("#perfil").hide();
+	      $("#anadirnuevo").hide();
+	      $("#buscar").hide();
+	      $("#mensajes").hide();
+	}
+
+	if ($.cookie('loggedin')=='logueado'){
+	    $("#singup").hide();
+	    $("#signin").hide();
+	}
 	
+
 	
 	$(button_banned).hide();
 	$(button_des_banned).hide();
@@ -18,20 +31,7 @@ $(document).ready(function() {
 	  
 	  
 	  
-		if ($.cookie('loggedin')=='nologueado'){
-		  	  $("#logout").hide();
-		      $("#perfil").hide();
-		      $("#anadirnuevo").hide();
-		      $("#buscar").hide();
-		      $("#mensajes").hide();
-		}
-
-		if ($.cookie('loggedin')=='logueado'){
-		    $("#singup").hide();
-		    $("#signin").hide();
-		}
-		
-	  
+	
 	  
 	  
 	//  subject

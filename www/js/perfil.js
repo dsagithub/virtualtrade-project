@@ -1,10 +1,6 @@
 var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
 
 $(document).ready(function() {
-	getUser($.cookie('email'));
-	var password = $.cookie('userpass');
-
-	
 	if ($.cookie('loggedin')=='nologueado'){
 	  	  $("#logout").hide();
 	      $("#perfil").hide();
@@ -17,6 +13,11 @@ $(document).ready(function() {
 	    $("#singup").hide();
 	    $("#signin").hide();
 	}
+	
+	getUser($.cookie('email'));
+	var password = $.cookie('userpass');
+
+	
 	
 	
 });

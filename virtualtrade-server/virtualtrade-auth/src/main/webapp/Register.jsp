@@ -89,238 +89,25 @@
 										</ul></li>
 								</ul></li>
 
-							<li><a id="perfil" href="http://localhost/virtualtrade/perfil.html">Perfil</a></li>
-							<li><a id="añadirnuevo"
-								href="http://localhost/virtualtrade/nuevoanuncio.html">Añadir
-									nuevo anuncio</a></li>
+						
 
-							<li><a id="buscar" href="http://localhost/virtualtrade/users.html">Buscar
-									Usuario</a></li>
-							<li><a id="mensajes" href="http://localhost/virtualtrade/mensajes.html">Mensajes</a></li>		
-							
-							
-							<!--       <li><a href="coupon-page.html">Mensajes</a>
-                                <ul>
-                                    <li><a href="coupon-page-meta-left.html">Recibidos</a>
-                                    </li>
-                                    <li><a href="coupon-page.html">Enviar</a>
-                                    </li>
-                                    <li><a href="coupon-page-similar.html">Buscar Usuario</a>
-                                    </li>
-                                    <li><a href="coupon-page-image.html">Image Preview</a>
-                                    </li>
-                                    <li><a href="coupon-page-video-hosted.html">Video</a>
-                                        <ul>
-                                            <li><a href="coupon-page-video-hosted.html">Self Hosted</a>
-                                            </li>
-                                            <li><a href="coupon-page-video-vimeo.html">Vimeo</a>
-                                            </li>
-                                            <li><a href="coupon-page-video-youtube.html">Youtube</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="coupon-page-gallery-3-col.html">Gallery</a>
-                                        <ul>
-                                            <li><a href="coupon-page-gallery-3-col.html">3 columns</a>
-                                            </li>
-                                            <li><a href="coupon-page-gallery-4-col.html">4 Columns</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                             -->
 							
 							
 							<li><a href="http://localhost/virtualtrade/contact.html">Contactar</a>
 							</li>
 						</ul>
 					</nav> 
-			
-			
-				<!-- 	 
-                    <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
-                    <nav>
-                        <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li class="active"><a href="index.html">Home</a>
-                                <ul>
-                                    <li class="active"><a href="index.html">Slider</a>
-                                        <ul>
-                                            <li class="active"><a href="index.html">Full Width</a>
-                                            </li>
-                                            <li><a href="index-slider-container.html">Container</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="index-hero-image.html">Hero Image</a>
-                                    </li>
-                                    <li><a href="index-no-top.html">No Top Area</a>
-                                    </li>
-                                    <li><a href="index-category-right.html">Category Nav</a>
-                                        <ul>
-                                            <li><a href="index-category-right.html">Side Right</a>
-                                            </li>
-                                            <li><a href="index-category-nav-inline-top.html">Inline Top</a>
-                                            </li>
-                                            <li><a href="index-category-nav-main.html">Main Nav</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="index-featured-item.html">Featured Item</a>
-                                    </li>
-                                    <li><a href="index-coupon-4-columns.html">Coupons</a>
-                                        <ul>
-                                            <li><a href="index-coupon-4-columns.html">4 Columns</a>
-                                            </li>
-                                            <li><a href="index-coupon-6-columns.html">6 columns</a>
-                                            </li>
-                                            <li><a href="index-coupon-category-icon.html">Category icons</a>
-                                            </li>
-                                            <li><a href="index-coupon-labels.html">Labels</a>
-                                            </li>
-                                            <li><a href="index-coupon-holded.html">Holded</a>
-                                            </li>
-                                            <li><a href="index-coupon-load-more.html">Load More Btn</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="coupon-page.html">Coupon page</a>
-                                <ul>
-                                    <li><a href="coupon-page-meta-left.html">Meta Left</a>
-                                    </li>
-                                    <li><a href="coupon-page.html">Meta Right</a>
-                                    </li>
-                                    <li><a href="coupon-page-similar.html">Similar Offers</a>
-                                    </li>
-                                    <li><a href="coupon-page-image.html">Image Preview</a>
-                                    </li>
-                                    <li><a href="coupon-page-video-hosted.html">Video</a>
-                                        <ul>
-                                            <li><a href="coupon-page-video-hosted.html">Self Hosted</a>
-                                            </li>
-                                            <li><a href="coupon-page-video-vimeo.html">Vimeo</a>
-                                            </li>
-                                            <li><a href="coupon-page-video-youtube.html">Youtube</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="coupon-page-gallery-3-col.html">Gallery</a>
-                                        <ul>
-                                            <li><a href="coupon-page-gallery-3-col.html">3 columns</a>
-                                            </li>
-                                            <li><a href="coupon-page-gallery-4-col.html">4 Columns</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="features-typography.html">Features</a>
-                                <ul>
-                                    <li><a href="features-typography.html">Typography</a>
-                                    </li>
-                                    <li><a href="features-elements.html">Elements</a>
-                                    </li>
-                                    <li><a href="features-grid.html">Grid</a>
-                                    </li>
-                                    <li><a href="features-icons.html">Icons</a>
-                                    </li>
-                                    <li><a href="features-image-hover.html">Image Hovers</a>
-                                    </li>
-                                    <li><a href="features-sliders.html">Sliders</a>
-                                    </li>
-                                    <li><a href="features-media.html">Media</a>
-                                    </li>
-                                    <li><a href="features-lightbox.html">Lightbox</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="page-full-width.html">Pages</a>
-                                <ul>
-                                    <li><a href="page-full-width.html">Full Width</a>
-                                    </li>
-                                    <li><a href="page-sidebar-right.html">Sidebar Right</a>
-                                    </li>
-                                    <li><a href="page-sidebar-left.html">Sidebar Left</a>
-                                    </li>
-                                    <li><a href="page-faq.html">FAQ</a>
-                                    </li>
-                                    <li><a href="page-about-us.html">About Us</a>
-                                    </li>
-                                    <li><a href="page-team.html">Team</a>
-                                    </li>
-                                    <li><a href="page-payment.html">Payment</a>
-                                    </li>
-                                    <li><a href="page-sticky-header.html">Sticky Header</a>
-                                    </li>
-                                    <li><a href="page-sticky-search.html">Sticky Search</a>
-                                    </li>
-                                    <li><a href="page-sticky-header-search.html">Sticky Header & Seach</a>
-                                    </li>
-                                    <li><a href="page-no-search.html">No search</a>
-                                    </li>
-                                    <li><a href="page-404.html">404</a>
-                                    </li>
-                                    <li><a href="page-search-results.html">Search Results</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="blog-sidebar-right.html">Blog</a>
-                                <ul>
-                                    <li><a href="blog-sidebar-right.html">Sidebar Right</a>
-                                    </li>
-                                    <li><a href="blog-sidebar-left.html">Sidebar Left</a>
-                                    </li>
-                                    <li><a href="blog-full-width.html">Full Width</a>
-                                    </li>
-                                    <li><a href="post-sidebar-right.html">Post</a>
-                                        <ul>
-                                            <li><a href="post-sidebar-right.html">Sidebar Right</a>
-                                            </li>
-                                            <li><a href="post-sidebar-left.html">Sidebar Left</a>
-                                            </li>
-                                            <li><a href="post-full-width.html">Full Width</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </nav> -->
-               
-              
-                    
-					 
-					 
-					 
-					 
-					 
-					
+							
 					
 				</div>
 				<div class="span2">
 					<!-- LOGIN REGISTER LINKS -->
 					<ul class="login-register">
-						<li><a id="singup" class="popup-text"
-							href="http://localhost/virtualtrade/login.html"
-							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign
-								in</a></li>
-					<!-- 	<li><a id="nombreusuarioaqui" class="popup-text"
-							data-effect="mfp-move-from-top"><i class="icon-signin"></i>Perfil</a></li>
- -->
-						<li><a id="signin" class="popup-text"
-							href="http://localhost:8080/virtualtrade-auth/Register.jsp"
-							data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign
-								up</a></li>
-
-
+				
+					
 						<li><a id="logout" class="popup-text"
 							href="http://localhost/virtualtrade/index.html"
-							data-effect="mfp-move-from-top"><i onclick="logout()" class="icon-edit"></i>Log Out
+							data-effect="mfp-move-from-top"><i onclick="logout()" class="icon-edit"></i>Volver al índice
 								</a></li>
 					</ul>
 				</div>

@@ -11,8 +11,22 @@ var next;
 var prev;
 
 
-
 $(document).ready(function() {
+	
+	if ($.cookie('loggedin')=='nologueado'){
+	  	  $("#logout").hide();
+	      $("#perfil").hide();
+	      $("#anadirnuevo").hide();
+	      $("#buscar").hide();
+	      $("#mensajes").hide();
+	}
+
+	if ($.cookie('loggedin')=='logueado'){
+		
+	    $("#singup").hide();
+	    $("#signin").hide();
+	    
+	}
 	getMensajes();
 });
 

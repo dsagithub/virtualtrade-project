@@ -17,6 +17,20 @@ var userpass = $.cookie('userpass');
 
 
 $(document).ready(function() {
+	if ($.cookie('loggedin')=='nologueado'){
+	  	  $("#logout").hide();
+	      $("#perfil").hide();
+	      $("#anadirnuevo").hide();
+	      $("#buscar").hide();
+	      $("#mensajes").hide();
+	}
+
+	if ($.cookie('loggedin')=='logueado'){
+		
+	    $("#singup").hide();
+	    $("#signin").hide();
+	    
+	    getMensajes();
         getAnuncios_Atributos();
 //        getMensajes();
         $("#atributo_2").chained("#atributo_1");
@@ -25,27 +39,7 @@ $(document).ready(function() {
 
         console.log($.cookie('loggedin'));
 
-if ($.cookie('loggedin')=='nologueado'){
-  	  $("#logout").hide();
-      $("#perfil").hide();
-      $("#anadirnuevo").hide();
-      $("#buscar").hide();
-      $("#mensajes").hide();
-}
 
-if ($.cookie('loggedin')=='logueado'){
-	
-//	$("#logout").hide();
-//    $("#perfil").hide();
-//    $("#anadirnuevo").hide();
-//    $("#buscar").hide();
-//    $("#mensajes").hide();
-//   
-    
-    $("#singup").hide();
-    $("#signin").hide();
-    
-    getMensajes();
     
 }
         

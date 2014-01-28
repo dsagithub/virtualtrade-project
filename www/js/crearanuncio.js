@@ -54,14 +54,19 @@ function createfoto1() {
 				}
 			}).done(function(data, status, jqxhr) {
 
+				 var imgVal = $('#fileupload1').val(); 
+				 var imgVal2 = $('#fileupload2').val(); 
+				if(imgVal=='') 
+		        { 
+		            alert("Debe introducir almenos una imagen"); 
+
+		        } 
+			    else if (imgVal==''){
+			       window.location="http://localhost/virtualtrade/index.html"}
 				
-				if ($('#fileupload2').val() !=null){
-				createfoto2();
-				}
-				else if ($('#fileupload2').val() ==null){
-					console.log($('#fileupload2').val());
-				//	window.location = "http://localhost/virtualtrade/index.html";
-				}
+			    else if (imgVal==''){
+			        createfoto2();}
+				
 				
 		$("#create_result").text("Anuncio creado correctamente");
 	}).fail(function(jqXHR, textStatus) {

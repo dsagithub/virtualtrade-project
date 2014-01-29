@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
+var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 
 $(document).ready(function() {
 	
@@ -40,7 +40,7 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 

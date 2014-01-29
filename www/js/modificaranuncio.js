@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
+var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 
 var user = $.cookie('email');
 var password = $.cookie('userpass');
@@ -78,7 +78,7 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 
@@ -134,7 +134,7 @@ function Modificar() {
 					+ btoa(user + ':' + password));
 		},
 	}).done(function(data, status, jqxhr) {
-		document.location.href=("http://localhost/virtualtrade/anuncio.html");
+		document.location.href=("http://147.83.7.155/virtualtrade/anuncio.html");
 
 		$("#update_result").text("Anuncio modificado correctamente");
 	}).fail(function(jqXHR, textStatus) {

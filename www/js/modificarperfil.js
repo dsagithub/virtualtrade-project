@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:8080/virtualtrade-api";
+var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 
 var user = $.cookie('email');
 var password = $.cookie('userpass');
@@ -102,7 +102,7 @@ function logout() {
 		 $.removeCookie('email');
 		 $.removeCookie('userpass');
          $.cookie('loggedin', "nologueado");
-        window.location = "http://localhost/virtualtrade/index.html";
+        window.location = "http://147.83.7.155/virtualtrade/index.html";
 }
 
 
@@ -140,7 +140,7 @@ function Modificar() {
 		},
 	}).done(function(data, status, jqxhr) {
 		
-		document.location.href=("http://localhost/virtualtrade/perfil.html");
+		document.location.href=("http://147.83.7.155/virtualtrade/perfil.html");
 
 		$("#update_result").text("Usuario modificado correctamente");
 	}).fail(function(jqXHR, textStatus) {

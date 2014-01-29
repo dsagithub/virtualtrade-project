@@ -212,4 +212,10 @@ public class Login extends Activity {
 
 		}
 	}
+
+	public void noRegistrado(View view) {
+
+		Intent i = new Intent(this, AnuncioSelection.class);
+		startActivity(i);
+	}
 }

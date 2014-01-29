@@ -58,6 +58,15 @@
                 android:layout_marginTop="25dip"
                 android:onClick="signIn"
                 android:text="@string/login_l_signin" />
+
+            <TextView
+                android:id="@+id/noRegistrado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:onClick="noRegistrado"
+                android:text="@string/noRegistrado" />
         </LinearLayout>
 
         <RelativeLayout

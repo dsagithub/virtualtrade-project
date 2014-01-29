@@ -11,6 +11,7 @@
     <string name="ver_anuncios">Ver anuncios</string>
     <string name="cerrarSesion">Cerrar sesión</string>
     <string name="cargarAnuncios">Cargar más anuncios</string>
+     <string name="noRegistrado">Seguir sin registrarse</string>
 
     <string-array name="atributo1">
         <item>Todas las categorías</item>

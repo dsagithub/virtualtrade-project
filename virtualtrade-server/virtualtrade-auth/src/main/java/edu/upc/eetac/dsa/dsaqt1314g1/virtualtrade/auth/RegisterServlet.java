@@ -174,7 +174,7 @@ public class RegisterServlet extends HttpServlet {
 
 		
 			response.setContentType("text/html");
-			response.sendRedirect("http://localhost/virtualtrade/index.html");
+			response.sendRedirect("http://147.83.7.155/virtualtrade/index.html");
 		
 	} 
 	protected void doGet(HttpServletRequest request,

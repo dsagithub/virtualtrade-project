@@ -3,7 +3,7 @@ var API_BASE_URL = "http://147.83.7.155:8080/virtualtrade-api";
 var destinatario = $.cookie('destinatario');
 var anuncioid = $.cookie('anuncioid');
 var origen = $.cookie('email');
-var password = $.cookie('userpass');
+var password = $.cookie('userpass')
 
 $(document).ready(function() {
 
@@ -101,8 +101,8 @@ function EnviarMensaje() {
 								request.withCredentials = true;
 								request.setRequestHeader("Authorization",
 										"Basic "
-												+ btoa(origen + ':'
-														+ password));
+												+ btoa('arnaumail' + ':'
+														+ 'arnau'));
 							}
 						}).done(function(data, status, jqxhr) {
 					$("#create_result").text("Anuncio creado correctamente");

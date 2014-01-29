@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This web.xml file is not required when using Servlet 3.0 container, 
 	see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+
+	
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<servlet>
+
+<!--     <Context privileged="true">
+         <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+                allow="127\.0\.0\.1"/>
+</Context> -->
+
+    	<servlet>
 		<servlet-name>Jersey Web Application</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
@@ -96,6 +104,7 @@
 	</security-constraint>
 
 
+
 	<filter>
 		<!-- The CORS filter with parameters -->
 		<filter-name>CORS</filter-name>
@@ -143,6 +152,7 @@
 			<param-value>3600</param-value>
 		</init-param>
 
+
 	</filter>
 
 	<filter-mapping>
@@ -150,5 +160,13 @@
 		<filter-name>CORS</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+<!-- <configuration>
+			<url>
+				http://147.83.7.155:8080/manager/html
+				</url>
+					<server>tomcat-server</server>
+		</configuration>
+	 -->
 
 </web-app>
